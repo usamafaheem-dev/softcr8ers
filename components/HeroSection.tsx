@@ -1,0 +1,331 @@
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { TextAnimate } from "@/registry/magicui/text-animate";
+import { Sparkles, ArrowRight, Bot, ChevronDown, Send, Globe, LayoutGrid, Zap, X, Paperclip } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Textarea } from "@/components/ui/textarea";
+import { useAutoResizeTextarea } from "@/hooks/useAutoResizeTextarea";
+
+// ─── Animated Chat Messages ─────────────────────────────────
+type Message = {
+  role: "user" | "ai";
+  text: string;
+};
+
+const chatMessages: Message[] = [
+  { role: "user", text: "New campaign plan." },
+  { role: "ai", text: "Ready for review." },
+  { role: "user", text: "Can we schedule?" },
+  { role: "ai", text: "Done. Set for 9AM." },
+];
+
+function ChatBubble({ message, index, isTyping = false, className }: { message: Message; index: number; isTyping?: boolean; className?: string }) {
+  if (!message) return null;
+  const isUser = message.role === "user";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={cn(
+        "flex w-full mb-4 items-center gap-4",
+        isUser ? "flex-row-reverse" : "flex-row",
+        className
+      )}
+    >
+      {isUser ? (
+        <div className="w-9 h-9 rounded-lg overflow-hidden shrink-0 shadow-sm p-[2px] bg-gradient-to-tr from-[#6366f1] via-[#d946ef] to-[#f43f5e]">
+          <img src={`https://i.pravatar.cc/100?u=user${index}`} alt="User" className="w-full h-full object-cover rounded-[6px]" />
+        </div>
+      ) : (
+        <div className="w-9 h-9 rounded-lg overflow-hidden shrink-0 shadow-sm flex items-center justify-center bg-[#0f0716] border border-white/10">
+          <div className="relative">
+             <X size={18} className="text-[#a855f7] drop-shadow-[0_0_8px_rgba(168,85,247,1)] stroke-[3px]" />
+          </div>
+        </div>
+      )}
+
+      <div
+        className={cn(
+          "max-w-[85%] px-4 py-3 rounded-2xl text-[13.5px] leading-[1.5] shadow-sm border border-white font-[family-name:var(--font-inter)] font-medium bg-white",
+          isUser
+            ? "text-slate-800 rounded-br-none"
+            : "text-slate-800 rounded-bl-none"
+        )}
+      >
+        {message.text}
+      </div>
+    </motion.div>
+  );
+}
+
+// Rolling Text Button component
+function RollingTextButton({ 
+  label, 
+  href = "#", 
+  variant = "gradient",
+  className 
+}: { 
+  label: string; 
+  href?: string; 
+  variant?: "gradient" | "transparent";
+  className?: string;
+}) {
+  return (
+    <motion.a
+      href={href}
+      className={cn(
+        "group relative inline-flex items-center justify-center rounded-lg px-9 py-3 font-semibold font-sans overflow-hidden transition-all duration-300",
+        variant === "gradient" 
+          ? "bg-black text-white shadow-xl hover:shadow-purple-500/20" 
+          : "bg-white/10 backdrop-blur-md border border-white/20 text-slate-800 hover:bg-white/30",
+        className
+      )}
+      whileTap={{ scale: 0.95 }}
+    >
+      {variant === "gradient" && (
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#1620f0] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      )}
+      <div className="relative h-6 overflow-hidden">
+        <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-6">
+          <span className="flex h-6 items-center justify-center relative z-10">
+            {label}
+          </span>
+          <span className="flex h-6 items-center justify-center relative z-10">
+            {label}
+          </span>
+        </div>
+      </div>
+    </motion.a>
+  );
+}
+
+// ─── AI Prompt Component ────────────────────────────────────
+function HeroAIPrompt() {
+  const [value, setValue] = useState("");
+  const { textareaRef, adjustHeight } = useAutoResizeTextarea({ minHeight: 60, maxHeight: 150 });
+
+  return (
+    <motion.div
+      className="w-full overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)]"
+    >
+      <div className="flex flex-col">
+        {/* GPT selector + Search — small and compact on mobile */}
+        <div className="flex items-center gap-2 px-3 pt-3 pb-2">
+          <div className="relative flex items-center h-8 md:h-9 bg-white border border-slate-200 rounded-full px-1">
+            <Zap size={12} className="text-[#a906c9] ml-2" />
+            <select className="appearance-none bg-transparent pl-1 pr-5 py-1 text-[11px] md:text-[13px] font-medium text-slate-700 outline-none cursor-pointer">
+              <option>GPT 4.5</option>
+              <option>GPT 4.0</option>
+              <option>Claude 3.5</option>
+              <option>Gemini 1.5</option>
+            </select>
+            <ChevronDown size={10} className="text-slate-400 absolute right-2 pointer-events-none" />
+          </div>
+          <button className="flex items-center gap-1.5 h-8 md:h-9 px-3 rounded-full bg-white border border-slate-200 text-[11px] md:text-[13px] font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+            <Globe size={12} /> Search
+          </button>
+        </div>
+
+        <Textarea
+          ref={textareaRef}
+          value={value}
+          placeholder="Ask anything ..."
+          className="w-full px-4 md:px-5 py-4 bg-white border-none text-slate-900 placeholder:text-slate-500 font-medium resize-none focus-visible:ring-0 min-h-15 text-[15px] md:text-[16px] shadow-none"
+          onChange={(e) => { setValue(e.target.value); adjustHeight(); }}
+        />
+
+        <div className="flex items-center justify-between bg-white px-3 pb-3 pt-1">
+          {/* Suggestion tags: only 'Workflow' on mobile */}
+          <div className="flex gap-2 items-center">
+            <button disabled className="px-3 py-1.5 rounded-full bg-white border border-slate-200 text-[11px] md:text-[12px] font-medium text-slate-600 flex items-center gap-1.5 cursor-default hover:bg-slate-50 transition-colors">
+              <Sparkles size={12} className="text-[#a906c9]" /> Workflow
+            </button>
+            <button disabled className="hidden md:flex px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[12px] font-medium text-slate-600 items-center gap-1.5 cursor-default hover:bg-slate-50 transition-colors">
+              <Sparkles size={12} className="text-[#a906c9]" /> Setup Bot
+            </button>
+            <button disabled className="hidden md:flex px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[12px] font-medium text-slate-600 items-center gap-1.5 cursor-default hover:bg-slate-50 transition-colors">
+              <Sparkles size={12} className="text-[#a906c9]" /> Schedule Message
+            </button>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <button disabled className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-slate-400 cursor-default hover:text-slate-600 transition-colors">
+              <Paperclip className="w-4 h-4 md:w-[18px] md:h-[18px]" />
+            </button>
+            <button disabled className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#c46cf8] to-[#6071f0] flex items-center justify-center text-white shadow-lg cursor-default">
+              <Send className="w-3.5 h-3.5 md:w-4 md:h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── Main Hero Section ──────────────────────────────────────
+export function HeroSection() {
+  const [messages, setMessages] = useState<{ role: "user" | "ai", text: string, id: number }[]>([]);
+  const chatRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(chatRef, { margin: "-30% 0px -30% 0px" });
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    
+    if (isInView) {
+      let currentStep = 0;
+      const playNext = () => {
+        if (currentStep >= chatMessages.length) return;
+        const nextMsg = chatMessages[currentStep];
+        setMessages(prev => [...prev, { ...nextMsg, id: currentStep }]);
+        currentStep++;
+        timeout = setTimeout(playNext, nextMsg.role === "ai" ? 1800 : 1000);
+      };
+      timeout = setTimeout(playNext, 800);
+    } else {
+      setMessages([]);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [isInView]);
+
+  return (
+    <section className="relative w-full px-2 md:px-4 pt-2 md:pt-4 bg-white">
+      
+      {/* Main Hero Wrapper with Rounded Background - Flex col to allow bottom anchoring */}
+      <div className="relative w-full min-h-[120vh] md:min-h-[130vh] rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 bg-white flex flex-col">
+        
+        {/* Background Animation - Covers full height of this container */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/Untitleddesign.gif"
+            className="w-full h-full object-cover opacity-80"
+            alt="Cloud Animation"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-[40vh] bg-linear-to-b from-transparent to-white" />
+        </div>
+
+        {/* Floating Cubes around Hero Text - Relative to full hero wrapper */}
+        <motion.div
+          className="absolute top-[20%] left-[-5%] md:left-[5%] w-20 h-20 md:w-44 md:h-44 pointer-events-none opacity-20 md:opacity-30 z-0"
+          animate={{ y: [0, -30, 0], rotate: [0, 15, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <img src="/hero-block-1.avif" alt="3D Cube" className="w-full h-full object-contain blur-[1px]" />
+        </motion.div>
+        <motion.div
+          className="absolute top-[10%] right-[-5%] md:right-[5%] w-24 h-24 md:w-48 md:h-48 pointer-events-none opacity-20 md:opacity-30 z-0"
+          animate={{ y: [0, 30, 0], rotate: [0, -15, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        >
+          <img src="/hero-block-2.avif" alt="3D Cube" className="w-full h-full object-contain blur-[1px]" />
+        </motion.div>
+
+        {/* Content Layer - flex-1 stretches it to fill parent, flex-col allows mt-auto */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto pt-24 md:pt-44 px-4 md:px-12 flex-1 flex flex-col items-center md:items-start">
+          
+          {/* Text Content - Center on Mobile, Left on Desktop */}
+          <div className="w-full flex flex-col items-center md:items-start text-center md:text-left mb-8 md:mb-10">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="mb-8 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 border border-white backdrop-blur-md text-slate-800 text-[13px] font-bold shadow-sm"
+            >
+              <Sparkles size={14} className="text-[#a906c9]" />
+              BUSINESS & SOLUTION
+            </motion.div>
+
+            {/* Headline */}
+            <div className="max-w-4xl mb-6">
+              <h1 className="text-[40px] md:text-[72px] font-medium leading-[1.1] tracking-tight text-[#000000] font-sans">
+                The AI Agent Platform for Modern Teams
+              </h1>
+            </div>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-[#1C0C26CC] text-base md:text-[16px] max-w-xl mb-10 font-medium leading-relaxed"
+            >
+              Fluence AI helps you connect, manage, and optimize your AI tools effortlessly. Unlock powerful insights and automate complex processes with ease.
+            </motion.p>
+            
+            {/* Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="flex flex-row gap-2 md:gap-4 w-full md:w-auto"
+            >
+              <RollingTextButton label="Get Started" variant="gradient" className="flex-1 md:flex-none px-3 md:px-10 text-[13px] md:text-base h-11 md:h-12" />
+              <RollingTextButton label="Book a Demo" variant="transparent" className="flex-1 md:flex-none px-3 md:px-10 text-[13px] md:text-base h-11 md:h-12" />
+            </motion.div>
+          </div>
+
+          {/* Chat Interface Container - mt-auto pushes it to the bottom */}
+          <div id="chat-section" ref={chatRef} className="w-full relative flex justify-center mt-auto">
+            
+            {/* Main Glass Outer Card - Anchored to bottom, no bottom border/radius */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="w-full max-w-[1400px] min-h-[604px] bg-white/20 backdrop-blur-xl border border-white/40 border-b-0 rounded-t-2xl md:rounded-t-[2.5rem] rounded-b-none pt-8 md:pt-[40px] px-0 md:px-[16px] pb-[30px] shadow-[0_-10px_50px_-20px_rgba(0,0,0,0.08)] overflow-hidden relative flex flex-col gap-6"
+            >
+            {/* 3D Decor Blocks */}
+            <div className="absolute top-20 -left-10 w-32 h-32 bg-purple-200/10 blur-2xl rounded-full" />
+            <div className="absolute bottom-20 -right-10 w-40 h-40 bg-pink-100/10 blur-2xl rounded-full" />
+            <motion.div
+              className="absolute top-[50%] left-[-4%] md:left-[2%] w-44 h-44 md:w-56 md:h-56 pointer-events-none opacity-80 z-0"
+              animate={{ y: [0, -40, 0], rotate: [0, 15, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <img src="/hero-block-1.avif" alt="3D Cube" className="w-full h-full object-contain drop-shadow-2xl" />
+            </motion.div>
+            <motion.div
+              className="absolute top-[10%] right-[-5%] md:right-[-2%] w-48 h-48 md:w-60 md:h-60 pointer-events-none opacity-80 z-0"
+              animate={{ y: [0, 40, 0], rotate: [0, -15, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            >
+              <img src="/hero-block-2.avif" alt="3D Cube" className="w-full h-full object-contain drop-shadow-2xl" />
+            </motion.div>
+
+            {/* Chat messages area */}
+            <div className="relative z-10 w-[90%] md:w-full max-w-xl mx-auto">
+              <div className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/50 shadow-md px-4 md:px-6 pt-8 pb-4">
+                <div className="flex flex-col justify-end w-full h-[250px] md:h-[280px] transition-all duration-500">
+                  <AnimatePresence mode="popLayout" initial={false}>
+                    {messages.map((m, idx) => (
+                      <ChatBubble 
+                        key={m.id} 
+                        message={m} 
+                        index={m.id} 
+                        className={cn(idx < messages.length - 4 ? "hidden md:flex" : "flex")}
+                      />
+                    ))}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
+
+            {/* Chat input area */}
+            <div className="relative z-10 w-[90%] md:w-full max-w-xl mx-auto mt-2">
+              <HeroAIPrompt />
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+    </div>
+
+      {/* Spacer for next section */}
+      <div className="h-32 w-full" />
+    </section>
+  );
+}

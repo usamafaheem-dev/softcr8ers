@@ -1,0 +1,240 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { RainbowButton } from "@/registry/magicui/rainbow-button";
+
+// Rolling Text Button component
+function RollingTextButton({ 
+  label, 
+  href = "#", 
+  variant = "gradient",
+  className 
+}: { 
+  label: string; 
+  href?: string; 
+  variant?: "gradient" | "transparent";
+  className?: string;
+}) {
+  return (
+    <motion.a
+      href={href}
+      className={cn(
+        "group relative inline-flex items-center justify-center rounded-full px-6 py-2.5 font-semibold font-sans overflow-hidden transition-all duration-500",
+        variant === "gradient" 
+          ? "bg-[#0f0716] text-white shadow-xl shadow-purple-500/10" 
+          : "bg-white/10 backdrop-blur-md border border-white/20 text-slate-700 hover:bg-white/20",
+        className
+      )}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {variant === "gradient" && (
+        <div className="absolute inset-0 bg-gradient-to-r from-[#6071f0] via-[#c46cf8] to-[#6071f0] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      )}
+      <div className="relative h-6 overflow-hidden">
+        <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-6">
+          <span className="flex h-6 items-center justify-center relative z-10">
+            {label}
+          </span>
+          <span className="flex h-6 items-center justify-center relative z-10">
+            {label}
+          </span>
+        </div>
+      </div>
+    </motion.a>
+  );
+}
+
+function ContactButton({ className }: { className?: string }) {
+  return <RollingTextButton label="Contact" href="#contact" variant="gradient" className={className} />;
+}
+
+const navLinks = [
+  { label: "Features", href: "#features" },
+  { label: "About", href: "#about" },
+  { label: "Testimonial", href: "#testimonial" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Faq", href: "#faq" },
+];
+
+export function Navbar() {
+  const [isDocked, setIsDocked] = useState(false);
+  const [isAtChat, setIsAtChat] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsDocked(scrollY > 50);
+
+      const chatSection = document.getElementById("chat-section");
+      if (chatSection) {
+        setIsAtChat(scrollY > chatSection.offsetTop - 150);
+      } else {
+        setIsAtChat(scrollY > 400);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <motion.div
+      className={cn(
+        "fixed left-1/2 z-50 -translate-x-1/2 transition-all duration-500 px-4",
+        isDocked
+          ? "top-3 w-[850px] max-w-[95vw]"
+          : "top-6 md:top-8 w-full max-w-[1200px]"
+      )}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <motion.nav
+        className={cn(
+          "grid w-full items-center transition-all duration-700",
+          menuOpen ? "opacity-0 pointer-events-none" : "opacity-100",
+          !isDocked
+            ? "grid-cols-[1fr_auto] md:grid-cols-[auto_1fr] rounded-2xl px-4 md:px-6 py-2 border-white/40 bg-white/40 backdrop-blur-md shadow-lg"
+            : isAtChat
+              ? "grid-cols-[1fr_auto] md:grid-cols-[auto_1fr_auto] rounded-xl px-4 py-1.5 border-slate-300/50 bg-white shadow-[0_20px_50px_-20px_rgba(0,0,0,0.15)] backdrop-blur-xl"
+              : "grid-cols-[1fr_auto] md:grid-cols-[auto_1fr_auto] rounded-xl px-4 py-1.5 border-white/40 bg-white/30 shadow-lg backdrop-blur-xl"
+        )}
+      >
+        {/* Logo Section */}
+        <motion.a
+          href="/"
+          className="flex items-center gap-3 justify-start shrink-0 relative px-1 py-1"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          {/* Brand Icon */}
+          <div className="w-8 h-8 md:w-9 md:h-9 rounded-lg overflow-hidden shrink-0 shadow-sm flex items-center justify-center bg-[#0f0716] border border-white/10">
+            <div className="relative">
+              <X size={16} className="text-[#a855f7] drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] stroke-[3px]" />
+            </div>
+          </div>
+          {/* Brand Text */}
+          <span className={cn(
+            "font-sans font-semibold tracking-tight text-slate-900 transition-all duration-300",
+            isDocked ? "text-lg md:text-xl" : "text-xl md:text-2xl"
+          )}>
+            Fluence AI
+          </span>
+        </motion.a>
+
+        {/* Nav Links - Desktop (Lg and above) */}
+        <div
+          className={cn(
+            "hidden lg:flex items-center gap-2",
+            isDocked ? "justify-self-center" : "justify-self-end"
+          )}
+        >
+          {navLinks.map((link) => (
+            <motion.a
+              key={link.label}
+              href={link.href}
+              className="px-3 py-1.5 text-[16px] font-medium tracking-normal transition-all duration-300 font-sans text-slate-600 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]"
+              style={{ WebkitTapHighlightColor: 'transparent' }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {link.label}
+            </motion.a>
+          ))}
+          {!isDocked && (
+            <div className="ml-4 flex">
+              <ContactButton />
+            </div>
+          )}
+        </div>
+
+        {/* Contact Button - Compact (Lg and above) */}
+        {isDocked && (
+          <div className="hidden lg:block justify-self-end">
+            <ContactButton />
+          </div>
+        )}
+
+        {/* Mobile Toggle - Visible on smaller than LG */}
+        <button
+          className={cn(
+            "lg:hidden p-2 rounded-xl transition-colors justify-self-end",
+            isDocked ? "text-slate-900 hover:bg-slate-50" : "text-slate-900 hover:bg-white/30"
+          )}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </motion.nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-x-4 top-3 z-[60] bg-white rounded-3xl shadow-2xl border border-slate-100 p-6 flex flex-col md:hidden"
+          >
+            {/* Menu Header */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0 shadow-sm flex items-center justify-center bg-[#0f0716] border border-white/10">
+                  <X size={16} className="text-[#a855f7] stroke-[3px]" />
+                </div>
+                <span className="font-sans font-semibold tracking-tight text-slate-900 text-xl">
+                  Fluence AI
+                </span>
+              </div>
+              <button 
+                onClick={() => setMenuOpen(false)}
+                className="p-2 text-slate-400 hover:text-slate-900 transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            {/* Gradient Divider - Animated */}
+            <motion.div 
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.6, ease: "circOut" }}
+              className="h-[1px] w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent mb-4 origin-left" 
+            />
+
+            {/* Nav Links */}
+            <div className="flex flex-col">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="px-2 py-2 text-slate-500 font-medium text-[16px] hover:text-slate-900 transition-colors font-sans border-b border-slate-50 last:border-0"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            {/* Contact Button */}
+            <a
+              href="#contact"
+              className="mt-4 w-full py-3 rounded-xl bg-black text-white font-medium text-base text-center font-sans shadow-lg shadow-black/10 active:scale-95 transition-transform"
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
