@@ -22,17 +22,17 @@ function RollingTextButton({
     <motion.a
       href={href}
       className={cn(
-        "group relative inline-flex items-center justify-center rounded-full px-6 py-2.5 font-semibold font-sans overflow-hidden transition-all duration-500",
+        "group relative inline-flex items-center justify-center rounded-xl px-9 py-3 font-semibold font-sans overflow-hidden transition-all duration-500",
         variant === "gradient" 
-          ? "bg-[#0f0716] text-white shadow-xl shadow-purple-500/10" 
-          : "bg-white/10 backdrop-blur-md border border-white/20 text-slate-700 hover:bg-white/20",
+          ? "bg-[#0f0716] text-white shadow-xl hover:shadow-purple-500/10" 
+          : "bg-white/10 backdrop-blur-md border border-white/20 text-slate-800 hover:bg-white/30",
         className
       )}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
       {variant === "gradient" && (
-        <div className="absolute inset-0 bg-gradient-to-r from-[#6071f0] via-[#c46cf8] to-[#6071f0] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#a855f7] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       )}
       <div className="relative h-6 overflow-hidden">
         <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-6">
