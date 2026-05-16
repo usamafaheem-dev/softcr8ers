@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import Link from "next/link";
@@ -36,14 +36,6 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
           transition={{ duration: 0.6 }}
           className="relative z-10 max-w-4xl mx-auto"
         >
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-slate-700 transition-colors mb-8 group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Back to Home
-          </Link>
-
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="text-[#a855f7] font-bold animate-spin">✱</span>
             <span className="text-xs font-black tracking-[0.5em] uppercase text-slate-400">
@@ -70,7 +62,7 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
           <img
             src={data.image}
             alt={data.title}
-            className="w-full h-[300px] md:h-[480px] object-cover"
+            className="w-full h-[200px] md:h-[340px] object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent" />
         </motion.div>
