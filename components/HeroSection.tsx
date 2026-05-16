@@ -212,7 +212,7 @@ export function HeroSection() {
             playsInline
             className="w-full h-full object-cover opacity-80"
           >
-            <source src="https://ik.imagekit.io/o5vhmyokl/i_need_animted_video_for_202605161054.mp4" type="video/mp4" />
+            <source src="https://ik.imagekit.io/o5vhmyokl/Untitled%20design%20(1).mp4?updatedAt=1778758796846" type="video/mp4" />
           </video>
           <div className="absolute inset-x-0 bottom-0 h-[40vh] bg-linear-to-b from-transparent to-white" />
         </div>
