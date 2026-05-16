@@ -80,7 +80,8 @@ export function AboutSection8() {
             className="flex flex-col gap-6 text-center lg:text-left items-center lg:items-start w-full"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-950 tracking-tight leading-[1.2] font-sans">
-              Engineering the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Future of AI</span> Through Human Intuition.
+              Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Creativity</span> Meets Code. Where Vision Meets{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Execution.</span>
             </h2>
 
             <div className="mt-4">
@@ -90,7 +91,7 @@ export function AboutSection8() {
                 className="text-slate-500 text-sm md:text-base leading-relaxed max-w-md mx-auto lg:mx-0 whitespace-pre-wrap"
                 segmentClassName="mr-[0.05em]"
               >
-                Softcr8ers bridges the gap between human intuition and autonomous intelligence, engineering ecosystems for global innovators.
+                Softcr8ers is a full-service digital agency delivering world-class web development, software engineering, UI/UX design, video production, and brand strategy — all under one roof.
               </TextAnimate>
             </div>
           </motion.div>
@@ -128,7 +129,7 @@ export function AboutSection8() {
                       className="text-white text-lg md:text-xl font-medium leading-relaxed tracking-tight italic font-sans max-w-2xl whitespace-pre-wrap"
                       segmentClassName="mr-[0.05em]"
                     >
-                      "At Softcreater, our mission is to humanize AI by bridging the gap between human intuition and machine intelligence."
+                      "We don't just build digital products — we craft experiences that inspire, connect, and drive real business growth for our clients worldwide."
                     </TextAnimate>
                   </div>
                   

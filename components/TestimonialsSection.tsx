@@ -6,14 +6,14 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 const testimonials = [
-  { text: "Softcr8ers transformed our entire workflow. The AI automation they built cut our processing time by 70%.", name: "Sandra Meyers", role: "CEO, ABC Tech", image: "https://i.pravatar.cc/100?u=sandra" },
-  { text: "This solution changed the way we manage projects. Seamless integration and user-friendly interface.", name: "James Patel", role: "VP, Evergreen", image: "https://i.pravatar.cc/100?u=james" },
-  { text: "We scaled our services faster than expected, thanks to the robust capabilities of the platform.", name: "Laura Greer", role: "COO, Atlas Corp", image: "https://i.pravatar.cc/100?u=laura" },
-  { text: "Fast, accurate results with minimal errors — it's been a win for everyone on our team.", name: "David O'Connor", role: "Founder, Tooly", image: "https://i.pravatar.cc/100?u=david" },
-  { text: "We reduced downtime by 30%. Intuitive and allows us to streamline operations across multiple teams.", name: "Sarah Mitchell", role: "CTO, Evergreen", image: "https://i.pravatar.cc/100?u=sarah" },
-  { text: "Seamless integration with our existing platforms. This solution elevated our team's performance.", name: "Michael Lee", role: "CPO, Q Global", image: "https://i.pravatar.cc/100?u=michael" },
-  { text: "Drastically improved team collaboration and productivity. Measurable results within weeks.", name: "Julia Martinez", role: "HR Manager, Evergreen", image: "https://i.pravatar.cc/100?u=julia" },
-  { text: "AI agents handle repetitive tasks so our team can focus on strategy and growth.", name: "Chris Nguyen", role: "Head of Ops, NovaTech", image: "https://i.pravatar.cc/100?u=chris" },
+  { text: "Softcr8ers built our entire e-commerce platform from scratch. The design is stunning and conversions are up 40% since launch.", name: "Sandra Meyers", role: "CEO, LuxeCart", image: "https://i.pravatar.cc/100?u=sandra" },
+  { text: "Their UI/UX team transformed our app's experience. User retention doubled within the first month after the redesign.", name: "James Patel", role: "Product Lead, Evergreen", image: "https://i.pravatar.cc/100?u=james" },
+  { text: "The brand identity they created for us is incredible. We've received so many compliments from clients and partners.", name: "Laura Greer", role: "Founder, Atlas Studios", image: "https://i.pravatar.cc/100?u=laura" },
+  { text: "The video production quality is truly cinematic. Our brand reel generated over 500K views in the first week.", name: "David O'Connor", role: "CMO, NovaBrands", image: "https://i.pravatar.cc/100?u=david" },
+  { text: "They delivered our custom CRM software ahead of schedule and it works flawlessly. Highly recommend the team.", name: "Sarah Mitchell", role: "COO, TechFlow", image: "https://i.pravatar.cc/100?u=sarah" },
+  { text: "Softcr8ers redesigned our entire digital presence. The website is fast, beautiful, and converts like nothing before.", name: "Michael Lee", role: "Director, Q Global", image: "https://i.pravatar.cc/100?u=michael" },
+  { text: "Professional, creative, and technically brilliant. They turned our rough ideas into a polished mobile app in 8 weeks.", name: "Julia Martinez", role: "Co-Founder, Appify", image: "https://i.pravatar.cc/100?u=julia" },
+  { text: "Best agency we've worked with. Their audio and video editing elevated our content to a whole new professional level.", name: "Chris Nguyen", role: "Head of Marketing, CreatorHub", image: "https://i.pravatar.cc/100?u=chris" },
 ];
 
 const col1 = testimonials.slice(0, 4);
@@ -84,23 +84,23 @@ export function TestimonialsSection() {
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-950 tracking-tight leading-[1.1]">
-              Get Started The{" "}
+              Trusted by{" "}
               <span className="relative inline-block">
-                <span className="relative z-10">Right Way</span>
+                <span className="relative z-10">Businesses</span>
                 <motion.span
                   initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                   className="absolute bottom-1 left-0 h-[35%] bg-purple-500/15 z-0"
                 />
               </span>
-              <br />With The{" "}
+              {" "}That Mean{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">
-                Best Solution!
+                Business.
               </span>
             </h2>
 
             <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-sm mx-auto lg:mx-0">
-              Over 10,000+ organisations successfully use our solution. Join the best team today.
+              Join 500+ growing businesses who have trusted Softcr8ers to build their digital future.
             </p>
 
             {/* Stats */}

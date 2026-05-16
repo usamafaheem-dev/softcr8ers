@@ -7,44 +7,44 @@ import { CardStack, CardStackItem } from "@/components/ui/card-stack";
 
 const services = [
   {
-    id: 1, title: "Web Engineering", slug: "web-engineering",
-    description: "Architecting high-performance digital ecosystems with cutting-edge tech stacks.",
+    id: 1, title: "Web Development", slug: "web-engineering",
+    description: "Blazing-fast, pixel-perfect websites built for conversion, performance, and scale.",
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
   },
   {
-    id: 2, title: "Intelligence & AI", slug: "intelligence-ai",
-    description: "Neural networks and autonomous systems for modern business workflows.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 3, title: "Custom Software", slug: "custom-software",
-    description: "Tailored enterprise solutions engineered for scalability and growth.",
+    id: 2, title: "Software Development", slug: "custom-software",
+    description: "Scalable custom software solutions engineered to solve your unique business challenges.",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
   },
   {
-    id: 4, title: "Mobile Innovation", slug: "mobile-innovation",
-    description: "High-fidelity native experiences across iOS and Android.",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 5, title: "SaaS Platforms", slug: "saas-platforms",
-    description: "End-to-end cloud infrastructure for subscription-based products.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 6, title: "UI/UX Design", slug: "ui-ux-design",
-    description: "Psychology-driven visual interfaces designed for maximum engagement.",
+    id: 3, title: "UI/UX Design", slug: "ui-ux-design",
+    description: "User-first interfaces crafted with precision — beautiful, intuitive, and delightful to use.",
     image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800",
   },
   {
-    id: 7, title: "Technical SEO", slug: "technical-seo",
-    description: "Dominating search rankings with data-driven content strategies.",
-    image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800",
+    id: 4, title: "Video & Audio Production", slug: "gen-ai-content",
+    description: "Cinematic brand videos, social reels, and audio production that captivate your audience.",
+    image: "https://images.unsplash.com/photo-1536240478700-b869ad10e128?auto=format&fit=crop&q=80&w=800",
   },
   {
-    id: 8, title: "Gen AI Content", slug: "gen-ai-content",
-    description: "LLM-powered creative scaling for global digital campaigns.",
+    id: 5, title: "Creative Digital Solutions", slug: "intelligence-ai",
+    description: "Innovative campaigns, motion graphics, and interactive content that stand out in the noise.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    id: 6, title: "Branding & Identity", slug: "saas-platforms",
+    description: "Strategic brand identities that communicate your vision and create lasting impressions.",
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    id: 7, title: "Mobile App Development", slug: "mobile-innovation",
+    description: "High-performance iOS and Android apps that delight users and drive engagement.",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    id: 8, title: "IT & Tech Consulting", slug: "technical-seo",
+    description: "End-to-end technology consulting to align your IT infrastructure with business goals.",
+    image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800",
   },
 ];
 
@@ -95,9 +95,9 @@ export function ServicesSection() {
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-tight font-['General_Sans',sans-serif]"
           >
-            Powering the{" "}
+            Everything Your{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">
-              Digital Future
+              Brand Needs
             </span>
           </motion.h2>
           <motion.p
@@ -107,7 +107,7 @@ export function ServicesSection() {
             transition={{ delay: 0.2 }}
             className="text-slate-400 mt-3 text-sm md:text-base max-w-xl mx-auto font-normal font-['General_Sans',sans-serif]"
           >
-            Where elite engineering meets revolutionary design to create high-impact products.
+            From code to camera, strategy to screens — we deliver every service your business needs to dominate digitally.
           </motion.p>
         </div>
 

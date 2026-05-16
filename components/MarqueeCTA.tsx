@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const VIDEO_SRC = "https://ik.imagekit.io/o5vhmyokl/i_need_animted_video_for_202605161054.mp4";
 
-const ITEMS = ["SOFTCR8ERS", "READY TO ELEVATE", "LET'S BUILD", "INNOVATE TOGETHER"];
+const ITEMS = ["SOFTCR8ERS", "WEB DEVELOPMENT", "UI/UX DESIGN", "VIDEO PRODUCTION", "SOFTWARE DEV", "BRAND IDENTITY", "CREATIVE STUDIO"];
 const SEP = "  ✦  ";
 
 /**

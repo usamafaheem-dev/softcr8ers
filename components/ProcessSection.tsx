@@ -182,28 +182,28 @@ const cards = [
     illustration: <Card1Illustration />,
     title: (
       <>
-        Connect Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Data</span>
+        Share Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Vision</span>
       </>
     ),
-    description: "Effortlessly integrate data from various sources into a unified system.",
+    description: "Tell us what you need. We listen carefully to understand your goals, audience, and business context.",
   },
   {
     illustration: <Card2Illustration />,
     title: (
       <>
-        Analyze and <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Optimize</span>
+        We Design &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Build</span>
       </>
     ),
-    description: "Use AI to uncover valuable insights and improve performance.",
+    description: "Our expert team crafts your solution with precision — from wireframes and design to full-scale development.",
   },
   {
     illustration: <Card3Illustration />,
     title: (
       <>
-        Let AI <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Work</span>
+        Launch &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Grow</span>
       </>
     ),
-    description: "Streamline tasks and enhance productivity with AI.",
+    description: "We go live, measure results, and continuously optimize to ensure your project keeps delivering value.",
   },
 ];
 
@@ -284,9 +284,9 @@ export function ProcessSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl md:text-5xl font-medium tracking-tight text-slate-950 leading-tight mb-3 font-['General_Sans',sans-serif]"
           >
-            A Simple{" "}
+            How We{" "}
             <span className="relative inline-block">
-              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">3-Step</span>
+              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Work</span>
               <motion.span
                 initial={{ width: 0 }}
                 animate={isInView ? { width: "100%" } : {}}
@@ -294,7 +294,7 @@ export function ProcessSection() {
                 className="absolute bottom-1 left-0 h-[35%] bg-purple-500/15 z-0 rounded-sm"
               />
             </span>{" "}
-            Process
+            With You
           </motion.h2>
 
           <motion.p
@@ -303,8 +303,7 @@ export function ProcessSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-slate-500 text-sm md:text-base max-w-xl mx-auto leading-relaxed font-normal font-['General_Sans',sans-serif]"
           >
-            Get started quickly and effortlessly with our streamlined 3-step process
-            designed to optimize your data workflow.
+            Simple, transparent, and results-driven. From the first conversation to the final delivery — we make every step count.
           </motion.p>
 
           {/* CTA buttons */}

@@ -15,10 +15,10 @@ type Message = {
 };
 
 const chatMessages: Message[] = [
-  { role: "user", text: "New campaign plan." },
-  { role: "ai", text: "Ready for review." },
-  { role: "user", text: "Can we schedule?" },
-  { role: "ai", text: "Done. Set for 9AM." },
+  { role: "user", text: "Build us a new brand website." },
+  { role: "ai", text: "On it — wireframes ready." },
+  { role: "user", text: "Can we add a video reel?" },
+  { role: "ai", text: "Done. Production starts Monday." },
 ];
 
 function ChatBubble({ message, index, isTyping = false, className }: { message: Message; index: number; isTyping?: boolean; className?: string }) {
@@ -144,13 +144,13 @@ function HeroAIPrompt() {
           {/* Suggestion tags: only 'Workflow' on mobile */}
           <div className="flex gap-2 items-center">
             <button disabled className="px-3 py-1.5 rounded-full bg-white border border-slate-200 text-[11px] md:text-[12px] font-medium text-slate-600 flex items-center gap-1.5 cursor-default hover:bg-slate-50 transition-colors">
-              <Sparkles size={12} className="text-[#a906c9]" /> Workflow
+              <Sparkles size={12} className="text-[#a906c9]" /> Design a Brand
             </button>
             <button disabled className="hidden md:flex px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[12px] font-medium text-slate-600 items-center gap-1.5 cursor-default hover:bg-slate-50 transition-colors">
-              <Sparkles size={12} className="text-[#a906c9]" /> Setup Bot
+              <Sparkles size={12} className="text-[#a906c9]" /> Build a Website
             </button>
             <button disabled className="hidden md:flex px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[12px] font-medium text-slate-600 items-center gap-1.5 cursor-default hover:bg-slate-50 transition-colors">
-              <Sparkles size={12} className="text-[#a906c9]" /> Schedule Message
+              <Sparkles size={12} className="text-[#a906c9]" /> Edit a Video
             </button>
           </div>
           <div className="flex items-center gap-1.5">
@@ -245,13 +245,15 @@ export function HeroSection() {
               className="mb-8 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 border border-white backdrop-blur-md text-slate-800 text-[13px] font-bold shadow-sm"
             >
               <Sparkles size={14} className="text-[#a906c9]" />
-              BUSINESS & SOLUTION
+              DIGITAL AGENCY & CREATIVE STUDIO
             </motion.div>
 
             {/* Headline */}
             <div className="max-w-4xl mb-6">
               <h1 className="text-[40px] md:text-[72px] font-medium leading-[1.1] tracking-tight text-[#000000] font-sans">
-                The AI Agent Platform for Modern Teams
+                We Build, Design &{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Deliver</span>{" "}
+                Digital Excellence.
               </h1>
             </div>
 
@@ -262,7 +264,7 @@ export function HeroSection() {
               transition={{ delay: 0.2 }}
               className="text-[#1C0C26CC] text-base md:text-[16px] max-w-xl mb-10 font-medium leading-relaxed"
             >
-              Fluence AI helps you connect, manage, and optimize your AI tools effortlessly. Unlock powerful insights and automate complex processes with ease.
+              From stunning websites and custom software to cinematic video production and bold brand identities — Softcr8ers turns your vision into a digital reality.
             </motion.p>
 
             {/* Buttons */}
@@ -342,7 +344,7 @@ export function HeroSection() {
             <div className="animate-marquee hover:[animation-play-state:paused] flex whitespace-nowrap text-[6vw] md:text-[90px] font-bold uppercase tracking-tighter text-slate-950/20 leading-none font-sans pointer-events-auto cursor-default w-max" style={{ animationDuration: "60s" }}>
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="flex flex-row items-center">
-                  {["SOFTCR8ERS", "AI AGENTS", "AUTOMATION", "WORKFLOW"].map((word, idx) => (
+                  {["SOFTCR8ERS", "WEB DEVELOPMENT", "UI / UX DESIGN", "BRANDING"].map((word, idx) => (
                     <span key={idx} className="flex items-center group">
                       <span className={cn(
                         "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#a855f7] hover:via-[#6366f1] hover:to-[#f43f5e]",
@@ -363,7 +365,7 @@ export function HeroSection() {
             <div className="animate-marquee-reverse hover:[animation-play-state:paused] flex whitespace-nowrap text-[6vw] md:text-[90px] font-bold uppercase tracking-tighter text-slate-950/10 leading-none font-sans pointer-events-auto cursor-default w-max" style={{ animationDuration: "60s" }}>
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="flex flex-row items-center">
-                  {["INNOVATION", "FUTURE", "SCALE", "INTELLIGENCE"].map((word, idx) => (
+                  {["VIDEO EDITING", "SOFTCR8ERS", "SOFTWARE DEV", "CREATIVE STUDIO"].map((word, idx) => (
                     <span key={idx} className="flex items-center group">
                       <span className={cn(
                         "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#f43f5e] hover:via-[#6366f1] hover:to-[#a855f7]",
