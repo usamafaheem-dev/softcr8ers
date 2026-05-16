@@ -287,7 +287,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="w-full max-w-[1400px] min-h-[604px] bg-white/20 backdrop-blur-xl border border-white/40 border-b-0 rounded-t-2xl md:rounded-t-[2.5rem] rounded-b-none pt-8 md:pt-[40px] px-0 md:px-[16px] pb-[30px] shadow-[0_-10px_50px_-20px_rgba(0,0,0,0.08)] overflow-hidden relative flex flex-col gap-6"
+              className="w-full max-w-[1400px] min-h-[780px] md:min-h-[604px] bg-white/20 backdrop-blur-xl border border-white/40 border-b-0 rounded-t-2xl md:rounded-t-[2.5rem] rounded-b-none pt-8 md:pt-[40px] px-0 md:px-[16px] pb-[30px] shadow-[0_-10px_50px_-20px_rgba(0,0,0,0.08)] overflow-hidden relative flex flex-col gap-6"
             >
               {/* 3D Decor Blocks */}
               <div className="absolute top-20 -left-10 w-32 h-32 bg-purple-200/10 blur-2xl rounded-full" />
@@ -310,7 +310,7 @@ export function HeroSection() {
               {/* Chat messages area */}
               <div className="relative z-10 w-[90%] md:w-full max-w-xl mx-auto">
                 <div className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/50 shadow-md px-4 md:px-6 pt-8 pb-4">
-                  <div className="flex flex-col justify-end w-full h-[250px] md:h-[280px] transition-all duration-500">
+                  <div className="flex flex-col justify-end w-full h-[340px] md:h-[280px] transition-all duration-500">
                     <AnimatePresence mode="popLayout" initial={false}>
                       {messages.map((m, idx) => (
                         <ChatBubble

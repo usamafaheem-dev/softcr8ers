@@ -135,7 +135,7 @@ export function AboutSection8() {
                   
                   <div className="flex items-center gap-4 mt-auto">
                     <div className="w-12 h-12 rounded-full border-2 border-white/20 overflow-hidden shadow-2xl shrink-0 group-hover:scale-105 transition-transform duration-500">
-                      <img src="https://randomuser.me/api/portraits/women/62.jpg" alt="Reeba Yaseen - Founder" className="w-full h-full object-cover" />
+                      <img src="https://randomuser.me/api/portraits/women/18.jpg" alt="Reeba Yaseen - Founder" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex flex-col gap-0.5">
                       <div className="text-xs font-black text-white uppercase tracking-wider font-sans">REEBA YASEEN</div>
