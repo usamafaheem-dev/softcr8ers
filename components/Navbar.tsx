@@ -3,18 +3,18 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Menu, X, ArrowRight } from "lucide-react";
-import { RainbowButton } from "@/registry/magicui/rainbow-button";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 // Rolling Text Button component
-function RollingTextButton({ 
-  label, 
-  href = "#", 
+function RollingTextButton({
+  label,
+  href = "#",
   variant = "gradient",
-  className 
-}: { 
-  label: string; 
-  href?: string; 
+  className
+}: {
+  label: string;
+  href?: string;
   variant?: "gradient" | "transparent";
   className?: string;
 }) {
@@ -22,17 +22,17 @@ function RollingTextButton({
     <motion.a
       href={href}
       className={cn(
-        "group relative inline-flex items-center justify-center rounded-xl px-9 py-3 font-semibold font-sans overflow-hidden transition-all duration-500",
-        variant === "gradient" 
-          ? "bg-[#0f0716] text-white shadow-xl hover:shadow-purple-500/10" 
-          : "bg-white/10 backdrop-blur-md border border-white/20 text-slate-800 hover:bg-white/30",
+        "group relative inline-flex items-center justify-center rounded-full px-6 py-2.5 font-semibold font-sans overflow-hidden transition-all duration-500",
+        variant === "gradient"
+          ? "bg-[#0f0716] text-white shadow-xl shadow-purple-500/10"
+          : "bg-white/10 backdrop-blur-md border border-white/20 text-slate-700 hover:bg-white/20",
         className
       )}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
       {variant === "gradient" && (
-        <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#a855f7] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#6071f0] via-[#c46cf8] to-[#6071f0] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       )}
       <div className="relative h-6 overflow-hidden">
         <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-6">
@@ -53,11 +53,10 @@ function ContactButton({ className }: { className?: string }) {
 }
 
 const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "About", href: "#about" },
-  { label: "Testimonial", href: "#testimonial" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Faq", href: "#faq" },
+  { label: "About",        href: "#about" },
+  { label: "Services",     href: "#services" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "Contact",      href: "#contact" },
 ];
 
 export function Navbar() {
@@ -90,7 +89,7 @@ export function Navbar() {
       className={cn(
         "fixed left-1/2 z-50 -translate-x-1/2 transition-all duration-500 px-4",
         isDocked
-          ? "top-3 w-[850px] max-w-[95vw]"
+          ? "top-3 w-[850px] max-w-[92vw] md:max-w-[95vw]"
           : "top-6 md:top-8 w-full max-w-[1200px]"
       )}
       initial={{ y: -100, opacity: 0 }}
@@ -102,35 +101,29 @@ export function Navbar() {
           "grid w-full items-center transition-all duration-700",
           menuOpen ? "opacity-0 pointer-events-none" : "opacity-100",
           !isDocked
-            ? "grid-cols-[1fr_auto] md:grid-cols-[auto_1fr] rounded-2xl px-4 md:px-6 py-2 border-white/40 bg-white/40 backdrop-blur-md shadow-lg"
+            ? "grid-cols-[1fr_auto] md:grid-cols-[auto_1fr] rounded-2xl px-4 md:px-6 py-0 border border-white/40 bg-white/40 backdrop-blur-md shadow-lg"
             : isAtChat
-              ? "grid-cols-[1fr_auto] md:grid-cols-[auto_1fr_auto] rounded-xl px-4 py-1.5 border-slate-300/50 bg-white shadow-[0_20px_50px_-20px_rgba(0,0,0,0.15)] backdrop-blur-xl"
-              : "grid-cols-[1fr_auto] md:grid-cols-[auto_1fr_auto] rounded-xl px-4 py-1.5 border-white/40 bg-white/30 shadow-lg backdrop-blur-xl"
+              ? "grid-cols-[1fr_auto] md:grid-cols-[auto_1fr_auto] rounded-xl px-4 py-0 border border-slate-300/50 bg-white shadow-[0_20px_50px_-20px_rgba(0,0,0,0.15)] backdrop-blur-xl"
+              : "grid-cols-[1fr_auto] md:grid-cols-[auto_1fr_auto] rounded-xl px-4 py-0 border border-white/40 bg-white/30 shadow-lg backdrop-blur-xl"
         )}
       >
         {/* Logo Section */}
         <motion.a
           href="/"
-          className="flex items-center gap-3 justify-start shrink-0 relative px-1 py-1"
+          className="flex items-center justify-start shrink-0 relative w-[100px] h-[52px]"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          {/* Brand Icon */}
-          <div className="w-8 h-8 md:w-9 md:h-9 rounded-lg overflow-hidden shrink-0 shadow-sm flex items-center justify-center bg-[#0f0716] border border-white/10">
-            <div className="relative">
-              <X size={16} className="text-[#a855f7] drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] stroke-[3px]" />
-            </div>
-          </div>
-          {/* Brand Text */}
-          <span className={cn(
-            "font-sans font-semibold tracking-tight text-slate-900 transition-all duration-300",
-            isDocked ? "text-lg md:text-xl" : "text-xl md:text-2xl"
-          )}>
-            Fluence AI
-          </span>
+          <Image
+            src="/logo.png"
+            alt="Softcreater Logo"
+            width={170}
+            height={170}
+            className="object-contain w-[170px] h-[170px]"
+          />
         </motion.a>
 
-        {/* Nav Links - Desktop (Lg and above) */}
+        {/* Nav Links - Desktop */}
         <div
           className={cn(
             "hidden lg:flex items-center gap-2",
@@ -156,14 +149,14 @@ export function Navbar() {
           )}
         </div>
 
-        {/* Contact Button - Compact (Lg and above) */}
+        {/* Contact Button - Compact docked */}
         {isDocked && (
           <div className="hidden lg:block justify-self-end">
             <ContactButton />
           </div>
         )}
 
-        {/* Mobile Toggle - Visible on smaller than LG */}
+        {/* Mobile Toggle */}
         <button
           className={cn(
             "lg:hidden p-2 rounded-xl transition-colors justify-self-end",
@@ -186,15 +179,14 @@ export function Navbar() {
           >
             {/* Menu Header */}
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0 shadow-sm flex items-center justify-center bg-[#0f0716] border border-white/10">
-                  <X size={16} className="text-[#a855f7] stroke-[3px]" />
-                </div>
-                <span className="font-sans font-semibold tracking-tight text-slate-900 text-xl">
-                  Fluence AI
-                </span>
-              </div>
-              <button 
+              <Image
+                src="/logo.png"
+                alt="Softcreater Logo"
+                width={120}
+                height={60}
+                className="object-contain w-[100px] h-[50px]"
+              />
+              <button
                 onClick={() => setMenuOpen(false)}
                 className="p-2 text-slate-400 hover:text-slate-900 transition-colors"
               >
@@ -202,12 +194,12 @@ export function Navbar() {
               </button>
             </div>
 
-            {/* Gradient Divider - Animated */}
-            <motion.div 
+            {/* Gradient Divider */}
+            <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.6, ease: "circOut" }}
-              className="h-[1px] w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent mb-4 origin-left" 
+              className="h-[1px] w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent mb-4 origin-left"
             />
 
             {/* Nav Links */}

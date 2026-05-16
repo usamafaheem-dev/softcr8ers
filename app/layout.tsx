@@ -20,14 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased font-sans ${inter.variable}`}>
+    <html lang="en" className={`h-full antialiased font-sans overflow-x-hidden ${inter.variable}`}>
       <head>
         <link
           href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-slate-900 overflow-x-hidden">
+      <body className="min-h-full flex flex-col bg-white text-slate-900">
         {children}
       </body>
     </html>
