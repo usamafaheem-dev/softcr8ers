@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Fluence AI — The AI Agent Platform for Modern Teams",
+  title: "Softcr8ers — Web Design, Software & Creative Studio",
   description:
-    "Fluence AI helps you connect, manage, and optimize your AI tools effortlessly. Unlock powerful insights and automate complex processes with ease.",
+    "Softcr8ers is a full-service digital agency specializing in web development, UI/UX design, custom software, branding, and video production. We turn your vision into digital reality.",
 };
 
 export default function RootLayout({
