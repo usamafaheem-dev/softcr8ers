@@ -41,7 +41,7 @@ export function CircularPortfolio() {
               <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">
                 OUR FEATURED WORK
               </span>
-              <span className="text-[#1620f0] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
+              <span className="text-[#a906c9] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
             </div>
           </motion.div>
 
@@ -51,13 +51,13 @@ export function CircularPortfolio() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-950 tracking-tight leading-tight max-w-2xl mx-auto font-['General_Sans',sans-serif]"
           >
-            Our <span className="text-[#1620f0]">Work</span>.
+            Our <span className="text-[#a906c9]">Work</span>.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-slate-400 mt-3 text-sm md:text-base max-w-lg mx-auto font-normal leading-relaxed font-sans"
+            className="text-slate-400 mt-3 text-sm md:text-base max-w-lg mx-auto font-normal leading-relaxed font-['General_Sans',sans-serif]"
           >
             Explore a curated playground of our creative software engineering, native mobile apps, and design systems.
           </motion.p>

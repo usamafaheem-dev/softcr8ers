@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { Sparkles, Brain, Zap, Shield, Check } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { useInView } from "framer-motion";
-import { TextAnimate } from "@/registry/magicui/text-animate";
 
 function Counter({ value, duration = 2 }: { value: string; duration?: number }) {
   const [count, setCount] = useState(0);

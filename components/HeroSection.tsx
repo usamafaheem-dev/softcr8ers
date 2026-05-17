@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useInView, useScroll, useTransform, useSpring } from "framer-motion";
-import { TextAnimate } from "@/registry/magicui/text-animate";
 import { Sparkles, ArrowRight, Bot, ChevronDown, Send, Globe, LayoutGrid, Zap, X, Paperclip } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";

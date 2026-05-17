@@ -63,7 +63,7 @@ export default function ModernIndustries() {
       <motion.div
         className="absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
         style={{
-          background: 'radial-gradient(circle, rgba(168,85,247,0.22) 0%, rgba(99,102,241,0.12) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(169,6,201,0.2) 0%, transparent 70%)',
           filter: 'blur(70px)',
           translateX: '-50%',
           translateY: '-50%',
@@ -75,7 +75,7 @@ export default function ModernIndustries() {
       <motion.div
         className="absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
         style={{
-          background: 'radial-gradient(circle, rgba(236,72,153,0.18) 0%, rgba(59,130,246,0.1) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(169,6,201,0.15) 0%, transparent 70%)',
           filter: 'blur(55px)',
           translateX: '-50%',
           translateY: '-50%',
@@ -89,9 +89,8 @@ export default function ModernIndustries() {
         <svg width="100%" height="100%" viewBox="0 0 1600 1000" fill="none">
           <defs>
             <linearGradient id="sg" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#8b5cf6" />
-              <stop offset="50%" stopColor="#ec4899" />
-              <stop offset="100%" stopColor="#3b82f6" />
+              <stop offset="0%" stopColor="#a906c9" />
+              <stop offset="100%" stopColor="#a906c9" />
             </linearGradient>
           </defs>
           {[200, 500, 800].map((y, i) => (
@@ -118,18 +117,18 @@ export default function ModernIndustries() {
           <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="flex justify-center w-full mb-6">
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 shadow-sm backdrop-blur-sm">
-              <span className="text-[#a855f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
+              <span className="text-[#a906c9] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
               <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-300 ml-1">INDUSTRIES WE SERVE</span>
-              <span className="text-[#f43f5e] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
+              <span className="text-[#a906c9] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
             </div>
           </motion.div>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight leading-[1.1]">
+            className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-tight font-['General_Sans',sans-serif]">
             Sectors We{' '}
             <span className="text-[#a906c9]">Empower.</span>
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="mt-4 text-sm md:text-base text-zinc-400 max-w-sm mx-auto font-medium">
+            className="mt-3 text-sm md:text-base text-zinc-400 max-w-xl mx-auto font-normal font-['General_Sans',sans-serif]">
             Engineering innovative digital landscapes for global industry leaders.
           </motion.p>
         </div>
@@ -209,7 +208,7 @@ function IndustryRow({ industry, hoveredId, onHover }: {
     <div
       className={cn(
         'cursor-pointer border-l-2 pl-5 py-4 transition-colors duration-300',
-        isActive ? 'border-purple-500' : 'border-white/10 hover:border-white/30',
+        isActive ? 'border-[#a906c9]' : 'border-white/10 hover:border-white/30',
         isDimmed ? 'opacity-30' : 'opacity-100',
       )}
       onMouseEnter={() => onHover(industry.id)}
@@ -217,8 +216,10 @@ function IndustryRow({ industry, hoveredId, onHover }: {
       {/* Title row — always visible, never moves */}
       <div className="flex items-center gap-3">
         <div className={cn(
-          'p-2 rounded-xl transition-all duration-300 flex-shrink-0',
-          isActive ? 'bg-purple-600 text-white' : 'bg-white/10 text-zinc-400',
+          'p-2 rounded-xl transition-all duration-300 flex-shrink-0 flex items-center justify-center',
+          isActive 
+            ? 'bg-[#a906c9] text-white shadow-md shadow-[#a906c9]/10' 
+            : 'bg-white/10 text-zinc-400',
         )}>
           {industry.icon}
         </div>
@@ -237,10 +238,10 @@ function IndustryRow({ industry, hoveredId, onHover }: {
         transition={{ duration: 0.25, ease: 'easeInOut' }}
         className="overflow-hidden"
       >
-        <p className="text-zinc-400 text-sm leading-relaxed max-w-md mt-2 font-medium">
+        <p className="text-zinc-400 text-sm leading-relaxed max-w-md mt-2 font-normal font-['General_Sans',sans-serif]">
           {industry.description}
         </p>
-        <div className="mt-2 flex items-center gap-1.5 text-purple-400 text-xs uppercase tracking-widest font-bold">
+        <div className="mt-2 flex items-center gap-1.5 text-[#a906c9] hover:text-[#a906c9]/80 transition-colors text-xs uppercase tracking-widest font-bold">
           Explore Solution <ChevronRight size={12} />
         </div>
       </motion.div>
