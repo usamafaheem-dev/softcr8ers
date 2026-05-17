@@ -77,9 +77,9 @@ export function TestimonialsSection() {
           >
             <div className="flex items-center justify-center lg:justify-start w-full gap-2">
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm">
-                <span className="text-[#a855f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
+                <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
                 <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">TESTIMONIALS</span>
-                <span className="text-[#f43f5e] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
+                <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
               </div>
             </div>
 
@@ -90,11 +90,11 @@ export function TestimonialsSection() {
                 <motion.span
                   initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.3 }}
-                  className="absolute bottom-1 left-0 h-[35%] bg-purple-500/15 z-0"
+                  className="absolute bottom-1 left-0 h-[35%] bg-[#1620f0]/15 z-0"
                 />
               </span>
               {" "}That Mean{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">
                 Business.
               </span>
             </h2>
@@ -118,8 +118,8 @@ export function TestimonialsSection() {
 
             {/* CTAs */}
             <div className="flex flex-row flex-wrap gap-4 mt-8 justify-center lg:justify-start">
-              <a href="#contact" className="group relative inline-flex items-center justify-center rounded-xl px-8 py-3 font-bold overflow-hidden transition-all duration-500 cursor-pointer shadow-xl hover:shadow-purple-500/20 bg-[#0f0716] min-w-[180px]">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#a855f7] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <a href="#contact" className="group relative inline-flex items-center justify-center rounded-xl px-8 py-3 font-bold overflow-hidden transition-all duration-500 cursor-pointer shadow-xl hover:shadow-blue-500/20 bg-[#050101] min-w-[180px]">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="relative h-5 overflow-hidden">
                   <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-5">
                     <span className="flex h-5 items-center justify-center relative z-10 px-1 uppercase tracking-widest text-[10px] md:text-xs text-white">Get Started</span>

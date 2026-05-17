@@ -52,7 +52,7 @@ export function MarqueeCTA() {
           <div className="flex items-center gap-12 px-6">
             {[...ITEMS, ...ITEMS].map((item, idx) => (
               <React.Fragment key={idx}>
-                <span className="text-[70px] md:text-[160px] font-medium  leading-none text-black font-sans uppercase">
+                <span className="text-[70px] md:text-[160px] font-medium  leading-none text-blue-600 font-sans uppercase">
                   {item}
                 </span>
                 <OrbitalIcon className="scale-75 md:scale-150 opacity-80" />
@@ -79,9 +79,9 @@ export function OrbitalIcon({ className }: { className?: string }) {
       <svg viewBox="0 0 100 100" className="w-8 h-8 md:w-10 md:h-10 relative z-10">
         <defs>
           <linearGradient id="orbitalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#a855f7" />
-            <stop offset="50%" stopColor="#6366f1" />
-            <stop offset="100%" stopColor="#f43f5e" />
+            <stop offset="0%" stopColor="#1620f0" />
+            <stop offset="50%" stopColor="#a906c9" />
+            <stop offset="100%" stopColor="#f016da" />
           </linearGradient>
         </defs>
         <path

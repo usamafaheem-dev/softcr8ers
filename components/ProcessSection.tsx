@@ -17,7 +17,7 @@ function Card1Illustration() {
       <motion.div
         animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute w-40 h-40 rounded-full bg-gradient-to-br from-purple-300/50 to-pink-300/50 blur-2xl"
+        className="absolute w-40 h-40 rounded-full bg-gradient-to-br from-[#a906c9]/50 to-[#f016da]/50 blur-2xl"
       />
 
       {/* Floating pill */}
@@ -26,7 +26,7 @@ function Card1Illustration() {
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
         className="relative z-10 flex items-center gap-2.5 bg-white/80 backdrop-blur-md rounded-full px-5 py-3 shadow-xl border border-white"
       >
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#a855f7] to-[#f43f5e] flex items-center justify-center shadow-md">
+        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1620f0] to-[#f016da] flex items-center justify-center shadow-md">
           <Sparkles size={13} className="text-white" />
         </div>
         <span className="text-slate-800 font-bold text-sm">Learning your workflow</span>
@@ -77,7 +77,7 @@ function ProgressBar() {
       </div>
       <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
         <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-[#a855f7] to-[#f43f5e]"
+          className="h-full rounded-full bg-gradient-to-r from-[#1620f0] to-[#f016da]"
           style={{ width: `${width}%` }}
         />
       </div>
@@ -142,15 +142,15 @@ function Card3Illustration() {
 
         {/* AI message */}
         <div className="px-4 pt-3 pb-2 flex items-start gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-[#0f0716] border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
-            <X size={13} className="text-[#a855f7] stroke-[3px]" />
+          <div className="w-7 h-7 rounded-lg bg-[#050101] border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+            <X size={13} className="text-[#a906c9] stroke-[3px]" />
           </div>
           <div>
             <p className="text-[11px] font-black text-slate-800">Co-Pilot</p>
             <p className="text-[11px] text-slate-500 leading-snug">I've processed the order for you</p>
             <motion.button
               whileHover={{ scale: 1.03 }}
-              className="mt-2 flex items-center gap-1.5 bg-gradient-to-r from-[#a855f7] to-[#f43f5e] text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-md"
+              className="mt-2 flex items-center gap-1.5 bg-gradient-to-r from-[#1620f0] to-[#f016da] text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-md"
             >
               <Sparkles size={9} /> Review order
             </motion.button>
@@ -182,7 +182,7 @@ const cards = [
     illustration: <Card1Illustration />,
     title: (
       <>
-        Share Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Vision</span>
+        Share Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">Vision</span>
       </>
     ),
     description: "Tell us what you need. We listen carefully to understand your goals, audience, and business context.",
@@ -191,7 +191,7 @@ const cards = [
     illustration: <Card2Illustration />,
     title: (
       <>
-        We Design &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Build</span>
+        We Design &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2f89f7] via-[#1620f0] to-[#a906c9]">Build</span>
       </>
     ),
     description: "Our expert team crafts your solution with precision — from wireframes and design to full-scale development.",
@@ -200,7 +200,7 @@ const cards = [
     illustration: <Card3Illustration />,
     title: (
       <>
-        Launch &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Grow</span>
+        Launch &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a906c9] via-[#f016da] to-[#1620f0]">Grow</span>
       </>
     ),
     description: "We go live, measure results, and continuously optimize to ensure your project keeps delivering value.",
@@ -257,7 +257,7 @@ export function ProcessSection() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#a3a3a308_1px,transparent_1px),linear-gradient(to_bottom,#a3a3a308_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       {/* Top glow */}
-      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-purple-100/50 to-transparent blur-3xl" />
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-blue-100/50 to-transparent blur-3xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
 
@@ -270,11 +270,11 @@ export function ProcessSection() {
             className="flex justify-center w-full mb-6"
           >
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm">
-              <span className="text-[#a855f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
+              <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
               <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">
                 HOW IT WORKS
               </span>
-              <span className="text-[#f43f5e] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
+              <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
             </div>
           </motion.div>
 
@@ -286,12 +286,12 @@ export function ProcessSection() {
           >
             How We{" "}
             <span className="relative inline-block">
-              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Work</span>
+              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">Work</span>
               <motion.span
                 initial={{ width: 0 }}
                 animate={isInView ? { width: "100%" } : {}}
                 transition={{ duration: 0.8, delay: 0.55 }}
-                className="absolute bottom-1 left-0 h-[35%] bg-purple-500/15 z-0 rounded-sm"
+                className="absolute bottom-1 left-0 h-[35%] bg-[#1620f0]/15 z-0 rounded-sm"
               />
             </span>{" "}
             With You
@@ -313,8 +313,8 @@ export function ProcessSection() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-wrap justify-center gap-4 mt-8"
           >
-            <a href="#" className="group relative inline-flex items-center justify-center rounded-xl px-8 py-3 font-bold overflow-hidden transition-all duration-500 cursor-pointer shadow-xl hover:shadow-purple-500/20 bg-[#0f0716] min-w-[180px]">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#a855f7] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <a href="#" className="group relative inline-flex items-center justify-center rounded-xl px-8 py-3 font-bold overflow-hidden transition-all duration-500 cursor-pointer shadow-xl hover:shadow-blue-500/20 bg-[#050101] min-w-[180px]">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="relative h-5 overflow-hidden">
                 <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-5">
                   <span className="flex h-5 items-center justify-center relative z-10 px-1 uppercase tracking-widest text-[10px] md:text-xs text-white">Get Started</span>

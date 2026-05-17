@@ -61,11 +61,11 @@ export function AboutSection8() {
           className="flex justify-center w-full mb-12 md:mb-16"
         >
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-100 shadow-sm">
-            <span className="text-[#a855f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
+            <span className="text-[#a906c9] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
             <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">
               WHO WE ARE
             </span>
-            <span className="text-[#f43f5e] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
+            <span className="text-[#2f89f7] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
           </div>
         </motion.div>
 
@@ -80,8 +80,8 @@ export function AboutSection8() {
             className="flex flex-col gap-6 text-center lg:text-left items-center lg:items-start w-full"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-950 tracking-tight leading-[1.2] font-sans">
-              Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Creativity</span> Meets Code. Where Vision Meets{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Execution.</span>
+              Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a906c9] to-[#2f89f7]">Creativity</span> Meets Code. Where Vision Meets{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a906c9] to-[#2f89f7]">Execution.</span>
             </h2>
 
             <div className="mt-4">
@@ -103,7 +103,7 @@ export function AboutSection8() {
             viewport={{ once: true }}
             className="relative group"
           >
-            <div className="relative p-[1.5px] rounded-[2.5rem] bg-gradient-to-br from-[#a855f7] via-[#6366f1] to-[#f43f5e] shadow-[0_0_50px_-12px_rgba(168,85,247,0.25)] overflow-hidden">
+            <div className="relative p-[1.5px] rounded-[2.5rem] bg-gradient-to-br from-[#a906c9] via-[#2f89f7] to-[#1620f0] shadow-[0_0_50px_-12px_rgba(169,6,201,0.25)] overflow-hidden">
               <div className="relative w-full aspect-[1.3/1] md:aspect-[2.1/1] rounded-[2.4rem] overflow-hidden flex flex-col">
                 {/* Cinematic Background Video */}
                 <video
@@ -168,7 +168,7 @@ export function AboutSection8() {
               <div 
                 className={cn(
                   "relative p-[1.5px] transition-all duration-700",
-                  m.animate ? "bg-gradient-to-br from-[#a855f7] via-[#6366f1] to-[#f43f5e] animate-gradient-xy" : "bg-slate-200/50 group-hover:bg-gradient-to-br group-hover:from-[#a855f7] group-hover:via-[#6366f1] group-hover:to-[#f43f5e]"
+                  m.animate ? "bg-gradient-to-br from-[#a906c9] via-[#2f89f7] to-[#1620f0] animate-gradient-xy" : "bg-slate-200/50 group-hover:bg-gradient-to-br group-hover:from-[#a906c9] group-hover:via-[#2f89f7] group-hover:to-[#1620f0]"
                 )}
                 style={{ 
                   clipPath: "polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%)",
@@ -192,7 +192,7 @@ export function AboutSection8() {
                           scale: [1.2, 1.5, 1.1, 1.4, 1.2],
                         }}
                         transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-[#a855f7]/40 blur-2xl"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-[#a906c9]/40 blur-2xl"
                       />
                       <motion.div
                         animate={{ 
@@ -201,7 +201,7 @@ export function AboutSection8() {
                           scale: [1.4, 1.1, 1.5, 1.2, 1.4],
                         }}
                         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-[#6366f1]/30 blur-3xl"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-[#2f89f7]/30 blur-3xl"
                       />
                     </div>
                   )}
@@ -215,7 +215,7 @@ export function AboutSection8() {
                           y: [-20, 20, -10, 20, -20],
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#a855f7]/30 blur-xl"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#a906c9]/30 blur-xl"
                       />
                       <motion.div
                         animate={{ 
@@ -223,7 +223,7 @@ export function AboutSection8() {
                           y: [20, -20, 10, -20, 20],
                         }}
                         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-[#6366f1]/25 blur-2xl"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-[#2f89f7]/25 blur-2xl"
                       />
                     </div>
                   )}
@@ -231,7 +231,7 @@ export function AboutSection8() {
                   <div className="relative z-10 flex flex-col items-center">
                     <span className={cn(
                       "text-3xl md:text-4xl font-bold block mb-1",
-                      m.animate ? "text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] to-[#6366f1]" : "text-slate-950"
+                      m.animate ? "text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] to-[#a906c9]" : "text-slate-950"
                     )}>
                       <Counter value={m.val} />
                     </span>

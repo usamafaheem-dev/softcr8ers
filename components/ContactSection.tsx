@@ -79,7 +79,7 @@ function ContactButton({
   const baseCls = cn(
     "group relative inline-flex items-center justify-center rounded-xl px-8 py-3 font-bold overflow-hidden transition-all duration-500 cursor-pointer shadow-sm",
     variant === "gradient"
-      ? "bg-[#0f0716] shadow-xl hover:shadow-purple-500/20"
+      ? "bg-[#050101] shadow-xl hover:shadow-blue-500/20"
       : "bg-white border border-slate-200 hover:bg-slate-50",
     className
   );
@@ -88,7 +88,7 @@ function ContactButton({
     return (
       <motion.button type="submit" className={baseCls} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
         {variant === "gradient" && (
-          <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#a855f7] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
         )}
         {content}
       </motion.button>
@@ -98,7 +98,7 @@ function ContactButton({
   return (
     <motion.a href={href} className={baseCls} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
       {variant === "gradient" && (
-        <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#a855f7] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       )}
       {content}
     </motion.a>
@@ -222,9 +222,9 @@ export function ContactSection() {
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-6 text-center mb-16 md:mb-20">
         <div className="flex justify-center w-full mb-6">
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-100 shadow-sm">
-            <span className="text-[#a855f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
+            <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
             <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">GET IN TOUCH</span>
-            <span className="text-[#f43f5e] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
+            <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
           </div>
         </div>
 
@@ -235,11 +235,11 @@ export function ContactSection() {
             <motion.span
               initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="absolute bottom-1 left-0 h-[35%] bg-purple-500/15 z-0"
+              className="absolute bottom-1 left-0 h-[35%] bg-[#1620f0]/15 z-0"
             />
           </span>
           <br />To Help You{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">
             Best Solution!
           </span>
         </h2>
@@ -265,7 +265,7 @@ export function ContactSection() {
                 className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 rounded-[1.2rem] p-3 text-center border border-white/20 transform transition-all duration-500 bg-gradient-to-r from-[#a855f7] via-[#ec4899] to-[#3b82f6] shadow-xl">
+              <div className="absolute bottom-2.5 left-2.5 right-2.5 rounded-[1.2rem] p-3 text-center border border-white/20 transform transition-all duration-500 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] shadow-xl">
                 <h4 className="text-white font-medium text-xs md:text-sm leading-tight mb-0.5">{member.name}</h4>
                 <p className="text-white/80 text-[7px] md:text-[8px] font-normal uppercase tracking-[0.2em]">{member.role}</p>
               </div>
@@ -299,7 +299,7 @@ export function ContactSection() {
           content: "";
           position: absolute;
           inset: -150%;
-          background: conic-gradient(from 0deg, #a855f7, #6366f1, #f43f5e, #a855f7);
+          background: conic-gradient(from 0deg, #1620f0, #a906c9, #f016da, #1620f0);
           animation: rotate-border 6s linear infinite;
           opacity: 0;
           transition: opacity 0.4s ease;
@@ -330,7 +330,7 @@ export function ContactSection() {
           >
             <div className="form-border-inner rounded-[1.5rem] p-6 md:p-8">
               <h3 className="text-2xl font-medium text-slate-950 mb-8 text-center lg:text-left">
-                Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Project</span>
+                Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">Project</span>
               </h3>
 
               {submitted ? (
@@ -378,7 +378,7 @@ export function ContactSection() {
                         <label key={service} className="flex items-center gap-2.5 group cursor-pointer">
                           <div className="relative w-4 h-4 flex items-center justify-center">
                             <input type="checkbox" className="peer absolute inset-0 opacity-0 cursor-pointer" />
-                            <div className="w-full h-full border border-slate-300 rounded group-hover:border-purple-400 peer-checked:bg-[#0f0716] peer-checked:border-[#0f0716] transition-all" />
+                            <div className="w-full h-full border border-slate-300 rounded group-hover:border-[#a906c9] peer-checked:bg-[#050101] peer-checked:border-[#050101] transition-all" />
                             <CheckCircle2 size={10} className="absolute text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
                           </div>
                           <span className="text-sm text-slate-600 font-normal group-hover:text-slate-950 transition-colors">{service}</span>
@@ -405,19 +405,19 @@ export function ContactSection() {
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">Chat to sales</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">Interested in scaling your business? Speak to our experts.</p>
-              <a href="mailto:sales@softcreater.com" className="inline-block font-medium text-lg hover:underline transition-all text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">sales@softcreater.com</a>
+              <a href="mailto:sales@softcreater.com" className="inline-block font-medium text-lg hover:underline transition-all text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">sales@softcreater.com</a>
             </div>
 
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">Expert support</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">Get technical assistance and project updates 24/7.</p>
-              <a href="mailto:support@softcreater.com" className="inline-block font-medium text-lg hover:underline transition-all text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] via-[#ec4899] to-[#f43f5e]">support@softcreater.com</a>
+              <a href="mailto:support@softcreater.com" className="inline-block font-medium text-lg hover:underline transition-all text-transparent bg-clip-text bg-gradient-to-r from-[#2f89f7] via-[#1620f0] to-[#a906c9]">support@softcreater.com</a>
             </div>
 
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">24/7 Live Chat</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">Instant access to our dedicated agency support staff.</p>
-              <button className="font-medium text-lg hover:underline transition-all text-transparent bg-clip-text bg-gradient-to-r from-[#f43f5e] via-[#ec4899] to-[#3b82f6]">Open support chat</button>
+              <button className="font-medium text-lg hover:underline transition-all text-transparent bg-clip-text bg-gradient-to-r from-[#a906c9] via-[#f016da] to-[#2f89f7]">Open support chat</button>
             </div>
           </div>
         </div>

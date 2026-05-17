@@ -66,8 +66,8 @@ export function ServicesSection() {
     >
       {/* Background glows */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] rounded-full bg-purple-600/10 blur-[140px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[120px]" />
+        <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[140px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-purple-600/10 blur-[120px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -80,11 +80,11 @@ export function ServicesSection() {
             className="flex justify-center w-full mb-6"
           >
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 shadow-sm backdrop-blur-sm">
-              <span className="text-[#a855f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
+              <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
               <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-300 ml-1">
                 OUR SERVICES
               </span>
-              <span className="text-[#f43f5e] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
+              <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
             </div>
           </motion.div>
 
@@ -96,7 +96,7 @@ export function ServicesSection() {
             className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-tight font-['General_Sans',sans-serif]"
           >
             Everything Your{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">
               Brand Needs
             </span>
           </motion.h2>
@@ -155,7 +155,7 @@ export function ServicesSection() {
                 <p className="text-slate-400 text-xs leading-relaxed line-clamp-2">
                   {service.description}
                 </p>
-                <div className="mt-4 flex items-center gap-1.5 text-purple-400 text-xs font-semibold group-hover:gap-2.5 transition-all duration-300">
+                <div className="mt-4 flex items-center gap-1.5 text-[#a906c9] text-xs font-semibold group-hover:gap-2.5 transition-all duration-300">
                   Deep Dive <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </div>

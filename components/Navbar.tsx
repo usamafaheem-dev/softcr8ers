@@ -24,7 +24,7 @@ function RollingTextButton({
       className={cn(
         "group relative inline-flex items-center justify-center rounded-full px-6 py-2.5 font-semibold font-sans overflow-hidden transition-all duration-500",
         variant === "gradient"
-          ? "bg-[#0f0716] text-white shadow-xl shadow-purple-500/10"
+          ? "bg-[#050101] text-white shadow-xl shadow-purple-500/10"
           : "bg-white/10 backdrop-blur-md border border-white/20 text-slate-700 hover:bg-white/20",
         className
       )}
@@ -32,7 +32,7 @@ function RollingTextButton({
       whileTap={{ scale: 0.98 }}
     >
       {variant === "gradient" && (
-        <div className="absolute inset-0 bg-gradient-to-r from-[#6071f0] via-[#c46cf8] to-[#6071f0] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       )}
       <div className="relative h-6 overflow-hidden">
         <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-6">
@@ -114,12 +114,25 @@ export function Navbar() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
+          <motion.div
+            className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-60"
+            animate={{
+              background: [
+                "radial-gradient(circle, #1620f0 0%, transparent 70%)",
+                "radial-gradient(circle, #a906c9 0%, transparent 70%)",
+                "radial-gradient(circle, #f016da 0%, transparent 70%)",
+                "radial-gradient(circle, #2f89f7 0%, transparent 70%)",
+                "radial-gradient(circle, #1620f0 0%, transparent 70%)",
+              ],
+            }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+          />
           <Image
             src="/logo.png"
             alt="Softcreater Logo"
             width={170}
             height={170}
-            className="object-contain w-[170px] h-[170px]"
+            className="object-contain w-[170px] h-[170px] relative z-10"
           />
         </motion.a>
 

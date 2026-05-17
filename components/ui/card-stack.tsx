@@ -303,9 +303,9 @@ function CarouselCard({ item, active }: { item: CardStackItem; active: boolean }
           >
             {/* Explore button */}
             <button
-              className="group relative overflow-hidden rounded-lg px-4 py-2 bg-[#0f0716] text-white text-[11px] font-semibold uppercase tracking-[0.15em] transition-all duration-300"
+              className="group relative overflow-hidden rounded-lg px-4 py-2 bg-[#050101] text-white text-[11px] font-semibold uppercase tracking-[0.15em] transition-all duration-300"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#a855f7] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-lg" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-lg" />
               <div className="relative h-4 overflow-hidden">
                 <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-4">
                   <span className="flex h-4 items-center">Explore</span>

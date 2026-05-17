@@ -38,13 +38,13 @@ function ChatBubble({ message, index, isTyping = false, className }: { message: 
       )}
     >
       {isUser ? (
-        <div className="w-9 h-9 rounded-lg overflow-hidden shrink-0 shadow-sm p-[2px] bg-gradient-to-tr from-[#6366f1] via-[#d946ef] to-[#f43f5e]">
+        <div className="w-9 h-9 rounded-lg overflow-hidden shrink-0 shadow-sm p-[2px] bg-gradient-to-tr from-[#1620f0] via-[#f016da] to-[#a906c9]">
           <img src={`https://i.pravatar.cc/100?u=user${index}`} alt="User" className="w-full h-full object-cover rounded-[6px]" />
         </div>
       ) : (
-        <div className="w-9 h-9 rounded-lg overflow-hidden shrink-0 shadow-sm flex items-center justify-center bg-[#0f0716] border border-white/10">
+        <div className="w-9 h-9 rounded-lg overflow-hidden shrink-0 shadow-sm flex items-center justify-center bg-[#050101] border border-white/10">
           <div className="relative">
-            <X size={18} className="text-[#a855f7] drop-shadow-[0_0_8px_rgba(168,85,247,1)] stroke-[3px]" />
+            <X size={18} className="text-[#a906c9] drop-shadow-[0_0_8px_rgba(169,6,201,1)] stroke-[3px]" />
           </div>
         </div>
       )}
@@ -81,7 +81,7 @@ function RollingTextButton({
       className={cn(
         "group relative inline-flex items-center justify-center rounded-xl px-9 py-3 font-semibold font-sans overflow-hidden transition-all duration-500 cursor-pointer",
         variant === "gradient"
-          ? "bg-[#0f0716] text-white shadow-xl hover:shadow-purple-500/10"
+          ? "bg-[#050101] text-white shadow-xl hover:shadow-blue-500/10"
           : "bg-white/10 backdrop-blur-md border border-white/20 text-slate-800 hover:bg-white/30",
         className
       )}
@@ -89,7 +89,7 @@ function RollingTextButton({
       whileTap={{ scale: 0.98 }}
     >
       {variant === "gradient" && (
-        <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#a855f7] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#f016da] to-[#1620f0] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       )}
       <div className="relative h-6 overflow-hidden">
         <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-6">
@@ -157,7 +157,7 @@ function HeroAIPrompt() {
             <button disabled className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-slate-400 cursor-default hover:text-slate-600 transition-colors">
               <Paperclip className="w-4 h-4 md:w-[18px] md:h-[18px]" />
             </button>
-            <button disabled className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#c46cf8] to-[#6071f0] flex items-center justify-center text-white shadow-lg cursor-default">
+            <button disabled className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#f016da] to-[#1620f0] flex items-center justify-center text-white shadow-lg cursor-default">
               <Send className="w-3.5 h-3.5 md:w-4 md:h-4" />
             </button>
           </div>
@@ -252,7 +252,7 @@ export function HeroSection() {
             <div className="max-w-4xl mb-6">
               <h1 className="text-[40px] md:text-[72px] font-medium leading-[1.1] tracking-tight text-[#000000] font-sans">
                 We Build, Design &{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]">Deliver</span>{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#f016da] to-[#a906c9]">Deliver</span>{" "}
                 Digital Excellence.
               </h1>
             </div>
@@ -347,8 +347,8 @@ export function HeroSection() {
                   {["SOFTCR8ERS", "WEB DEVELOPMENT", "UI / UX DESIGN", "BRANDING"].map((word, idx) => (
                     <span key={idx} className="flex items-center group">
                       <span className={cn(
-                        "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#a855f7] hover:via-[#6366f1] hover:to-[#f43f5e]",
-                        idx % 2 === 1 && "text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]"
+                        "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:via-[#f016da] hover:to-[#a906c9]",
+                        idx % 2 === 1 && "text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#f016da] to-[#a906c9]"
                       )}>
                         {word}
                       </span>
@@ -368,8 +368,8 @@ export function HeroSection() {
                   {["VIDEO EDITING", "SOFTCR8ERS", "SOFTWARE DEV", "CREATIVE STUDIO"].map((word, idx) => (
                     <span key={idx} className="flex items-center group">
                       <span className={cn(
-                        "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#f43f5e] hover:via-[#6366f1] hover:to-[#a855f7]",
-                        idx % 2 === 1 && "text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] via-[#6366f1] to-[#f43f5e]"
+                        "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#a906c9] hover:via-[#2f89f7] hover:to-[#1620f0]",
+                        idx % 2 === 1 && "text-transparent bg-clip-text bg-gradient-to-r from-[#a906c9] via-[#2f89f7] to-[#1620f0]"
                       )}>
                         {word}
                       </span>

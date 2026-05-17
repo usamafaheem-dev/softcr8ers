@@ -48,11 +48,11 @@ export function TechStack() {
           className="flex justify-center w-full mb-6"
         >
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-100 shadow-sm">
-            <span className="text-[#a855f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
+            <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
             <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">
               OUR TECH STACK
             </span>
-            <span className="text-[#f43f5e] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
+            <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
           </div>
         </motion.div>
 
@@ -63,7 +63,7 @@ export function TechStack() {
           transition={{ delay: 0.1 }}
           className="text-2xl md:text-5xl font-medium text-slate-950 tracking-tight leading-tight"
         >
-          Tools We Use to <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Build.</span>
+          Tools We Use to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] to-[#2f89f7]">Build.</span>
         </motion.h2>
       </div>
 
@@ -113,7 +113,7 @@ export function TechStack() {
 function TechCircle({ tech }: { tech: typeof row1[0] }) {
   return (
     <div className="group relative flex flex-col items-center gap-1 py-2 px-1">
-      <div className="w-10 h-10 md:w-[90px] md:h-[90px] rounded-full border border-slate-100 flex items-center justify-center bg-white shadow-sm transition-all duration-300 group-hover:border-purple-200 group-hover:shadow-md">
+      <div className="w-10 h-10 md:w-[90px] md:h-[90px] rounded-full border border-slate-100 flex items-center justify-center bg-white shadow-sm transition-all duration-300 group-hover:border-[#a906c9]/40 group-hover:shadow-md">
         <div className="text-base md:text-3xl transition-transform duration-300 group-hover:scale-110" style={{ color: tech.color }}>
           {tech.icon}
         </div>
