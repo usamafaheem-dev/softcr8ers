@@ -286,7 +286,7 @@ export function ProcessSection() {
           >
             How We{" "}
             <span className="relative inline-block">
-              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">Work</span>
+              <span className="relative z-10 text-[#f016da]">Work</span>
               <motion.span
                 initial={{ width: 0 }}
                 animate={isInView ? { width: "100%" } : {}}

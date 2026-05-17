@@ -96,7 +96,7 @@ export function ServicesSection() {
             className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-tight font-['General_Sans',sans-serif]"
           >
             Everything Your{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">
+            <span className="text-[#a906c9]">
               Brand Needs
             </span>
           </motion.h2>

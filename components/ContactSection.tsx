@@ -40,11 +40,13 @@ interface FormData {
 }
 
 const teamMembers = [
-  { id: 1, name: "Carter", role: "Success Agent", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=500&auto=format&fit=crop" },
-  { id: 2, name: "Lucy Gray", role: "Customer Success Lead", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=500&auto=format&fit=crop" },
-  { id: 3, name: "Olivia Martinez", role: "Payments Support", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&h=500&auto=format&fit=crop" },
-  { id: 4, name: "Richard Mills", role: "Payments Support", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=500&auto=format&fit=crop" },
-  { id: 5, name: "Sophie Chamberlain", role: "Specialized Support", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 1, name: "Asim Raza", role: "Python AI Engineer", image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 2, name: "Zainab Khan", role: "MERN Stack Developer", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 3, name: "Usama Faheem", role: "Next.js Developer", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 4, name: "Ayesha Siddiqui", role: "WordPress Developer", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 5, name: "Bilal Ahmed", role: "Business Developer", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 6, name: "Sarah Yousuf", role: "UI/UX Designer", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 7, name: "Hamza Malik", role: "Full Stack Developer", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&h=500&auto=format&fit=crop" },
 ];
 
 // ── Rolling Text Button (Fixed variant-based text color) ────────────
@@ -239,7 +241,7 @@ export function ContactSection() {
             />
           </span>
           <br />To Help You{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">
+          <span className="text-[#1620f0]">
             Best Solution!
           </span>
         </h2>
@@ -330,7 +332,7 @@ export function ContactSection() {
           >
             <div className="form-border-inner rounded-[1.5rem] p-6 md:p-8">
               <h3 className="text-2xl font-medium text-slate-950 mb-8 text-center lg:text-left">
-                Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">Project</span>
+                Start Your <span className="text-[#1620f0]">Project</span>
               </h3>
 
               {submitted ? (
@@ -405,19 +407,19 @@ export function ContactSection() {
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">Chat to sales</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">Interested in scaling your business? Speak to our experts.</p>
-              <a href="mailto:sales@softcreater.com" className="inline-block font-medium text-lg hover:underline transition-all text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">sales@softcreater.com</a>
+              <a href="mailto:sales@softcreater.com" className="inline-block font-medium text-lg hover:underline transition-all text-[#1620f0]">sales@softcreater.com</a>
             </div>
 
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">Expert support</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">Get technical assistance and project updates 24/7.</p>
-              <a href="mailto:support@softcreater.com" className="inline-block font-medium text-lg hover:underline transition-all text-transparent bg-clip-text bg-gradient-to-r from-[#2f89f7] via-[#1620f0] to-[#a906c9]">support@softcreater.com</a>
+              <a href="mailto:support@softcreater.com" className="inline-block font-medium text-lg hover:underline transition-all text-[#1620f0]">support@softcreater.com</a>
             </div>
 
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">24/7 Live Chat</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">Instant access to our dedicated agency support staff.</p>
-              <button className="font-medium text-lg hover:underline transition-all text-transparent bg-clip-text bg-gradient-to-r from-[#a906c9] via-[#f016da] to-[#2f89f7]">Open support chat</button>
+              <button className="font-medium text-lg hover:underline transition-all text-[#1620f0]">Open support chat</button>
             </div>
           </div>
         </div>

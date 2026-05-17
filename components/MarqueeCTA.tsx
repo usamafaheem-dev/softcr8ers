@@ -1,49 +1,38 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
-const VIDEO_SRC = "https://ik.imagekit.io/o5vhmyokl/i_need_animted_video_for_202605161054.mp4";
-
 const ITEMS = ["SOFTCR8ERS", "WEB DEVELOPMENT", "UI/UX DESIGN", "VIDEO PRODUCTION", "SOFTWARE DEV", "BRAND IDENTITY", "CREATIVE STUDIO"];
-const SEP = "  ✦  ";
 
 /**
- * MarqueeCTA - Premium Glassmorphism Implementation
+ * MarqueeCTA - Premium Masked Typographic Implementation using Logo Blue & Purple Brand Gradient
  */
 export function MarqueeCTA() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => { });
-    }
-  }, []);
-
-  const marqueeText = (ITEMS.join(SEP) + SEP).repeat(2);
-
   return (
-    <section className="relative w-full overflow-hidden bg-white" style={{ height: 'clamp(100px, 18vw, 220px)' }}>
+    <section 
+      className="relative w-full overflow-hidden bg-white flex items-center border-y border-slate-100/80" 
+      style={{ height: 'clamp(100px, 18vw, 220px)' }}
+    >
+      {/* ── CSS Animations ── */}
+      <style jsx global>{`
+        @keyframes gradient-move {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient-move {
+          background-size: 200% auto;
+          animation: gradient-move 8s ease infinite;
+        }
+      `}</style>
 
-      {/* ── Layer 1: The Video (Base) ── */}
-      <div className="absolute inset-0 z-0">
-        <video
-          ref={videoRef}
-          src={VIDEO_SRC}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* ── Layer 2: The Mask (Ultra-Subtle 2% Glass Overlay + Black Text) ── */}
-      <div className="absolute inset-0 z-10 bg-white/98 backdrop-blur-[2px] mix-blend-screen pointer-events-none flex items-center border-y border-white/10">
+      {/* ── Layer: Moving Typographic Text Mask with Blue-Purple Brand Gradient ── */}
+      <div className="absolute inset-0 z-10 pointer-events-none flex items-center">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{
-            duration: 120, // Elegant, slow crawl
+            duration: 95, // Smooth, elegant crawl speed
             repeat: Infinity,
             ease: "linear",
           }}
@@ -52,17 +41,17 @@ export function MarqueeCTA() {
           <div className="flex items-center gap-12 px-6">
             {[...ITEMS, ...ITEMS].map((item, idx) => (
               <React.Fragment key={idx}>
-                <span className="text-[70px] md:text-[160px] font-medium  leading-none text-blue-600 font-sans uppercase">
+                <span className="text-[45px] md:text-[160px] font-medium leading-none text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#1620f0] animate-gradient-move font-sans uppercase tracking-tighter">
                   {item}
                 </span>
-                <OrbitalIcon className="scale-75 md:scale-150 opacity-80" />
+                <SparkleIcon className="scale-75 md:scale-120 opacity-95" />
               </React.Fragment>
             ))}
           </div>
         </motion.div>
       </div>
 
-      {/* ── Minimalist Edge Highlights ── */}
+      {/* ── Premium Edge Highlights ── */}
       <div className="absolute top-0 inset-x-0 h-px bg-slate-100/50 z-20" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-slate-50/30 z-20" />
     </section>
@@ -70,54 +59,29 @@ export function MarqueeCTA() {
 }
 
 /**
- * OrbitalIcon - The colorful atom/orbital icon requested by the user.
+ * SparkleIcon - High-end geometric 4-point star separator matching Logo brand gradient
  */
-export function OrbitalIcon({ className }: { className?: string }) {
+export function SparkleIcon({ className }: { className?: string }) {
   return (
-    <div className={cn("relative flex items-center justify-center w-12 h-12 md:w-16 md:h-16", className)}>
-      <div className="absolute inset-0 bg-white rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-slate-50" />
-      <svg viewBox="0 0 100 100" className="w-8 h-8 md:w-10 md:h-10 relative z-10">
+    <div className={cn("relative flex items-center justify-center mx-4 md:mx-6", className)}>
+      <svg viewBox="0 0 100 100" className="w-8 h-8 md:w-14 md:h-14 relative z-10">
         <defs>
-          <linearGradient id="orbitalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#1620f0" />
-            <stop offset="50%" stopColor="#a906c9" />
-            <stop offset="100%" stopColor="#f016da" />
+            <stop offset="100%" stopColor="#a906c9" />
           </linearGradient>
         </defs>
-        <path
-          d="M50 20 C65 20, 80 35, 80 50 C80 65, 65 80, 50 80 C35 80, 20 65, 20 50 C20 35, 35 20, 50 20"
-          fill="none"
-          stroke="url(#orbitalGradient)"
-          strokeWidth="6"
-          strokeLinecap="round"
-          className="opacity-20"
-        />
         <motion.path
-          d="M50 20 Q80 20 80 50 Q80 80 50 80 Q20 80 20 50 Q20 20 50 20"
-          fill="none"
-          stroke="url(#orbitalGradient)"
-          strokeWidth="6"
-          strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1, rotate: 360 }}
-          transition={{
-            pathLength: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-            rotate: { duration: 10, repeat: Infinity, ease: "linear" }
+          d="M50 0 C50 35, 35 50, 0 50 C35 50, 50 65, 50 100 C50 65, 65 50, 100 50 C65 50, 50 35, 50 0 Z"
+          fill="url(#sparkleGradient)"
+          animate={{ 
+            rotate: [0, 90, 180, 270, 360], 
+            scale: [0.9, 1.15, 0.9] 
           }}
-        />
-        <motion.circle
-          cx="50" cy="50" r="4"
-          fill="url(#orbitalGradient)"
-          animate={{ scale: [1, 1.5, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-        <motion.path
-          d="M30 30 L70 70 M70 30 L30 70"
-          stroke="url(#orbitalGradient)"
-          strokeWidth="4"
-          strokeLinecap="round"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          transition={{
+            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+            scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+          }}
         />
       </svg>
     </div>

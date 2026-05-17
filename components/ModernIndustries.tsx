@@ -126,7 +126,7 @@ export default function ModernIndustries() {
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight leading-[1.1]">
             Sectors We{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">Empower.</span>
+            <span className="text-[#a906c9]">Empower.</span>
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="mt-4 text-sm md:text-base text-zinc-400 max-w-sm mx-auto font-medium">

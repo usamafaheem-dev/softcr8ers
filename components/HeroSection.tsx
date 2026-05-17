@@ -82,7 +82,7 @@ function RollingTextButton({
         "group relative inline-flex items-center justify-center rounded-xl px-9 py-3 font-semibold font-sans overflow-hidden transition-all duration-500 cursor-pointer",
         variant === "gradient"
           ? "bg-[#050101] text-white shadow-xl hover:shadow-blue-500/10"
-          : "bg-white/10 backdrop-blur-md border border-white/20 text-slate-800 hover:bg-white/30",
+          : "bg-white/50 backdrop-blur-xl border border-slate-200 text-slate-900 shadow-sm shadow-slate-100/50 hover:bg-white/75 hover:border-slate-300",
         className
       )}
       whileHover={{ scale: 1.02 }}
@@ -251,8 +251,9 @@ export function HeroSection() {
             {/* Headline */}
             <div className="max-w-4xl mb-6">
               <h1 className="text-[40px] md:text-[72px] font-medium leading-[1.1] tracking-tight text-[#000000] font-sans">
-                We Build, Design &{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#f016da] to-[#a906c9]">Deliver</span>{" "}
+                We <span className="text-[#f016da]">Build</span>,{" "}
+                <span className="text-[#1620f0]">Design</span> &amp;{" "}
+                <span className="text-[#a906c9]">Deliver</span>{" "}
                 Digital Excellence.
               </h1>
             </div>

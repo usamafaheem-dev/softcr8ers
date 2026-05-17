@@ -19,10 +19,30 @@ const testimonials = [
 const col1 = testimonials.slice(0, 4);
 const col2 = testimonials.slice(4, 8);
 
-const TestimonialCard = React.memo(({ text, name, role, image }: { text: string; name: string; role: string; image: string }) => {
+const TestimonialCard = React.memo(({ text, name, role, image, isSpecial }: { text: string; name: string; role: string; image: string; isSpecial?: boolean }) => {
+  if (isSpecial) {
+    return (
+      <div 
+        className="testimonial-border-container rounded-[1.2rem] shadow-[0_12px_35px_rgba(0,0,0,0.05)] w-full"
+        style={{ backfaceVisibility: "hidden", transform: "translateZ(0)" }}
+      >
+        <div className="testimonial-border-inner rounded-[1.15rem] p-4 md:p-5">
+          <p className="text-slate-700 text-xs md:text-sm leading-relaxed font-semibold mb-4">{text}</p>
+          <div className="flex items-center gap-2.5">
+            <img src={image} alt={name} className="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover ring-2 ring-white/80 flex-shrink-0" />
+            <div>
+              <div className="text-slate-950 font-bold text-xs md:text-sm leading-tight">{name}</div>
+              <div className="text-[#a906c9] font-semibold text-[10px] md:text-xs mt-0.5">{role}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div 
-      className="p-4 md:p-5 rounded-2xl border border-slate-100 bg-white shadow-sm w-full"
+      className="p-4 md:p-5 rounded-[1.2rem] border border-slate-100 bg-white shadow-sm w-full"
       style={{ backfaceVisibility: "hidden", transform: "translateZ(0)" }}
     >
       <p className="text-slate-600 text-xs md:text-sm leading-relaxed font-medium mb-4">{text}</p>
@@ -55,7 +75,7 @@ function TestimonialsColumn({ items, duration = 20, reverse = false, className }
         } as React.CSSProperties}
       >
         {[...items, ...items, ...items].map((t, i) => (
-          <TestimonialCard key={i} {...t} />
+          <TestimonialCard key={i} isSpecial={i % 2 === 1} {...t} />
         ))}
       </div>
     </div>
@@ -167,6 +187,32 @@ export function TestimonialsSection() {
         }
         .animate-marquee-vertical-reverse {
           animation: marquee-vertical-reverse var(--duration) linear infinite;
+        }
+        @keyframes rotate-border {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .testimonial-border-container {
+          position: relative;
+          padding: 1.8px;
+          overflow: hidden;
+          background: transparent;
+        }
+        .testimonial-border-container::before {
+          content: "";
+          position: absolute;
+          inset: -150%;
+          background: conic-gradient(from 0deg, #1620f0, #a906c9, #f016da, #1620f0);
+          animation: rotate-border 8s linear infinite;
+          opacity: 1;
+          z-index: 0;
+        }
+        .testimonial-border-inner {
+          position: relative;
+          z-index: 1;
+          height: 100%;
+          width: 100%;
+          background: rgba(255, 255, 255, 0.97);
         }
       `}</style>
     </section>

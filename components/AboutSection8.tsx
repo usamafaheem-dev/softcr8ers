@@ -96,29 +96,25 @@ export function AboutSection8() {
             </div>
           </motion.div>
 
-          {/* Right Column: Cinematic Glass Video Mission Card */}
+          {/* Right Column: Corporate Workspace Collaborative Mission Card */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="relative group"
           >
-            <div className="relative p-[1.5px] rounded-[2.5rem] bg-gradient-to-br from-[#a906c9] via-[#2f89f7] to-[#1620f0] shadow-[0_0_50px_-12px_rgba(169,6,201,0.25)] overflow-hidden">
+            <div className="relative p-[1.5px] rounded-[2.5rem] bg-gradient-to-br from-[#a906c9] via-[#2f89f7] to-[#1620f0] shadow-[0_0_50px_-12px_rgba(169,6,201,0.2)] overflow-hidden">
               <div className="relative w-full aspect-[1.3/1] md:aspect-[2.1/1] rounded-[2.4rem] overflow-hidden flex flex-col">
-                {/* Cinematic Background Video */}
-                <video
-                  key="mission-video-final"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  src="https://ik.imagekit.io/o5vhmyokl/i_need_animted_video_for_202605161054.mp4"
+                {/* Executive Corporate Office Collaborative Workspace Photo */}
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800"
+                  alt="Softcr8ers Team Workspace"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 
                 {/* Refined Glass Overlay for Readability (1-2%) */}
                 <div className="absolute inset-0 bg-white/5 pointer-events-none backdrop-blur-[1px]" />
-                <div className="absolute inset-0 bg-black/20" />
+                <div className="absolute inset-0 bg-black/40" />
                 
                 {/* Mission Statement Content */}
                 <div className="relative z-10 p-6 md:p-10 flex flex-col justify-between h-full">
@@ -148,13 +144,13 @@ export function AboutSection8() {
           </motion.div>
         </div>
 
-        {/* ── Four Metrics Cards Section (Below the Story) ── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8 md:mt-12">
+        {/* ── Four Metrics Cards Section (Redesigned - Ultra-Premium Glassmorphism) ── */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mt-10 md:mt-16">
           {[
-            { val: "250+", label: "Automations", dot: true, animate: false },
-            { val: "777k", label: "Views", dot: false, animate: true, giantCircles: true },
-            { val: "99%", label: "Success Rate", dot: true, animate: false },
-            { val: "120+", label: "Projects", dot: false, animate: false }
+            { val: "250+", label: "Automations", icon: <Zap className="w-5 h-5 text-amber-500" />, color: "from-amber-500/10 to-transparent" },
+            { val: "777k", label: "Views", icon: <Sparkles className="w-5 h-5 text-[#f016da]" />, color: "from-[#f016da]/10 to-transparent" },
+            { val: "99%", label: "Success Rate", icon: <Shield className="w-5 h-5 text-emerald-500" />, color: "from-emerald-500/10 to-transparent" },
+            { val: "120+", label: "Projects", icon: <Brain className="w-5 h-5 text-[#1620f0]" />, color: "from-[#1620f0]/10 to-transparent" }
           ].map((m, i) => (
             <motion.div
               key={i}
@@ -162,84 +158,24 @@ export function AboutSection8() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative"
+              className="group relative rounded-2xl border border-slate-100/80 bg-white p-6 md:p-8 flex flex-col justify-between shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:border-slate-200 transition-all duration-500 min-h-[145px]"
             >
-              {/* Clip-Path Container */}
-              <div 
-                className={cn(
-                  "relative p-[1.5px] transition-all duration-700",
-                  m.animate ? "bg-gradient-to-br from-[#a906c9] via-[#2f89f7] to-[#1620f0] animate-gradient-xy" : "bg-slate-200/50 group-hover:bg-gradient-to-br group-hover:from-[#a906c9] group-hover:via-[#2f89f7] group-hover:to-[#1620f0]"
-                )}
-                style={{ 
-                  clipPath: "polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%)",
-                  backgroundSize: m.animate ? "200% 200%" : "auto"
-                }}
-              >
-                <div 
-                  className={cn(
-                    "relative p-5 md:p-8 flex flex-col items-center justify-center text-center overflow-hidden h-full min-h-[110px] md:min-h-[130px]",
-                    m.animate ? "bg-white/80" : "bg-white/95"
-                  )}
-                  style={{ clipPath: "polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%)" }}
-                >
-                  {/* Snake-like Giant Moving Circles for 2nd Card */}
-                  {m.giantCircles && (
-                    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                      <motion.div
-                        animate={{ 
-                          x: [-50, 50, -30, 50, -50],
-                          y: [-30, 30, -10, 30, -30],
-                          scale: [1.2, 1.5, 1.1, 1.4, 1.2],
-                        }}
-                        transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-[#a906c9]/40 blur-2xl"
-                      />
-                      <motion.div
-                        animate={{ 
-                          x: [50, -50, 30, -50, 50],
-                          y: [30, -30, 10, -30, 30],
-                          scale: [1.4, 1.1, 1.5, 1.2, 1.4],
-                        }}
-                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-[#2f89f7]/30 blur-3xl"
-                      />
-                    </div>
-                  )}
+              {/* Background accent glow */}
+              <div className={`absolute top-0 right-0 w-24 h-24 rounded-bl-full bg-gradient-to-bl ${m.color} opacity-40 z-0 pointer-events-none transition-all duration-500 group-hover:scale-110`} />
 
-                  {/* Snake/Bouncing Balls Animation for other cards */}
-                  {m.dot && (
-                    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                      <motion.div
-                        animate={{ 
-                          x: [-40, 40, -20, 40, -40],
-                          y: [-20, 20, -10, 20, -20],
-                        }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#a906c9]/30 blur-xl"
-                      />
-                      <motion.div
-                        animate={{ 
-                          x: [40, -40, 20, -40, 40],
-                          y: [20, -20, 10, -20, 20],
-                        }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-[#2f89f7]/25 blur-2xl"
-                      />
-                    </div>
-                  )}
+              {/* Icon */}
+              <div className="relative z-10 w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
+                {m.icon}
+              </div>
 
-                  <div className="relative z-10 flex flex-col items-center">
-                    <span className={cn(
-                      "text-3xl md:text-4xl font-bold block mb-1",
-                      m.animate ? "text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] to-[#a906c9]" : "text-slate-950"
-                    )}>
-                      <Counter value={m.val} />
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-black uppercase tracking-[0.3em]">
-                      {m.label}
-                    </span>
-                  </div>
-                </div>
+              {/* Text */}
+              <div className="relative z-10 flex flex-col">
+                <span className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-950 block mb-0.5 leading-none">
+                  <Counter value={m.val} />
+                </span>
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                  {m.label}
+                </span>
               </div>
             </motion.div>
           ))}
