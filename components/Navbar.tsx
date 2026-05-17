@@ -53,10 +53,10 @@ function ContactButton({ className }: { className?: string }) {
 }
 
 const navLinks = [
-  { label: "About",        href: "#about" },
-  { label: "Services",     href: "#services" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
   { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact",      href: "#contact" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export function Navbar() {
@@ -129,7 +129,7 @@ export function Navbar() {
           />
           <Image
             src="/logo.png"
-            alt="Softcreater Logo"
+            alt="Softcr8ors Logo"
             width={170}
             height={170}
             className="object-contain w-[170px] h-[170px] relative z-10"
@@ -192,13 +192,16 @@ export function Navbar() {
           >
             {/* Menu Header */}
             <div className="flex items-center justify-between mb-4">
-              <Image
-                src="/logo.png"
-                alt="Softcreater Logo"
-                width={120}
-                height={60}
-                className="object-contain w-[100px] h-[50px]"
-              />
+              <div className="relative w-[100px] h-[52px] flex items-center justify-start shrink-0">
+                <Image
+                  src="/logo.png"
+                  alt="Softcr8ors Logo"
+                  width={170}
+                  height={170}
+                  className="object-contain w-[170px] h-[170px]"
+                  priority
+                />
+              </div>
               <button
                 onClick={() => setMenuOpen(false)}
                 className="p-2 text-slate-400 hover:text-slate-900 transition-colors"

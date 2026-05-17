@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Softcr8ers — Web Design, Software & Creative Studio",
+  title: "Softcr8ors — Web Design, Software & Creative Studio",
   description:
-    "Softcr8ers is a full-service digital agency specializing in web development, UI/UX design, custom software, branding, and video production. We turn your vision into digital reality.",
+    "Softcr8ors is a full-service digital agency specializing in web development, UI/UX design, custom software, branding, and video production. We turn your vision into digital reality.",
 };
 
 export default function RootLayout({

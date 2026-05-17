@@ -6,12 +6,12 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 const testimonials = [
-  { text: "Softcr8ers built our entire e-commerce platform from scratch. The design is stunning and conversions are up 40% since launch.", name: "Sandra Meyers", role: "CEO, LuxeCart", image: "https://i.pravatar.cc/100?u=sandra" },
+  { text: "Softcr8ors built our entire e-commerce platform from scratch. The design is stunning and conversions are up 40% since launch.", name: "Sandra Meyers", role: "CEO, LuxeCart", image: "https://i.pravatar.cc/100?u=sandra" },
   { text: "Their UI/UX team transformed our app's experience. User retention doubled within the first month after the redesign.", name: "James Patel", role: "Product Lead, Evergreen", image: "https://i.pravatar.cc/100?u=james" },
   { text: "The brand identity they created for us is incredible. We've received so many compliments from clients and partners.", name: "Laura Greer", role: "Founder, Atlas Studios", image: "https://i.pravatar.cc/100?u=laura" },
   { text: "The video production quality is truly cinematic. Our brand reel generated over 500K views in the first week.", name: "David O'Connor", role: "CMO, NovaBrands", image: "https://i.pravatar.cc/100?u=david" },
   { text: "They delivered our custom CRM software ahead of schedule and it works flawlessly. Highly recommend the team.", name: "Sarah Mitchell", role: "COO, TechFlow", image: "https://i.pravatar.cc/100?u=sarah" },
-  { text: "Softcr8ers redesigned our entire digital presence. The website is fast, beautiful, and converts like nothing before.", name: "Michael Lee", role: "Director, Q Global", image: "https://i.pravatar.cc/100?u=michael" },
+  { text: "Softcr8ors redesigned our entire digital presence. The website is fast, beautiful, and converts like nothing before.", name: "Michael Lee", role: "Director, Q Global", image: "https://i.pravatar.cc/100?u=michael" },
   { text: "Professional, creative, and technically brilliant. They turned our rough ideas into a polished mobile app in 8 weeks.", name: "Julia Martinez", role: "Co-Founder, Appify", image: "https://i.pravatar.cc/100?u=julia" },
   { text: "Best agency we've worked with. Their audio and video editing elevated our content to a whole new professional level.", name: "Chris Nguyen", role: "Head of Marketing, CreatorHub", image: "https://i.pravatar.cc/100?u=chris" },
 ];
@@ -22,7 +22,7 @@ const col2 = testimonials.slice(4, 8);
 const TestimonialCard = React.memo(({ text, name, role, image, isSpecial }: { text: string; name: string; role: string; image: string; isSpecial?: boolean }) => {
   if (isSpecial) {
     return (
-      <div 
+      <div
         className="testimonial-border-container rounded-[1.2rem] shadow-[0_12px_35px_rgba(0,0,0,0.05)] w-full"
         style={{ backfaceVisibility: "hidden", transform: "translateZ(0)" }}
       >
@@ -41,7 +41,7 @@ const TestimonialCard = React.memo(({ text, name, role, image, isSpecial }: { te
   }
 
   return (
-    <div 
+    <div
       className="p-4 md:p-5 rounded-[1.2rem] border border-slate-100 bg-white shadow-sm w-full"
       style={{ backfaceVisibility: "hidden", transform: "translateZ(0)" }}
     >
@@ -69,7 +69,7 @@ function TestimonialsColumn({ items, duration = 20, reverse = false, className }
           "flex flex-col gap-3 pt-3",
           reverse ? "animate-marquee-vertical-reverse" : "animate-marquee-vertical"
         )}
-        style={{ 
+        style={{
           "--duration": `${duration}s`,
           willChange: "transform",
         } as React.CSSProperties}
@@ -120,7 +120,7 @@ export function TestimonialsSection() {
             </h2>
 
             <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-sm mx-auto lg:mx-0">
-              Join 500+ growing businesses who have trusted Softcr8ers to build their digital future.
+              Join 500+ growing businesses who have trusted Softcr8ors to build their digital future.
             </p>
 
             {/* Stats */}

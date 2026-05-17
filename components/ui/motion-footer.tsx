@@ -3,27 +3,27 @@
 import React from "react";
 
 const SERVICES = [
-  { label: "Web Engineering",   href: "/services/web-engineering" },
-  { label: "Custom Software",   href: "/services/custom-software" },
+  { label: "Web Engineering", href: "/services/web-engineering" },
+  { label: "Custom Software", href: "/services/custom-software" },
   { label: "Mobile Innovation", href: "/services/mobile-innovation" },
-  { label: "SaaS Platforms",    href: "/services/saas-platforms" },
-  { label: "Gen AI Content",    href: "/services/gen-ai-content" },
-  { label: "Intelligence AI",   href: "/services/intelligence-ai" },
-  { label: "UI/UX Design",      href: "/services/ui-ux-design" },
-  { label: "Technical SEO",     href: "/services/technical-seo" },
+  { label: "SaaS Platforms", href: "/services/saas-platforms" },
+  { label: "Gen AI Content", href: "/services/gen-ai-content" },
+  { label: "Intelligence AI", href: "/services/intelligence-ai" },
+  { label: "UI/UX Design", href: "/services/ui-ux-design" },
+  { label: "Technical SEO", href: "/services/technical-seo" },
 ];
 
 const NAV_LINKS = [
-  { label: "About",        href: "#about" },
-  { label: "Services",     href: "#services" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
   { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact",      href: "#contact" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const CONTACT = [
-  { label: "Start a Project",      href: "#contact" },
-  { label: "Book a Demo",          href: "#contact" },
-  { label: "hello@softcr8ers.com", href: "mailto:hello@softcr8ers.com" },
+  { label: "Start a Project", href: "#contact" },
+  { label: "Book a Demo", href: "#contact" },
+  { label: "hello@Softcr8ors.com", href: "mailto:hello@Softcr8ors.com" },
 ];
 
 
@@ -54,11 +54,11 @@ export function CinematicFooter() {
       className="w-full bg-white py-8 px-3 sm:py-12 sm:px-6 md:px-8 lg:px-12 flex flex-col gap-6 relative overflow-hidden"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
-      
+
 
       {/* ══ CARD 2: THE DARK GLASS-STYLE FOOTER WITH VIDEO BG ══ */}
       <div className="relative w-full rounded-[1.5rem] sm:rounded-[2.5rem] bg-[#020205]/45 border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.5)] px-5 py-10 sm:px-12 lg:px-16 pt-12 md:pt-16 pb-10 md:pb-12 overflow-hidden backdrop-blur-xl">
-        
+
         {/* Animated Background Video */}
         <video
           src="/i_need_animated_video_202605170943.mp4"
@@ -69,7 +69,7 @@ export function CinematicFooter() {
           onTimeUpdate={(e) => {
             if (window.innerWidth < 768 && e.currentTarget.currentTime >= 4) {
               e.currentTarget.currentTime = 0;
-              e.currentTarget.play().catch(() => {});
+              e.currentTarget.play().catch(() => { });
             }
           }}
           className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
@@ -80,18 +80,18 @@ export function CinematicFooter() {
 
         {/* Main Links Grid */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-10 md:gap-8 pb-12 border-b border-white/10 z-10 relative">
-          
+
           {/* Logo & Tagline Column */}
           <div className="col-span-2 md:col-span-2 flex flex-col items-start gap-4 z-10 relative">
             <div className="relative w-[220px] h-[60px] md:w-[280px] md:h-[80px] overflow-hidden">
-              <img 
-                src="/white_logo.png" 
-                alt="Softcr8ers Logo" 
-                className="absolute w-full h-[220px] md:h-[280px] top-1/2 left-0 -translate-y-1/2 object-contain opacity-95 hover:opacity-100 transition-all duration-300" 
+              <img
+                src="/white_logo.png"
+                alt="Softcr8ors Logo"
+                className="absolute w-full h-[220px] md:h-[280px] top-1/2 left-0 -translate-y-1/2 object-contain opacity-95 hover:opacity-100 transition-all duration-300"
               />
             </div>
             <p className="text-zinc-300 text-sm max-w-sm leading-relaxed mt-2">
-              Softcr8ers empowers fast-growing companies with state-of-the-art web engineering, custom software solutions, and production-ready AI platforms that scale.
+              Softcr8ors empowers fast-growing companies with state-of-the-art web engineering, custom software solutions, and production-ready AI platforms that scale.
             </p>
           </div>
 
@@ -125,9 +125,9 @@ export function CinematicFooter() {
 
         {/* Bottom Bar: Copyright and Policy Links */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 z-10 relative text-center md:text-left">
-          
+
           <span className="text-zinc-400 text-xs tracking-wider">
-            © 2026 Softcr8ers. All rights reserved.
+            © 2026 Softcr8ors. All rights reserved.
           </span>
 
           {/* Pill Badges for Policy links */}
@@ -147,19 +147,19 @@ export function CinematicFooter() {
           <div className="flex items-center justify-center gap-2">
             <a href="#" className="w-9 h-9 rounded-full border border-[#1620f0]/20 bg-[#1620f0]/5 flex items-center justify-center text-purple-300 hover:text-white hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9] hover:border-transparent shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(22,32,240,0.35)] transition-all duration-300 hover:scale-110 active:scale-95">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
             <a href="#" className="w-9 h-9 rounded-full border border-[#1620f0]/20 bg-[#1620f0]/5 flex items-center justify-center text-purple-300 hover:text-white hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9] hover:border-transparent shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(22,32,240,0.35)] transition-all duration-300 hover:scale-110 active:scale-95">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
               </svg>
             </a>
             <a href="#" className="w-9 h-9 rounded-full border border-[#1620f0]/20 bg-[#1620f0]/5 flex items-center justify-center text-purple-300 hover:text-white hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9] hover:border-transparent shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(22,32,240,0.35)] transition-all duration-300 hover:scale-110 active:scale-95">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </a>
             <a href="#" className="w-9 h-9 rounded-full border border-[#1620f0]/20 bg-[#1620f0]/5 flex items-center justify-center text-purple-300 hover:text-white hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9] hover:border-transparent shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(22,32,240,0.35)] transition-all duration-300 hover:scale-110 active:scale-95">

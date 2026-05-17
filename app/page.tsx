@@ -18,8 +18,8 @@ export default function Home() {
       <HeroSection />
       <AboutSection8 />
       <ServicesSection />
-      <CircularPortfolio />
       <ProcessSection />
+      <CircularPortfolio />
       <TechStack />
       <ModernIndustries />
       <TestimonialsSection />

@@ -242,10 +242,10 @@ export function HeroSection() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="mb-8 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 border border-white backdrop-blur-md text-slate-800 text-[13px] font-bold shadow-sm"
+              className="mb-8 flex items-center justify-center gap-1.5 px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-white/50 border border-white backdrop-blur-md text-slate-800 text-[10px] md:text-[13px] font-bold shadow-sm whitespace-nowrap max-w-[95%] md:max-w-none"
             >
-              <Sparkles size={14} className="text-[#a906c9]" />
-              DIGITAL AGENCY & CREATIVE STUDIO
+              <Sparkles className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#a906c9] shrink-0" />
+              <span>DIGITAL AGENCY & CREATIVE STUDIO</span>
             </motion.div>
 
             {/* Headline */}
@@ -265,7 +265,7 @@ export function HeroSection() {
               transition={{ delay: 0.2 }}
               className="text-[#1C0C26CC] text-base md:text-[16px] max-w-xl mb-10 font-medium leading-relaxed"
             >
-              From stunning websites and custom software to cinematic video production and bold brand identities — Softcr8ers turns your vision into a digital reality.
+              From stunning websites and custom software to cinematic video production and bold brand identities — Softcr8ors turns your vision into a digital reality.
             </motion.p>
 
             {/* Buttons */}
@@ -345,7 +345,7 @@ export function HeroSection() {
             <div className="animate-marquee hover:[animation-play-state:paused] flex whitespace-nowrap text-[6vw] md:text-[90px] font-bold uppercase tracking-tighter text-slate-950/20 leading-none font-sans pointer-events-auto cursor-default w-max" style={{ animationDuration: "60s" }}>
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="flex flex-row items-center">
-                  {["SOFTCR8ERS", "WEB DEVELOPMENT", "UI / UX DESIGN", "BRANDING"].map((word, idx) => (
+                  {["Softcr8ors", "WEB DEVELOPMENT", "UI / UX DESIGN", "BRANDING"].map((word, idx) => (
                     <span key={idx} className="flex items-center group">
                       <span className={cn(
                         "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:via-[#f016da] hover:to-[#a906c9]",
@@ -366,7 +366,7 @@ export function HeroSection() {
             <div className="animate-marquee-reverse hover:[animation-play-state:paused] flex whitespace-nowrap text-[6vw] md:text-[90px] font-bold uppercase tracking-tighter text-slate-950/10 leading-none font-sans pointer-events-auto cursor-default w-max" style={{ animationDuration: "60s" }}>
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="flex flex-row items-center">
-                  {["VIDEO EDITING", "SOFTCR8ERS", "SOFTWARE DEV", "CREATIVE STUDIO"].map((word, idx) => (
+                  {["VIDEO EDITING", "Softcr8ors", "SOFTWARE DEV", "CREATIVE STUDIO"].map((word, idx) => (
                     <span key={idx} className="flex items-center group">
                       <span className={cn(
                         "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#a906c9] hover:via-[#2f89f7] hover:to-[#1620f0]",

@@ -3,15 +3,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const ITEMS = ["SOFTCR8ERS", "WEB DEVELOPMENT", "UI/UX DESIGN", "VIDEO PRODUCTION", "SOFTWARE DEV", "BRAND IDENTITY", "CREATIVE STUDIO"];
+const ITEMS = ["Softcr8ors", "WEB DEVELOPMENT", "UI/UX DESIGN", "VIDEO PRODUCTION", "SOFTWARE DEV", "BRAND IDENTITY", "CREATIVE STUDIO"];
 
 /**
  * MarqueeCTA - Premium Masked Typographic Implementation using Logo Blue & Purple Brand Gradient
  */
 export function MarqueeCTA() {
   return (
-    <section 
-      className="relative w-full overflow-hidden bg-white flex items-center border-y border-slate-100/80" 
+    <section
+      className="relative w-full overflow-hidden bg-white flex items-center border-y border-slate-100/80"
       style={{ height: 'clamp(100px, 18vw, 220px)' }}
     >
       {/* ── CSS Animations ── */}
@@ -74,9 +74,9 @@ export function SparkleIcon({ className }: { className?: string }) {
         <motion.path
           d="M50 0 C50 35, 35 50, 0 50 C35 50, 50 65, 50 100 C50 65, 65 50, 100 50 C65 50, 50 35, 50 0 Z"
           fill="url(#sparkleGradient)"
-          animate={{ 
-            rotate: [0, 90, 180, 270, 360], 
-            scale: [0.9, 1.15, 0.9] 
+          animate={{
+            rotate: [0, 90, 180, 270, 360],
+            scale: [0.9, 1.15, 0.9]
           }}
           transition={{
             rotate: { duration: 20, repeat: Infinity, ease: "linear" },

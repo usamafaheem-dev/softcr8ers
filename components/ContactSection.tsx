@@ -407,13 +407,13 @@ export function ContactSection() {
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">Chat to sales</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">Interested in scaling your business? Speak to our experts.</p>
-              <a href="mailto:sales@softcreater.com" className="inline-block font-medium text-lg hover:underline transition-all text-[#1620f0]">sales@softcreater.com</a>
+              <a href="mailto:sales@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all text-[#1620f0]">sales@Softcr8ors.com</a>
             </div>
 
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">Expert support</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">Get technical assistance and project updates 24/7.</p>
-              <a href="mailto:support@softcreater.com" className="inline-block font-medium text-lg hover:underline transition-all text-[#1620f0]">support@softcreater.com</a>
+              <a href="mailto:support@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all text-[#1620f0]">support@Softcr8ors.com</a>
             </div>
 
             <div className="space-y-3">

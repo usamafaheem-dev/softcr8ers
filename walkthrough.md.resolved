@@ -13,7 +13,7 @@ I have successfully updated the website to match the "Fluence AI" reference styl
 ### 2. Hero Section Overhaul
 - **Contained Frame**: The main hero section is now wrapped in a large, rounded "frame" with restricted width, creating an elegant "inset" aesthetic.
 - **Height**: Increased to **140vh** to allow the design to breathe and accommodate the new chat interface.
-- **Branding**: Updated all copy from "Softcr8rs" to "Fluence AI" to match the reference site.
+- **Branding**: Updated all copy from "Softcr8ors" to "Fluence AI" to match the reference site.
 
 ### 3. Redesigned Chat UI
 - **Layered Glass**: The chat container now uses a multi-layered glass panel with deep shadows, making it pop off the background.
