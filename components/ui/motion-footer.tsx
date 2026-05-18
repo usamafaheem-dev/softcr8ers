@@ -78,8 +78,25 @@ export function CinematicFooter() {
         {/* Dim Glass Overlay */}
         <div className="absolute inset-0 bg-black/70 backdrop-blur-[10px] z-0 pointer-events-none" />
 
+        {/* Massive Background Watermark Text "SOFTCR8ORS" - Absolute bottom aligned, larger size */}
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-center z-[1] pointer-events-none select-none overflow-hidden h-[30%] px-2 sm:px-6 md:px-10">
+          <div
+            className="font-sans font-black uppercase text-[7.5vw] sm:text-[8.5vw] md:text-[9vw] lg:text-[9.5vw] tracking-normal leading-none select-none pointer-events-none flex items-center justify-center whitespace-nowrap translate-y-[18%]"
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+          >
+            <span className="text-white/[0.04] dark:text-white/[0.03]">SOFTCR</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] opacity-70 drop-shadow-[0_0_15px_rgba(169,6,201,0.35)] px-1 scale-105 transform inline-block">8</span>
+            <span className="text-white/[0.04] dark:text-white/[0.03]">ORS</span>
+          </div>
+        </div>
+
+
+
+
+
+
         {/* Main Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-10 md:gap-8 pb-12 border-b border-white/10 z-10 relative">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-10 md:gap-8 pb-12 z-10 relative">
 
           {/* Logo & Tagline Column */}
           <div className="col-span-2 md:col-span-2 flex flex-col items-start gap-4 z-10 relative">
@@ -122,6 +139,9 @@ export function CinematicFooter() {
           </div>
 
         </div>
+
+        {/* Sleek Gradient Divider Line (Logo Gradient) */}
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#1620f0]/40 via-[#a906c9]/40 via-[#f016da]/40 to-transparent z-10 relative my-2" />
 
         {/* Bottom Bar: Copyright and Policy Links */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 z-10 relative text-center md:text-left">
