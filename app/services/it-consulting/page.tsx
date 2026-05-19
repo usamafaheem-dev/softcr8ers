@@ -1,13 +1,15 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
-  title: "Technical SEO",
-  tagline: "Dominating search rankings with data-driven content strategies.",
+  titleKey: "srv.it.title",
+  descKey: "srv.it.desc",
+  title: "IT & Tech Consulting",
+  tagline: "End-to-end technology consulting to align your IT infrastructure with business goals.",
   description:
     "Ranking on Google isn't luck — it's engineering. We combine deep technical SEO audits with content strategy and link building to systematically move your site up the rankings. From Core Web Vitals to structured data, we fix what's holding you back and build what pushes you forward.",
-  image: "https://www.foxbeep.com/images/seo-new.png",
-  color: "from-green-400 to-emerald-600",
-  iconColor: "#22c55e",
+  image: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&q=80&w=1200",
+  color: "from-[#a906c9] to-[#1620f0]",
+  iconColor: "#a906c9",
   features: [
     "Technical SEO audit & roadmap",
     "Core Web Vitals optimization",

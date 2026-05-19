@@ -1,13 +1,15 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
+  titleKey: "srv.software.title",
+  descKey: "srv.software.desc",
   title: "Custom Software",
   tagline: "Tailored enterprise solutions engineered for scalability and growth.",
   description:
     "Off-the-shelf software forces your business to adapt to the tool. We flip that equation — building software that adapts to your exact workflows, integrations, and scale requirements. From internal tools to full enterprise platforms, we engineer solutions that become your competitive advantage.",
-  image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200",
-  color: "from-emerald-500 to-teal-400",
-  iconColor: "#10b981",
+  image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200",
+  color: "from-[#1620f0] to-[#a906c9]",
+  iconColor: "#1620f0",
   features: [
     "Enterprise resource planning (ERP) systems",
     "Custom CRM & workflow automation",

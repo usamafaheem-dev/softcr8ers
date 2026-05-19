@@ -1,13 +1,15 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
+  titleKey: "srv.uiux.title",
+  descKey: "srv.uiux.desc",
   title: "UI/UX Design",
   tagline: "Psychology-driven visual interfaces designed for maximum engagement.",
   description:
     "Great design isn't decoration — it's strategy. We combine behavioral psychology, conversion principles, and visual craft to create interfaces that guide users effortlessly toward their goals. Every pixel is intentional, every interaction is tested, and every design decision is backed by data.",
-  image: "https://ik.imagekit.io/o5vhmyokl/ui.png",
-  color: "from-pink-500 to-orange-400",
-  iconColor: "#ec4899",
+  image: "https://cdn.dribbble.com/userupload/3907789/file/original-fdc70ca7efa9250647dd620deec2084e.png?resize=1504x1128&vertical=center",
+  color: "from-[#f016da] to-[#a906c9]",
+  iconColor: "#f016da",
   features: [
     "User research & persona development",
     "Information architecture & user flows",

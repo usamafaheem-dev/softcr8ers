@@ -11,11 +11,11 @@ export function CinematicFooter() {
     { labelKey: "ftr.srv.1", href: "/services/web-engineering" },
     { labelKey: "ftr.srv.2", href: "/services/custom-software" },
     { labelKey: "ftr.srv.3", href: "/services/mobile-innovation" },
-    { labelKey: "ftr.srv.4", href: "/services/saas-platforms" },
-    { labelKey: "ftr.srv.5", href: "/services/gen-ai-content" },
-    { labelKey: "ftr.srv.6", href: "/services/intelligence-ai" },
+    { labelKey: "ftr.srv.4", href: "/services/branding-identity" },
+    { labelKey: "ftr.srv.5", href: "/services/video-production" },
+    { labelKey: "ftr.srv.6", href: "/services/creative-solutions" },
     { labelKey: "ftr.srv.7", href: "/services/ui-ux-design" },
-    { labelKey: "ftr.srv.8", href: "/services/technical-seo" },
+    { labelKey: "ftr.srv.8", href: "/services/it-consulting" },
   ];
 
   const NAV_LINKS = [

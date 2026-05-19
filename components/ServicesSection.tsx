@@ -7,14 +7,14 @@ import { CardStack, CardStackItem } from "@/components/ui/card-stack";
 import { useTranslation } from "@/context/LanguageContext";
 
 const serviceData = [
-  { id: 1, titleKey: "srv.web.title", descKey: "srv.web.desc", slug: "web-engineering", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800" },
-  { id: 2, titleKey: "srv.software.title", descKey: "srv.software.desc", slug: "custom-software", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800" },
-  { id: 3, titleKey: "srv.uiux.title", descKey: "srv.uiux.desc", slug: "ui-ux-design", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800" },
-  { id: 4, titleKey: "srv.video.title", descKey: "srv.video.desc", slug: "gen-ai-content", image: "https://images.unsplash.com/photo-1536240478700-b869ad10e128?auto=format&fit=crop&q=80&w=800" },
-  { id: 5, titleKey: "srv.creative.title", descKey: "srv.creative.desc", slug: "intelligence-ai", image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800" },
-  { id: 6, titleKey: "srv.branding.title", descKey: "srv.branding.desc", slug: "saas-platforms", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800" },
-  { id: 7, titleKey: "srv.mobile.title", descKey: "srv.mobile.desc", slug: "mobile-innovation", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800" },
-  { id: 8, titleKey: "srv.it.title", descKey: "srv.it.desc", slug: "technical-seo", image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800" },
+  { id: 1, titleKey: "srv.web.title", descKey: "srv.web.desc", slug: "web-engineering", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800", color: "#1620f0" },
+  { id: 2, titleKey: "srv.software.title", descKey: "srv.software.desc", slug: "custom-software", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800", color: "#1620f0" },
+  { id: 3, titleKey: "srv.uiux.title", descKey: "srv.uiux.desc", slug: "ui-ux-design", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800", color: "#f016da" },
+  { id: 4, titleKey: "srv.video.title", descKey: "srv.video.desc", slug: "video-production", image: "https://images.unsplash.com/photo-1536240478700-b869ad10e128?auto=format&fit=crop&q=80&w=800", color: "#f016da" },
+  { id: 5, titleKey: "srv.creative.title", descKey: "srv.creative.desc", slug: "creative-solutions", image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800", color: "#a906c9" },
+  { id: 6, titleKey: "srv.branding.title", descKey: "srv.branding.desc", slug: "branding-identity", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800", color: "#1620f0" },
+  { id: 7, titleKey: "srv.mobile.title", descKey: "srv.mobile.desc", slug: "mobile-innovation", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800", color: "#f016da" },
+  { id: 8, titleKey: "srv.it.title", descKey: "srv.it.desc", slug: "it-consulting", image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800", color: "#a906c9" },
 ];
 
 export function ServicesSection() {
@@ -28,6 +28,7 @@ export function ServicesSection() {
     imageSrc: s.image,
     href: `/services/${s.slug}`,
     ctaLabel: t("services.explore"),
+    color: s.color,
   }));
 
   return (
@@ -105,8 +106,9 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="group relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm cursor-pointer hover:border-purple-500/40 transition-all duration-300 hover:-translate-y-1"
+              className="group relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm cursor-pointer transition-all duration-300 hover:-translate-y-1"
               onClick={() => router.push(`/services/${service.slug}`)}
+              style={{ '--hover-color': service.color } as React.CSSProperties}
             >
               <div className="relative h-44 overflow-hidden">
                 <img
@@ -129,7 +131,7 @@ export function ServicesSection() {
               </div>
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-                style={{ boxShadow: "inset 0 0 40px rgba(168,85,247,0.08)" }}
+                style={{ boxShadow: `inset 0 0 40px ${service.color}15`, border: `1px solid ${service.color}50` }}
               />
             </motion.div>
           ))}

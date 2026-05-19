@@ -1,13 +1,15 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
+  titleKey: "srv.web.title",
+  descKey: "srv.web.desc",
   title: "Web Engineering",
   tagline: "Architecting high-performance digital ecosystems with cutting-edge tech stacks.",
   description:
     "We build blazing-fast, scalable web applications that don't just look great — they perform under pressure. From complex SPA architectures to server-rendered platforms, our engineers craft every layer of the stack with precision, security, and long-term maintainability in mind.",
-  image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200",
-  color: "from-blue-500 to-cyan-400",
-  iconColor: "#3b82f6",
+  image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1200",
+  color: "from-[#1620f0] to-[#a906c9]",
+  iconColor: "#1620f0",
   features: [
     "Next.js & React architecture",
     "Node.js / Go / Python backends",

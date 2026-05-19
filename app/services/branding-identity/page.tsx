@@ -1,13 +1,15 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
-  title: "SaaS Platforms",
-  tagline: "End-to-end cloud infrastructure for subscription-based products.",
+  titleKey: "srv.branding.title",
+  descKey: "srv.branding.desc",
+  title: "Branding & Identity",
+  tagline: "Strategic brand identities that communicate your vision and create lasting impressions.",
   description:
     "Building a SaaS product is more than writing features — it's architecting a business. We handle the full stack: multi-tenancy, billing, auth, usage metering, and the scalable infrastructure that lets you go from 10 to 10,000 customers without rewriting your codebase.",
-  image: "https://ik.imagekit.io/o5vhmyokl/i_only_need_prouct_iamge_202605150828.png",
-  color: "from-blue-400 to-indigo-600",
-  iconColor: "#6366f1",
+  image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
+  color: "from-[#1620f0] to-[#f016da]",
+  iconColor: "#1620f0",
   features: [
     "Multi-tenant architecture design",
     "Stripe / Paddle billing integration",

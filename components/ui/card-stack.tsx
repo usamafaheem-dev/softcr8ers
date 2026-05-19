@@ -18,6 +18,7 @@ export type CardStackItem = {
   ctaLabel?: string;
   tag?: string;
   icon?: string;
+  color?: string;
 };
 
 export type CardStackProps<T extends CardStackItem> = {
@@ -156,22 +157,26 @@ function CarouselCard({ item, active }: { item: CardStackItem; active: boolean }
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* ── Animated gradient border on hover ── */}
-      {/* We use a conic-gradient pseudo layer that rotates */}
+      {/* ── Beautiful Masked Rotating Border ── */}
       <div
-        className="absolute inset-0 rounded-2xl transition-opacity duration-300 pointer-events-none"
+        className="absolute inset-0 rounded-2xl transition-opacity duration-300 pointer-events-none overflow-hidden"
         style={{
-          padding: "1.5px",
-          opacity: hovered ? 1 : 0,
-          background:
-            "conic-gradient(from var(--border-angle, 0deg), #a855f7, #6366f1, #f43f5e, #a855f7)",
-          WebkitMask:
-            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          padding: "2px",
+          opacity: active || hovered ? 1 : 0,
+          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
           maskComposite: "exclude",
-          animation: hovered ? "spin-border 2s linear infinite" : "none",
         }}
-      />
+      >
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            inset: "-150px",
+            background: "conic-gradient(from 0deg, #1620f0, #a906c9, #f016da, #1620f0)",
+            animation: hovered ? "spin 3s linear infinite" : "none",
+          }}
+        />
+      </div>
 
       {/* ── Strong glass background ── */}
       <div
@@ -181,13 +186,9 @@ function CarouselCard({ item, active }: { item: CardStackItem; active: boolean }
             "linear-gradient(145deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.08) 100%)",
           backdropFilter: "blur(40px) saturate(180%)",
           WebkitBackdropFilter: "blur(40px) saturate(180%)",
-          border: hovered
-            ? "1px solid transparent"
-            : active
-            ? "1px solid rgba(255,255,255,0.18)"
-            : "1px solid rgba(255,255,255,0.08)",
+          border: active || hovered ? "none" : "1px solid rgba(255,255,255,0.08)",
           boxShadow: active
-            ? "0 8px 40px rgba(168,85,247,0.18), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.2)"
+            ? `0 8px 40px ${item.color || '#a855f7'}20, inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.2)`
             : "0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)",
         }}
       />
@@ -328,7 +329,10 @@ function CarouselCard({ item, active }: { item: CardStackItem; active: boolean }
 
       {/* Active bottom glow */}
       {active && (
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
+        <div 
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-[2px] transition-all duration-300"
+          style={{ background: `linear-gradient(to right, transparent, ${item.color || '#a855f7'}, transparent)` }}
+        />
       )}
     </div>
   );

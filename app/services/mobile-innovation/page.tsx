@@ -1,13 +1,15 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
+  titleKey: "srv.mobile.title",
+  descKey: "srv.mobile.desc",
   title: "Mobile Innovation",
   tagline: "High-fidelity native experiences across iOS and Android.",
   description:
     "Mobile is where your users live. We build apps that feel native, perform flawlessly, and keep users coming back. Whether it's a consumer app targeting millions or an enterprise tool for your field team, we deliver polished mobile experiences that stand out in a crowded market.",
-  image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=1200",
-  color: "from-orange-500 to-rose-500",
-  iconColor: "#f97316",
+  image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=1200",
+  color: "from-[#f016da] to-[#1620f0]",
+  iconColor: "#f016da",
   features: [
     "React Native cross-platform development",
     "Native iOS (Swift) development",

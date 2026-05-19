@@ -2,131 +2,198 @@
  
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Sparkles, ChevronDown } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles, ChevronDown, LayoutGrid, Globe, Zap, Bot } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { CinematicFooter } from "@/components/ui/motion-footer";
+import { InteractiveCanvas } from "@/components/ui/hero-designali";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { useTranslation } from "@/context/LanguageContext";
+
+// Rolling Text Button component
+function RollingTextButton({
+  label,
+  href = "#",
+  variant = "gradient",
+  className
+}: {
+  label: string;
+  href?: string;
+  variant?: "gradient" | "transparent";
+  className?: string;
+}) {
+  return (
+    <motion.a
+      href={href}
+      className={cn(
+        "group relative inline-flex items-center justify-center rounded-xl px-9 py-3 font-semibold font-sans overflow-hidden transition-all duration-500 cursor-pointer",
+        variant === "gradient"
+          ? "bg-[#050101] text-white shadow-xl hover:shadow-blue-500/10"
+          : "bg-white/50 backdrop-blur-xl border border-slate-200 text-slate-900 shadow-sm shadow-slate-100/50 hover:bg-white/75 hover:border-slate-300",
+        className
+      )}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {variant === "gradient" && (
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#f016da] to-[#1620f0] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      )}
+      <div className="relative h-6 overflow-hidden">
+        <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-6">
+          <span className="flex h-6 items-center justify-center relative z-10">
+            {label}
+          </span>
+          <span className="flex h-6 items-center justify-center relative z-10">
+            {label}
+          </span>
+        </div>
+      </div>
+    </motion.a>
+  );
+}
  
 export interface ServiceData {
   title: string;
+  titleKey?: string;
   tagline: string;
+  descKey?: string;
   description: string;
   image: string;
   color: string; // gradient class e.g. "from-blue-500 to-cyan-400"
   iconColor: string; // solid color for icons e.g. "#3b82f6"
-  features: string[];
+  features: string[] | { title: string; description: string }[];
   benefits: { title: string; desc: string }[];
   process: { step: string; title: string; desc: string }[];
   cta: string;
 }
  
 export function ServiceDetailPage({ data }: { data: ServiceData }) {
+  const { t } = useTranslation();
+  
+  const localizedTitle = data.titleKey ? t(data.titleKey) : data.title;
+  const localizedTagline = data.descKey ? t(data.descKey) : data.tagline;
+
   return (
     <main className="flex flex-col min-h-screen bg-white text-slate-900 overflow-x-hidden">
       <Navbar />
  
-      {/* Redesigned Hero Section - 100vh Rounded Floating Card Aesthetic */}
-      <section className="relative w-full px-2 md:px-4 pt-2 md:pt-4 bg-white">
-        {/* Rounded Wrapper */}
-        <div className="relative w-full h-[100vh] rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-900/50 bg-slate-950 flex flex-col justify-center items-center">
+      {/* Redesigned Premium Full-Bleed Light Hero Section (Matching Home Page Theme) */}
+      <section className="relative w-full min-h-[100vh] flex flex-col justify-center items-center pt-32 pb-16 overflow-hidden bg-white">
+        
+        {/* Dynamic Background Image with Strong White/Pastel Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={data.image} 
+            alt={localizedTitle} 
+            className="w-full h-full object-cover scale-105"
+          />
+          {/* Strong White Frosted Overlay: Makes the image a soft, light pastel background like the home page */}
+          <div className="absolute inset-0 bg-white/70 backdrop-blur-xl" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/70 to-white/95" />
+        </div>
+
+        {/* Dynamic Colored Ambient Glows based on the Service's primary color */}
+        {/* This gives the background a beautiful, unique soft wash of color for each service */}
+        <div 
+          className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] blur-[150px] rounded-full z-0 pointer-events-none opacity-[0.25] mix-blend-multiply"
+          style={{ backgroundColor: data.iconColor }}
+        />
+        <div 
+          className="absolute bottom-1/4 -right-1/4 w-[800px] h-[800px] blur-[150px] rounded-full z-0 pointer-events-none opacity-[0.25] mix-blend-multiply"
+          style={{ backgroundColor: data.iconColor }}
+        />
+
+        {/* Interactive Flowing Canvas Layer */}
+        <InteractiveCanvas className="absolute inset-0 w-full h-full opacity-40 z-0 pointer-events-none mix-blend-multiply" />
+        
+        {/* 3D Decor Blocks (Matching Home Page) */}
+        <motion.div
+          className="absolute top-[15%] left-[5%] w-20 h-20 md:w-32 md:h-32 pointer-events-none opacity-60 z-10"
+          animate={{ y: [0, -20, 0], rotate: [0, 15, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <img src="/hero-block-1.avif" alt="3D Cube" className="w-full h-full object-contain drop-shadow-xl blur-[1px]" />
+        </motion.div>
+        <motion.div
+          className="absolute top-[60%] right-[5%] w-24 h-24 md:w-36 md:h-36 pointer-events-none opacity-60 z-10"
+          animate={{ y: [0, 20, 0], rotate: [0, -15, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        >
+          <img src="/hero-block-2.avif" alt="3D Cube" className="w-full h-full object-contain drop-shadow-xl blur-[1px]" />
+        </motion.div>
+ 
+        {/* Centered Content Wrapper (Title, Button, Badges aligned together) */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 flex flex-col items-center justify-center gap-8 md:gap-12 mt-4 md:mt-10">
           
-          {/* Background Image with Cinematic Gradient Overlay */}
-          <div className="absolute inset-0 z-0 select-none pointer-events-none">
-            <img
-              src={data.image}
-              alt={data.title}
-              className="w-full h-full object-cover opacity-35 filter brightness-[0.7] contrast-[1.1] scale-105 transition-all duration-700"
-            />
-            {/* Cinematic Gradients */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-slate-950/70 to-slate-950 z-0" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_20%,rgba(2,2,5,0.85)_100%)] z-0" />
-          </div>
- 
-          {/* 3D Decor Blocks (matching home page hero) */}
-          <motion.div
-            className="absolute top-[20%] left-[-5%] md:left-[5%] w-20 h-20 md:w-44 md:h-44 pointer-events-none opacity-20 md:opacity-30 z-10"
-            animate={{ y: [0, -30, 0], rotate: [0, 15, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <img src="/hero-block-1.avif" alt="3D Cube" className="w-full h-full object-contain blur-[1px]" />
-          </motion.div>
-          <motion.div
-            className="absolute bottom-[20%] right-[-5%] md:right-[5%] w-24 h-24 md:w-48 md:h-48 pointer-events-none opacity-20 md:opacity-30 z-10"
-            animate={{ y: [0, 30, 0], rotate: [0, -15, 0] }}
-            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          >
-            <img src="/hero-block-2.avif" alt="3D Cube" className="w-full h-full object-contain blur-[1px]" />
-          </motion.div>
- 
-          {/* Centered Content Layer */}
-          <div className="relative z-20 w-full max-w-5xl mx-auto px-4 text-center flex flex-col items-center justify-center">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="mb-6 flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-white text-[11px] font-extrabold tracking-[0.25em] uppercase"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#f016da] animate-pulse shrink-0" />
-              <span>Our Services</span>
-              <Sparkles className="w-3.5 h-3.5 text-[#1620f0] animate-pulse shrink-0" />
-            </motion.div>
- 
-            {/* Headline */}
+          {/* Top: Headline & Tagline */}
+          <div className="flex flex-col items-center text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className={`text-4xl sm:text-6xl md:text-8xl font-medium tracking-tight mb-6 bg-gradient-to-r ${data.color} bg-clip-text text-transparent font-sans`}
+              transition={{ duration: 0.7 }}
+              className="text-[36px] sm:text-[40px] md:text-[72px] font-medium leading-[1.1] tracking-tight text-[#000000] mb-6 font-sans max-w-4xl"
             >
-              {data.title}
+              {localizedTitle.split(" ").slice(0, -1).join(" ")}{" "}
+              <span style={{ color: data.iconColor }}>
+                {localizedTitle.split(" ").slice(-1)}
+              </span>
             </motion.h1>
- 
-            {/* Tagline */}
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-slate-200 text-lg sm:text-xl md:text-2xl font-normal max-w-3xl mx-auto leading-relaxed mb-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-sans"
+              className="text-[#1C0C26CC] text-sm sm:text-base md:text-[18px] max-w-2xl leading-relaxed mb-10 font-medium font-sans px-2"
             >
-              {data.tagline}
+              {localizedTagline}
             </motion.p>
- 
-            {/* Action Buttons */}
+
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
             >
-              <Link
-                href="/contact"
-                className="group relative flex items-center justify-center rounded-xl px-10 py-3.5 font-semibold text-white bg-slate-900 border border-white/10 overflow-hidden shadow-xl hover:shadow-[#1620f0]/20 transition-all duration-500 w-full sm:w-auto cursor-pointer"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#f016da] to-[#1620f0] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <span className="relative flex items-center gap-2 z-10">
-                  Start Project
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
-              <a
-                href="#details"
-                className="px-10 py-3.5 rounded-xl font-semibold bg-white/10 backdrop-blur-md border border-white/15 text-white hover:bg-white/20 transition-all duration-300 w-full sm:w-auto text-center cursor-pointer"
-              >
-                Explore Details
-              </a>
+              <RollingTextButton label="Start Project" href="/contact" variant="gradient" className="px-10 text-[15px] md:text-base h-12" />
             </motion.div>
           </div>
- 
-          {/* Scroll Down Hint */}
-          <div className="absolute bottom-6 flex flex-col items-center gap-1 text-white/40 text-[10px] font-extrabold uppercase tracking-[0.2em] animate-bounce select-none pointer-events-none">
-            <span>Scroll to Discover</span>
-            <ChevronDown size={14} />
-          </div>
- 
+
+          {/* Bottom: Badges (Features) */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="flex flex-col items-center mt-4"
+          >
+            <p className="text-slate-500 text-[11px] md:text-[12px] font-bold tracking-[0.2em] uppercase mb-4">
+              {t("services.badge") || "OUR SERVICES"}
+            </p>
+            <div className="flex flex-wrap justify-center gap-2.5 max-w-4xl">
+              {data.features.slice(0, 6).map((feature, idx) => (
+                <span 
+                  key={idx} 
+                  className="px-4 py-1.5 rounded-full border text-[12px] md:text-[13px] font-medium transition-colors shadow-sm backdrop-blur-md cursor-default"
+                  style={{ 
+                    backgroundColor: `${data.iconColor}1a`, // 10% opacity light background
+                    borderColor: `${data.iconColor}99`, // Strong 60% opacity border
+                    color: '#1e293b' // Deep slate text for readability
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = `${data.iconColor}33`; // 20% on hover
+                    e.currentTarget.style.borderColor = data.iconColor; // Solid on hover
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = `${data.iconColor}1a`;
+                    e.currentTarget.style.borderColor = `${data.iconColor}99`;
+                  }}
+                >
+                  {typeof feature === 'string' ? feature : feature.title}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
       </section>
- 
       {/* Description */}
       <section id="details" className="py-24 px-4 max-w-4xl mx-auto scroll-mt-20">
         <motion.p
@@ -165,7 +232,15 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
                 className="w-5 h-5 mt-0.5 shrink-0"
                 style={{ color: data.iconColor }}
               />
-              <span className="text-slate-700 text-sm font-medium leading-relaxed">{feature}</span>
+              <span className="text-slate-700 text-sm font-medium leading-relaxed">
+                {typeof feature === "string" ? (
+                  feature
+                ) : (
+                  <span>
+                    <strong>{feature.title}</strong>: {feature.description}
+                  </span>
+                )}
+              </span>
             </motion.div>
           ))}
         </div>

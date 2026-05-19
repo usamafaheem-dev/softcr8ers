@@ -1,13 +1,15 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
-  title: "Intelligence & AI",
-  tagline: "Neural networks and autonomous systems for modern business workflows.",
+  titleKey: "srv.creative.title",
+  descKey: "srv.creative.desc",
+  title: "Creative Digital Solutions",
+  tagline: "Innovative campaigns, motion graphics, and interactive content that stand out in the noise.",
   description:
     "We integrate cutting-edge AI into your products — from custom LLM pipelines and RAG systems to computer vision and predictive analytics. Our AI engineers don't just plug in APIs; they architect intelligent systems that learn, adapt, and deliver measurable business outcomes.",
-  image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200",
-  color: "from-purple-500 to-pink-500",
-  iconColor: "#a855f7",
+  image: "https://images.unsplash.com/photo-1531297172867-bb40211726ee?auto=format&fit=crop&q=80&w=1200",
+  color: "from-[#a906c9] to-[#f016da]",
+  iconColor: "#a906c9",
   features: [
     "Custom LLM fine-tuning & deployment",
     "RAG (Retrieval-Augmented Generation) pipelines",
