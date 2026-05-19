@@ -1,12 +1,6 @@
-import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Softcr8ors — Web Design, Software & Creative Studio",
@@ -20,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased font-sans overflow-x-hidden ${inter.variable}`}>
+    <html lang="en" className="h-full antialiased font-sans overflow-x-hidden">
       <head>
         <link
           href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
@@ -28,7 +22,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-white text-slate-900">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

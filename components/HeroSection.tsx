@@ -6,6 +6,7 @@ import { Sparkles, ArrowRight, Bot, ChevronDown, Send, Globe, LayoutGrid, Zap, X
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { useAutoResizeTextarea } from "@/hooks/useAutoResizeTextarea";
+import { useTranslation } from "@/context/LanguageContext";
 
 // ─── Animated Chat Messages ─────────────────────────────────
 type Message = {
@@ -13,14 +14,15 @@ type Message = {
   text: string;
 };
 
-const chatMessages: Message[] = [
-  { role: "user", text: "Build us a new brand website." },
-  { role: "ai", text: "On it — wireframes ready." },
-  { role: "user", text: "Can we add a video reel?" },
-  { role: "ai", text: "Done. Production starts Monday." },
-];
+const chatMessageKeys = [
+  { role: "user", textKey: "chat.msg1" },
+  { role: "ai", textKey: "chat.msg2" },
+  { role: "user", textKey: "chat.msg3" },
+  { role: "ai", textKey: "chat.msg4" },
+] as const;
 
-function ChatBubble({ message, index, isTyping = false, className }: { message: Message; index: number; isTyping?: boolean; className?: string }) {
+function ChatBubble({ message, index, isTyping = false, className }: { message: any; index: number; isTyping?: boolean; className?: string }) {
+  const { t } = useTranslation();
   if (!message) return null;
   const isUser = message.role === "user";
 
@@ -56,7 +58,7 @@ function ChatBubble({ message, index, isTyping = false, className }: { message: 
             : "text-slate-800 rounded-bl-none"
         )}
       >
-        {message.text}
+        {t(message.textKey)}
       </div>
     </motion.div>
   );
@@ -108,6 +110,7 @@ function RollingTextButton({
 function HeroAIPrompt() {
   const [value, setValue] = useState("");
   const { textareaRef, adjustHeight } = useAutoResizeTextarea({ minHeight: 60, maxHeight: 150 });
+  const { t } = useTranslation();
 
   return (
     <motion.div
@@ -127,14 +130,14 @@ function HeroAIPrompt() {
             <ChevronDown size={12} className="text-slate-500 absolute right-3 pointer-events-none" />
           </div>
           <button className="flex items-center gap-1.5 h-8 md:h-9 px-3 rounded-full bg-white border border-slate-200 text-[11px] md:text-[13px] font-medium text-slate-700 hover:bg-slate-50 transition-colors">
-            <Globe size={12} /> Search
+            <Globe size={12} /> {t("chat.search")}
           </button>
         </div>
 
         <Textarea
           ref={textareaRef}
           value={value}
-          placeholder="Ask anything ..."
+          placeholder={t("chat.placeholder")}
           className="w-full px-4 md:px-5 py-4 bg-white border-none text-slate-900 placeholder:text-slate-500 font-medium resize-none focus-visible:ring-0 min-h-15 text-[15px] md:text-[16px] shadow-none"
           onChange={(e) => { setValue(e.target.value); adjustHeight(); }}
         />
@@ -143,13 +146,13 @@ function HeroAIPrompt() {
           {/* Suggestion tags: only 'Workflow' on mobile */}
           <div className="flex gap-2 items-center">
             <button disabled className="px-3 py-1.5 rounded-full bg-white border border-slate-200 text-[11px] md:text-[12px] font-medium text-slate-600 flex items-center gap-1.5 cursor-default hover:bg-slate-50 transition-colors">
-              <Sparkles size={12} className="text-[#a906c9]" /> Design a Brand
+              <Sparkles size={12} className="text-[#a906c9]" /> {t("chat.tag1")}
             </button>
             <button disabled className="hidden md:flex px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[12px] font-medium text-slate-600 items-center gap-1.5 cursor-default hover:bg-slate-50 transition-colors">
-              <Sparkles size={12} className="text-[#a906c9]" /> Build a Website
+              <Sparkles size={12} className="text-[#a906c9]" /> {t("chat.tag2")}
             </button>
             <button disabled className="hidden md:flex px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[12px] font-medium text-slate-600 items-center gap-1.5 cursor-default hover:bg-slate-50 transition-colors">
-              <Sparkles size={12} className="text-[#a906c9]" /> Edit a Video
+              <Sparkles size={12} className="text-[#a906c9]" /> {t("chat.tag3")}
             </button>
           </div>
           <div className="flex items-center gap-1.5">
@@ -168,9 +171,11 @@ function HeroAIPrompt() {
 
 // ─── Main Hero Section ──────────────────────────────────────
 export function HeroSection() {
-  const [messages, setMessages] = useState<{ role: "user" | "ai", text: string, id: number }[]>([]);
+  const { t, language } = useTranslation();
+  const [messages, setMessages] = useState<{ role: "user" | "ai", textKey: string, id: number }[]>([]);
   const chatRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(chatRef, { margin: "-30% 0px -30% 0px" });
+  const isArabicOrUrdu = language === "ur" || language === "ar";
 
   const { scrollYProgress } = useScroll();
   const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
@@ -181,8 +186,8 @@ export function HeroSection() {
     if (isInView) {
       let currentStep = 0;
       const playNext = () => {
-        if (currentStep >= chatMessages.length) return;
-        const nextMsg = chatMessages[currentStep];
+        if (currentStep >= chatMessageKeys.length) return;
+        const nextMsg = chatMessageKeys[currentStep];
         setMessages(prev => [...prev, { ...nextMsg, id: currentStep }]);
         currentStep++;
         timeout = setTimeout(playNext, nextMsg.role === "ai" ? 1800 : 1000);
@@ -244,16 +249,15 @@ export function HeroSection() {
               className="mb-8 flex items-center justify-center gap-1.5 px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-white/50 border border-white backdrop-blur-md text-slate-800 text-[10px] md:text-[13px] font-bold shadow-sm whitespace-nowrap max-w-[95%] md:max-w-none"
             >
               <Sparkles className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#a906c9] shrink-0" />
-              <span>DIGITAL AGENCY & CREATIVE STUDIO</span>
+              <span>{t("hero.badge")}</span>
             </motion.div>
 
             {/* Headline */}
             <div className="max-w-4xl mb-6">
               <h1 className="text-[40px] md:text-[72px] font-medium leading-[1.1] tracking-tight text-[#000000] font-sans">
-                We <span className="text-[#f016da]">Build</span>,{" "}
-                <span className="text-[#1620f0]">Design</span> &amp;{" "}
-                <span className="text-[#a906c9]">Deliver</span>{" "}
-                Digital Excellence.
+                {t("hero.headline.p1")}<span className="text-[#f016da]">{t("hero.headline.build")}</span>{t("hero.headline.p2")}
+                <span className="text-[#1620f0]">{t("hero.headline.design")}</span>{t("hero.headline.p3")}
+                <span className="text-[#a906c9]">{t("hero.headline.deliver")}</span>{t("hero.headline.p4")}
               </h1>
             </div>
 
@@ -264,7 +268,7 @@ export function HeroSection() {
               transition={{ delay: 0.2 }}
               className="text-[#1C0C26CC] text-base md:text-[16px] max-w-xl mb-10 font-medium leading-relaxed"
             >
-              From stunning websites and custom software to cinematic video production and bold brand identities — Softcr8ors turns your vision into a digital reality.
+              {t("hero.subtitle")}
             </motion.p>
 
             {/* Buttons */}
@@ -274,8 +278,8 @@ export function HeroSection() {
               transition={{ delay: 0.4 }}
               className="flex flex-row flex-wrap justify-center gap-3 md:gap-4 w-full md:w-auto"
             >
-              <RollingTextButton label="Get Started" variant="gradient" className="flex-1 md:flex-none px-3 md:px-10 text-[13px] md:text-base h-11 md:h-12" />
-              <RollingTextButton label="Book a Demo" variant="transparent" className="flex-1 md:flex-none px-3 md:px-10 text-[13px] md:text-base h-11 md:h-12" />
+              <RollingTextButton label={t("hero.btn.start")} variant="gradient" className="flex-1 md:flex-none px-3 md:px-10 text-[13px] md:text-base h-11 md:h-12" />
+              <RollingTextButton label={t("hero.btn.demo")} variant="transparent" className="flex-1 md:flex-none px-3 md:px-10 text-[13px] md:text-base h-11 md:h-12" />
             </motion.div>
           </div>
 
@@ -336,15 +340,18 @@ export function HeroSection() {
       </div>
 
       {/* Two-Line Continuous Marquee - Positioned separately below hero */}
-      <div className="relative w-full overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24 pointer-events-none z-20 select-none bg-white">
+      <div dir="ltr" className="relative w-full overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24 pointer-events-none z-20 select-none bg-white">
         <div className="flex flex-col gap-4 md:gap-8 -rotate-[2deg] scale-105">
 
           {/* Line 1 - Moving Left */}
           <div>
-            <div className="animate-marquee hover:[animation-play-state:paused] flex whitespace-nowrap text-[6vw] md:text-[90px] font-bold uppercase tracking-tighter text-slate-950/20 leading-none font-sans pointer-events-auto cursor-default w-max" style={{ animationDuration: "60s" }}>
+            <div className={cn(
+              "animate-marquee hover:[animation-play-state:paused] flex whitespace-nowrap font-bold uppercase tracking-tighter text-slate-950/20 leading-none font-sans pointer-events-auto cursor-default w-max",
+              isArabicOrUrdu ? "text-[5vw] md:text-[78px]" : "text-[6vw] md:text-[90px]"
+            )} style={{ animationDuration: "60s" }}>
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="flex flex-row items-center">
-                  {["Softcr8ors", "WEB DEVELOPMENT", "UI / UX DESIGN", "BRANDING"].map((word, idx) => (
+                  {["Softcr8ors", t("marquee.1"), t("marquee.2"), t("marquee.3")].map((word, idx) => (
                     <span key={idx} className="flex items-center group">
                       <span className={cn(
                         "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:via-[#f016da] hover:to-[#a906c9]",
@@ -362,10 +369,13 @@ export function HeroSection() {
 
           {/* Line 2 - Moving Right */}
           <div>
-            <div className="animate-marquee-reverse hover:[animation-play-state:paused] flex whitespace-nowrap text-[6vw] md:text-[90px] font-bold uppercase tracking-tighter text-slate-950/10 leading-none font-sans pointer-events-auto cursor-default w-max" style={{ animationDuration: "60s" }}>
+            <div className={cn(
+              "animate-marquee-reverse hover:[animation-play-state:paused] flex whitespace-nowrap font-bold uppercase tracking-tighter text-slate-950/10 leading-none font-sans pointer-events-auto cursor-default w-max",
+              isArabicOrUrdu ? "text-[5vw] md:text-[78px]" : "text-[6vw] md:text-[90px]"
+            )} style={{ animationDuration: "60s" }}>
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="flex flex-row items-center">
-                  {["VIDEO EDITING", "Softcr8ors", "SOFTWARE DEV", "CREATIVE STUDIO"].map((word, idx) => (
+                  {[t("marquee.4"), "Softcr8ors", t("marquee.5"), t("marquee.6")].map((word, idx) => (
                     <span key={idx} className="flex items-center group">
                       <span className={cn(
                         "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#a906c9] hover:via-[#2f89f7] hover:to-[#1620f0]",

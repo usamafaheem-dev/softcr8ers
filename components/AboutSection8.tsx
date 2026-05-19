@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Sparkles, Brain, Zap, Shield, Check } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { useInView } from "framer-motion";
+import { useTranslation } from "@/context/LanguageContext";
 
 function Counter({ value, duration = 2 }: { value: string; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -44,6 +45,7 @@ function Counter({ value, duration = 2 }: { value: string; duration?: number }) 
 
 export function AboutSection8() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   return (
     <section id="about" className="relative bg-white pt-8 pb-16 md:pt-24 md:pb-40 overflow-hidden border-t border-slate-100" ref={containerRef}>
@@ -68,7 +70,7 @@ export function AboutSection8() {
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-100 shadow-xs">
                 <span className="text-[#a906c9] animate-spin font-bold text-[9px] md:text-xs" style={{ willChange: "transform" }}>✱</span>
                 <span className="text-[9px] md:text-xs font-black tracking-[0.4em] uppercase text-slate-500 ml-0.5">
-                  ABOUT Softcr8ors
+                  {t("about.badge")}
                 </span>
                 <span className="text-[#1620f0] animate-spin font-bold text-[9px] md:text-xs ml-0.5" style={{ willChange: "transform" }}>✱</span>
               </div>
@@ -81,7 +83,7 @@ export function AboutSection8() {
               viewport={{ once: true }}
               className="text-2xl md:text-5xl font-medium text-slate-950 tracking-tight leading-[1.15] font-['General_Sans',sans-serif] text-center lg:text-left"
             >
-              We architect high-impact <span className="text-[#1620f0] font-semibold">digital products</span> that scale.
+              {t("about.headline.p1")}<span className="text-[#1620f0] font-semibold">{t("about.headline.highlight")}</span>{t("about.headline.p2")}
             </motion.h2>
 
             {/* Paragraph Bio */}
@@ -91,7 +93,7 @@ export function AboutSection8() {
               viewport={{ once: true }}
               className="text-slate-500 text-xs md:text-base leading-relaxed font-sans max-w-xl mx-auto lg:mx-0 text-center lg:text-left"
             >
-              Softcr8ors is a premier technology agency. We combine innovative software engineering, native mobile ecosystems, and high-fidelity UI/UX design into custom, unified digital products built for high velocity and scale.
+              {t("about.subtitle")}
             </motion.p>
 
             {/* Brand Core Values Grid */}
@@ -106,8 +108,8 @@ export function AboutSection8() {
                   <Check size={14} className="stroke-[3px]" />
                 </div>
                 <div className="flex flex-col text-left">
-                  <h4 className="text-[11px] md:text-xs font-bold text-slate-950 font-sans">Engineering Depth</h4>
-                  <p className="text-[9px] text-slate-400 font-sans mt-0.5">High-velocity, clean, optimized codebases.</p>
+                  <h4 className="text-[11px] md:text-xs font-bold text-slate-950 font-sans">{t("about.val1.title")}</h4>
+                  <p className="text-[9px] text-slate-400 font-sans mt-0.5">{t("about.val1.desc")}</p>
                 </div>
               </div>
               <div className="flex flex-row items-center justify-center gap-3 p-4 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-slate-50 hover:border-slate-200 transition-all duration-300 w-full">
@@ -115,8 +117,8 @@ export function AboutSection8() {
                   <Check size={14} className="stroke-[3px]" />
                 </div>
                 <div className="flex flex-col text-left">
-                  <h4 className="text-[11px] md:text-xs font-bold text-slate-950 font-sans">Creative Vision</h4>
-                  <p className="text-[9px] text-slate-400 font-sans mt-0.5">Stunning, pixel-perfect user experiences.</p>
+                  <h4 className="text-[11px] md:text-xs font-bold text-slate-950 font-sans">{t("about.val2.title")}</h4>
+                  <p className="text-[9px] text-slate-400 font-sans mt-0.5">{t("about.val2.desc")}</p>
                 </div>
               </div>
             </motion.div>
@@ -187,10 +189,10 @@ export function AboutSection8() {
         {/* ── Four Metrics Cards Section (Compact Cute Size & Light Pink-Purple Tinted BG) ── */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-10 md:mt-16">
           {[
-            { val: "250+", label: "Automations", icon: <Zap className="w-3 h-3 md:w-3.5 md:h-3.5 text-pink-400 group-hover:text-[#a906c9] transition-colors duration-300" /> },
-            { val: "777k", label: "Views", icon: <Sparkles className="w-3 h-3 md:w-3.5 md:h-3.5 text-pink-400 group-hover:text-[#a906c9] transition-colors duration-300" /> },
-            { val: "99%", label: "Success Rate", icon: <Shield className="w-3 h-3 md:w-3.5 md:h-3.5 text-pink-400 group-hover:text-[#a906c9] transition-colors duration-300" /> },
-            { val: "120+", label: "Projects", icon: <Brain className="w-3 h-3 md:w-3.5 md:h-3.5 text-pink-400 group-hover:text-[#a906c9] transition-colors duration-300" /> }
+            { val: "250+", label: t("about.stat1"), icon: <Zap className="w-3 h-3 md:w-3.5 md:h-3.5 text-pink-400 group-hover:text-[#a906c9] transition-colors duration-300" /> },
+            { val: "777k", label: t("about.stat2"), icon: <Sparkles className="w-3 h-3 md:w-3.5 md:h-3.5 text-pink-400 group-hover:text-[#a906c9] transition-colors duration-300" /> },
+            { val: "99%", label: t("about.stat3"), icon: <Shield className="w-3 h-3 md:w-3.5 md:h-3.5 text-pink-400 group-hover:text-[#a906c9] transition-colors duration-300" /> },
+            { val: "120+", label: t("about.stat4"), icon: <Brain className="w-3 h-3 md:w-3.5 md:h-3.5 text-pink-400 group-hover:text-[#a906c9] transition-colors duration-300" /> }
           ].map((m, i) => (
             <motion.div
               key={i}

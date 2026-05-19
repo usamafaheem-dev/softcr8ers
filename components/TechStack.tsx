@@ -10,6 +10,7 @@ import {
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { useTranslation } from "@/context/LanguageContext";
 
 const row1 = [
   { name: "Next.js", icon: <SiNextdotjs />, color: "#000000" },
@@ -38,6 +39,7 @@ const row2 = [
 ];
 
 export function TechStack() {
+  const { t } = useTranslation();
   return (
     <section className="relative w-full py-10 md:py-24 overflow-hidden bg-white font-sans border-t border-slate-50">
       <div className="container relative z-10 mx-auto px-4 mb-8 md:mb-16 text-center">
@@ -50,7 +52,7 @@ export function TechStack() {
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-100 shadow-sm">
             <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
             <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">
-              OUR TECH STACK
+              {t("tech.badge")}
             </span>
             <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
           </div>
@@ -63,11 +65,11 @@ export function TechStack() {
           transition={{ delay: 0.1 }}
           className="text-2xl md:text-5xl font-medium text-slate-950 tracking-tight leading-tight"
         >
-          Tools We Use to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] to-[#2f89f7]">Build.</span>
+          {t("tech.title.p1")}<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] to-[#2f89f7]">{t("tech.title.highlight")}</span>
         </motion.h2>
       </div>
 
-      <div className="flex flex-col gap-4 md:gap-8">
+      <div dir="ltr" className="flex flex-col gap-4 md:gap-8">
         {/* Row 1 */}
         <div className="relative w-full">
           <Carousel

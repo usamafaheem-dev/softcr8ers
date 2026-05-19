@@ -4,60 +4,31 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { CardStack, CardStackItem } from "@/components/ui/card-stack";
+import { useTranslation } from "@/context/LanguageContext";
 
-const services = [
-  {
-    id: 1, title: "Web Development", slug: "web-engineering",
-    description: "Blazing-fast, pixel-perfect websites built for conversion, performance, and scale.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 2, title: "Software Development", slug: "custom-software",
-    description: "Scalable custom software solutions engineered to solve your unique business challenges.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 3, title: "UI/UX Design", slug: "ui-ux-design",
-    description: "User-first interfaces crafted with precision — beautiful, intuitive, and delightful to use.",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 4, title: "Video & Audio Production", slug: "gen-ai-content",
-    description: "Cinematic brand videos, social reels, and audio production that captivate your audience.",
-    image: "https://images.unsplash.com/photo-1536240478700-b869ad10e128?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 5, title: "Creative Digital Solutions", slug: "intelligence-ai",
-    description: "Innovative campaigns, motion graphics, and interactive content that stand out in the noise.",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 6, title: "Branding & Identity", slug: "saas-platforms",
-    description: "Strategic brand identities that communicate your vision and create lasting impressions.",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 7, title: "Mobile App Development", slug: "mobile-innovation",
-    description: "High-performance iOS and Android apps that delight users and drive engagement.",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 8, title: "IT & Tech Consulting", slug: "technical-seo",
-    description: "End-to-end technology consulting to align your IT infrastructure with business goals.",
-    image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800",
-  },
+const serviceData = [
+  { id: 1, titleKey: "srv.web.title", descKey: "srv.web.desc", slug: "web-engineering", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800" },
+  { id: 2, titleKey: "srv.software.title", descKey: "srv.software.desc", slug: "custom-software", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800" },
+  { id: 3, titleKey: "srv.uiux.title", descKey: "srv.uiux.desc", slug: "ui-ux-design", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800" },
+  { id: 4, titleKey: "srv.video.title", descKey: "srv.video.desc", slug: "gen-ai-content", image: "https://images.unsplash.com/photo-1536240478700-b869ad10e128?auto=format&fit=crop&q=80&w=800" },
+  { id: 5, titleKey: "srv.creative.title", descKey: "srv.creative.desc", slug: "intelligence-ai", image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800" },
+  { id: 6, titleKey: "srv.branding.title", descKey: "srv.branding.desc", slug: "saas-platforms", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800" },
+  { id: 7, titleKey: "srv.mobile.title", descKey: "srv.mobile.desc", slug: "mobile-innovation", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800" },
+  { id: 8, titleKey: "srv.it.title", descKey: "srv.it.desc", slug: "technical-seo", image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800" },
 ];
-
-const cardItems: CardStackItem[] = services.map((s) => ({
-  id: s.id,
-  title: s.title,
-  description: s.description,
-  imageSrc: s.image,
-  href: `/services/${s.slug}`,
-}));
 
 export function ServicesSection() {
   const router = useRouter();
+  const { t } = useTranslation();
+
+  const cardItems: CardStackItem[] = serviceData.map((s) => ({
+    id: s.id,
+    title: t(s.titleKey),
+    description: t(s.descKey),
+    imageSrc: s.image,
+    href: `/services/${s.slug}`,
+    ctaLabel: t("services.explore"),
+  }));
 
   return (
     <section
@@ -82,7 +53,7 @@ export function ServicesSection() {
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 shadow-sm backdrop-blur-sm">
               <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
               <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-300 ml-1">
-                OUR SERVICES
+                {t("services.badge")}
               </span>
               <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
             </div>
@@ -95,10 +66,7 @@ export function ServicesSection() {
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-tight font-['General_Sans',sans-serif]"
           >
-            Everything Your{" "}
-            <span className="text-[#a906c9]">
-              Brand Needs
-            </span>
+            {t("services.headline.p1")}<span className="text-[#a906c9]">{t("services.headline.highlight")}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -107,7 +75,7 @@ export function ServicesSection() {
             transition={{ delay: 0.2 }}
             className="text-slate-400 mt-3 text-sm md:text-base max-w-xl mx-auto font-normal font-['General_Sans',sans-serif]"
           >
-            From code to camera, strategy to screens — we deliver every service your business needs to dominate digitally.
+            {t("services.subtitle")}
           </motion.p>
         </div>
 
@@ -130,7 +98,7 @@ export function ServicesSection() {
 
         {/* ── MOBILE: Simple Grid ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-          {services.map((service, i) => (
+          {serviceData.map((service, i) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 24 }}
@@ -143,20 +111,20 @@ export function ServicesSection() {
               <div className="relative h-44 overflow-hidden">
                 <img
                   src={service.image}
-                  alt={service.title}
+                  alt={t(service.titleKey)}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#080810] via-[#080810]/40 to-transparent" />
               </div>
               <div className="p-4">
                 <h3 className="text-white font-semibold text-base mb-1.5 tracking-tight">
-                  {service.title}
+                  {t(service.titleKey)}
                 </h3>
                 <p className="text-slate-400 text-xs leading-relaxed line-clamp-2">
-                  {service.description}
+                  {t(service.descKey)}
                 </p>
                 <div className="mt-4 flex items-center gap-1.5 text-[#a906c9] text-xs font-semibold group-hover:gap-2.5 transition-all duration-300">
-                  Deep Dive <ArrowRight className="w-3.5 h-3.5" />
+                  {t("services.explore")} <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </div>
               <div

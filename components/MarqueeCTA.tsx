@@ -2,15 +2,28 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-
-const ITEMS = ["Softcr8ors", "WEB DEVELOPMENT", "UI/UX DESIGN", "VIDEO PRODUCTION", "SOFTWARE DEV", "BRAND IDENTITY", "CREATIVE STUDIO"];
+import { useTranslation } from "@/context/LanguageContext";
 
 /**
  * MarqueeCTA - Premium Masked Typographic Implementation using Logo Blue & Purple Brand Gradient
  */
 export function MarqueeCTA() {
+  const { t, language } = useTranslation();
+  const isArabicOrUrdu = language === "ur" || language === "ar";
+  
+  const ITEMS = [
+    t("marquee.cta.1"),
+    t("marquee.cta.2"),
+    t("marquee.cta.3"),
+    t("marquee.cta.4"),
+    t("marquee.cta.5"),
+    t("marquee.cta.6"),
+    t("marquee.cta.7")
+  ];
+
   return (
     <section
+      dir="ltr"
       className="relative w-full overflow-hidden bg-white flex items-center border-y border-slate-100/80"
       style={{ height: 'clamp(100px, 18vw, 220px)' }}
     >
@@ -41,7 +54,10 @@ export function MarqueeCTA() {
           <div className="flex items-center gap-12 px-6">
             {[...ITEMS, ...ITEMS].map((item, idx) => (
               <React.Fragment key={idx}>
-                <span className="text-[45px] md:text-[160px] font-medium leading-none text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#1620f0] animate-gradient-move font-sans uppercase tracking-tighter">
+                <span className={cn(
+                  "font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#1620f0] animate-gradient-move font-sans uppercase tracking-tighter",
+                  isArabicOrUrdu ? "text-[30px] md:text-[60px] leading-[1.4] py-2" : "text-[45px] md:text-[160px] leading-none"
+                )}>
                   {item}
                 </span>
                 <SparkleIcon className="scale-75 md:scale-120 opacity-95" />

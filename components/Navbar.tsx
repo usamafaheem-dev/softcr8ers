@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useTranslation } from "@/context/LanguageContext";
 
 // Rolling Text Button component
 function RollingTextButton({
@@ -49,20 +51,22 @@ function RollingTextButton({
 }
 
 function ContactButton({ className }: { className?: string }) {
-  return <RollingTextButton label="Contact" href="#contact" variant="gradient" className={className} />;
+  const { t } = useTranslation();
+  return <RollingTextButton label={t("nav.contact")} href="#contact" variant="gradient" className={className} />;
 }
 
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+const navLinksData = [
+  { key: "nav.about", href: "#about" },
+  { key: "nav.services", href: "#services" },
+  { key: "nav.testimonials", href: "#testimonials" },
+  { key: "nav.contact", href: "#contact" },
 ];
 
 export function Navbar() {
   const [isDocked, setIsDocked] = useState(false);
   const [isAtChat, setIsAtChat] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -143,28 +147,30 @@ export function Navbar() {
             isDocked ? "justify-self-center" : "justify-self-end"
           )}
         >
-          {navLinks.map((link) => (
+          {navLinksData.map((link) => (
             <motion.a
-              key={link.label}
+              key={link.key}
               href={link.href}
               className="px-3 py-1.5 text-[16px] font-medium tracking-normal transition-all duration-300 font-sans text-slate-600 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]"
               style={{ WebkitTapHighlightColor: 'transparent' }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {link.label}
+              {t(link.key)}
             </motion.a>
           ))}
           {!isDocked && (
-            <div className="ml-4 flex">
+            <div className="ml-4 flex items-center gap-3">
+              <LanguageSwitcher />
               <ContactButton />
             </div>
           )}
         </div>
 
-        {/* Contact Button - Compact docked */}
+        {/* Contact Button & Language - Compact docked */}
         {isDocked && (
-          <div className="hidden lg:block justify-self-end">
+          <div className="hidden lg:flex items-center gap-3 justify-self-end">
+            <LanguageSwitcher />
             <ContactButton />
           </div>
         )}
@@ -210,6 +216,11 @@ export function Navbar() {
               </button>
             </div>
 
+            {/* Language Switcher for Mobile */}
+            <div className="mb-4 flex justify-end">
+              <LanguageSwitcher />
+            </div>
+
             {/* Gradient Divider */}
             <motion.div
               initial={{ scaleX: 0 }}
@@ -220,14 +231,14 @@ export function Navbar() {
 
             {/* Nav Links */}
             <div className="flex flex-col">
-              {navLinks.map((link) => (
+              {navLinksData.map((link) => (
                 <a
-                  key={link.label}
+                  key={link.key}
                   href={link.href}
                   className="px-2 py-2 text-slate-500 font-medium text-[16px] hover:text-slate-900 transition-colors font-sans border-b border-slate-50 last:border-0"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {link.label}
+                  {t(link.key)}
                 </a>
               ))}
             </div>
@@ -238,7 +249,7 @@ export function Navbar() {
               className="mt-4 w-full py-3 rounded-xl bg-black text-white font-medium text-base text-center font-sans shadow-lg shadow-black/10 active:scale-95 transition-transform"
               onClick={() => setMenuOpen(false)}
             >
-              Contact
+              {t("nav.contact")}
             </a>
           </motion.div>
         )}

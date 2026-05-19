@@ -7,23 +7,24 @@ import {
   HeartPulse, ShoppingCart, GraduationCap,
   Building2, LineChart, Truck, ChevronRight,
 } from 'lucide-react';
+import { useTranslation } from "@/context/LanguageContext";
 
 export interface Industry {
   id: string;
-  name: string;
-  description: string;
+  nameKey: string;
+  descKey: string;
   image: string;
   icon: React.ReactNode;
   color: string;
 }
 
 const INDUSTRIES: Industry[] = [
-  { id: '1', name: 'Healthcare', description: 'Advanced digital health ecosystems and AI-driven diagnostics for modern patient care.', image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop', icon: <HeartPulse size={18} />, color: '#a855f7' },
-  { id: '2', name: 'E-Commerce', description: 'Next-generation retail solutions with autonomous intelligence and personalized shopping.', image: 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2069&auto=format&fit=crop', icon: <ShoppingCart size={18} />, color: '#0ea5e9' },
-  { id: '3', name: 'Education', description: 'Scalable platforms for global learning, powered by interactive and immersive technologies.', image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1974&auto=format&fit=crop', icon: <GraduationCap size={18} />, color: '#ec4899' },
-  { id: '4', name: 'Real Estate', description: 'Immersive property solutions and architectural visualizations for future-ready developments.', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop', icon: <Building2 size={18} />, color: '#6366f1' },
-  { id: '5', name: 'Finance', description: 'Secure, data-driven economic frameworks and fintech innovations for global markets.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop', icon: <LineChart size={18} />, color: '#10b981' },
-  { id: '6', name: 'Logistics', description: 'Optimized supply chains and autonomous delivery systems through neural network integration.', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop', icon: <Truck size={18} />, color: '#f97316' },
+  { id: '1', nameKey: 'ind.1.name', descKey: 'ind.1.desc', image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop', icon: <HeartPulse size={18} />, color: '#a855f7' },
+  { id: '2', nameKey: 'ind.2.name', descKey: 'ind.2.desc', image: 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2069&auto=format&fit=crop', icon: <ShoppingCart size={18} />, color: '#0ea5e9' },
+  { id: '3', nameKey: 'ind.3.name', descKey: 'ind.3.desc', image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1974&auto=format&fit=crop', icon: <GraduationCap size={18} />, color: '#ec4899' },
+  { id: '4', nameKey: 'ind.4.name', descKey: 'ind.4.desc', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop', icon: <Building2 size={18} />, color: '#6366f1' },
+  { id: '5', nameKey: 'ind.5.name', descKey: 'ind.5.desc', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop', icon: <LineChart size={18} />, color: '#10b981' },
+  { id: '6', nameKey: 'ind.6.name', descKey: 'ind.6.desc', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop', icon: <Truck size={18} />, color: '#f97316' },
 ];
 
 const col1 = INDUSTRIES.filter((_, i) => i % 3 === 0);
@@ -36,6 +37,7 @@ const snakePath = [
 ];
 
 export default function ModernIndustries() {
+  const { t } = useTranslation();
   const [hoveredId, setHoveredId] = useState<string | null>(INDUSTRIES[0].id);
 
   return (
@@ -118,18 +120,18 @@ export default function ModernIndustries() {
             className="flex justify-center w-full mb-6">
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 shadow-sm backdrop-blur-sm">
               <span className="text-[#a906c9] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
-              <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-300 ml-1">INDUSTRIES WE SERVE</span>
+              <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-300 ml-1">{t("industries.badge")}</span>
               <span className="text-[#a906c9] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
             </div>
           </motion.div>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-tight font-['General_Sans',sans-serif]">
-            Sectors We{' '}
-            <span className="text-[#a906c9]">Empower.</span>
+            {t("industries.title.p1")}
+            <span className="text-[#a906c9]">{t("industries.title.highlight")}</span>
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="mt-3 text-sm md:text-base text-zinc-400 max-w-xl mx-auto font-normal font-['General_Sans',sans-serif]">
-            Engineering innovative digital landscapes for global industry leaders.
+            {t("industries.subtitle")}
           </motion.p>
         </div>
 
@@ -152,7 +154,7 @@ export default function ModernIndustries() {
           {/* Right: industry list — fixed height rows, no layout shift */}
           <div className="flex flex-col w-full max-w-md">
             {INDUSTRIES.map(ind => (
-              <IndustryRow key={ind.id} industry={ind} hoveredId={hoveredId} onHover={setHoveredId} />
+              <IndustryRow key={ind.id} industry={ind} hoveredId={hoveredId} onHover={setHoveredId} t={t} />
             ))}
           </div>
         </div>
@@ -165,6 +167,7 @@ export default function ModernIndustries() {
 function IndustryPhotoCard({ industry, className, hoveredId, onHover }: {
   industry: Industry; className: string; hoveredId: string | null; onHover: (id: string | null) => void;
 }) {
+  const { t } = useTranslation();
   const isActive = hoveredId === industry.id;
   const isDimmed = hoveredId !== null && !isActive;
 
@@ -179,7 +182,7 @@ function IndustryPhotoCard({ industry, className, hoveredId, onHover }: {
       onMouseEnter={() => onHover(industry.id)}
       onMouseLeave={() => onHover(industry.id)}
     >
-      <img src={industry.image} alt={industry.name}
+      <img src={industry.image} alt={t(industry.nameKey)}
         className="w-full h-full object-cover transition-transform duration-700"
         style={{ transform: isActive ? 'scale(1.1)' : 'scale(1)' }}
       />
@@ -189,7 +192,7 @@ function IndustryPhotoCard({ industry, className, hoveredId, onHover }: {
           className="absolute bottom-3 left-3 text-white z-10">
           <div className="flex items-center gap-1.5">
             <span className="p-1 bg-white/20 backdrop-blur-md rounded-lg">{industry.icon}</span>
-            <span className="font-semibold text-xs">{industry.name}</span>
+            <span className="font-semibold text-xs">{t(industry.nameKey)}</span>
           </div>
         </motion.div>
       )}
@@ -198,8 +201,8 @@ function IndustryPhotoCard({ industry, className, hoveredId, onHover }: {
 }
 
 // ── Industry Row — NO layout shift, fixed min-height ─────────────────────────
-function IndustryRow({ industry, hoveredId, onHover }: {
-  industry: Industry; hoveredId: string | null; onHover: (id: string | null) => void;
+function IndustryRow({ industry, hoveredId, onHover, t }: {
+  industry: Industry; hoveredId: string | null; onHover: (id: string | null) => void; t: any;
 }) {
   const isActive = hoveredId === industry.id;
   const isDimmed = hoveredId !== null && !isActive;
@@ -227,7 +230,7 @@ function IndustryRow({ industry, hoveredId, onHover }: {
           'text-base md:text-lg font-semibold tracking-tight transition-colors duration-300',
           isActive ? 'text-white' : 'text-zinc-300',
         )}>
-          {industry.name}
+          {t(industry.nameKey)}
         </h3>
       </div>
 
@@ -239,10 +242,10 @@ function IndustryRow({ industry, hoveredId, onHover }: {
         className="overflow-hidden"
       >
         <p className="text-zinc-400 text-sm leading-relaxed max-w-md mt-2 font-normal font-['General_Sans',sans-serif]">
-          {industry.description}
+          {t(industry.descKey)}
         </p>
         <div className="mt-2 flex items-center gap-1.5 text-[#a906c9] hover:text-[#a906c9]/80 transition-colors text-xs uppercase tracking-widest font-bold">
-          Explore Solution <ChevronRight size={12} />
+          {t("industries.explore")} <ChevronRight size={12} />
         </div>
       </motion.div>
     </div>

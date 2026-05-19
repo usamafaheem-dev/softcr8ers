@@ -4,20 +4,20 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
-const testimonials = [
-  { text: "Softcr8ors built our entire e-commerce platform from scratch. The design is stunning and conversions are up 40% since launch.", name: "Sandra Meyers", role: "CEO, LuxeCart", image: "https://i.pravatar.cc/100?u=sandra" },
-  { text: "Their UI/UX team transformed our app's experience. User retention doubled within the first month after the redesign.", name: "James Patel", role: "Product Lead, Evergreen", image: "https://i.pravatar.cc/100?u=james" },
-  { text: "The brand identity they created for us is incredible. We've received so many compliments from clients and partners.", name: "Laura Greer", role: "Founder, Atlas Studios", image: "https://i.pravatar.cc/100?u=laura" },
-  { text: "The video production quality is truly cinematic. Our brand reel generated over 500K views in the first week.", name: "David O'Connor", role: "CMO, NovaBrands", image: "https://i.pravatar.cc/100?u=david" },
-  { text: "They delivered our custom CRM software ahead of schedule and it works flawlessly. Highly recommend the team.", name: "Sarah Mitchell", role: "COO, TechFlow", image: "https://i.pravatar.cc/100?u=sarah" },
-  { text: "Softcr8ors redesigned our entire digital presence. The website is fast, beautiful, and converts like nothing before.", name: "Michael Lee", role: "Director, Q Global", image: "https://i.pravatar.cc/100?u=michael" },
-  { text: "Professional, creative, and technically brilliant. They turned our rough ideas into a polished mobile app in 8 weeks.", name: "Julia Martinez", role: "Co-Founder, Appify", image: "https://i.pravatar.cc/100?u=julia" },
-  { text: "Best agency we've worked with. Their audio and video editing elevated our content to a whole new professional level.", name: "Chris Nguyen", role: "Head of Marketing, CreatorHub", image: "https://i.pravatar.cc/100?u=chris" },
+export type Testimonial = { text: string; name: string; role: string; image: string; isSpecial?: boolean };
+
+const getTestimonials = (t: any): Testimonial[] => [
+  { text: t("tst.1.text"), name: "Sandra Meyers", role: t("tst.1.role"), image: "https://i.pravatar.cc/100?u=sandra" },
+  { text: t("tst.2.text"), name: "James Patel", role: t("tst.2.role"), image: "https://i.pravatar.cc/100?u=james" },
+  { text: t("tst.3.text"), name: "Laura Greer", role: t("tst.3.role"), image: "https://i.pravatar.cc/100?u=laura" },
+  { text: t("tst.4.text"), name: "David O'Connor", role: t("tst.4.role"), image: "https://i.pravatar.cc/100?u=david" },
+  { text: t("tst.5.text"), name: "Sarah Mitchell", role: t("tst.5.role"), image: "https://i.pravatar.cc/100?u=sarah" },
+  { text: t("tst.6.text"), name: "Michael Lee", role: t("tst.6.role"), image: "https://i.pravatar.cc/100?u=michael" },
+  { text: t("tst.7.text"), name: "Julia Martinez", role: t("tst.7.role"), image: "https://i.pravatar.cc/100?u=julia" },
+  { text: t("tst.8.text"), name: "Chris Nguyen", role: t("tst.8.role"), image: "https://i.pravatar.cc/100?u=chris" },
 ];
-
-const col1 = testimonials.slice(0, 4);
-const col2 = testimonials.slice(4, 8);
 
 const TestimonialCard = React.memo(({ text, name, role, image, isSpecial }: { text: string; name: string; role: string; image: string; isSpecial?: boolean }) => {
   if (isSpecial) {
@@ -59,7 +59,7 @@ const TestimonialCard = React.memo(({ text, name, role, image, isSpecial }: { te
 
 TestimonialCard.displayName = "TestimonialCard";
 
-function TestimonialsColumn({ items, duration = 20, reverse = false, className }: { items: typeof testimonials; duration?: number; reverse?: boolean; className?: string }) {
+function TestimonialsColumn({ items, duration = 20, reverse = false, className }: { items: Testimonial[]; duration?: number; reverse?: boolean; className?: string }) {
   return (
     <div className={cn("overflow-hidden relative h-full", className)}>
       <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-slate-50 to-transparent z-10 pointer-events-none" />
@@ -83,6 +83,10 @@ function TestimonialsColumn({ items, duration = 20, reverse = false, className }
 }
 
 export function TestimonialsSection() {
+  const { t } = useTranslation();
+  const items = getTestimonials(t);
+  const col1 = items.slice(0, 4);
+  const col2 = items.slice(4, 8);
   return (
     <section id="testimonials" className="bg-slate-50 py-12 md:py-28 overflow-hidden border-t border-slate-100">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
@@ -93,42 +97,42 @@ export function TestimonialsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col gap-5 text-center lg:text-left"
+            className="flex flex-col gap-5 text-center lg:text-start"
           >
             <div className="flex items-center justify-center lg:justify-start w-full gap-2">
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm">
                 <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
-                <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">TESTIMONIALS</span>
+                <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">{t("testi.badge")}</span>
                 <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
               </div>
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-950 tracking-tight leading-[1.1]">
-              Trusted by{" "}
+              {t("testi.title.p1")}
               <span className="relative inline-block">
-                <span className="relative z-10">Businesses</span>
+                <span className="relative z-10">{t("testi.title.highlight1")}</span>
                 <motion.span
                   initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                   className="absolute bottom-1 left-0 h-[35%] bg-[#1620f0]/15 z-0"
                 />
               </span>
-              {" "}That Mean{" "}
+              {t("testi.title.p2")}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">
-                Business.
+                {t("testi.title.highlight2")}
               </span>
             </h2>
 
             <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-sm mx-auto lg:mx-0">
-              Join 500+ growing businesses who have trusted Softcr8ors to build their digital future.
+              {t("testi.subtitle")}
             </p>
 
             {/* Stats */}
             <div className="flex items-center gap-4 md:gap-6 justify-center lg:justify-start">
-              {[["10K+", "Organisations"], ["99%", "Satisfaction"], ["45+", "Countries"]].map(([val, label], i) => (
+              {[[t("testi.stat1.val"), t("testi.stat1.label")], [t("testi.stat2.val"), t("testi.stat2.label")], [t("testi.stat3.val"), t("testi.stat3.label")]].map(([val, label], i) => (
                 <React.Fragment key={label}>
                   {i > 0 && <div className="w-px h-8 bg-slate-200" />}
-                  <div className="text-center lg:text-left">
+                  <div className="text-center lg:text-start">
                     <div className="text-xl md:text-2xl font-bold text-slate-900">{val}</div>
                     <div className="text-[10px] md:text-xs text-slate-400 font-semibold uppercase tracking-wider">{label}</div>
                   </div>
@@ -142,16 +146,16 @@ export function TestimonialsSection() {
                 <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="relative h-5 overflow-hidden">
                   <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-5">
-                    <span className="flex h-5 items-center justify-center relative z-10 px-1 uppercase tracking-widest text-[10px] md:text-xs text-white">Get Started</span>
-                    <span className="flex h-5 items-center justify-center relative z-10 px-1 uppercase tracking-widest text-[10px] md:text-xs text-white">Get Started</span>
+                    <span className="flex h-5 items-center justify-center relative z-10 px-1 uppercase tracking-widest text-[10px] md:text-xs text-white">{t("testi.btn.start")}</span>
+                    <span className="flex h-5 items-center justify-center relative z-10 px-1 uppercase tracking-widest text-[10px] md:text-xs text-white">{t("testi.btn.start")}</span>
                   </div>
                 </div>
               </a>
               <a href="#" className="group relative inline-flex items-center justify-center rounded-xl px-8 py-3 font-bold overflow-hidden transition-all duration-500 cursor-pointer shadow-sm bg-white border border-slate-200 hover:bg-slate-50 min-w-[180px]">
                 <div className="relative h-5 overflow-hidden">
                   <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-5">
-                    <span className="flex h-5 items-center justify-center relative z-10 px-1 uppercase tracking-widest text-[10px] md:text-xs text-slate-800">Watch a Demo</span>
-                    <span className="flex h-5 items-center justify-center relative z-10 px-1 uppercase tracking-widest text-[10px] md:text-xs text-slate-800">Watch a Demo</span>
+                    <span className="flex h-5 items-center justify-center relative z-10 px-1 uppercase tracking-widest text-[10px] md:text-xs text-slate-800">{t("testi.btn.demo")}</span>
+                    <span className="flex h-5 items-center justify-center relative z-10 px-1 uppercase tracking-widest text-[10px] md:text-xs text-slate-800">{t("testi.btn.demo")}</span>
                   </div>
                 </div>
               </a>
@@ -160,11 +164,12 @@ export function TestimonialsSection() {
 
           {/* Right: Scrolling columns */}
           <motion.div
+            dir="ltr"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
-            className="grid grid-cols-2 gap-3 h-[300px] md:h-[520px] lg:h-[600px] relative"
+            className="grid grid-cols-2 gap-3 h-[300px] md:h-[520px] lg:h-[600px] relative w-full"
           >
             <TestimonialsColumn items={col1} duration={45} reverse={false} />
             <TestimonialsColumn items={col2} duration={50} reverse={true} />

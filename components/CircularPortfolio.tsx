@@ -3,8 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { PhotoGallery } from "@/components/ui/gallery";
+import { useTranslation } from "@/context/LanguageContext";
 
 export function CircularPortfolio() {
+  const { t } = useTranslation();
   return (
     <section id="work" className="relative w-full py-16 md:py-24 overflow-hidden bg-gradient-to-b from-[#fff6fe] via-[#fdf2fc] to-white border-t border-slate-100 font-sans">
       {/* Subtle Grid Pattern background */}
@@ -39,7 +41,7 @@ export function CircularPortfolio() {
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-pink-100 shadow-sm">
               <span className="text-[#a906c9] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
               <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">
-                OUR FEATURED WORK
+                {t("portfolio.badge")}
               </span>
               <span className="text-[#a906c9] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
             </div>
@@ -51,7 +53,7 @@ export function CircularPortfolio() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-950 tracking-tight leading-tight max-w-2xl mx-auto font-['General_Sans',sans-serif]"
           >
-            Our <span className="text-[#a906c9]">Work</span>.
+            {t("portfolio.title.p1")}<span className="text-[#a906c9]">{t("portfolio.title.highlight")}</span>{t("portfolio.title.p2")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -59,7 +61,7 @@ export function CircularPortfolio() {
             viewport={{ once: true }}
             className="text-slate-400 mt-3 text-sm md:text-base max-w-lg mx-auto font-normal leading-relaxed font-['General_Sans',sans-serif]"
           >
-            Explore a curated playground of our creative software engineering, native mobile apps, and design systems.
+            {t("portfolio.subtitle")}
           </motion.p>
         </div>
 

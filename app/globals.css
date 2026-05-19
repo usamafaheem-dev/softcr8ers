@@ -84,6 +84,18 @@
   }
 }
 
+:where(:dir(rtl)) {
+  font-family: 'Noto Naskh Arabic', 'Noto Sans Arabic', var(--font-sans);
+}
+
+/* Avoid attribute selector combining with arbitrary Tailwind classes.
+   Use :dir(rtl) or apply an explicit RTL helper class at runtime. */
+:where(:dir(rtl)) .animate-marquee,
+:where(:dir(rtl)) .animate-marquee-reverse,
+:where(:dir(rtl)) h1 {
+  font-size: clamp(20px, 4.5vw, 48px) !important;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

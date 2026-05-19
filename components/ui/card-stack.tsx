@@ -308,8 +308,8 @@ function CarouselCard({ item, active }: { item: CardStackItem; active: boolean }
               <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-lg" />
               <div className="relative h-4 overflow-hidden">
                 <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-4">
-                  <span className="flex h-4 items-center">Explore</span>
-                  <span className="flex h-4 items-center">Explore</span>
+                  <span className="flex h-4 items-center">{item.ctaLabel ?? "Explore"}</span>
+                  <span className="flex h-4 items-center">{item.ctaLabel ?? "Explore"}</span>
                 </div>
               </div>
             </button>

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, X, ChevronDown, CheckCircle2, Search, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ReactCountryFlag from "react-country-flag";
+import { useTranslation } from "@/context/LanguageContext";
 
 const countries = [
   { code: "US", name: "United States", dial: "+1" },
@@ -20,15 +21,15 @@ const countries = [
   { code: "SG", name: "Singapore", dial: "+65" },
 ];
 
-const serviceOptions = [
-  "Remote IT Resources",
-  "Custom Software Development",
-  "Web Development",
-  "Mobile App Development",
-  "AR / VR",
-  "Gaming",
-  "Cyber Security",
-  "Other IT Services",
+const getServiceOptions = (t: any) => [
+  t("srv.1"),
+  t("srv.2"),
+  t("srv.3"),
+  t("srv.4"),
+  t("srv.5"),
+  t("srv.6"),
+  t("srv.7"),
+  t("srv.8"),
 ];
 
 interface FormData {
@@ -39,14 +40,14 @@ interface FormData {
   projectDetails: string;
 }
 
-const teamMembers = [
-  { id: 1, name: "Asim Raza", role: "Python AI Engineer", image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=400&h=500&auto=format&fit=crop" },
-  { id: 2, name: "Zainab Khan", role: "MERN Stack Developer", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&h=500&auto=format&fit=crop" },
-  { id: 3, name: "Usama Faheem", role: "Next.js Developer", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&h=500&auto=format&fit=crop" },
-  { id: 4, name: "Ayesha Siddiqui", role: "WordPress Developer", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&h=500&auto=format&fit=crop" },
-  { id: 5, name: "Bilal Ahmed", role: "Business Developer", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&h=500&auto=format&fit=crop" },
-  { id: 6, name: "Sarah Yousuf", role: "UI/UX Designer", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=500&auto=format&fit=crop" },
-  { id: 7, name: "Hamza Malik", role: "Full Stack Developer", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&h=500&auto=format&fit=crop" },
+const getTeamMembers = (t: any) => [
+  { id: 1, name: "Asim Raza", role: t("team.1.role"), image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 2, name: "Zainab Khan", role: t("team.2.role"), image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 3, name: "Usama Faheem", role: t("team.3.role"), image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 4, name: "Ayesha Siddiqui", role: t("team.4.role"), image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 5, name: "Bilal Ahmed", role: t("team.5.role"), image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 6, name: "Sarah Yousuf", role: t("team.6.role"), image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=500&auto=format&fit=crop" },
+  { id: 7, name: "Hamza Malik", role: t("team.7.role"), image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&h=500&auto=format&fit=crop" },
 ];
 
 // ── Rolling Text Button (Fixed variant-based text color) ────────────
@@ -113,6 +114,7 @@ function CountryPicker({ selected, onChange, className }: {
   onChange: (c: typeof countries[0]) => void;
   className?: string;
 }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const ref = useRef<HTMLDivElement>(null);
@@ -151,7 +153,7 @@ function CountryPicker({ selected, onChange, className }: {
             <div className="p-2 border-b border-slate-100 bg-slate-50">
               <div className="flex items-center gap-2 px-3 py-2 bg-white border border-slate-100 rounded-lg shadow-sm">
                 <Search className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                <input autoFocus type="text" placeholder="Search..."
+                <input autoFocus type="text" placeholder={t("contact.form.placeholder.search")}
                   value={search} onChange={e => setSearch(e.target.value)}
                   className="flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
                 />
@@ -181,6 +183,10 @@ function CountryPicker({ selected, onChange, className }: {
 
 // ── Main Section ─────────────────────────────────────────────
 export function ContactSection() {
+  const { t, language } = useTranslation();
+  const isArabicOrUrdu = language === "ur" || language === "ar";
+  const serviceOptions = getServiceOptions(t);
+  const teamMembers = getTeamMembers(t);
   const [formData, setFormData] = useState<FormData>({
     fullName: "", email: "", phoneNumber: "", services: [], projectDetails: "",
   });
@@ -225,39 +231,42 @@ export function ContactSection() {
         <div className="flex justify-center w-full mb-6">
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-100 shadow-sm">
             <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
-            <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">GET IN TOUCH</span>
+            <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">{t("contact.badge")}</span>
             <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
           </div>
         </div>
 
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-950 tracking-tight leading-[1.1] mb-6 md:mb-8">
-          Our Team Of Experts{" "}
+        <h2 className={cn(
+          "font-medium text-slate-950 tracking-tight leading-[1.1] mb-6 md:mb-8",
+          isArabicOrUrdu ? "text-2xl md:text-3xl lg:text-4xl" : "text-3xl md:text-4xl lg:text-5xl"
+        )}>
+          {t("contact.title.p1")}
           <span className="relative inline-block">
-            <span className="relative z-10">Are Here</span>
+            <span className="relative z-10">{t("contact.title.highlight1")}</span>
             <motion.span
               initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="absolute bottom-1 left-0 h-[35%] bg-[#1620f0]/15 z-0"
             />
           </span>
-          <br />To Help You{" "}
+          <br />{t("contact.title.p2")}
           <span className="text-[#1620f0]">
-            Best Solution!
+            {t("contact.title.highlight2")}
           </span>
         </h2>
 
         <p className="text-slate-500 text-sm md:text-base font-normal max-w-2xl mx-auto mb-10 leading-relaxed">
-          Over 10,000+ organisations successfully use our solution. Join the best team today.
+          {t("contact.subtitle")}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-          <ContactButton label="Book a call" href="tel:#" variant="transparent" className="min-w-[180px] md:min-w-[200px]" />
-          <ContactButton label="Book a demo" href="#" variant="gradient" className="min-w-[180px] md:min-w-[200px]" />
+          <ContactButton label={t("contact.btn.call")} href="tel:#" variant="transparent" className="min-w-[180px] md:min-w-[200px]" />
+          <ContactButton label={t("contact.btn.demo")} href="#" variant="gradient" className="min-w-[180px] md:min-w-[200px]" />
         </div>
       </div>
 
       {/* ── Team Marquee Section ── */}
-      <div className="relative w-full mb-20 md:mb-24 overflow-hidden py-4">
+      <div dir="ltr" className="relative w-full mb-20 md:mb-24 overflow-hidden py-4">
         <div className="flex w-max animate-marquee-fast">
           {[...teamMembers, ...teamMembers, ...teamMembers].map((member, idx) => (
             <div key={`${member.id}-${idx}`} className="relative w-[160px] h-[220px] md:w-[200px] md:h-[260px] mx-3 rounded-[1.5rem] overflow-hidden group border border-slate-100 shadow-sm shrink-0">
@@ -332,7 +341,7 @@ export function ContactSection() {
           >
             <div className="form-border-inner rounded-[1.5rem] p-6 md:p-8">
               <h3 className="text-2xl font-medium text-slate-950 mb-8 text-center lg:text-left">
-                Start Your <span className="text-[#1620f0]">Project</span>
+                {t("contact.form.title.p1")} <span className="text-[#1620f0]">{t("contact.form.title.highlight")}</span> {t("contact.form.title.p2") ?? ""}
               </h3>
 
               {submitted ? (
@@ -342,25 +351,25 @@ export function ContactSection() {
                   <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-500">
                     <CheckCircle2 size={32} />
                   </div>
-                  <h3 className="text-xl font-medium text-slate-950">Inquiry Sent!</h3>
-                  <button onClick={() => setSubmitted(false)} className="text-[#6366f1] font-medium hover:underline">Send another one</button>
+                  <h3 className="text-xl font-medium text-slate-950">{t("contact.form.success.title")}</h3>
+                  <button onClick={() => setSubmitted(false)} className="text-[#6366f1] font-medium hover:underline">{t("contact.form.success.btn")}</button>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">Full Name</label>
-                      <input type="text" name="fullName" required value={formData.fullName} onChange={handleChange} placeholder="First and last name" className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-950 placeholder:text-slate-300 focus:outline-none focus:border-purple-500 transition-all font-normal text-sm" />
+                      <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.name")}</label>
+                      <input type="text" name="fullName" required value={formData.fullName} onChange={handleChange} placeholder={t("contact.form.placeholder.name")} className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-950 placeholder:text-slate-300 focus:outline-none focus:border-purple-500 transition-all font-normal text-sm" />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">Email Address</label>
-                      <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="you@company.com" className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-950 placeholder:text-slate-300 focus:outline-none focus:border-purple-500 transition-all font-normal text-sm" />
+                      <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.email")}</label>
+                      <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder={t("contact.form.placeholder.email")} className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-950 placeholder:text-slate-300 focus:outline-none focus:border-purple-500 transition-all font-normal text-sm" />
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">Phone Number</label>
+                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.phone")}</label>
                     {/* Desktop: One line | Mobile: Stacked */}
                     <div className="flex flex-col md:flex-row md:items-stretch gap-3">
                       <CountryPicker selected={selectedCountry} onChange={setSelectedCountry} className="md:w-[160px]" />
@@ -368,13 +377,13 @@ export function ContactSection() {
                         <ReactCountryFlag countryCode={selectedCountry.code} svg style={{ width: "1.1em", height: "1.1em" }} />
                         <span className="text-sm text-slate-400 font-medium shrink-0">{selectedCountry.dial}</span>
                         <div className="w-px h-3.5 bg-slate-200 mx-0.5" />
-                        <input type="tel" name="phoneNumber" required value={formData.phoneNumber} onChange={handleChange} placeholder="000-000-0000" className="flex-1 bg-transparent text-slate-950 placeholder:text-slate-300 focus:outline-none text-sm font-normal" />
+                        <input type="tel" name="phoneNumber" required value={formData.phoneNumber} onChange={handleChange} placeholder={t("contact.form.placeholder.phone")} className="flex-1 bg-transparent text-slate-950 placeholder:text-slate-300 focus:outline-none text-sm font-normal" />
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-4">
-                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">Services Interest</label>
+                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.services")}</label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {serviceOptions.map(service => (
                         <label key={service} className="flex items-center gap-2.5 group cursor-pointer">
@@ -390,12 +399,12 @@ export function ContactSection() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">Project Details</label>
-                    <textarea name="projectDetails" required rows={3} value={formData.projectDetails} onChange={handleChange} placeholder="Tell us more about your vision..." className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-950 placeholder:text-slate-300 focus:outline-none focus:border-purple-500 transition-all resize-none font-normal text-sm" />
+                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.project")}</label>
+                    <textarea name="projectDetails" required rows={3} value={formData.projectDetails} onChange={handleChange} placeholder={t("contact.form.placeholder.project")} className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-950 placeholder:text-slate-300 focus:outline-none focus:border-purple-500 transition-all resize-none font-normal text-sm" />
                   </div>
 
                   <div className="pt-4 flex justify-center">
-                    <ContactButton label={isSubmitting ? "Processing..." : "Send Request"} type="submit" variant="gradient" className="min-w-[260px]" />
+                    <ContactButton label={isSubmitting ? t("contact.form.btn.loading") : t("contact.form.btn.submit")} type="submit" variant="gradient" className="min-w-[260px]" />
                   </div>
                 </form>
               )}
@@ -405,21 +414,21 @@ export function ContactSection() {
           {/* Right: Contact Info (Centered on Mobile) */}
           <div className="flex flex-col justify-center space-y-12 lg:pl-10 text-center lg:text-left">
             <div className="space-y-3">
-              <h4 className="text-xl font-medium text-slate-950">Chat to sales</h4>
-              <p className="text-slate-500 font-normal text-base leading-relaxed">Interested in scaling your business? Speak to our experts.</p>
+              <h4 className="text-xl font-medium text-slate-950">{t("contact.info.sales.title")}</h4>
+              <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.sales.desc")}</p>
               <a href="mailto:sales@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all text-[#1620f0]">sales@Softcr8ors.com</a>
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-xl font-medium text-slate-950">Expert support</h4>
-              <p className="text-slate-500 font-normal text-base leading-relaxed">Get technical assistance and project updates 24/7.</p>
+              <h4 className="text-xl font-medium text-slate-950">{t("contact.info.support.title")}</h4>
+              <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.support.desc")}</p>
               <a href="mailto:support@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all text-[#1620f0]">support@Softcr8ors.com</a>
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-xl font-medium text-slate-950">24/7 Live Chat</h4>
-              <p className="text-slate-500 font-normal text-base leading-relaxed">Instant access to our dedicated agency support staff.</p>
-              <button className="font-medium text-lg hover:underline transition-all text-[#1620f0]">Open support chat</button>
+              <h4 className="text-xl font-medium text-slate-950">{t("contact.info.chat.title")}</h4>
+              <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.chat.desc")}</p>
+              <button className="font-medium text-lg hover:underline transition-all text-[#1620f0]">{t("contact.info.chat.btn")}</button>
             </div>
           </div>
         </div>

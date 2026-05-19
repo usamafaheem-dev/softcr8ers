@@ -1,61 +1,40 @@
 "use client";
 
 import React from "react";
-
-const SERVICES = [
-  { label: "Web Engineering", href: "/services/web-engineering" },
-  { label: "Custom Software", href: "/services/custom-software" },
-  { label: "Mobile Innovation", href: "/services/mobile-innovation" },
-  { label: "SaaS Platforms", href: "/services/saas-platforms" },
-  { label: "Gen AI Content", href: "/services/gen-ai-content" },
-  { label: "Intelligence AI", href: "/services/intelligence-ai" },
-  { label: "UI/UX Design", href: "/services/ui-ux-design" },
-  { label: "Technical SEO", href: "/services/technical-seo" },
-];
-
-const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
-];
-
-const CONTACT = [
-  { label: "Start a Project", href: "#contact" },
-  { label: "Book a Demo", href: "#contact" },
-  { label: "hello@Softcr8ors.com", href: "mailto:hello@Softcr8ors.com" },
-];
-
-
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <li>
-      <a
-        href={href}
-        className="text-zinc-400 transition-all duration-300 font-sans font-medium text-sm leading-relaxed inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]"
-      >
-        {children}
-      </a>
-    </li>
-  );
-}
-
-function ColHeading({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-white text-[11px] font-extrabold uppercase tracking-[0.2em] mb-5 pb-3 border-b border-white/10">
-      {children}
-    </p>
-  );
-}
+import { useTranslation } from "@/context/LanguageContext";
 
 export function CinematicFooter() {
+  const { t } = useTranslation();
+
+  const SERVICES = [
+    { labelKey: "ftr.srv.1", href: "/services/web-engineering" },
+    { labelKey: "ftr.srv.2", href: "/services/custom-software" },
+    { labelKey: "ftr.srv.3", href: "/services/mobile-innovation" },
+    { labelKey: "ftr.srv.4", href: "/services/saas-platforms" },
+    { labelKey: "ftr.srv.5", href: "/services/gen-ai-content" },
+    { labelKey: "ftr.srv.6", href: "/services/intelligence-ai" },
+    { labelKey: "ftr.srv.7", href: "/services/ui-ux-design" },
+    { labelKey: "ftr.srv.8", href: "/services/technical-seo" },
+  ];
+
+  const NAV_LINKS = [
+    { labelKey: "ftr.nav.1", href: "#about" },
+    { labelKey: "ftr.nav.2", href: "#services" },
+    { labelKey: "ftr.nav.3", href: "#testimonials" },
+    { labelKey: "ftr.nav.4", href: "#contact" },
+  ];
+
+  const CONTACT = [
+    { labelKey: "ftr.cnt.1", href: "#contact" },
+    { labelKey: "ftr.cnt.2", href: "#contact" },
+    { label: "hello@Softcr8ors.com", href: "mailto:hello@Softcr8ors.com" },
+  ];
+
   return (
     <footer
       className="w-full bg-white py-8 px-3 sm:py-12 sm:px-6 md:px-8 lg:px-12 flex flex-col gap-6 relative overflow-hidden"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
-
-
       {/* ══ CARD 2: THE DARK GLASS-STYLE FOOTER WITH VIDEO BG ══ */}
       <div className="relative w-full rounded-[1.5rem] sm:rounded-[2.5rem] bg-[#020205]/45 border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.5)] px-5 py-10 sm:px-12 lg:px-16 pt-12 md:pt-16 pb-10 md:pb-12 overflow-hidden backdrop-blur-xl">
 
@@ -78,9 +57,10 @@ export function CinematicFooter() {
         {/* Dim Glass Overlay */}
         <div className="absolute inset-0 bg-black/70 backdrop-blur-[10px] z-0 pointer-events-none" />
 
-        {/* Massive Background Watermark Text "SOFTCR8ORS" - Absolute bottom aligned, larger size */}
+        {/* Massive Background Watermark */}
         <div className="absolute inset-x-0 bottom-0 flex items-end justify-center z-[1] pointer-events-none select-none overflow-hidden h-[30%] px-2 sm:px-6 md:px-10">
           <div
+            dir="ltr"
             className="font-sans font-black uppercase text-[7.5vw] sm:text-[8.5vw] md:text-[9vw] lg:text-[9.5vw] tracking-normal leading-none select-none pointer-events-none flex items-center justify-center whitespace-nowrap translate-y-[18%]"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
@@ -89,11 +69,6 @@ export function CinematicFooter() {
             <span className="text-white/[0.04] dark:text-white/[0.03]">ORS</span>
           </div>
         </div>
-
-
-
-
-
 
         {/* Main Links Grid */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-10 md:gap-8 pb-12 z-10 relative">
@@ -108,62 +83,84 @@ export function CinematicFooter() {
               />
             </div>
             <p className="text-zinc-300 text-sm max-w-sm leading-relaxed mt-2">
-              Softcr8ors empowers fast-growing companies with state-of-the-art web engineering, custom software solutions, and production-ready AI platforms that scale.
+              {t("ftr.desc")}
             </p>
           </div>
 
-          {/* Product/Services */}
+          {/* Services */}
           <div className="col-span-1 md:col-span-1">
-            <ColHeading>Services</ColHeading>
+            <p className="text-white text-[11px] font-extrabold uppercase tracking-[0.2em] mb-5 pb-3 border-b border-white/10">
+              {t("ftr.nav.2")}
+            </p>
             <ul className="space-y-3">
-              {SERVICES.slice(0, 5).map(l => <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>)}
+              {SERVICES.slice(0, 5).map(l => (
+                <li key={l.labelKey}>
+                  <a href={l.href} className="text-zinc-400 transition-all duration-300 font-sans font-medium text-sm leading-relaxed inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]">
+                    {t(l.labelKey)}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Resources / Company Navigation */}
+          {/* Navigation */}
           <div className="col-span-1 md:col-span-1">
-            <ColHeading>Navigation</ColHeading>
+            <p className="text-white text-[11px] font-extrabold uppercase tracking-[0.2em] mb-5 pb-3 border-b border-white/10">
+              {t("ftr.nav.2")}
+            </p>
             <ul className="space-y-3">
-              {NAV_LINKS.map(l => <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>)}
+              {NAV_LINKS.map(l => (
+                <li key={l.labelKey}>
+                  <a href={l.href} className="text-zinc-400 transition-all duration-300 font-sans font-medium text-sm leading-relaxed inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]">
+                    {t(l.labelKey)}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact & Support */}
+          {/* Contact */}
           <div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left justify-center md:justify-start mx-auto md:mx-0 w-full md:w-auto">
             <p className="text-white text-[11px] font-extrabold uppercase tracking-[0.2em] mb-5 pb-3 border-b border-white/10 w-full text-center md:text-left">
-              Contact
+              {t("ftr.nav.4")}
             </p>
             <ul className="space-y-3 flex flex-col items-center md:items-start justify-center md:justify-start text-center md:text-left w-full">
-              {CONTACT.map(l => <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>)}
+              {CONTACT.map((l, i) => (
+                <li key={i}>
+                  <a href={l.href} className="text-zinc-400 transition-all duration-300 font-sans font-medium text-sm leading-relaxed inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]">
+                    {l.labelKey ? t(l.labelKey) : l.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
         </div>
 
-        {/* Sleek Gradient Divider Line (Logo Gradient) */}
+        {/* Gradient Divider */}
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#1620f0]/40 via-[#a906c9]/40 via-[#f016da]/40 to-transparent z-10 relative my-2" />
 
-        {/* Bottom Bar: Copyright and Policy Links */}
+        {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 z-10 relative text-center md:text-left">
 
           <span className="text-zinc-400 text-xs tracking-wider">
-            © 2026 Softcr8ors. All rights reserved.
+            {t("ftr.copy")}
           </span>
 
-          {/* Pill Badges for Policy links */}
+          {/* Policy links */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5 sm:gap-3 text-[11px] text-zinc-400 font-semibold">
             <a href="#privacy" className="px-3.5 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300">
-              Privacy Policy
+              {t("ftr.pol.1")}
             </a>
             <a href="#terms" className="px-3.5 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300">
-              Terms of Service
+              {t("ftr.pol.2")}
             </a>
             <a href="#cookies" className="px-3.5 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300">
-              Cookies Settings
+              {t("ftr.pol.3")}
             </a>
           </div>
 
-          {/* Animated Social Icons */}
+          {/* Social Icons */}
           <div className="flex items-center justify-center gap-2">
             <a href="#" className="w-9 h-9 rounded-full border border-[#1620f0]/20 bg-[#1620f0]/5 flex items-center justify-center text-purple-300 hover:text-white hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9] hover:border-transparent shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(22,32,240,0.35)] transition-all duration-300 hover:scale-110 active:scale-95">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
