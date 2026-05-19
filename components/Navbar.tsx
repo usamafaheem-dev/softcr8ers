@@ -175,16 +175,19 @@ export function Navbar() {
           </div>
         )}
 
-        {/* Mobile Toggle */}
-        <button
-          className={cn(
-            "lg:hidden p-2 rounded-xl transition-colors justify-self-end",
-            isDocked ? "text-slate-900 hover:bg-slate-50" : "text-slate-900 hover:bg-white/30"
-          )}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Controls (Language Switcher & Menu Toggle) */}
+        <div className="flex items-center gap-2 lg:hidden justify-self-end">
+          <LanguageSwitcher onlyIcon={true} dropdownPosition="bottom" />
+          <button
+            className={cn(
+              "p-2 rounded-xl transition-colors",
+              isDocked ? "text-slate-900 hover:bg-slate-50" : "text-slate-900 hover:bg-white/30"
+            )}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </motion.nav>
 
       {/* Mobile Menu Overlay */}
@@ -216,10 +219,7 @@ export function Navbar() {
               </button>
             </div>
 
-            {/* Language Switcher for Mobile */}
-            <div className="mb-4 flex justify-end">
-              <LanguageSwitcher />
-            </div>
+            {/* Language Switcher is permanently visible in header next to menu button */}
 
             {/* Gradient Divider */}
             <motion.div

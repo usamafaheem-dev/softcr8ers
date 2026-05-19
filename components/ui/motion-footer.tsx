@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "@/context/LanguageContext";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function CinematicFooter() {
   const { t } = useTranslation();
@@ -162,6 +163,11 @@ export function CinematicFooter() {
 
           {/* Social Icons */}
           <div className="flex items-center justify-center gap-2">
+            {/* Mobile Only Language Switcher */}
+            <div className="md:hidden">
+              <LanguageSwitcher onlyIcon={true} dropdownPosition="top" className="border-white/10 bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10" />
+            </div>
+
             <a href="#" className="w-9 h-9 rounded-full border border-[#1620f0]/20 bg-[#1620f0]/5 flex items-center justify-center text-purple-300 hover:text-white hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9] hover:border-transparent shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(22,32,240,0.35)] transition-all duration-300 hover:scale-110 active:scale-95">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
