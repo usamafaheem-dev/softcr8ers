@@ -1,54 +1,53 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
+  slug: "branding-identity",
   titleKey: "srv.branding.title",
   descKey: "srv.branding.desc",
   title: "Branding & Identity",
-  tagline: "Strategic brand identities that communicate your vision and create lasting impressions.",
+  tagline: "Strategic brand systems designed to establish authority and trust.",
   description:
-    "Building a SaaS product is more than writing features — it's architecting a business. We handle the full stack: multi-tenancy, billing, auth, usage metering, and the scalable infrastructure that lets you go from 10 to 10,000 customers without rewriting your codebase.",
+    "Your brand is your handshake, your reputation, and your promise. We engineer complete corporate brand identities from the ground up. We don't just sketch logos; we build strategic visual and conceptual frameworks — including typography, voice guidelines, and logo assets — that project ultimate professionalism.",
   image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
   color: "from-[#1620f0] to-[#f016da]",
   iconColor: "#1620f0",
   features: [
-    "Multi-tenant architecture design",
-    "Stripe / Paddle billing integration",
-    "Usage-based & seat-based pricing",
-    "Customer onboarding flows",
-    "Admin & super-admin dashboards",
-    "Feature flags & plan gating",
-    "Webhook infrastructure",
-    "Usage analytics & metering",
-    "SOC 2 / GDPR compliance foundations",
+    "Corporate logo suite & typography",
+    "Brand voice, tone & copy guidelines",
+    "Complete color systems & brand tokens",
+    "Brand style guide documentation",
+    "Stationery & corporate collateral design",
+    "Brand relaunch strategy"
   ],
   benefits: [
     {
-      title: "Launch Faster",
-      desc: "Our SaaS boilerplate and proven architecture patterns cut your time-to-market by months, not weeks.",
+      title: "Instant Customer Trust",
+      desc: "A polished, consistent brand immediately projects established authority and reliability.",
     },
     {
-      title: "Monetize Flexibly",
-      desc: "We implement billing systems that support any pricing model — freemium, usage-based, tiered, or enterprise contracts.",
+      title: "Premium Pricing Power",
+      desc: "Strong, well-designed brands can charge premium rates because they look and feel premium.",
     },
     {
-      title: "Tenant Isolation Done Right",
-      desc: "Proper data isolation between customers from day one — no shortcuts that become security nightmares at scale.",
+      title: "Employee Alignment",
+      desc: "Clear brand guidelines ensure your entire organization communicates cohesively.",
     },
     {
-      title: "Investor-Ready Infrastructure",
-      desc: "Architecture and compliance foundations that satisfy due diligence when you're ready to raise.",
+      title: "Future-Proof Foundation",
+      desc: "A scalable brand identity that stays relevant as your service catalog and audience grow.",
     },
   ],
   process: [
-    { step: "01", title: "Product & Pricing Architecture", desc: "Define your customer segments, pricing tiers, and the feature matrix before touching infrastructure." },
-    { step: "02", title: "Infrastructure Setup", desc: "Cloud environment, CI/CD, monitoring, and security baseline established on AWS, GCP, or Vercel." },
-    { step: "03", title: "Core Platform Development", desc: "Auth, billing, multi-tenancy, and onboarding built as the foundation before product features." },
-    { step: "04", title: "Feature Development", desc: "Your product's unique value built on top of a solid, tested platform foundation." },
-    { step: "05", title: "Growth Infrastructure", desc: "Analytics, A/B testing, referral systems, and the tooling you need to grow after launch." },
+    { step: "01", title: "Brand Discovery", desc: "We audit your market positioning, research competitors, and define your core brand values." },
+    { step: "02", title: "Logo & Style Concepts", desc: "Multiple unique visual directions, logo marks, and color pairings presented for review." },
+    { step: "03", title: "Identity Refinement", desc: "Polishing the chosen concept into a complete visual system with typography and tokens." },
+    { step: "04", title: "Style Guide Creation", desc: "Compiling the official Brand Book documenting logo placement, colors, and typography." },
+    { step: "05", title: "Asset Packaging", desc: "Organizing all digital and print files into a clean, searchable brand kit." },
   ],
-  cta: "Let's build your SaaS the right way.",
+  cta: "Let's build a brand that stands the test of time.",
 };
 
-export default function SaaSPlatformsPage() {
+export default function BrandingIdentityPage() {
   return <ServiceDetailPage data={data} />;
 }
+

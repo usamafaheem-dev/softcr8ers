@@ -1,6 +1,7 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
+  slug: "mobile-innovation",
   titleKey: "srv.mobile.title",
   descKey: "srv.mobile.desc",
   title: "Mobile Innovation",

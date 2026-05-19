@@ -1,6 +1,7 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
+  slug: "web-engineering",
   titleKey: "srv.web.title",
   descKey: "srv.web.desc",
   title: "Web Engineering",

@@ -1,4 +1,4 @@
-﻿import { Language } from "./translations";
+import { Language } from "./translations";
 
 export const extraTranslations: Record<Language, any> = {
   en: {
@@ -70,7 +70,15 @@ export const extraTranslations: Record<Language, any> = {
     "ftr.pol.1": "Privacy Policy",
     "ftr.pol.2": "Terms of Service",
     "ftr.pol.3": "Cookies Settings",
-    "ftr.copy": "© 2026 Softcr8ors. All rights reserved."
+    "ftr.copy": "© 2026 Softcr8ors. All rights reserved.",
+    "services.deliver": "What We Deliver",
+    "services.capabilities": "Core capabilities included in every engagement",
+    "services.why": "Why Choose Us",
+    "services.advantages": "The advantages that set our work apart",
+    "services.process": "Our Process",
+    "services.processDesc": "How we take your idea from concept to launch",
+    "services.ctaDesc": "Let's build something extraordinary together.",
+    "services.start": "Start a Project"
   },
   ur: {
     "ind.1.name": "ہیلتھ کیئر",
@@ -141,7 +149,15 @@ export const extraTranslations: Record<Language, any> = {
     "ftr.pol.1": "پرائیویسی پالیسی",
     "ftr.pol.2": "سروس کی شرائط",
     "ftr.pol.3": "کوکیز کی ترتیبات",
-    "ftr.copy": "© 2026 Softcr8ors۔ جملہ حقوق محفوظ ہیں۔"
+    "ftr.copy": "© 2026 Softcr8ors۔ جملہ حقوق محفوظ ہیں۔",
+    "services.deliver": "ہم کیا فراہم کرتے ہیں",
+    "services.capabilities": "ہر پروجیکٹ میں شامل بنیادی صلاحیتیں",
+    "services.why": "ہمیں کیوں منتخب کریں",
+    "services.advantages": "وہ فوائد جو ہمارے کام کو دوسروں سے الگ بناتے ہیں",
+    "services.process": "ہمارا طریقہ کار",
+    "services.processDesc": "ہم کس طرح آپ کے خیال کو تصور سے لانچ تک لے جاتے ہیں",
+    "services.ctaDesc": "آئیے مل کر کچھ غیر معمولی بنائیں",
+    "services.start": "پروجیکٹ شروع کریں"
   },
   ar: {
     "ind.1.name": "الرعاية الصحية",
@@ -212,7 +228,15 @@ export const extraTranslations: Record<Language, any> = {
     "ftr.pol.1": "سياسة الخصوصية",
     "ftr.pol.2": "شروط الخدمة",
     "ftr.pol.3": "إعدادات ملفات تعريف الارتباط",
-    "ftr.copy": "© 2026 Softcr8ors. جميع الحقوق محفوظة."
+    "ftr.copy": "© 2026 Softcr8ors. جميع الحقوق محفوظة.",
+    "services.deliver": "ما نقدمه",
+    "services.capabilities": "القدرات الأساسية المدرجة في كل مشروع",
+    "services.why": "لماذا تختارنا",
+    "services.advantages": "المزايا التي تميز عملنا",
+    "services.process": "عملنا",
+    "services.processDesc": "كيف نأخذ فكرتك من المفهوم إلى الإطلاق",
+    "services.ctaDesc": "لنصنع شيئاً غير عادي معاً.",
+    "services.start": "ابدأ مشروعاً"
   },
   es: {
     "ind.1.name": "Cuidado de la salud",
@@ -283,7 +307,15 @@ export const extraTranslations: Record<Language, any> = {
     "ftr.pol.1": "Política de Privacidad",
     "ftr.pol.2": "Términos de Servicio",
     "ftr.pol.3": "Configuración de Cookies",
-    "ftr.copy": "© 2026 Softcr8ors. Todos los derechos reservados."
+    "ftr.copy": "© 2026 Softcr8ors. Todos los derechos reservados.",
+    "services.deliver": "Lo que entregamos",
+    "services.capabilities": "Capacidades clave incluidas en cada proyecto",
+    "services.why": "Por qué elegirnos",
+    "services.advantages": "Las ventajas que distinguen nuestro trabajo",
+    "services.process": "Nuestro Proceso",
+    "services.processDesc": "Cómo llevamos su idea desde el concepto hasta el lanzamiento",
+    "services.ctaDesc": "Construyamos algo extraordinario juntos.",
+    "services.start": "Iniciar un Proyecto"
   },
   fr: {
     "ind.1.name": "Soins de santé",
@@ -354,7 +386,15 @@ export const extraTranslations: Record<Language, any> = {
     "ftr.pol.1": "Politique de Confidentialité",
     "ftr.pol.2": "Conditions d'Utilisation",
     "ftr.pol.3": "Paramètres des Cookies",
-    "ftr.copy": "© 2026 Softcr8ors. Tous droits réservés."
+    "ftr.copy": "© 2026 Softcr8ors. Tous droits réservés.",
+    "services.deliver": "Ce que nous livrons",
+    "services.capabilities": "Capacités clés incluses dans chaque engagement",
+    "services.why": "Pourquoi nous choisir",
+    "services.advantages": "Les avantages qui distinguent notre travail",
+    "services.process": "Notre Processus",
+    "services.processDesc": "Comment nous menons votre idée du concept au lancement",
+    "services.ctaDesc": "Construisons quelque chose d'extraordinaire ensemble.",
+    "services.start": "Démarrer un Projet"
   },
   zh: {
     "ind.1.name": "医疗保健",
@@ -425,7 +465,15 @@ export const extraTranslations: Record<Language, any> = {
     "ftr.pol.1": "隐私政策",
     "ftr.pol.2": "服务条款",
     "ftr.pol.3": "Cookie 设置",
-    "ftr.copy": "© 2026 Softcr8ors。保留所有权利。"
+    "ftr.copy": "© 2026 Softcr8ors。保留所有权利。",
+    "services.deliver": "我们交付什么",
+    "services.capabilities": "每个项目中包含的核心功能",
+    "services.why": "为什么选择我们",
+    "services.advantages": "让我们的工作脱颖而出的优势",
+    "services.process": "我们的流程",
+    "services.processDesc": "我们如何将您的创意从概念转化为发布",
+    "services.ctaDesc": "让我们一起创造非凡的事物。",
+    "services.start": "开始一个项目"
   },
   hi: {
     "ind.1.name": "स्वास्थ्य देखभाल",
@@ -496,6 +544,14 @@ export const extraTranslations: Record<Language, any> = {
     "ftr.pol.1": "गोपनीयता नीति",
     "ftr.pol.2": "सेवा की शर्तें",
     "ftr.pol.3": "कुकीज़ सेटिंग्स",
-    "ftr.copy": "© 2026 Softcr8ors। सर्वाधिकार सुरक्षित।"
+    "ftr.copy": "© 2026 Softcr8ors। सर्वाधिकार सुरक्षित।",
+    "services.deliver": "हम क्या प्रदान करते हैं",
+    "services.capabilities": "प्रत्येक परियोजना में शामिल मुख्य क्षमताएं",
+    "services.why": "हमें क्यों चुनें",
+    "services.advantages": "फायदे जो हमारे काम को अलग बनाते हैं",
+    "services.process": "हमारी प्रक्रिया",
+    "services.processDesc": "हम आपके विचार को अवधारणा से लॉन्च तक कैसे ले जाते हैं",
+    "services.ctaDesc": "आइए मिलकर कुछ असाधारण बनाएं।",
+    "services.start": "एक प्रोजेक्ट शुरू करें"
   }
 };

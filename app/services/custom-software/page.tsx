@@ -1,6 +1,7 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
+  slug: "custom-software",
   titleKey: "srv.software.title",
   descKey: "srv.software.desc",
   title: "Custom Software",

@@ -1,54 +1,53 @@
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 const data = {
+  slug: "it-consulting",
   titleKey: "srv.it.title",
   descKey: "srv.it.desc",
   title: "IT & Tech Consulting",
-  tagline: "End-to-end technology consulting to align your IT infrastructure with business goals.",
+  tagline: "Aligning your technological infrastructure with global business goals.",
   description:
-    "Ranking on Google isn't luck — it's engineering. We combine deep technical SEO audits with content strategy and link building to systematically move your site up the rankings. From Core Web Vitals to structured data, we fix what's holding you back and build what pushes you forward.",
+    "Technology should accelerate your growth, not hold you back. We provide comprehensive IT and technology consulting to audit your current stack, architect cloud infrastructure, plan digital transformations, and establish secure frameworks. We ensure your systems are scalable, secure, and cost-efficient.",
   image: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&q=80&w=1200",
   color: "from-[#a906c9] to-[#1620f0]",
   iconColor: "#a906c9",
   features: [
-    "Technical SEO audit & roadmap",
-    "Core Web Vitals optimization",
-    "Structured data & schema markup",
-    "XML sitemap & robots.txt optimization",
-    "Crawl budget management",
-    "International SEO & hreflang",
-    "Keyword research & content strategy",
-    "Backlink analysis & link building",
-    "SEO-optimized content production",
+    "Infrastructure & software audit",
+    "Cloud migration strategy (AWS/GCP)",
+    "IT security & compliance framework",
+    "Tech stack modernization roadmap",
+    "Cost optimization & resource planning",
+    "Disaster recovery & backup strategy"
   ],
   benefits: [
     {
-      title: "Sustainable Organic Growth",
-      desc: "Unlike paid ads, SEO compounds over time. The rankings we build for you keep delivering traffic for years.",
+      title: "Eliminate Tech Debt",
+      desc: "We identify legacy bottlenecks and replace outdated codebases with modern, maintainable frameworks.",
     },
     {
-      title: "Technical Foundation First",
-      desc: "Content won't rank if the technical foundation is broken. We fix crawlability, speed, and indexation before anything else.",
+      title: "Massive Infrastructure Savings",
+      desc: "Optimizing cloud resource allocation typically reduces server and service bills by 20–50%.",
     },
     {
-      title: "Transparent Reporting",
-      desc: "Monthly reports showing exactly which keywords moved, how much traffic increased, and what we're doing next.",
+      title: "Enterprise-Grade Security",
+      desc: "Bulletproof data protection schemes, compliance architectures, and vulnerability planning.",
     },
     {
-      title: "Algorithm-Proof Strategy",
-      desc: "We focus on what Google has always rewarded — quality, relevance, and authority — not tricks that get penalized.",
+      title: "Future-Ready Architecture",
+      desc: "Scale systems naturally without crashing during high-traffic enterprise events.",
     },
   ],
   process: [
-    { step: "01", title: "Technical Audit", desc: "Comprehensive crawl analysis identifying every technical issue affecting your rankings and indexation." },
-    { step: "02", title: "Keyword & Competitor Research", desc: "Map the keyword landscape, identify gaps, and find the opportunities your competitors are missing." },
-    { step: "03", title: "On-Page Optimization", desc: "Title tags, meta descriptions, heading structure, internal linking, and content optimization across priority pages." },
-    { step: "04", title: "Content Strategy Execution", desc: "Topic cluster content production targeting high-intent keywords with proper E-E-A-T signals." },
-    { step: "05", title: "Authority Building", desc: "Strategic link acquisition through digital PR, guest content, and partnership outreach." },
+    { step: "01", title: "System Audit", desc: "We analyze your current codebases, hosting environments, and IT workflows to find gaps." },
+    { step: "02", title: "Strategy Formulation", desc: "Developing a tailored digital transformation plan with clear timelines and budgets." },
+    { step: "03", title: "Architecture Design", desc: "Designing secure, cost-optimized cloud layouts and software communication pipelines." },
+    { step: "04", title: "Implementation Support", desc: "Guiding your internal engineering team or executing the migration with zero downtime." },
+    { step: "05", title: "Monitoring & Review", desc: "Establishing server monitoring dashboards and regular review checkpoints." },
   ],
-  cta: "Ready to own your search rankings?",
+  cta: "Let's build a technology roadmap for your future.",
 };
 
-export default function TechnicalSEOPage() {
+export default function ITConsultingPage() {
   return <ServiceDetailPage data={data} />;
 }
+

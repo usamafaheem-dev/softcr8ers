@@ -12,7 +12,7 @@ const serviceData = [
   { id: 3, titleKey: "srv.uiux.title", descKey: "srv.uiux.desc", slug: "ui-ux-design", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800", color: "#f016da" },
   { id: 4, titleKey: "srv.video.title", descKey: "srv.video.desc", slug: "video-production", image: "https://images.unsplash.com/photo-1536240478700-b869ad10e128?auto=format&fit=crop&q=80&w=800", color: "#f016da" },
   { id: 5, titleKey: "srv.creative.title", descKey: "srv.creative.desc", slug: "creative-solutions", image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800", color: "#a906c9" },
-  { id: 6, titleKey: "srv.branding.title", descKey: "srv.branding.desc", slug: "branding-identity", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800", color: "#1620f0" },
+  { id: 6, titleKey: "srv.branding.title", descKey: "srv.branding.desc", slug: "branding-identity", image: "https://images.unsplash.com/photo-1561070791-26c113006238?auto=format&fit=crop&q=80&w=800", color: "#1620f0" },
   { id: 7, titleKey: "srv.mobile.title", descKey: "srv.mobile.desc", slug: "mobile-innovation", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800", color: "#f016da" },
   { id: 8, titleKey: "srv.it.title", descKey: "srv.it.desc", slug: "it-consulting", image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800", color: "#a906c9" },
 ];
