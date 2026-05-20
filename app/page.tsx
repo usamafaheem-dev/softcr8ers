@@ -10,10 +10,12 @@ import { MarqueeCTA } from "@/components/MarqueeCTA";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { CinematicFooter } from "@/components/ui/motion-footer";
+import HomeIntro from "@/components/HomeIntro";
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen bg-white">
+      <HomeIntro />
       <Navbar />
       <HeroSection />
       <AboutSection8 />

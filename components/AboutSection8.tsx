@@ -48,7 +48,7 @@ export function AboutSection8() {
   const { t } = useTranslation();
 
   return (
-    <section id="about" className="relative bg-white pt-8 pb-16 md:pt-24 md:pb-40 overflow-hidden border-t border-slate-100" ref={containerRef}>
+    <section id="about" className="relative bg-white pt-8 pb-10 md:pt-14 md:pb-16 overflow-hidden border-t border-slate-100" ref={containerRef}>
       {/* Subtle Grid Pattern background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#a3a3a304_1px,transparent_1px),linear-gradient(to_bottom,#a3a3a304_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none" />
 

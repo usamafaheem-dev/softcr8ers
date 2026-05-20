@@ -208,7 +208,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative w-full overflow-hidden py-16 md:py-24 bg-white font-['General_Sans',sans-serif] border-t border-slate-100">
+    <section id="contact" className="relative w-full overflow-hidden py-12 md:py-16 bg-white font-['General_Sans',sans-serif] border-t border-slate-100">
 
       {/* Floating 3D Blocks */}
       <motion.div

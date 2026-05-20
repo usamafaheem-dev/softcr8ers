@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "@/context/LanguageContext";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import SocialFlipButton from "@/components/ui/social-flip-button";
 
 export function CinematicFooter() {
   const { t } = useTranslation();
@@ -142,54 +142,26 @@ export function CinematicFooter() {
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#1620f0]/40 via-[#a906c9]/40 via-[#f016da]/40 to-transparent z-10 relative my-2" />
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 z-10 relative text-center md:text-left">
+        <div className="flex flex-col items-center gap-4 pt-8 z-10 relative md:flex-row md:justify-between">
 
-          <span className="text-zinc-400 text-xs tracking-wider">
-            {t("ftr.copy")}
-          </span>
-
-          {/* Policy links */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5 sm:gap-3 text-[11px] text-zinc-400 font-semibold">
-            <a href="#privacy" className="px-3.5 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300">
-              {t("ftr.pol.1")}
-            </a>
-            <a href="#terms" className="px-3.5 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300">
-              {t("ftr.pol.2")}
-            </a>
-            <a href="#cookies" className="px-3.5 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300">
-              {t("ftr.pol.3")}
-            </a>
+          {/* Left — Copyright + Policy */}
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center">
+            <span className="text-zinc-400 text-xs tracking-wider whitespace-nowrap">
+              {t("ftr.copy")}
+            </span>
+            <div className="flex items-center gap-2 text-[11px] text-zinc-400 font-semibold">
+              <a href="#privacy" className="px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300 whitespace-nowrap">
+                {t("ftr.pol.1")}
+              </a>
+              <a href="#terms" className="px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300 whitespace-nowrap">
+                {t("ftr.pol.2")}
+              </a>
+            </div>
           </div>
 
-          {/* Social Icons */}
-          <div className="flex items-center justify-center gap-2">
-            {/* Mobile Only Language Switcher */}
-            <div className="md:hidden">
-              <LanguageSwitcher onlyIcon={true} dropdownPosition="top" className="border-white/10 bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10" />
-            </div>
-
-            <a href="#" className="w-9 h-9 rounded-full border border-[#1620f0]/20 bg-[#1620f0]/5 flex items-center justify-center text-purple-300 hover:text-white hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9] hover:border-transparent shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(22,32,240,0.35)] transition-all duration-300 hover:scale-110 active:scale-95">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-            <a href="#" className="w-9 h-9 rounded-full border border-[#1620f0]/20 bg-[#1620f0]/5 flex items-center justify-center text-purple-300 hover:text-white hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9] hover:border-transparent shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(22,32,240,0.35)] transition-all duration-300 hover:scale-110 active:scale-95">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-              </svg>
-            </a>
-            <a href="#" className="w-9 h-9 rounded-full border border-[#1620f0]/20 bg-[#1620f0]/5 flex items-center justify-center text-purple-300 hover:text-white hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9] hover:border-transparent shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(22,32,240,0.35)] transition-all duration-300 hover:scale-110 active:scale-95">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-              </svg>
-            </a>
-            <a href="#" className="w-9 h-9 rounded-full border border-[#1620f0]/20 bg-[#1620f0]/5 flex items-center justify-center text-purple-300 hover:text-white hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9] hover:border-transparent shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(22,32,240,0.35)] transition-all duration-300 hover:scale-110 active:scale-95">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.646.64.699 1.026 1.592 1.026 2.683 0 3.842-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.478-10-10-10z" />
-              </svg>
-            </a>
+          {/* Right — CONTACT flip */}
+          <div className="flex items-center justify-center">
+            <SocialFlipButton />
           </div>
 
         </div>

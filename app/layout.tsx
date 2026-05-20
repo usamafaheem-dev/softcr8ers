@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { TransitionProvider } from "@/context/TransitionContext";
 
 export const metadata: Metadata = {
   title: "Softcr8ors — Web Design, Software & Creative Studio",
@@ -23,7 +24,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-white text-slate-900">
         <LanguageProvider>
-          {children}
+          <TransitionProvider>
+            {children}
+          </TransitionProvider>
         </LanguageProvider>
       </body>
     </html>

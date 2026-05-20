@@ -88,7 +88,7 @@ export function TestimonialsSection() {
   const col1 = items.slice(0, 4);
   const col2 = items.slice(4, 8);
   return (
-    <section id="testimonials" className="bg-slate-50 py-12 md:py-28 overflow-hidden border-t border-slate-100">
+    <section id="testimonials" className="bg-slate-50 py-12 md:py-16 overflow-hidden border-t border-slate-100">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 

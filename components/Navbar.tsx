@@ -7,6 +7,8 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useTranslation } from "@/context/LanguageContext";
+import { usePathname } from "next/navigation";
+import { INTRO_EVENT } from "@/components/HomeIntro";
 
 // Rolling Text Button component
 function RollingTextButton({
@@ -67,6 +69,8 @@ export function Navbar() {
   const [isAtChat, setIsAtChat] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useTranslation();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,6 +121,13 @@ export function Navbar() {
           className="flex items-center justify-start shrink-0 relative w-[100px] h-[52px]"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
+          onClick={(e) => {
+            if (isHome) {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              window.dispatchEvent(new Event(INTRO_EVENT));
+            }
+          }}
         >
           <motion.div
             className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-60"

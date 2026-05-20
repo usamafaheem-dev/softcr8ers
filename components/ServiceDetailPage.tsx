@@ -55,6 +55,7 @@ function RollingTextButton({
 }
 
 import { servicesTranslations } from "@/lib/services-translations";
+import { PortfolioCapabilities } from "@/components/PortfolioCapabilities";
 
 export interface ServiceData {
   title: string;
@@ -631,6 +632,148 @@ function renderMicroWidget(slug: string, index: number, color: string) {
   );
 }
 
+// ── HoverBentoGrid ──────────────────────────────────────────
+type BentoCellProps = { image: string; title: string; desc?: string; badges?: string[]; col: string; row: string; height: number; };
+
+function HoverBentoCell({ image, title, desc, badges = [], col, row, iconColor }: BentoCellProps & { iconColor: string; delay: number }) {
+  const [hovered, setHovered] = React.useState(false);
+  const isAuto = col === "auto";
+
+  const words = title.split(" ");
+
+  return (
+    <div
+      className="relative overflow-hidden cursor-pointer select-none"
+      style={isAuto ? { height: "100%" } : { gridColumn: col, gridRow: row }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Image — always visible, zooms on hover */}
+      <img
+        src={image}
+        alt={title}
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+        style={{
+          transform: hovered ? "scale(1.06)" : "scale(1)",
+          transition: "transform 550ms cubic-bezier(0.4,0,0.2,1)",
+        }}
+        draggable={false}
+      />
+
+      {/* Dark overlay — fades out on hover to reveal white panel */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)",
+          opacity: hovered ? 0 : 1,
+          transition: "opacity 350ms ease",
+        }}
+      />
+
+      {/* White frosted overlay on hover */}
+      <div
+        className="absolute inset-0 backdrop-blur-sm"
+        style={{
+          backgroundColor: "rgba(255,255,255,0.88)",
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 350ms ease",
+        }}
+      />
+
+      {/* Normal state: white title at bottom-left */}
+      <div
+        className="absolute inset-x-0 bottom-0 p-5 z-10 pointer-events-none"
+        style={{ opacity: hovered ? 0 : 1, transition: "opacity 200ms ease" }}
+      >
+        <h3
+          className="text-white font-medium text-base leading-snug drop-shadow-md"
+          style={{ fontFamily: "'General Sans', sans-serif" }}
+        >
+          {title}
+        </h3>
+      </div>
+
+      {/* Hover state: dark title + desc + badges centered */}
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 z-10"
+        style={{ pointerEvents: hovered ? "auto" : "none" }}
+      >
+        {/* Title — last word in iconColor, rest dark */}
+        <h3
+          className="font-medium tracking-tight text-xl text-center leading-snug"
+          style={{
+            fontFamily: "'General Sans', sans-serif",
+            opacity: hovered ? 1 : 0,
+            transform: hovered ? "translateY(0)" : "translateY(-8px)",
+            transition: "opacity 300ms 60ms ease, transform 300ms 60ms cubic-bezier(0.16,1,0.3,1)",
+          }}
+        >
+          {words.map((word, i) => (
+            <span key={i}>
+              {i === words.length - 1 ? (
+                <span style={{ color: iconColor }}>{word}</span>
+              ) : (
+                <span className="text-slate-900">{word}</span>
+              )}
+              {i < words.length - 1 && " "}
+            </span>
+          ))}
+        </h3>
+
+        {/* Description */}
+        {desc && (
+          <p
+            className="text-slate-500 text-[12px] text-center leading-relaxed max-w-[240px]"
+            style={{
+              opacity: hovered ? 1 : 0,
+              transform: hovered ? "translateY(0)" : "translateY(6px)",
+              transition: "opacity 280ms 130ms ease, transform 280ms 130ms cubic-bezier(0.16,1,0.3,1)",
+              fontFamily: "'General Sans', sans-serif",
+              fontWeight: 400,
+            }}
+          >
+            {desc}
+          </p>
+        )}
+
+        {/* Badges — service detail page hero style with iconColor */}
+        <div className="flex flex-wrap gap-2 justify-center mt-1">
+          {badges.map((badge, bIdx) => (
+            <span
+              key={bIdx}
+              className="px-3.5 py-1.5 text-[11px] font-medium rounded-full"
+              style={{
+                border: `1px solid ${iconColor}40`,
+                backgroundColor: `${iconColor}0d`,
+                color: iconColor,
+                opacity: hovered ? 1 : 0,
+                transform: hovered ? "translateY(0)" : "translateY(8px)",
+                transition: `opacity 250ms ${160 + bIdx * 50}ms ease, transform 250ms ${160 + bIdx * 50}ms cubic-bezier(0.16,1,0.3,1)`,
+                fontFamily: "'General Sans', sans-serif",
+              }}
+            >
+              {badge}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HoverBentoGrid({ cells, cols, rows, iconColor }: { cells: (BentoCellProps & { height: number })[]; cols: number; rows: string; iconColor: string }) {
+  return (
+    <div
+      className="w-full"
+      style={{ display: "grid", gap: "8px", gridTemplateColumns: `repeat(${cols}, 1fr)`, gridTemplateRows: rows }}
+    >
+      {cells.map((cell, i) => (
+        <HoverBentoCell key={i} {...cell} iconColor={iconColor} delay={i * 0.08} />
+      ))}
+    </div>
+  );
+}
+
 export function ServiceDetailPage({ data }: { data: ServiceData }) {
   const { language, t } = useTranslation();
   
@@ -980,17 +1123,63 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
           
           {/* Top: Headline & Tagline */}
           <div className="flex flex-col items-center text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="text-[36px] sm:text-[40px] md:text-[72px] font-medium leading-[1.1] tracking-tight text-[#000000] mb-6 font-sans max-w-4xl"
+            <h1
+              className="text-[36px] sm:text-[40px] md:text-[72px] font-medium leading-[1.1] tracking-tight text-[#000000] mb-6 font-sans max-w-4xl flex flex-wrap justify-center gap-y-2"
+              style={{ perspective: "1000px" }}
             >
-              {localizedTitle.split(" ").slice(0, -1).join(" ")}{" "}
-              <span style={{ color: data.iconColor }}>
-                {localizedTitle.split(" ").slice(-1)}
-              </span>
-            </motion.h1>
+              {(() => {
+                const words = localizedTitle.split(" ");
+                const totalWords = words.length;
+                let globalCharIdx = 0;
+
+                return words.map((word, wordIdx) => {
+                  const isLastWord = wordIdx === totalWords - 1;
+                  const chars = word.split("");
+                  
+                  return (
+                    <span
+                      key={wordIdx}
+                      className="inline-flex flex-nowrap"
+                      style={isLastWord ? { color: data.iconColor } : undefined}
+                    >
+                      {chars.map((char, charIdx) => {
+                        const currentIdx = globalCharIdx++;
+                        return (
+                          <motion.span
+                            key={charIdx}
+                            variants={{
+                              initial: {
+                                rotateX: 90,
+                                y: 20,
+                                opacity: 0,
+                                filter: "blur(8px)",
+                              },
+                              animate: {
+                                rotateX: 0,
+                                y: 0,
+                                opacity: 1,
+                                filter: "blur(0px)",
+                                transition: {
+                                  duration: 0.6,
+                                  ease: [0.2, 0.65, 0.3, 0.9],
+                                  delay: currentIdx * 0.03,
+                                },
+                              },
+                            }}
+                            initial="initial"
+                            animate="animate"
+                            style={{ transformStyle: "preserve-3d", display: "inline-block" }}
+                          >
+                            {char}
+                          </motion.span>
+                        );
+                      })}
+                      {wordIdx < totalWords - 1 && <span className="inline-block">&nbsp;</span>}
+                    </span>
+                  );
+                });
+              })()}
+            </h1>
  
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -1048,362 +1237,421 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
         </div>
       </section>
 
-      {/* Dynamic Specialty Domains Showcase Grid (Using Card-21) */}
-      <section className="py-24 px-4 max-w-6xl mx-auto w-full relative z-10 bg-slate-50/20 border-y border-slate-200/50">
-        <div className="text-center mb-16">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: data.iconColor }}>
-            {t("services.showcaseBadge") || "PORTFOLIO & CAPABILITIES"}
-          </span>
-          <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 mt-2 mb-4">
-            {t("services.showcaseTitle") || "Key Specialty Domains"}
-          </h2>
-          <div className="w-16 h-1 rounded-full mx-auto" style={{ backgroundColor: data.iconColor }} />
-        </div>
+      {/* ── Problem & Solution Section ── */}
+      {(() => {
+        const psContent: Record<string, { heading: string; sub: string; problems: { title: string; desc: string }[]; solutions: { title: string; desc: string }[] }> = {
+          "web-engineering": {
+            heading: "Slow Sites & Broken Stacks,\nFixed With Precision Engineering.",
+            sub: "Most web projects fail due to poor architecture decisions made early. We fix the root cause.",
+            problems: [
+              { title: "Slow Load Times", desc: "Unoptimized assets and poor server config tank your Core Web Vitals and SEO ranking." },
+              { title: "Outdated Tech Stack", desc: "Legacy frameworks create security holes, slow dev cycles, and frustrated engineers." },
+              { title: "Poor Mobile Experience", desc: "Non-responsive layouts lose 70%+ of your traffic before they read a single word." },
+              { title: "No Scalability Plan", desc: "Sites built without scale in mind crash under traffic spikes and cost a fortune to fix." },
+            ],
+            solutions: [
+              { title: "Lighthouse 100 Performance", desc: "Edge caching, image optimization, and lazy loading — your site loads in under a second." },
+              { title: "Modern Next.js Architecture", desc: "Server components, ISR, and clean API design built for speed and long-term maintainability." },
+              { title: "Mobile-First Responsive Design", desc: "Every breakpoint pixel-perfect — flawless on phones, tablets, and 4K displays." },
+              { title: "Scalable Cloud Infrastructure", desc: "Stateless APIs, CDN distribution, and auto-scaling — built to handle 10x growth." },
+            ],
+          },
+          "custom-software": {
+            heading: "Manual Processes & Off-Shelf Limits,\nReplaced With Tailored Software.",
+            sub: "Generic tools force your team to adapt to the software. We build software that adapts to you.",
+            problems: [
+              { title: "Spreadsheet Overload", desc: "Manual data entry, version conflicts, and human error drain productivity every single day." },
+              { title: "Disconnected Systems", desc: "Tools that don't talk to each other create data silos and costly double-entry workflows." },
+              { title: "No Access Control", desc: "Everyone sees everything — no role-based permissions, no audit trail, no compliance." },
+              { title: "Vendor Lock-In", desc: "Off-the-shelf SaaS tools charge you forever and can't be customized to your exact needs." },
+            ],
+            solutions: [
+              { title: "Custom Workflow Automation", desc: "We eliminate manual steps with automated pipelines tailored to your exact business logic." },
+              { title: "Unified System Integration", desc: "All your tools connected — CRMs, ERPs, payment gateways, and legacy systems in one flow." },
+              { title: "Granular RBAC & Audit Logs", desc: "Role-based access control with immutable audit trails — SOC-2 ready from day one." },
+              { title: "Full Code Ownership", desc: "Clean, documented code you own forever — no subscriptions, no lock-in, no limits." },
+            ],
+          },
+          "mobile-innovation": {
+            heading: "Clunky Apps & Poor Retention,\nTransformed Into Native Experiences.",
+            sub: "Most apps lose 80% of users in the first week. We build apps people actually keep using.",
+            problems: [
+              { title: "Poor App Performance", desc: "Janky animations and slow screens make users uninstall within minutes of downloading." },
+              { title: "Single Platform Only", desc: "Building separate iOS and Android apps doubles cost and creates inconsistent experiences." },
+              { title: "Weak Onboarding Flow", desc: "Confusing first-run experiences are the #1 reason users abandon apps permanently." },
+              { title: "No Offline Support", desc: "Apps that break without internet lose users in low-connectivity environments instantly." },
+            ],
+            solutions: [
+              { title: "60fps Native-Feel Performance", desc: "Native modules for animations and sensors — indistinguishable from a fully native build." },
+              { title: "React Native Cross-Platform", desc: "One codebase, two stores — iOS and Android shipped simultaneously at half the cost." },
+              { title: "Retention-Focused Onboarding", desc: "Psychology-driven first-run flows that activate users and build lasting daily habits." },
+              { title: "Offline-First Architecture", desc: "Local data sync and background updates — your app works perfectly with zero signal." },
+            ],
+          },
+          "ui-ux-design": {
+            heading: "Confusing Interfaces & Lost Conversions,\nFixed With Psychology-Driven Design.",
+            sub: "Bad UX silently kills your revenue. Every friction point costs you real customers.",
+            problems: [
+              { title: "High Bounce Rates", desc: "Users land on your page, get confused, and leave — without ever seeing your core offer." },
+              { title: "Low Form Completion", desc: "Poorly designed forms with too many fields lose 67% of users before they submit." },
+              { title: "Inconsistent Visual Language", desc: "Mismatched fonts, colors, and spacing make your product look unfinished and untrustworthy." },
+              { title: "No Design System", desc: "Every new screen takes forever because there are no reusable components or standards." },
+            ],
+            solutions: [
+              { title: "Conversion-Optimized Layouts", desc: "Strategic CTA placement, visual hierarchy, and UX psychology that guides users to act." },
+              { title: "Frictionless Form Design", desc: "Minimal fields, smart defaults, and inline validation — completion rates jump dramatically." },
+              { title: "Pixel-Perfect Design System", desc: "Atomic tokens, component libraries, and style guides for total visual consistency at scale." },
+              { title: "User-Validated Prototypes", desc: "Interactive Figma prototypes tested with real users before a single line of code is written." },
+            ],
+          },
+          "branding-identity": {
+            heading: "Forgettable Brands & Weak Authority,\nReplaced With Strategic Identity.",
+            sub: "Your brand is your first impression. A weak one costs you clients before you even speak.",
+            problems: [
+              { title: "No Brand Recognition", desc: "Generic logos and inconsistent visuals make you invisible in a crowded market." },
+              { title: "Looks Unprofessional", desc: "DIY branding signals low quality — prospects judge your capability by how you look." },
+              { title: "Inconsistent Across Channels", desc: "Different colors, fonts, and tones on every platform destroy brand trust and recall." },
+              { title: "Can't Charge Premium Prices", desc: "Weak branding forces you to compete on price instead of value and expertise." },
+            ],
+            solutions: [
+              { title: "Distinctive Logo & Mark System", desc: "Custom logo suite with primary, secondary, and icon variants for every use case." },
+              { title: "Premium Visual Identity", desc: "Typography, color systems, and brand tokens that project authority and professionalism." },
+              { title: "Complete Brand Style Guide", desc: "A comprehensive brand book ensuring total consistency across every touchpoint." },
+              { title: "Premium Pricing Power", desc: "A polished brand lets you charge what you're worth — clients pay for perceived quality." },
+            ],
+          },
+          "video-production": {
+            heading: "Boring Content & Low Engagement,\nTransformed Into Cinematic Stories.",
+            sub: "Static content gets scrolled past. Video stops thumbs and builds emotional connection.",
+            problems: [
+              { title: "Low Social Media Engagement", desc: "Text and image posts get buried. Without video, your reach and engagement collapse." },
+              { title: "Poor Audio Quality", desc: "Muffled voiceovers and background noise make your brand look amateur and untrustworthy." },
+              { title: "No Emotional Connection", desc: "Generic stock footage fails to communicate your brand's personality and unique story." },
+              { title: "Wrong Format for Platform", desc: "One-size-fits-all videos perform poorly — each platform needs its own optimized format." },
+            ],
+            solutions: [
+              { title: "Cinematic Brand Films", desc: "Story-driven videos with professional color grading that capture emotion and build trust." },
+              { title: "Crystal-Clear Audio Mastering", desc: "Pro voiceovers, noise cancellation, and custom soundscapes — every word heard perfectly." },
+              { title: "Platform-Optimized Reels", desc: "Vertical, square, and widescreen cuts — each version optimized for its target platform." },
+              { title: "Full Post-Production Polish", desc: "Motion graphics, transitions, and visual effects that make your content stand out." },
+            ],
+          },
+          "it-consulting": {
+            heading: "Outdated Infrastructure & Rising Costs,\nOptimized With Expert Strategy.",
+            sub: "Technology debt compounds silently. Every month you wait, it gets more expensive to fix.",
+            problems: [
+              { title: "Massive Cloud Overspend", desc: "Unoptimized cloud resources silently drain budgets — most companies overpay by 30-50%." },
+              { title: "Security Vulnerabilities", desc: "Unpatched systems and weak access controls are open invitations for costly breaches." },
+              { title: "No Disaster Recovery Plan", desc: "One server failure or ransomware attack can take your entire business offline for days." },
+              { title: "Legacy Tech Bottlenecks", desc: "Old codebases and outdated tools slow your team down and block every new initiative." },
+            ],
+            solutions: [
+              { title: "Cloud Cost Optimization", desc: "Right-sizing resources and eliminating waste typically cuts cloud bills by 20-50%." },
+              { title: "Enterprise Security Framework", desc: "Zero-trust architecture, compliance audits, and vulnerability patching — fully protected." },
+              { title: "Disaster Recovery Architecture", desc: "Automated backups, failover systems, and recovery playbooks — zero single points of failure." },
+              { title: "Tech Stack Modernization", desc: "Replacing legacy bottlenecks with modern, maintainable frameworks your team can move fast on." },
+            ],
+          },
+          "creative-solutions": {
+            heading: "Generic Assets & Invisible Brands,\nElevated With Bold Creative Design.",
+            sub: "Template-based design blends in. Custom creative work makes you impossible to ignore.",
+            problems: [
+              { title: "Template-Based Visual Identity", desc: "Canva templates and stock graphics make your brand look identical to your competitors." },
+              { title: "Weak Pitch Decks", desc: "Poorly designed presentations lose deals before you finish your first slide." },
+              { title: "No Motion or Animation", desc: "Static assets feel dated — modern audiences expect interactive, animated experiences." },
+              { title: "Inconsistent Brand Assets", desc: "Mismatched graphics across channels confuse your audience and dilute brand equity." },
+            ],
+            solutions: [
+              { title: "Custom Vector Illustrations", desc: "Bespoke artwork that's uniquely yours — no stock, no templates, no compromises." },
+              { title: "High-Impact Pitch Decks", desc: "Story-driven presentations designed to close deals and impress investors on slide one." },
+              { title: "Motion Graphics & Animation", desc: "Fluid CSS and video animations that make your digital presence feel alive and premium." },
+              { title: "Unified Creative System", desc: "Every asset — social, web, print — perfectly aligned to your brand design system." },
+            ],
+          },
+        };
 
-        {/* 4-Card Premium Grid layout (Smaller height and responsive 4-column grid) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center items-stretch">
-          {localizedShowcase.map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="h-[340px] w-full"
-            >
-              <DestinationCard
-                imageUrl={item.imageUrl}
-                location={item.location}
-                stats={item.stats}
-                href={item.href}
-                themeColor={hexToHslString(data.iconColor)}
-              />
-            </motion.div>
-          ))}
-        </div>
-      </section>
-      {/* Dynamic Overview Section (Vision & Strategy Card) */}
-      <section id="details" className="py-24 px-4 max-w-6xl mx-auto scroll-mt-20 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative rounded-3xl p-8 md:p-14 bg-gradient-to-br from-slate-50/70 to-white/40 border border-slate-200/50 backdrop-blur-lg overflow-hidden shadow-xl"
-        >
-          {/* Subtle Ambient Accent Circle inside the card */}
-          <div 
-            className="absolute -top-12 -right-12 w-48 h-48 rounded-full blur-[80px] pointer-events-none opacity-20"
-            style={{ backgroundColor: data.iconColor }}
-          />
-          
-          <div className="flex flex-col md:flex-row gap-8 items-center md:items-start relative z-10">
-            {/* Strategy Glowing Capsule */}
-            <div 
-              className="shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-slate-200/60 shadow-md group-hover:scale-105 transition-transform duration-300"
-              style={{ boxShadow: `0 10px 20px -10px ${data.iconColor}33` }}
-            >
-              <Sparkles className="w-8 h-8" style={{ color: data.iconColor }} />
-            </div>
+        const ps = psContent[slug] || psContent["web-engineering"];
+        const headingLines = ps.heading.split("\n");
 
-            <div className="flex flex-col gap-4 text-center md:text-left">
-              <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: data.iconColor }}>
-                {t("services.overview") || "SERVICE MISSION & OVERVIEW"}
-              </span>
-              <p className="text-lg md:text-2xl text-slate-700 leading-relaxed font-medium font-sans">
-                {localizedDescription}
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+        return (
+          <section className="relative w-full py-16 md:py-20 px-4 overflow-hidden bg-[#fafbfc] border-t border-slate-100">
+            <div className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full blur-[120px] pointer-events-none opacity-[0.06]" style={{ backgroundColor: data.iconColor }} />
+            <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] rounded-full blur-[100px] pointer-events-none opacity-[0.04]" style={{ backgroundColor: data.iconColor }} />
 
-      {/* Premium Bento Deliverables Section */}
-      <section className="py-20 px-4 max-w-6xl mx-auto w-full relative z-10">
-        
-        {/* Soft Background Orbs */}
-        <div 
-          className="absolute -top-24 -left-24 w-[300px] h-[300px] blur-[120px] rounded-full pointer-events-none opacity-[0.08]"
-          style={{ backgroundColor: data.iconColor }}
-        />
+            <div className="relative z-10 max-w-6xl mx-auto">
+              {/* Top heading row */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 md:mb-16">
+                <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex flex-col items-center lg:items-start gap-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-[3px] h-5 rounded-full" style={{ background: `linear-gradient(to bottom, ${data.iconColor}, #a906c9)` }} />
+                    <span className="text-[11px] font-black tracking-[0.45em] uppercase text-slate-400">Problems & Solutions</span>
+                  </div>
+                  <div className="relative w-36 h-36 md:w-44 md:h-44">
+                    <div className="absolute inset-0 rounded-full border-2 border-dashed border-slate-200 animate-spin" style={{ animationDuration: "18s" }} />
+                    <div className="absolute inset-3 rounded-full bg-white border border-slate-200 shadow-lg flex flex-col items-center justify-center gap-1 p-4">
+                      <span className="text-[11px] font-bold text-slate-500 text-center leading-tight">Client Need &</span>
+                      <span className="text-[13px] font-black text-slate-900 text-center leading-tight">Our Fix</span>
+                      <div className="flex gap-1.5 mt-1">
+                        <span className="w-2 h-2 rounded-full bg-rose-400" />
+                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: data.iconColor }} />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
 
-        <div className="text-center mb-16">
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs font-bold tracking-[0.2em] uppercase mb-3"
-            style={{ color: data.iconColor }}
-          >
-            {t("services.capabilities") || "WHAT WE DELIVER"}
-          </motion.p>
-          <motion.h2 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-semibold text-slate-900 mb-4"
-          >
-            {t("services.deliver") || "Exceptional Capabilities"}
-          </motion.h2>
-          <div className="w-16 h-1 rounded-full mx-auto" style={{ backgroundColor: data.iconColor }} />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {localizedFeatures.map((feature, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="relative p-8 rounded-3xl bg-white/60 border border-slate-200/50 backdrop-blur-md transition-all duration-500 overflow-hidden group shadow-sm hover:shadow-xl animate-fade-in"
-              whileHover={{ 
-                y: -6,
-                borderColor: data.iconColor,
-                boxShadow: `0 20px 40px -15px ${data.iconColor}15`
-              }}
-            >
-              {/* Subtle hover background accent */}
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{
-                  background: `radial-gradient(circle at top right, ${data.iconColor}08, transparent 65%)`
-                }}
-              />
-
-              {/* Number indicator styled as huge back-heading */}
-              <div 
-                className="absolute right-6 top-6 text-7xl font-black select-none pointer-events-none opacity-[0.03] group-hover:opacity-[0.07] transition-opacity duration-500"
-                style={{ color: data.iconColor }}
-              >
-                0{i + 1}
+                <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} className="flex flex-col items-center text-center lg:items-start lg:text-left gap-4">
+                  <h2 className="text-3xl md:text-4xl lg:text-[2.6rem] font-medium tracking-tight leading-[1.2]">
+                    <span className="text-slate-900">{headingLines[0]}</span>
+                    {headingLines[1] && (() => {
+                      const words = headingLines[1].trim().split(" ");
+                      const lastWord = words[words.length - 1];
+                      const rest = words.slice(0, -1).join(" ");
+                      return (
+                        <><br />
+                          <span className="text-slate-900">{rest}{rest ? " " : ""}</span>
+                          <span style={{ color: data.iconColor }}>{lastWord}</span>
+                        </>
+                      );
+                    })()}
+                  </h2>
+                  <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-md">{ps.sub}</p>
+                </motion.div>
               </div>
 
-              {/* Deliverable Content */}
-              <div className="flex flex-col justify-between h-full relative z-10 gap-6">
-                <div className="flex gap-4 items-start">
-                  <div 
-                    className="shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/60 group-hover:scale-110 group-hover:border-transparent transition-all duration-300"
-                    style={{ backgroundColor: `${data.iconColor}08` }}
-                  >
-                    <CheckCircle2 className="w-5 h-5" style={{ color: data.iconColor }} />
+              {/* Two cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+                {/* Problems */}
+                <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }} className="relative rounded-3xl bg-white border border-slate-200 shadow-sm p-7 md:p-8 overflow-hidden">
+                  <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-rose-100 blur-[60px] opacity-60 pointer-events-none" />
+                  <div className="flex items-center gap-3 mb-7 relative z-10">
+                    <div className="w-11 h-11 rounded-2xl bg-rose-500 flex items-center justify-center shadow-md shadow-rose-200">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 8v4M12 16h.01"/></svg>
+                    </div>
+                    <span className="px-4 py-1.5 rounded-full border border-rose-200 bg-rose-50 text-rose-600 text-xs font-bold tracking-widest uppercase">Problems</span>
                   </div>
-                  
-                  <div className="flex flex-col gap-2 pt-1.5">
-                    <span className="text-slate-800 text-base font-semibold leading-snug group-hover:text-black transition-colors duration-300">
-                      {typeof feature === "string" ? (
-                        feature
-                      ) : (
-                        <span>
-                          <strong>{feature.title}</strong>
-                        </span>
-                      )}
-                    </span>
-                    {typeof feature !== "string" && (
-                      <p className="text-slate-500 text-sm leading-relaxed">
-                        {feature.description}
-                      </p>
-                    )}
+                  <div className="flex flex-col gap-4 relative z-10">
+                    {ps.problems.map((item, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <div className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-rose-100 border border-rose-200 flex items-center justify-center">
+                          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M2 2l4 4M6 2L2 6" stroke="#f43f5e" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-800 leading-snug">{item.title}</p>
+                          <p className="text-xs text-slate-400 leading-relaxed mt-0.5">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                </div>
+                </motion.div>
 
-                {/* Custom Interactive realistic widget showcase */}
-                <div className="w-full mt-auto">
-                  {renderMicroWidget(slug, i, data.iconColor)}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Asymmetric Split Benefits Grid */}
-      <section className="py-20 px-4 max-w-6xl mx-auto w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Sticky Left Sidebar panel */}
-          <div className="lg:col-span-4 lg:sticky lg:top-28 flex flex-col gap-6">
-            <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: data.iconColor }}>
-              {t("services.why") || "WHY SOFTCR8ORS"}
-            </span>
-            <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 leading-tight">
-              {t("services.advantages") || "The Softcr8ors Advantage"}
-            </h2>
-            <p className="text-slate-400 text-base leading-relaxed">
-              {t("services.whyDesc") || "We don't just deliver generic features. We build scalable value designed specifically to scale with your company's growth."}
-            </p>
-
-            {/* Micro Dashboard widget inside sticky panel */}
-            <div 
-              className="mt-4 p-6 rounded-2xl bg-slate-50 border border-slate-200/60 relative overflow-hidden"
-              style={{ boxShadow: `0 10px 30px -15px ${data.iconColor}15` }}
-            >
-              <div className="absolute top-0 right-0 w-24 h-24 rounded-full blur-[40px] opacity-10" style={{ backgroundColor: data.iconColor }} />
-              <div className="relative z-10 flex flex-col gap-4">
-                <div className="flex justify-between items-center border-b border-slate-200/60 pb-3">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Metrics</span>
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white" style={{ backgroundColor: data.iconColor }}>Live</span>
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <span className="text-2xl font-bold text-slate-800">100% Precise</span>
-                  <span className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">Bespoke Design standards</span>
-                </div>
+                {/* Solutions */}
+                <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }} className="relative rounded-3xl bg-white border border-slate-200 shadow-sm p-7 md:p-8 overflow-hidden">
+                  <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full blur-[60px] opacity-40 pointer-events-none" style={{ backgroundColor: data.iconColor }} />
+                  <div className="flex items-center gap-3 mb-7 relative z-10">
+                    <div className="w-11 h-11 rounded-2xl flex items-center justify-center shadow-md" style={{ backgroundColor: data.iconColor, boxShadow: `0 6px 20px -4px ${data.iconColor}55` }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/></svg>
+                    </div>
+                    <span className="px-4 py-1.5 rounded-full border text-xs font-bold tracking-widest uppercase" style={{ borderColor: `${data.iconColor}40`, backgroundColor: `${data.iconColor}0d`, color: data.iconColor }}>Solutions</span>
+                  </div>
+                  <div className="flex flex-col gap-4 relative z-10">
+                    {ps.solutions.map((item, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <div className="shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center border" style={{ backgroundColor: `${data.iconColor}15`, borderColor: `${data.iconColor}40` }}>
+                          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke={data.iconColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-800 leading-snug">{item.title}</p>
+                          <p className="text-xs text-slate-400 leading-relaxed mt-0.5">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
               </div>
             </div>
-          </div>
+          </section>
+        );
+      })()}
 
-          {/* Right side Benefit Stack cards */}
-          <div className="lg:col-span-8 flex flex-col gap-6">
-            {localizedBenefits.map((b, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="relative p-8 rounded-3xl bg-white border border-slate-200/70 transition-all duration-500 overflow-hidden group shadow-sm hover:shadow-xl"
-                whileHover={{ 
-                  x: 8,
-                  borderColor: data.iconColor,
-                  boxShadow: `0 20px 40px -20px ${data.iconColor}20`
-                }}
-              >
-                {/* Accent line on left */}
-                <div 
-                  className="absolute left-0 top-0 bottom-0 w-1.5 transition-all duration-500 opacity-0 group-hover:opacity-100"
-                  style={{ backgroundColor: data.iconColor }}
-                />
+      {/* ── What's Included — Edge-to-Edge Bento Grid ── */}
+      {(() => {
+        type BentoCard = { type: "image" | "text" | "stat"; span?: "wide" | "tall" | "normal"; image?: string; title: string; desc?: string; stat?: string; statLabel?: string; };
+        const bentoMap: Record<string, BentoCard[]> = {
+          "web-engineering": [
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&auto=format&fit=crop&q=80", title: "Custom Website Design", desc: "Pixel-perfect, brand-aligned UI built from scratch — no templates, no compromises." },
+            { type: "image", span: "tall",   image: "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=800&auto=format&fit=crop&q=80", title: "Fully Responsive Layout", desc: "Flawless on every device — mobile, tablet, and 4K displays." },
+            { type: "stat",  span: "normal", title: "Performance Score", stat: "100", statLabel: "Lighthouse Score", desc: "Edge caching, lazy loading & image optimization." },
+            { type: "text",  span: "normal", title: "SEO-Friendly Development", desc: "Semantic HTML, meta tags, structured data, and Core Web Vitals compliance built in." },
+            { type: "image", span: "normal", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80", title: "Admin Panel / CMS", desc: "Manage content without a developer — headless CMS or custom admin." },
+            { type: "text",  span: "normal", title: "API Integrations", desc: "Payment gateways, CRMs, and analytics — all connected seamlessly." },
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&auto=format&fit=crop&q=80", title: "Security & Deployment", desc: "OWASP hardening + production-ready CI/CD on Vercel or AWS." },
+          ],
+          "custom-software": [
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80", title: "Custom Workflow Automation", desc: "Tailored business logic that eliminates manual steps and repetitive data entry." },
+            { type: "image", span: "tall",   image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&auto=format&fit=crop&q=80", title: "Intuitive Dashboard UI", desc: "Clean, data-rich interfaces your team will actually enjoy using every day." },
+            { type: "stat",  span: "normal", title: "Efficiency Gain", stat: "10×", statLabel: "Faster Workflows", desc: "Automated pipelines replace manual spreadsheet work." },
+            { type: "text",  span: "normal", title: "Role-Based Access Control", desc: "Granular RBAC with immutable audit logs — SOC-2 ready from day one." },
+            { type: "image", span: "normal", image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&auto=format&fit=crop&q=80", title: "Third-Party Integrations", desc: "CRMs, ERPs, payment gateways, and legacy systems in one unified flow." },
+            { type: "text",  span: "normal", title: "Automated Reporting", desc: "Scheduled PDF exports, email digests, and custom analytics built in." },
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&auto=format&fit=crop&q=80", title: "Scalable Architecture & Full Ownership", desc: "Built to handle 10× growth — clean, documented code you own forever." },
+          ],
+          "mobile-innovation": [
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&auto=format&fit=crop&q=80", title: "60fps Native-Feel Performance", desc: "Native modules for animations — indistinguishable from a fully native build." },
+            { type: "image", span: "tall",   image: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=800&auto=format&fit=crop&q=80", title: "Cross-Platform iOS & Android", desc: "One codebase, two stores — shipped simultaneously at half the cost." },
+            { type: "stat",  span: "normal", title: "Retention Rate", stat: "80%", statLabel: "Week-1 Retention", desc: "Psychology-driven onboarding that builds lasting daily habits." },
+            { type: "text",  span: "normal", title: "Offline-First Architecture", desc: "Local data sync and background updates — works perfectly with zero signal." },
+            { type: "image", span: "normal", image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=800&auto=format&fit=crop&q=80", title: "Push Notifications", desc: "Smart, segmented campaigns that re-engage users at exactly the right moment." },
+            { type: "text",  span: "normal", title: "App Store Submission", desc: "Full submission to Apple App Store and Google Play — we handle everything." },
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&auto=format&fit=crop&q=80", title: "Analytics, OTA Updates & Crash Reporting", desc: "Firebase or custom analytics + instant OTA updates without app store delays." },
+          ],
+          "ui-ux-design": [
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&auto=format&fit=crop&q=80", title: "User Research & Wireframes", desc: "Deep user interviews and high-fidelity Figma prototypes tested before any code." },
+            { type: "image", span: "tall",   image: "https://images.unsplash.com/photo-1581291518655-9523c932dedf?w=800&auto=format&fit=crop&q=80", title: "Responsive Design System", desc: "Atomic tokens, component libraries, and style guides for total visual consistency." },
+            { type: "stat",  span: "normal", title: "Conversion Lift", stat: "3×", statLabel: "Avg. CTA Uplift", desc: "Strategic UX psychology that guides users to take action." },
+            { type: "text",  span: "normal", title: "Micro-Interaction Design", desc: "Subtle animations and feedback states that make your product feel alive and premium." },
+            { type: "image", span: "normal", image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=80", title: "Accessibility (WCAG 2.1)", desc: "Color contrast, keyboard nav, and screen reader support on every screen." },
+            { type: "text",  span: "normal", title: "Usability Testing", desc: "Structured sessions with real users to validate flows before launch." },
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1200&auto=format&fit=crop&q=80", title: "Developer Handoff", desc: "Annotated Figma files with specs, assets, and component docs ready for dev." },
+          ],
+          "branding-identity": [
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1200&auto=format&fit=crop&q=80", title: "Logo & Mark System", desc: "Custom logo suite with primary, secondary, and icon variants for every use case." },
+            { type: "image", span: "tall",   image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&auto=format&fit=crop&q=80", title: "Color Palette & Typography", desc: "Brand color systems and type scales that project authority and professionalism." },
+            { type: "stat",  span: "normal", title: "Brand Recall", stat: "7×", statLabel: "Higher Recognition", desc: "Consistent identity across every touchpoint builds instant trust." },
+            { type: "text",  span: "normal", title: "Brand Style Guide", desc: "A comprehensive brand book ensuring total consistency across every channel." },
+            { type: "image", span: "normal", image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&auto=format&fit=crop&q=80", title: "Social Media Kit", desc: "Profile images, cover photos, and post templates sized for every platform." },
+            { type: "text",  span: "normal", title: "Brand Voice & Messaging", desc: "Tone of voice guidelines and key messaging frameworks for consistent communication." },
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&auto=format&fit=crop&q=80", title: "Print, Stationery & File Delivery", desc: "Business cards, letterheads, and all formats — SVG, PNG, PDF, source files." },
+          ],
+          "video-production": [
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&auto=format&fit=crop&q=80", title: "Concept & Storyboarding", desc: "Story-driven scripts and visual storyboards crafted before a single frame is shot." },
+            { type: "image", span: "tall",   image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&auto=format&fit=crop&q=80", title: "Professional 4K/8K Filming", desc: "Cinematic lighting, professional audio, and on-set direction." },
+            { type: "stat",  span: "normal", title: "Engagement Boost", stat: "5×", statLabel: "vs. Static Content", desc: "Video stops thumbs and builds emotional connection." },
+            { type: "text",  span: "normal", title: "Color Grading & Motion Graphics", desc: "Cinematic color grading + animated lower thirds and branded motion elements." },
+            { type: "image", span: "normal", image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&auto=format&fit=crop&q=80", title: "Platform-Optimized Cuts", desc: "Vertical, square, and widescreen — each version optimized for its platform." },
+            { type: "text",  span: "normal", title: "Audio Mastering & Subtitles", desc: "Pro voiceovers, noise cancellation, and accurate captions in multiple languages." },
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&auto=format&fit=crop&q=80", title: "Final Delivery Package", desc: "All formats and resolutions — ready for web, broadcast, and social media." },
+          ],
+          "it-consulting": [
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80", title: "Infrastructure Audit", desc: "Deep-dive assessment of your current stack — identifying risks, waste, and bottlenecks." },
+            { type: "image", span: "tall",   image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80", title: "Cloud Cost Optimization", desc: "Right-sizing resources and eliminating waste — typically cuts cloud bills by 20-50%." },
+            { type: "stat",  span: "normal", title: "Cost Reduction", stat: "40%", statLabel: "Avg. Cloud Savings", desc: "Unoptimized cloud resources silently drain budgets every month." },
+            { type: "text",  span: "normal", title: "Zero-Trust Security Framework", desc: "Compliance audits and vulnerability patching — fully protected from day one." },
+            { type: "image", span: "normal", image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80", title: "Disaster Recovery Plan", desc: "Automated backups, failover systems, and recovery playbooks — zero single points of failure." },
+            { type: "text",  span: "normal", title: "DevOps & CI/CD Setup", desc: "Automated pipelines, containerization, and deployment workflows that ship faster." },
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop&q=80", title: "Tech Modernization & Team Training", desc: "Replace legacy bottlenecks + comprehensive docs and hands-on training." },
+          ],
+          "creative-solutions": [
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1561070791-26c113006238?w=1200&auto=format&fit=crop&q=80", title: "Custom Illustrations", desc: "Bespoke vector artwork that's uniquely yours — no stock, no templates, no compromises." },
+            { type: "image", span: "tall",   image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&auto=format&fit=crop&q=80", title: "High-Impact Pitch Decks", desc: "Story-driven presentations designed to close deals and impress investors on slide one." },
+            { type: "stat",  span: "normal", title: "Deal Close Rate", stat: "2×", statLabel: "With Premium Decks", desc: "Poorly designed presentations lose deals before you finish your first slide." },
+            { type: "text",  span: "normal", title: "Motion Graphics & Animation", desc: "Fluid CSS and video animations that make your digital presence feel alive and premium." },
+            { type: "image", span: "normal", image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&auto=format&fit=crop&q=80", title: "Social Media Content", desc: "Scroll-stopping posts, stories, and reels designed for maximum engagement." },
+            { type: "text",  span: "normal", title: "Email Templates & Print Design", desc: "Branded HTML emails + premium brochures, packaging, and signage." },
+            { type: "image", span: "wide",   image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=1200&auto=format&fit=crop&q=80", title: "Unified Creative System", desc: "Every asset — social, web, print — perfectly aligned to your brand design system." },
+          ],
+        };
+        const cards = bentoMap[slug] || bentoMap["web-engineering"];
 
-                {/* Big Translucent Number Backdrop */}
-                <div 
-                  className="absolute right-8 top-1/2 -translate-y-1/2 text-8xl font-black bg-gradient-to-br from-slate-200/10 to-slate-200/40 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-500"
-                >
-                  0{i + 1}
-                </div>
+        return (
+          <section className="relative w-full overflow-hidden bg-white">
 
-                <div className="relative z-10 flex gap-6 items-start">
-                  <div 
-                    className="shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200/60 text-lg font-black group-hover:scale-110 group-hover:border-transparent transition-all duration-300"
-                    style={{ 
-                      backgroundColor: `${data.iconColor}0a`,
-                      color: data.iconColor
-                    }}
-                  >
-                    {i + 1}
-                  </div>
-                  
-                  <div className="flex flex-col gap-2 pt-1">
-                    <h3 className="text-slate-900 font-semibold text-xl group-hover:text-black transition-colors duration-300">
-                      {b.title}
-                    </h3>
-                    <p className="text-slate-500 text-sm leading-relaxed max-w-2xl">
-                      {b.desc}
-                    </p>
-                  </div>
+            {/* Header — pill badge + heading + text */}
+            <div className="flex flex-col items-center text-center gap-5 py-16 md:py-20 px-6">
+              {/* Pill badge — same as ServicesSection */}
+              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex justify-center w-full">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm">
+                  <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
+                  <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">Everything You Get</span>
+                  <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
                 </div>
               </motion.div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* High-End Futuristic Creative Process Timeline */}
-      <section className="py-24 px-4 max-w-5xl mx-auto w-full relative z-10">
-        <div className="text-center mb-20">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: data.iconColor }}>
-            {t("services.process") || "OUR PROCESS"}
-          </span>
-          <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 mt-3 mb-4">
-            {t("services.processDesc") || "How We Engineer Success"}
-          </h2>
-          <div className="w-16 h-1 rounded-full mx-auto" style={{ backgroundColor: data.iconColor }} />
-        </div>
-
-        <div className="relative flex flex-col gap-12">
-          {/* Vertical Glowing timeline line */}
-          <div className="absolute left-[39px] top-4 bottom-4 w-[2px] bg-slate-100 hidden md:block" />
-          
-          {localizedProcess.map((p, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12 }}
-              className="relative flex gap-6 md:gap-10 items-start group"
-            >
-              {/* Outer Step Circle */}
-              <div 
-                className="shrink-0 w-[80px] h-[80px] rounded-full bg-white border-2 border-slate-200/70 flex items-center justify-center relative z-10 transition-all duration-500 shadow-md"
-                style={{ 
-                  borderColor: `${data.iconColor}22`
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = data.iconColor;
-                  e.currentTarget.style.boxShadow = `0 10px 20px -5px ${data.iconColor}33`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = `${data.iconColor}22`;
-                  e.currentTarget.style.boxShadow = "none";
-                }}
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+                className="text-3xl md:text-5xl text-slate-950 tracking-tight leading-[1.1]"
+                style={{ fontFamily: "'General Sans', sans-serif", fontWeight: 500 }}
               >
-                <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-base shadow-sm font-sans"
-                  style={{
-                    background: `linear-gradient(135deg, ${data.iconColor}, ${data.iconColor}cc)`
-                  }}
-                >
-                  {p.step}
-                </div>
-              </div>
-
-              {/* Step Card Content */}
-              <div 
-                className="flex-1 p-6 md:p-8 rounded-3xl bg-white/70 border border-slate-200/60 backdrop-blur-md shadow-sm transition-all duration-500 flex flex-col gap-2 hover:shadow-xl"
-                style={{
-                  borderColor: "rgba(226, 232, 240, 0.8)"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = data.iconColor;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(226, 232, 240, 0.8)";
-                }}
-              >
-                <span className="text-xs font-bold tracking-widest uppercase opacity-40 font-sans">
-                  Step {p.step}
+                What&apos;s{" "}
+                <span style={{ color: data.iconColor }}>
+                  Included
                 </span>
-                <h3 className="text-slate-900 font-semibold text-xl group-hover:text-black transition-colors duration-300">
-                  {p.title}
-                </h3>
-                <p className="text-slate-500 text-sm leading-relaxed">
-                  {p.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
- 
-      {/* Dynamic Infinite Scrolling Marquee */}
-      <section className="w-full overflow-hidden py-10 bg-slate-50/50 border-y border-slate-200/60 relative z-10">
-        <style dangerouslySetInnerHTML={{ __html: `
-          @keyframes scroll-marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-        `}} />
-        <div className="flex whitespace-nowrap overflow-hidden">
-          <div className="flex animate-[scroll-marquee_30s_linear_infinite] gap-12 text-slate-400 font-sans tracking-[0.25em] text-xs font-bold uppercase items-center">
-            {Array.from({ length: 4 }).flatMap(() => marqueeKeywords).map((keyword, idx) => (
-              <span key={idx} className="flex items-center gap-12">
-                <span style={{ color: data.iconColor }}>{keyword}</span>
-                <span className="w-2 h-2 rounded-full opacity-40" style={{ backgroundColor: data.iconColor }} />
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="text-slate-500 text-sm md:text-lg max-w-2xl leading-relaxed"
+                style={{ fontFamily: "'General Sans', sans-serif", fontWeight: 400 }}
+              >
+                Every engagement comes fully loaded — no hidden extras, no surprise invoices. Here&apos;s exactly what you get.
+              </motion.p>
+            </div>
+
+            {/* Responsive Bento Grid */}
+            {(() => {
+              const imagePicks = cards.filter(c => c.type === "image" && c.image);
+              const textCards = cards.filter(c => c.type !== "image");
+              const getBadges = (idx: number) => textCards.slice(idx % textCards.length, (idx % textCards.length) + 3).map(c => c.title);
+
+              return (
+                <div className="w-full flex flex-col" style={{ gap: "8px" }}>
+                  {/* Row 1+2: desktop = wide+tall layout, mobile = stacked */}
+                  <div
+                    className="w-full"
+                    style={{
+                      display: "grid",
+                      gap: "8px",
+                      gridTemplateColumns: "repeat(3, 1fr)",
+                      gridTemplateRows: "380px 280px",
+                    }}
+                  >
+                    {/* Wide card — col 1-2, row 1 */}
+                    <div style={{ gridColumn: "1 / 3", gridRow: "1 / 2" }} className="hidden md:block">
+                      <HoverBentoCell image={imagePicks[0]?.image!} title={imagePicks[0]?.title!} desc={imagePicks[0]?.desc} badges={getBadges(0)} col="auto" row="auto" height={380} iconColor={data.iconColor} delay={0} />
+                    </div>
+                    {/* Tall card — col 3, row 1+2 */}
+                    <div style={{ gridColumn: "3 / 4", gridRow: "1 / 3" }} className="hidden md:block">
+                      <HoverBentoCell image={imagePicks[1]?.image!} title={imagePicks[1]?.title!} desc={imagePicks[1]?.desc} badges={getBadges(1)} col="auto" row="auto" height={0} iconColor={data.iconColor} delay={0.08} />
+                    </div>
+                    {/* Small card — col 1, row 2 */}
+                    <div style={{ gridColumn: "1 / 2", gridRow: "2 / 3" }} className="hidden md:block">
+                      <HoverBentoCell image={imagePicks[2]?.image!} title={imagePicks[2]?.title!} desc={imagePicks[2]?.desc} badges={getBadges(2)} col="auto" row="auto" height={280} iconColor={data.iconColor} delay={0.12} />
+                    </div>
+                    {/* Small card — col 2, row 2 */}
+                    <div style={{ gridColumn: "2 / 3", gridRow: "2 / 3" }} className="hidden md:block">
+                      <HoverBentoCell image={imagePicks[3]?.image!} title={imagePicks[3]?.title!} desc={imagePicks[3]?.desc} badges={getBadges(3)} col="auto" row="auto" height={280} iconColor={data.iconColor} delay={0.16} />
+                    </div>
+                  </div>
+
+                  {/* Row 3: 4 equal — desktop */}
+                  <div
+                    className="w-full hidden md:grid"
+                    style={{ gap: "8px", gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "260px" }}
+                  >
+                    {[0, 1, 2, 3].map(i => (
+                      <HoverBentoCell key={i} image={imagePicks[i % imagePicks.length]?.image!} title={imagePicks[i % imagePicks.length]?.title!} desc={imagePicks[i % imagePicks.length]?.desc} badges={getBadges(i + 4)} col="auto" row="auto" height={260} iconColor={data.iconColor} delay={i * 0.07} />
+                    ))}
+                  </div>
+
+                  {/* Mobile: 2-col grid, all images */}
+                  <div
+                    className="w-full grid md:hidden"
+                    style={{ gap: "8px", gridTemplateColumns: "repeat(2, 1fr)", gridAutoRows: "220px" }}
+                  >
+                    {imagePicks.slice(0, 6).map((card, i) => (
+                      <HoverBentoCell key={i} image={card.image!} title={card.title} desc={card.desc} badges={getBadges(i)} col="auto" row="auto" height={220} iconColor={data.iconColor} delay={i * 0.06} />
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+
+          </section>
+        );
+      })()}
 
       {/* Premium Interactive Showcase Section (Core Pillars with Overlay & Hover Badges) */}
       <section className="py-24 px-4 max-w-6xl mx-auto w-full relative z-10">
@@ -1538,9 +1786,6 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
           />
 
           <div className="relative z-10 flex flex-col items-center text-center gap-8">
-            <span className="text-xs font-bold tracking-[0.25em] uppercase text-white/50">
-              {t("services.ctaPrefix") || "INITIATE DIGITAL ACCELERATION"}
-            </span>
             <h2 className="text-3xl md:text-6xl font-semibold leading-tight text-white max-w-3xl">
               {localizedCta}
             </h2>

@@ -198,7 +198,7 @@ export function ProcessSection() {
     <section
       id="process"
       ref={sectionRef}
-      className="relative bg-white py-24 md:py-32 px-4 overflow-hidden"
+      className="relative bg-white py-12 md:py-16 px-4 overflow-hidden"
     >
       {/* Subtle grid */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#a3a3a308_1px,transparent_1px),linear-gradient(to_bottom,#a3a3a308_1px,transparent_1px)] bg-[size:60px_60px]" />

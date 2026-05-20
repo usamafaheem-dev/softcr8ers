@@ -41,7 +41,7 @@ export default function ModernIndustries() {
   const [hoveredId, setHoveredId] = useState<string | null>(INDUSTRIES[0].id);
 
   return (
-    <section id="industries" className="relative w-full py-12 md:py-28 overflow-hidden bg-[#050508] font-sans border-t border-white/5">
+    <section id="industries" className="relative w-full py-12 md:py-16 overflow-hidden bg-[#050508] font-sans border-t border-white/5">
 
       {/* ── Animated hero blocks ── */}
       <motion.img

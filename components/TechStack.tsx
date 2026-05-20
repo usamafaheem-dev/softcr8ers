@@ -41,7 +41,7 @@ const row2 = [
 export function TechStack() {
   const { t } = useTranslation();
   return (
-    <section className="relative w-full py-10 md:py-24 overflow-hidden bg-white font-sans border-t border-slate-50">
+    <section className="relative w-full py-8 md:py-14 overflow-hidden bg-white font-sans border-t border-slate-50">
       <div className="container relative z-10 mx-auto px-4 mb-8 md:mb-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
