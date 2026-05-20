@@ -11,6 +11,17 @@ import { cn } from "@/lib/utils";
 import { useTranslation } from "@/context/LanguageContext";
 import GlassmorphismProfileCard from "@/components/ui/glassmorphism-profile-card";
 import { DestinationCard } from "@/components/ui/card-21";
+import {
+  CutoutCard,
+  CutoutCardContent,
+  CutoutCardImage,
+  CutoutCardInsetLabel,
+  CutoutCardMedia,
+  CutoutCardOverlay,
+  CutoutCardPin,
+  CutoutCorner,
+  cutoutCardSurfaceClassName,
+} from "@/components/ui/cutout-card";
 
 
 function RollingTextButton({
@@ -38,7 +49,7 @@ function RollingTextButton({
       whileTap={{ scale: 0.98 }}
     >
       {variant === "gradient" && (
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#f016da] to-[#1620f0] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#1620f0] via-[#f016da] to-[#1620f0] bg-size-[200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       )}
       <div className="relative h-6 overflow-hidden">
         <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-6">
@@ -723,7 +734,7 @@ function HoverBentoCell({ image, title, desc, badges = [], col, row, iconColor }
         {/* Description */}
         {desc && (
           <p
-            className="text-slate-500 text-[12px] text-center leading-relaxed max-w-[240px]"
+            className="text-slate-500 text-[12px] text-center leading-relaxed max-w-60"
             style={{
               opacity: hovered ? 1 : 0,
               transform: hovered ? "translateY(0)" : "translateY(6px)",
@@ -800,6 +811,19 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
   const localizedBenefits = currentTrans.benefits || data.benefits;
   const localizedProcess = currentTrans.process || data.process;
   const localizedCta = currentTrans.cta || data.cta;
+  const showcaseBadge = t("services.showcaseBadge") || "BENEFITS";
+  const showcaseTitle = t("services.showcaseTitle") || "Core Benefits";
+  const showcaseDesc =
+    t("services.showcaseDesc") ||
+    "These are the primary benefits you'll receive from this engagement.";
+  const showcaseWords = showcaseTitle.split(" ");
+  const showcaseAccent = showcaseWords.pop() || "";
+  const showcaseLead = showcaseWords.join(" ");
+  const pillarImages = [
+    "https://images.unsplash.com/photo-1545239351-ef35f43d514b?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+  ];
 
   // Dynamic Service-specific core pillars
   const pillarsMap: Record<string, {
@@ -1074,7 +1098,7 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
       <Navbar />
  
       {/* Redesigned Premium Full-Bleed Light Hero Section (Matching Home Page Theme) */}
-      <section className="relative w-full min-h-[100vh] flex flex-col justify-center items-center pt-32 pb-16 overflow-hidden bg-white">
+      <section className="relative w-full min-h-screen flex flex-col justify-center items-center pt-32 pb-16 overflow-hidden bg-white">
         
         {/* Dynamic Background Image with Strong White/Pastel Overlay */}
         <div className="absolute inset-0 z-0">
@@ -1085,17 +1109,17 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
           />
           {/* Strong White Frosted Overlay: Makes the image a soft, light pastel background like the home page */}
           <div className="absolute inset-0 bg-white/70 backdrop-blur-xl" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/70 to-white/95" />
+          <div className="absolute inset-0 bg-linear-to-b from-white/30 via-white/70 to-white/95" />
         </div>
  
         {/* Dynamic Colored Ambient Glows based on the Service's primary color */}
         {/* This gives the background a beautiful, unique soft wash of color for each service */}
         <div 
-          className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] blur-[150px] rounded-full z-0 pointer-events-none opacity-[0.25] mix-blend-multiply"
+          className="absolute top-1/4 -left-1/4 w-200 h-200 blur-[150px] rounded-full z-0 pointer-events-none opacity-[0.25] mix-blend-multiply"
           style={{ backgroundColor: data.iconColor }}
         />
         <div 
-          className="absolute bottom-1/4 -right-1/4 w-[800px] h-[800px] blur-[150px] rounded-full z-0 pointer-events-none opacity-[0.25] mix-blend-multiply"
+          className="absolute bottom-1/4 -right-1/4 w-200 h-200 blur-[150px] rounded-full z-0 pointer-events-none opacity-[0.25] mix-blend-multiply"
           style={{ backgroundColor: data.iconColor }}
         />
  
@@ -1375,15 +1399,15 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
 
         return (
           <section className="relative w-full py-16 md:py-20 px-4 overflow-hidden bg-[#fafbfc] border-t border-slate-100">
-            <div className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full blur-[120px] pointer-events-none opacity-[0.06]" style={{ backgroundColor: data.iconColor }} />
-            <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] rounded-full blur-[100px] pointer-events-none opacity-[0.04]" style={{ backgroundColor: data.iconColor }} />
+            <div className="absolute top-0 left-1/4 w-150 h-100 rounded-full blur-[120px] pointer-events-none opacity-[0.06]" style={{ backgroundColor: data.iconColor }} />
+            <div className="absolute bottom-0 right-1/4 w-100 h-75 rounded-full blur-[100px] pointer-events-none opacity-[0.04]" style={{ backgroundColor: data.iconColor }} />
 
             <div className="relative z-10 max-w-6xl mx-auto">
               {/* Top heading row */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 md:mb-16">
                 <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex flex-col items-center lg:items-start gap-6">
                   <div className="flex items-center gap-2">
-                    <div className="w-[3px] h-5 rounded-full" style={{ background: `linear-gradient(to bottom, ${data.iconColor}, #a906c9)` }} />
+                    <div className="w-0.75 h-5 rounded-full" style={{ background: `linear-gradient(to bottom, ${data.iconColor}, #a906c9)` }} />
                     <span className="text-[11px] font-black tracking-[0.45em] uppercase text-slate-400">Problems & Solutions</span>
                   </div>
                   <div className="relative w-36 h-36 md:w-44 md:h-44">
@@ -1658,157 +1682,128 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
         
         {/* Soft Background Decorative Radial Glows (Matching Home Page) */}
         <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] blur-[150px] rounded-full pointer-events-none opacity-[0.12] z-0"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 blur-[150px] rounded-full pointer-events-none opacity-[0.12] z-0"
           style={{ backgroundColor: data.iconColor }}
         />
 
         <div className="text-center mb-16 relative z-10">
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-xs font-bold tracking-[0.25em] uppercase mb-4"
-            style={{ color: data.iconColor }}
-          >
-            {t("services.showcaseBadge") || "PERFORMANCE BENCHMARKS"}
-          </motion.p>
-          <motion.h2 
+          <div className="flex items-center justify-center w-full gap-2 mb-6">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm">
+              <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
+              <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">
+                {showcaseBadge}
+              </span>
+              <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
+            </div>
+          </div>
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-semibold text-slate-900 mb-4"
+            className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-950 tracking-tight leading-[1.1]"
           >
-            {t("services.showcaseTitle") || "Engineered for Excellence"}
+            {showcaseLead}
+            {showcaseLead && " "}
+            <span className="relative inline-block">
+              <span className="relative z-10">{showcaseAccent}</span>
+              <motion.span
+                initial={{ width: 0 }}
+                whileInView={{ width: "100%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="absolute bottom-1 left-0 h-[35%] z-0"
+                style={{ backgroundColor: `${data.iconColor}22` }}
+              />
+            </span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-slate-400 text-base max-w-xl mx-auto"
+            className="text-slate-500 text-sm md:text-base leading-relaxed max-w-sm mx-auto"
           >
-            {t("services.showcaseDesc") || "Every solution we deploy is built around these non-negotiable architectural pillars."}
+            {showcaseDesc}
           </motion.p>
         </div>
 
-        {/* 3 highly interactive hover cards grid */}
+        {/* 3 benefit cutout cards (use service benefits) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-          {currentPillars.map((pillar, idx) => (
+          {((localizedBenefits as { title: string; desc: string }[]).slice(0, 3)).map((benefit, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.15 }}
-              className="relative group p-8 rounded-3xl bg-white/70 border border-slate-200/80 backdrop-blur-md overflow-hidden transition-all duration-500 hover:shadow-2xl cursor-default"
-              style={{
-                boxShadow: "0 10px 30px -15px rgba(0,0,0,0.03)"
-              }}
-              whileHover={{ 
-                y: -10,
-                borderColor: data.iconColor,
-                boxShadow: `0 20px 40px -15px ${data.iconColor}22`
-              }}
             >
-              {/* Dynamic Interactive Overlay (Changes opacity on hover) */}
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none z-0"
-                style={{
-                  background: `radial-gradient(circle at top left, ${data.iconColor}0a, transparent 70%)`
-                }}
-              />
-
-              {/* Icon Container */}
-              <div className="relative z-10 mb-6 flex items-center justify-center w-14 h-14 rounded-2xl bg-slate-50 border border-slate-200/60 group-hover:scale-110 group-hover:border-transparent transition-all duration-500"
-                style={{
-                  backgroundColor: `${data.iconColor}08`
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = `${data.iconColor}12`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = `${data.iconColor}08`;
-                }}
+              <CutoutCard
+                className={cn(
+                  cutoutCardSurfaceClassName,
+                  "bg-white h-full flex flex-col"
+                )}
+                style={{ boxShadow: "0 18px 40px -24px rgba(15, 23, 42, 0.35)" }}
               >
-                {pillar.icon}
-              </div>
-
-              {/* Title & Desc */}
-              <h3 className="relative z-10 text-xl font-semibold text-slate-900 mb-3 group-hover:text-[#000000] transition-colors duration-300">
-                {pillar.title}
-              </h3>
-              <p className="relative z-10 text-slate-500 text-sm leading-relaxed mb-8 transition-colors duration-300">
-                {pillar.description}
-              </p>
-
-              {/* Animated Badges Overlay Layer (Rising on Hover) */}
-              <div className="relative z-10 flex flex-wrap gap-2 transition-all duration-500 transform translate-y-2 opacity-80 group-hover:translate-y-0 group-hover:opacity-100">
-                {pillar.badges.map((badge, bIdx) => (
-                  <span
-                    key={bIdx}
-                    className="px-3 py-1 rounded-full text-[11px] font-semibold transition-all duration-300 shadow-sm border"
+                <CutoutCardMedia className="h-52 sm:h-60">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-center bg-cover z-0"
                     style={{
-                      backgroundColor: `${data.iconColor}10`,
-                      borderColor: `${data.iconColor}44`,
-                      color: data.iconColor
+                      backgroundImage: `url(${pillarImages[idx % pillarImages.length]})`,
                     }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = `${data.iconColor}1a`;
-                      e.currentTarget.style.borderColor = data.iconColor;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = `${data.iconColor}10`;
-                      e.currentTarget.style.borderColor = `${data.iconColor}44`;
-                    }}
-                  >
-                    {badge}
-                  </span>
-                ))}
-              </div>
+                  />
+                  <img
+                    src={pillarImages[idx % pillarImages.length]}
+                    alt={benefit.title}
+                    className="absolute inset-0 w-full h-full object-cover z-0 md:hidden"
+                  />
+                  <CutoutCardOverlay className="hidden md:block bg-linear-to-t from-slate-950/60 via-slate-950/15 to-transparent z-10" />
+                  <CutoutCardInsetLabel className="bottom-0 left-0 rounded-tr-[20px] bg-white/90 px-4 py-2">
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                      Benefit 0{idx + 1}
+                    </span>
+                    <CutoutCorner className="absolute -right-7.75 -bottom-px rotate-90 text-white/90" />
+                    <CutoutCorner className="absolute -top-7.75 -left-px rotate-90 text-white/90" />
+                  </CutoutCardInsetLabel>
+                  <CutoutCardPin className="top-4 left-4 rounded-full border border-white/40 bg-white/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
+                    Benchmarked
+                  </CutoutCardPin>
+                </CutoutCardMedia>
+                <CutoutCardContent className="space-y-4 flex flex-col flex-1">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200"
+                      style={{ backgroundColor: `${data.iconColor}10` }}
+                    >
+                      <span className="text-slate-700 font-bold">{idx + 1}</span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900 leading-tight">
+                      {benefit.title}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    {benefit.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    <span
+                      className="rounded-full border px-3 py-1 text-[11px] font-semibold"
+                      style={{
+                        borderColor: `${data.iconColor}44`,
+                        color: data.iconColor,
+                        backgroundColor: `${data.iconColor}10`,
+                      }}
+                    >
+                      Benefit
+                    </span>
+                  </div>
+                </CutoutCardContent>
+              </CutoutCard>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Immersive Dark Bento Grid CTA Card (State of the Art) */}
-      <section className="py-28 px-4 w-full relative z-10">
-        <div className="max-w-5xl mx-auto rounded-[40px] bg-slate-950 border border-slate-800 text-white p-10 md:p-20 relative overflow-hidden shadow-2xl">
-          
-          {/* Stunning Background Pulsating Glowing Lights styled in data.iconColor */}
-          <div 
-            className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full blur-[150px] pointer-events-none opacity-20 animate-pulse"
-            style={{ backgroundColor: data.iconColor }}
-          />
-          <div 
-            className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full blur-[150px] pointer-events-none opacity-20 animate-pulse"
-            style={{ backgroundColor: data.iconColor }}
-          />
-
-          <div className="relative z-10 flex flex-col items-center text-center gap-8">
-            <h2 className="text-3xl md:text-6xl font-semibold leading-tight text-white max-w-3xl">
-              {localizedCta}
-            </h2>
-            <p className="text-slate-400 text-base md:text-lg max-w-xl">
-              {t("services.ctaDesc") || "Let's assemble the perfect technical architecture to turn your complex ideas into scalable reality."}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full justify-center items-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-3 px-12 py-4 rounded-2xl text-white font-semibold text-base shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group w-full sm:w-auto"
-                style={{ 
-                  background: `linear-gradient(135deg, ${data.iconColor}, ${data.iconColor}dd)`
-                }}
-              >
-                {t("services.start") || "Start a Project"}
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
- 
       <CinematicFooter />
     </main>
   );
