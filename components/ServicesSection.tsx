@@ -122,6 +122,10 @@ export function ServicesSection() {
                     <div
                       key={index}
                       onMouseEnter={() => setHoveredIndex(index)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        startTransition(`/services/${pillar.slug}`, pillar.title.toUpperCase());
+                      }}
                       className="relative border-r last:border-r-0 border-slate-200 overflow-hidden cursor-pointer select-none bg-white"
                       style={{ flex: `0 0 ${100 / pillars.length}%` }}
                     >
@@ -163,10 +167,9 @@ export function ServicesSection() {
                         </h3>
                         <div className="flex flex-wrap gap-2 justify-center">
                           {pillar.subservices.map((sub, sIdx) => (
-                            <button
+                            <div
                               key={sIdx}
-                              onClick={(e) => handleSubserviceClick(pillar.subSlugs[sIdx], sub, e)}
-                              className={`px-4 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${badgeClass} active:scale-95`}
+                              className={`px-4 py-2 text-sm font-medium rounded-full transition-colors duration-200 cursor-default ${badgeClass}`}
                               style={{
                                 opacity: isHovered ? 1 : 0,
                                 transform: isHovered ? "translateY(0)" : "translateY(16px)",
@@ -174,7 +177,7 @@ export function ServicesSection() {
                               }}
                             >
                               {sub}
-                            </button>
+                            </div>
                           ))}
                         </div>
                       </div>
@@ -227,11 +230,20 @@ export function ServicesSection() {
                       <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: "easeInOut" }} className="overflow-hidden">
                         <div className="pt-4 flex flex-wrap gap-2">
                           {pillar.subservices.map((sub, sIdx) => (
-                            <button key={sIdx} onClick={(e) => handleSubserviceClick(pillar.subSlugs[sIdx], sub, e)} className={`px-3 py-1.5 text-xs font-normal rounded-full transition-all active:scale-95 flex items-center gap-1.5 ${badgeClass}`}>
+                            <div key={sIdx} className={`px-3 py-1.5 text-xs font-normal rounded-full transition-all cursor-default ${badgeClass}`}>
                               <span>{sub}</span>
-                              <ArrowRight className="w-3 h-3 opacity-70" />
-                            </button>
+                            </div>
                           ))}
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              startTransition(`/services/${pillar.slug}`, pillar.title.toUpperCase());
+                            }}
+                            className="mt-3 w-full px-4 py-2.5 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] text-white text-sm font-medium rounded-full active:scale-95 flex items-center justify-center gap-2"
+                          >
+                            <span>Explore {pillar.title}</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
                         </div>
                       </motion.div>
                     )}

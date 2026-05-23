@@ -6,6 +6,7 @@ import { Send, X, ChevronDown, CheckCircle2, Search, Sparkles } from "lucide-rea
 import { cn } from "@/lib/utils";
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "@/context/LanguageContext";
+import { PulseBeams } from "@/components/ui/pulse-beams";
 
 const countries = [
   { code: "US", name: "United States", dial: "+1" },
@@ -182,7 +183,7 @@ function CountryPicker({ selected, onChange, className }: {
 }
 
 // ── Main Section ─────────────────────────────────────────────
-export function ContactSection() {
+export function ContactSection({ iconColor, isModal = false }: { iconColor?: string; isModal?: boolean }) {
   const { t, language } = useTranslation();
   const isArabicOrUrdu = language === "ur" || language === "ar";
   const serviceOptions = getServiceOptions(t);
@@ -207,27 +208,103 @@ export function ContactSection() {
     setSubmitted(true);
   };
 
+  const beamColor = iconColor || "#1620f0";
+  const headerBeams = [
+    {
+      path: "M 0 56 L 240 56",
+      color: beamColor,
+      strokeWidth: 2,
+      gradientConfig: {
+        initial: { x1: "0%", x2: "0%", y1: "0%", y2: "0%" },
+        animate: { x1: ["0%", "100%"], x2: ["0%", "100%"], y1: "0%", y2: "0%" },
+        transition: { duration: 3.5, repeat: Infinity, ease: "linear" }
+      }
+    },
+    {
+      path: "M 15 56 Q 120 -10 225 56",
+      color: beamColor,
+      strokeWidth: 1.5,
+      gradientConfig: {
+        initial: { x1: "0%", x2: "0%", y1: "0%", y2: "0%" },
+        animate: { x1: ["0%", "100%"], x2: ["0%", "100%"], y1: ["0%", "100%"], y2: ["0%", "100%"] },
+        transition: { duration: 4.5, repeat: Infinity, ease: "linear", delay: 1 }
+      }
+    },
+    {
+      path: "M 15 56 Q 120 122 225 56",
+      color: beamColor,
+      strokeWidth: 1.5,
+      gradientConfig: {
+        initial: { x1: "0%", x2: "0%", y1: "0%", y2: "0%" },
+        animate: { x1: ["0%", "100%"], x2: ["0%", "100%"], y1: ["100%", "0%"], y2: ["100%", "0%"] },
+        transition: { duration: 4, repeat: Infinity, ease: "linear", delay: 2 }
+      }
+    }
+  ];
+
+  const submitBeams = [
+    {
+      path: "M 0 56 L 300 56",
+      color: beamColor,
+      strokeWidth: 2,
+      gradientConfig: {
+        initial: { x1: "0%", x2: "0%", y1: "0%", y2: "0%" },
+        animate: { x1: ["0%", "100%"], x2: ["0%", "100%"], y1: "0%", y2: "0%" },
+        transition: { duration: 3.5, repeat: Infinity, ease: "linear" }
+      }
+    },
+    {
+      path: "M 20 56 Q 150 -10 280 56",
+      color: beamColor,
+      strokeWidth: 1.5,
+      gradientConfig: {
+        initial: { x1: "0%", x2: "0%", y1: "0%", y2: "0%" },
+        animate: { x1: ["0%", "100%"], x2: ["0%", "100%"], y1: ["0%", "100%"], y2: ["0%", "100%"] },
+        transition: { duration: 4.5, repeat: Infinity, ease: "linear", delay: 1 }
+      }
+    },
+    {
+      path: "M 20 56 Q 150 122 280 56",
+      color: beamColor,
+      strokeWidth: 1.5,
+      gradientConfig: {
+        initial: { x1: "0%", x2: "0%", y1: "0%", y2: "0%" },
+        animate: { x1: ["0%", "100%"], x2: ["0%", "100%"], y1: ["100%", "0%"], y2: ["100%", "0%"] },
+        transition: { duration: 4, repeat: Infinity, ease: "linear", delay: 2 }
+      }
+    }
+  ];
+
   return (
-    <section id="contact" className="relative w-full overflow-hidden py-12 md:py-16 bg-white font-['General_Sans',sans-serif] border-t border-slate-100">
+    <section id="contact" className={cn(
+      "font-['General_Sans',sans-serif]",
+      isModal ? "relative w-full max-w-xl mx-auto" : "relative w-full overflow-hidden py-12 md:py-16 bg-white border-t border-slate-100"
+    )}>
 
       {/* Floating 3D Blocks */}
-      <motion.div
-        className="absolute top-[10%] left-[2%] w-32 h-32 md:w-56 md:h-56 pointer-events-none opacity-20 md:opacity-40 z-0"
-        animate={{ y: [0, -30, 0], rotate: [0, 15, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <img src="/hero-block-1.avif" alt="3D Cube" className="w-full h-full object-contain blur-[1px]" />
-      </motion.div>
-      <motion.div
-        className="absolute bottom-[10%] right-[2%] w-32 h-32 md:w-56 md:h-56 pointer-events-none opacity-20 md:opacity-40 z-0"
-        animate={{ y: [0, 30, 0], rotate: [0, -15, 0] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      >
-        <img src="/hero-block-2.avif" alt="3D Cube" className="w-full h-full object-contain blur-[1px]" />
-      </motion.div>
+      {!isModal && (
+        <>
+          <motion.div
+            className="absolute top-[10%] left-[2%] w-32 h-32 md:w-56 md:h-56 pointer-events-none opacity-20 md:opacity-40 z-0"
+            animate={{ y: [0, -30, 0], rotate: [0, 15, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <img src="/hero-block-1.avif" alt="3D Cube" className="w-full h-full object-contain blur-[1px]" />
+          </motion.div>
+          <motion.div
+            className="absolute bottom-[10%] right-[2%] w-32 h-32 md:w-56 md:h-56 pointer-events-none opacity-20 md:opacity-40 z-0"
+            animate={{ y: [0, 30, 0], rotate: [0, -15, 0] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          >
+            <img src="/hero-block-2.avif" alt="3D Cube" className="w-full h-full object-contain blur-[1px]" />
+          </motion.div>
+        </>
+      )}
 
       {/* ── Header Section ── */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-6 text-center mb-16 md:mb-20">
+      {!isModal && (
+        <>
+          <div className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-6 text-center mb-16 md:mb-20">
         <div className="flex justify-center w-full mb-6">
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-100 shadow-sm">
             <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
@@ -246,11 +323,12 @@ export function ContactSection() {
             <motion.span
               initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="absolute bottom-1 left-0 h-[35%] bg-[#1620f0]/15 z-0"
+              className="absolute bottom-1 left-0 h-[35%] z-0"
+              style={{ backgroundColor: iconColor ? `${iconColor}22` : "rgba(22, 32, 240, 0.15)" }}
             />
           </span>
           <br />{t("contact.title.p2")}
-          <span className="text-[#1620f0]">
+          <span style={{ color: iconColor || "#1620f0" }}>
             {t("contact.title.highlight2")}
           </span>
         </h2>
@@ -260,8 +338,12 @@ export function ContactSection() {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-          <ContactButton label={t("contact.btn.call")} href="tel:#" variant="transparent" className="min-w-[180px] md:min-w-[200px]" />
-          <ContactButton label={t("contact.btn.demo")} href="#" variant="gradient" className="min-w-[180px] md:min-w-[200px]" />
+          <ContactButton label={t("contact.btn.call")} href="tel:#" variant="transparent" className="min-w-[180px] md:min-w-[200px] h-[52px]" />
+          <div className="w-[240px] h-28 flex items-center justify-center relative overflow-visible">
+            <PulseBeams beams={headerBeams} viewBox="0 0 240 112" className="absolute inset-0 w-full h-full">
+              <ContactButton label={t("contact.btn.demo")} href="#" variant="gradient" className="min-w-[180px] md:min-w-[200px] h-[52px] relative z-10" />
+            </PulseBeams>
+          </div>
         </div>
       </div>
 
@@ -286,6 +368,8 @@ export function ContactSection() {
         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
       </div>
+        </>
+      )}
 
       {/* ── CSS Animations ── */}
       <style jsx global>{`
@@ -310,7 +394,7 @@ export function ContactSection() {
           content: "";
           position: absolute;
           inset: -150%;
-          background: conic-gradient(from 0deg, #1620f0, #a906c9, #f016da, #1620f0);
+          background: conic-gradient(from 0deg, ${iconColor || "#1620f0"}, #a906c9, ${iconColor || "#f016da"}, ${iconColor || "#1620f0"});
           animation: rotate-border 6s linear infinite;
           opacity: 0;
           transition: opacity 0.4s ease;
@@ -329,19 +413,19 @@ export function ContactSection() {
       `}</style>
 
       {/* ── Main Form Section ── */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20">
+      <div className={cn("relative z-10 w-full mx-auto", isModal ? "max-w-xl px-0" : "max-w-6xl px-4 md:px-6")}>
+        <div className={cn("grid", isModal ? "grid-cols-1 gap-0" : "grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20")}>
 
           {/* Left: Form */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isModal ? false : { opacity: 0, y: 30 }}
+            whileInView={isModal ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="form-border-container rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.03)]"
+            className={cn("form-border-container rounded-[1.5rem]", !isModal && "shadow-[0_20px_50px_rgba(0,0,0,0.03)]")}
           >
-            <div className="form-border-inner rounded-[1.5rem] p-6 md:p-8">
-              <h3 className="text-2xl font-medium text-slate-950 mb-8 text-center lg:text-left">
-                {t("contact.form.title.p1")} <span className="text-[#1620f0]">{t("contact.form.title.highlight")}</span> {t("contact.form.title.p2") ?? ""}
+            <div className={cn("form-border-inner rounded-[1.5rem]", isModal ? "p-5 md:p-6 bg-white" : "p-6 md:p-8 bg-[rgba(255,255,255,0.98)]")}>
+              <h3 className={cn("font-medium text-slate-950 text-center lg:text-left", isModal ? "text-xl mb-6" : "text-2xl mb-8")}>
+                {t("contact.form.title.p1")} <span style={{ color: iconColor || "#1620f0" }}>{t("contact.form.title.highlight")}</span> {t("contact.form.title.p2") ?? ""}
               </h3>
 
               {submitted ? (
@@ -355,8 +439,8 @@ export function ContactSection() {
                   <button onClick={() => setSubmitted(false)} className="text-[#6366f1] font-medium hover:underline">{t("contact.form.success.btn")}</button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form onSubmit={handleSubmit} className={cn("space-y-6", isModal && "space-y-4")}>
+                  <div className={cn("grid grid-cols-1 gap-6", isModal ? "md:grid-cols-2 gap-4" : "md:grid-cols-2")}>
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.name")}</label>
                       <input type="text" name="fullName" required value={formData.fullName} onChange={handleChange} placeholder={t("contact.form.placeholder.name")} className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-950 placeholder:text-slate-300 focus:outline-none focus:border-purple-500 transition-all font-normal text-sm" />
@@ -382,9 +466,9 @@ export function ContactSection() {
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className={cn("space-y-4", isModal && "space-y-2")}>
                     <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.services")}</label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className={cn("grid grid-cols-1 sm:grid-cols-2", isModal ? "gap-2" : "gap-3")}>
                       {serviceOptions.map(service => (
                         <label key={service} className="flex items-center gap-2.5 group cursor-pointer">
                           <div className="relative w-4 h-4 flex items-center justify-center">
@@ -404,7 +488,11 @@ export function ContactSection() {
                   </div>
 
                   <div className="pt-4 flex justify-center">
-                    <ContactButton label={isSubmitting ? t("contact.form.btn.loading") : t("contact.form.btn.submit")} type="submit" variant="gradient" className="min-w-[260px]" />
+                    <div className="w-[300px] h-28 flex items-center justify-center relative overflow-visible">
+                      <PulseBeams beams={submitBeams} viewBox="0 0 300 112" className="absolute inset-0 w-full h-full">
+                        <ContactButton label={isSubmitting ? t("contact.form.btn.loading") : t("contact.form.btn.submit")} type="submit" variant="gradient" className="min-w-[260px] h-[52px] relative z-10" />
+                      </PulseBeams>
+                    </div>
                   </div>
                 </form>
               )}
@@ -412,25 +500,27 @@ export function ContactSection() {
           </motion.div>
 
           {/* Right: Contact Info (Centered on Mobile) */}
+          {!isModal && (
           <div className="flex flex-col justify-center space-y-12 lg:pl-10 text-center lg:text-left">
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">{t("contact.info.sales.title")}</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.sales.desc")}</p>
-              <a href="mailto:sales@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all text-[#1620f0]">sales@Softcr8ors.com</a>
+              <a href="mailto:sales@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>sales@Softcr8ors.com</a>
             </div>
 
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">{t("contact.info.support.title")}</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.support.desc")}</p>
-              <a href="mailto:support@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all text-[#1620f0]">support@Softcr8ors.com</a>
+              <a href="mailto:support@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>support@Softcr8ors.com</a>
             </div>
 
             <div className="space-y-3">
               <h4 className="text-xl font-medium text-slate-950">{t("contact.info.chat.title")}</h4>
               <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.chat.desc")}</p>
-              <button className="font-medium text-lg hover:underline transition-all text-[#1620f0]">{t("contact.info.chat.btn")}</button>
+              <button className="font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>{t("contact.info.chat.btn")}</button>
             </div>
           </div>
+          )}
         </div>
       </div>
     </section>

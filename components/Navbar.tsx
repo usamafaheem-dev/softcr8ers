@@ -54,7 +54,13 @@ function RollingTextButton({
 
 function ContactButton({ className }: { className?: string }) {
   const { t } = useTranslation();
-  return <RollingTextButton label={t("nav.contact")} href="#contact" variant="gradient" className={className} />;
+  return (
+    <div className={cn("relative inline-flex items-center justify-center", className)}>
+      {/* Pulsating Ring Effect */}
+      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#1620f0] to-[#f016da] opacity-30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]" />
+      <RollingTextButton label={t("nav.contact")} href="#contact" variant="gradient" className="relative z-10" />
+    </div>
+  );
 }
 
 const navLinksData = [

@@ -7,6 +7,9 @@ import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { useAutoResizeTextarea } from "@/hooks/useAutoResizeTextarea";
 import { useTranslation } from "@/context/LanguageContext";
+import { CustomersSection } from "@/components/ui/customers-section";
+import { PopoverForm } from "@/components/ui/popover-form";
+import { ContactSection } from "@/components/ContactSection";
 
 // ─── Animated Chat Messages ─────────────────────────────────
 type Message = {
@@ -67,18 +70,23 @@ function ChatBubble({ message, index, isTyping = false, className }: { message: 
 // Rolling Text Button component
 function RollingTextButton({
   label,
-  href = "#",
+  href,
   variant = "gradient",
-  className
+  className,
+  onClick
 }: {
   label: string;
   href?: string;
   variant?: "gradient" | "transparent";
   className?: string;
+  onClick?: (e: React.MouseEvent) => void;
 }) {
+  const Tag = href && href !== "#" ? motion.a : motion.button;
+  
   return (
-    <motion.a
-      href={href}
+    <Tag
+      href={href && href !== "#" ? href : undefined}
+      onClick={onClick}
       className={cn(
         "group relative inline-flex items-center justify-center rounded-xl px-9 py-3 font-semibold font-sans overflow-hidden transition-all duration-500 cursor-pointer",
         variant === "gradient"
@@ -102,7 +110,7 @@ function RollingTextButton({
           </span>
         </div>
       </div>
-    </motion.a>
+    </Tag>
   );
 }
 
@@ -172,6 +180,7 @@ function HeroAIPrompt() {
 // ─── Main Hero Section ──────────────────────────────────────
 export function HeroSection() {
   const { t, language } = useTranslation();
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const [messages, setMessages] = useState<{ role: "user" | "ai", textKey: string, id: number }[]>([]);
   const chatRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(chatRef, { margin: "-30% 0px -30% 0px" });
@@ -204,7 +213,7 @@ export function HeroSection() {
     <section className="relative w-full px-2 md:px-4 pt-2 md:pt-4 bg-white">
 
       {/* Main Hero Wrapper with Rounded Background - Flex col to allow bottom anchoring */}
-      <div className="relative w-full min-h-[120vh] md:min-h-[130vh] rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 bg-white flex flex-col">
+      <div className="relative w-full min-h-[750px] md:min-h-[130vh] rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 bg-white flex flex-col">
 
         {/* Background Video - Covers full height of this container */}
         <div className="absolute inset-0 z-0">
@@ -238,7 +247,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* Content Layer - flex-1 stretches it to fill parent, flex-col allows mt-auto */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto pt-24 md:pt-44 px-4 md:px-12 flex-1 flex flex-col items-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto pt-16 md:pt-44 px-4 md:px-12 flex-1 flex flex-col items-center">
 
           {/* Text Content - Center on Mobile, Left on Desktop */}
           <div className="w-full flex flex-col items-center text-center mb-8 md:mb-10">
@@ -276,10 +285,40 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-row flex-wrap justify-center gap-3 md:gap-4 w-full md:w-auto"
+              className="flex flex-row flex-wrap justify-center gap-4 md:gap-6 w-full md:w-auto"
             >
-              <RollingTextButton label={t("hero.btn.start")} variant="gradient" className="flex-1 md:flex-none px-3 md:px-10 text-[13px] md:text-base h-11 md:h-12" />
-              <RollingTextButton label={t("hero.btn.demo")} variant="transparent" className="flex-1 md:flex-none px-3 md:px-10 text-[13px] md:text-base h-11 md:h-12" />
+              <PopoverForm
+                open={isFormOpen}
+                setOpen={setIsFormOpen}
+                showSuccess={false}
+                title="Start a Project"
+                width="95vw"
+                height="85vh"
+                showCloseButton={true}
+                showTitle={false}
+                customTrigger={
+                  <div className="relative group cursor-pointer w-full md:w-auto flex flex-1 md:flex-none justify-center">
+                    {/* Electricity Effect Wrapper */}
+                    <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] opacity-0 group-hover:opacity-100 blur-[8px] transition-all duration-300 animate-pulse" />
+                    <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                       <div className="absolute inset-0 rounded-xl bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xNSIvPjwvc3ZnPg==')] mix-blend-overlay animate-[ping_1.5s_infinite]" />
+                    </div>
+                    
+                    <div className="relative z-10 w-full pointer-events-none">
+                      <RollingTextButton label={t("hero.btn.start")} variant="gradient" className="w-full md:w-auto px-6 md:px-10 text-[13px] md:text-base h-12 md:h-14 border-none shadow-[0_0_20px_rgba(22,32,240,0.3)] pointer-events-auto" />
+                    </div>
+                  </div>
+                }
+                openChild={
+                  <div className="w-full h-full flex items-center justify-center p-4 md:p-8 bg-transparent">
+                    <ContactSection isModal={true} />
+                  </div>
+                }
+              />
+
+              <div className="flex-1 md:flex-none flex justify-center">
+                <RollingTextButton label={t("hero.btn.demo")} variant="transparent" className="w-full md:w-auto px-6 md:px-10 text-[13px] md:text-base h-12 md:h-14" />
+              </div>
             </motion.div>
           </div>
 
@@ -291,7 +330,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="w-full max-w-[1400px] min-h-[780px] md:min-h-[604px] bg-white/20 backdrop-blur-xl border border-white/40 border-b-0 rounded-t-2xl md:rounded-t-[2.5rem] rounded-b-none pt-8 md:pt-[40px] px-0 md:px-[16px] pb-[30px] shadow-[0_-10px_50px_-20px_rgba(0,0,0,0.08)] overflow-hidden relative flex flex-col gap-6"
+              className="w-full max-w-[1400px] min-h-[500px] md:min-h-[604px] bg-white/20 backdrop-blur-xl border border-white/40 border-b-0 rounded-t-2xl md:rounded-t-[2.5rem] rounded-b-none pt-8 md:pt-[40px] px-0 md:px-[16px] pb-[30px] shadow-[0_-10px_50px_-20px_rgba(0,0,0,0.08)] overflow-hidden relative flex flex-col gap-6"
             >
               {/* 3D Decor Blocks */}
               <div className="absolute top-20 -left-10 w-32 h-32 bg-purple-200/10 blur-2xl rounded-full" />
@@ -314,7 +353,7 @@ export function HeroSection() {
               {/* Chat messages area */}
               <div className="relative z-10 w-[90%] md:w-full max-w-xl mx-auto">
                 <div className="bg-white/60 backdrop-blur-xl rounded-2xl border border-white/50 shadow-md px-4 md:px-6 pt-8 pb-4">
-                  <div className="flex flex-col justify-end w-full h-[340px] md:h-[280px] transition-all duration-500">
+                  <div className="flex flex-col justify-end w-full h-[280px] md:h-[280px] transition-all duration-500">
                     <AnimatePresence mode="popLayout" initial={false}>
                       {messages.map((m, idx) => (
                         <ChatBubble
@@ -338,60 +377,8 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-
-      {/* Two-Line Continuous Marquee - Positioned separately below hero */}
-      <div dir="ltr" className="relative w-full overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24 pointer-events-none z-20 select-none bg-white">
-        <div className="flex flex-col gap-4 md:gap-8 -rotate-[2deg] scale-105">
-
-          {/* Line 1 - Moving Left */}
-          <div>
-            <div className={cn(
-              "animate-marquee hover:[animation-play-state:paused] flex whitespace-nowrap font-bold uppercase tracking-tighter text-slate-950/20 leading-none font-sans pointer-events-auto cursor-default w-max",
-              isArabicOrUrdu ? "text-[5vw] md:text-[78px]" : "text-[6vw] md:text-[90px]"
-            )} style={{ animationDuration: "60s" }}>
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="flex flex-row items-center">
-                  {["Softcr8ors", t("marquee.1"), t("marquee.2"), t("marquee.3")].map((word, idx) => (
-                    <span key={idx} className="flex items-center group">
-                      <span className={cn(
-                        "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:via-[#f016da] hover:to-[#a906c9]",
-                        idx % 2 === 1 && "text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#f016da] to-[#a906c9]"
-                      )}>
-                        {word}
-                      </span>
-                      <span className="px-6 md:px-10 text-slate-950/10">•</span>
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Line 2 - Moving Right */}
-          <div>
-            <div className={cn(
-              "animate-marquee-reverse hover:[animation-play-state:paused] flex whitespace-nowrap font-bold uppercase tracking-tighter text-slate-950/10 leading-none font-sans pointer-events-auto cursor-default w-max",
-              isArabicOrUrdu ? "text-[5vw] md:text-[78px]" : "text-[6vw] md:text-[90px]"
-            )} style={{ animationDuration: "60s" }}>
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="flex flex-row items-center">
-                  {[t("marquee.4"), "Softcr8ors", t("marquee.5"), t("marquee.6")].map((word, idx) => (
-                    <span key={idx} className="flex items-center group">
-                      <span className={cn(
-                        "transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#a906c9] hover:via-[#2f89f7] hover:to-[#1620f0]",
-                        idx % 2 === 1 && "text-transparent bg-clip-text bg-gradient-to-r from-[#a906c9] via-[#2f89f7] to-[#1620f0]"
-                      )}>
-                        {word}
-                      </span>
-                      <span className="px-6 md:px-10 text-slate-950/10">•</span>
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Brand Logos Continuous Marquee - Flat below hero */}
+      <CustomersSection />
 
 
     </section>

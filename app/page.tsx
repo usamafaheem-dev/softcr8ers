@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection8 } from "@/components/AboutSection8";
 import { ServicesSection } from "@/components/ServicesSection";
+import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { CircularPortfolio } from "@/components/CircularPortfolio";
 import { ProcessSection } from "@/components/ProcessSection";
 import ModernIndustries from "@/components/ModernIndustries";
@@ -20,6 +21,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection8 />
       <ServicesSection />
+      <WhyChooseUs />
       <ProcessSection />
       <CircularPortfolio />
       <TechStack />
