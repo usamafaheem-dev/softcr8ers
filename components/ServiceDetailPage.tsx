@@ -1592,13 +1592,7 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="flex flex-col items-center mt-6"
           >
-            <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-5">
-              <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
-              <span className="text-[8.5px] sm:text-[10px] md:text-xs font-black tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] uppercase text-slate-500 ml-1 text-center">
-                {t("services.badge") || "OUR SERVICES"}
-              </span>
-              <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
-            </div>
+
             <div className="flex flex-wrap justify-center gap-3 max-w-4xl relative z-10">
               {localizedFeatures.slice(0, 6).map((feature, idx) => (
                 <span 
