@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Search, PenTool, Code2, Rocket } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 interface DevelopmentProcessSectionProps {
   iconColor: string;
@@ -39,6 +40,7 @@ const steps = [
 ];
 
 export function DevelopmentProcessSection({ iconColor }: DevelopmentProcessSectionProps) {
+  const { t } = useTranslation();
   return (
     <section className="py-20 md:py-32 bg-slate-50/50 relative overflow-hidden font-sans border-t border-slate-100">
        <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -48,14 +50,14 @@ export function DevelopmentProcessSection({ iconColor }: DevelopmentProcessSecti
              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-6">
                 <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
                 <span className="text-[8.5px] sm:text-[10px] md:text-xs font-black tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] uppercase text-slate-500 ml-1 text-center">
-                  How We Work
+                  {t("process.dev.badge")}
                 </span>
                 <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
              </div>
              <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 mb-4 tracking-tight">
-               Our Development <span style={{ color: iconColor }}>Process</span>
+               {t("process.dev.title")} <span style={{ color: iconColor }}>Process</span>
              </h2>
-             <p className="text-slate-500 max-w-xl mx-auto text-sm md:text-base">A transparent, 4-stage agile framework designed to turn your visionary ideas into market-ready realities.</p>
+             <p className="text-slate-500 max-w-xl mx-auto text-sm md:text-base">{t("process.dev.subtitle")}</p>
           </div>
 
           {/* Stepped Timeline */}
@@ -134,8 +136,8 @@ export function DevelopmentProcessSection({ iconColor }: DevelopmentProcessSecti
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full flex items-center justify-center text-white shadow-sm z-10" style={{ backgroundColor: step.color }}>
                            <Icon size={12} />
                         </div>
-                        <h3 className="text-[13px] font-bold text-slate-900 mb-1.5 mt-1">{step.title}</h3>
-                        <p className="text-[11px] text-slate-500 leading-relaxed font-medium">{step.desc}</p>
+                        <h3 className="text-[13px] font-bold text-slate-900 mb-1.5 mt-1">{t(`process.dev.step${idx + 1}.title`)}</h3>
+                        <p className="text-[11px] text-slate-500 leading-relaxed font-medium">{t(`process.dev.step${idx + 1}.desc`)}</p>
                      </div>
 
                   </motion.div>

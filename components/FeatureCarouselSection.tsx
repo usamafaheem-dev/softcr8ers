@@ -67,7 +67,7 @@ export function FeatureCarouselSection({ title, description, features, iconColor
       </div>
 
       {/* Infinite Mobile Marquee */}
-      <div className="relative w-full flex overflow-hidden py-10 -mt-10">
+      <div className="relative w-full flex overflow-hidden py-10 -mt-10" dir="ltr">
         
         {/* Gradients on the edges to fade out the phones smoothly */}
         <div className="absolute left-0 top-0 bottom-0 w-16 md:w-64 bg-gradient-to-r from-slate-50 to-transparent z-20 pointer-events-none" />
@@ -165,7 +165,7 @@ export function FeatureCarouselSection({ title, description, features, iconColor
                      </div>
                      
                      {/* ── Inner Mobile Marquee ── */}
-                     <div className="w-full bg-white py-2.5 mb-2 flex overflow-hidden relative z-20 border-t border-slate-50">
+                     <div className="w-full bg-white py-2.5 mb-2 flex overflow-hidden relative z-20 border-t border-slate-50" dir="ltr">
                          <div className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
                          <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
                          <motion.div 

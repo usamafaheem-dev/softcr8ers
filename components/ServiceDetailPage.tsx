@@ -1099,13 +1099,13 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
   const fallbackDict = servicesTranslations["en"] || {};
   const currentTrans = transDict[slug] || fallbackDict[slug] || {};
 
-  const localizedTitle = currentTrans.title || (data.titleKey ? t(data.titleKey) : data.title);
-  const localizedTagline = currentTrans.tagline || (data.descKey ? t(data.descKey) : data.tagline);
-  const localizedDescription = currentTrans.description || data.description;
-  const localizedFeatures = (currentTrans.features || data.features) as (string | { title: string; description: string })[];
-  const localizedBenefits = currentTrans.benefits || data.benefits;
-  const localizedProcess = currentTrans.process || data.process;
-  const localizedCta = currentTrans.cta || data.cta;
+  const localizedTitle = language === "en" ? data.title : (currentTrans.title || (data.titleKey ? t(data.titleKey) : data.title));
+  const localizedTagline = language === "en" ? data.tagline : (currentTrans.tagline || (data.descKey ? t(data.descKey) : data.tagline));
+  const localizedDescription = language === "en" ? data.description : (currentTrans.description || data.description);
+  const localizedFeatures = (language === "en" ? data.features : (currentTrans.features || data.features)) as (string | { title: string; description: string })[];
+  const localizedBenefits = language === "en" ? data.benefits : (currentTrans.benefits || data.benefits);
+  const localizedProcess = language === "en" ? data.process : (currentTrans.process || data.process);
+  const localizedCta = language === "en" ? data.cta : (currentTrans.cta || data.cta);
   const showcaseBadge = t("services.showcaseBadge") || "BENEFITS";
   const showcaseTitle = t("services.showcaseTitle") || "Core Benefits";
   const showcaseDesc =
@@ -1452,7 +1452,7 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
       <Navbar />
  
       {/* Redesigned Premium Center-Aligned Hero Section */}
-      <section className="relative w-full min-h-[90vh] flex flex-col justify-center items-center pt-32 pb-20 overflow-hidden">
+      <section className="relative w-full min-h-[95vh] md:min-h-[100vh] flex flex-col justify-center items-center pt-28 pb-20 overflow-hidden">
         
         {/* Soft Pink and Purple Background Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-pink-200 via-fuchsia-100 to-purple-200 z-0" />

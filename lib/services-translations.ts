@@ -12,6 +12,86 @@ export interface TranslatedServiceData {
 
 export const servicesTranslations: Partial<Record<Language, Record<string, TranslatedServiceData>>> = {
   en: {
+    "ai-content-writing": {
+      title: "AI Content Writing",
+      tagline: "High-quality, SEO-optimized content produced at scale with AI precision.",
+      description: "We combine AI efficiency with expert human editing to produce content that ranks, converts, and sounds authentically human. From blog posts and landing page copy to product descriptions and email sequences — we deliver content at scale without sacrificing quality.",
+      features: ["SEO blog posts & articles", "Landing page copywriting", "Product descriptions at scale", "Email marketing sequences", "Social media content", "AI-assisted research & outlines", "Brand voice consistency", "Multilingual content", "Content calendar planning"],
+      benefits: [
+        { title: "10x Content Output", desc: "AI-assisted workflows let us produce in days what would take a traditional agency weeks — without the bloated retainer fees." },
+        { title: "SEO-Optimized From Day One", desc: "Every piece is built around target keywords, proper heading structure, and search intent — so content ranks, not just reads well." },
+        { title: "Consistent Brand Voice", desc: "We build a brand voice guide upfront and apply it across every piece, so your content sounds like you — at any volume." },
+        { title: "Fraction of Agency Cost", desc: "Get the output of a full content team at a fraction of the cost. AI handles the heavy lifting; our editors ensure the quality." }
+      ],
+      process: [
+        { step: "01", title: "Brand Voice & Tone Setup", desc: "We document your brand voice, tone guidelines, and style preferences so every piece of content is unmistakably yours." },
+        { step: "02", title: "Keyword & Topic Research", desc: "We identify the topics and keywords your audience is searching for and build a content strategy around real search demand." },
+        { step: "03", title: "AI-Assisted Draft Creation", desc: "Our AI workflows generate structured, research-backed drafts at speed — covering your content calendar without bottlenecks." },
+        { step: "04", title: "Expert Human Editing & QA", desc: "Every draft is reviewed and refined by experienced editors who check for accuracy, tone, SEO alignment, and readability." },
+        { step: "05", title: "Publishing & Performance Tracking", desc: "We handle publishing, track rankings and engagement, and use performance data to continuously improve the content strategy." }
+      ],
+      cta: "Scale your content without scaling your team."
+    },
+    "saas-development": {
+      title: "SaaS Development",
+      tagline: "Multi-tenant cloud platforms engineered for scale and recurring revenue.",
+      description: "We architect and build production-ready SaaS platforms from the ground up. Multi-tenant architecture, subscription billing, role-based access, and the infrastructure to support thousands of concurrent users — all engineered for reliability and rapid feature iteration.",
+      features: ["Multi-tenant architecture", "Stripe subscription billing", "Role-based access control", "Admin dashboard & analytics", "API-first design", "White-label capabilities", "Usage metering & limits", "Onboarding & user management", "99.9% uptime SLA architecture"],
+      benefits: [
+        { title: "Recurring Revenue Model", desc: "We build the billing infrastructure — subscription tiers, trials, upgrades, and invoicing — so you can focus on growing MRR from day one." },
+        { title: "Scales With Your Growth", desc: "Multi-tenant architecture and cloud-native infrastructure mean your platform handles 10 users or 10,000 without a rewrite." },
+        { title: "Fast Feature Iteration", desc: "Clean, modular codebases and CI/CD pipelines let you ship new features weekly without breaking what's already working." },
+        { title: "Enterprise Ready", desc: "SSO, audit logs, role-based permissions, and white-label options make your SaaS attractive to enterprise buyers from the start." }
+      ],
+      process: [
+        { step: "01", title: "Product Architecture", desc: "We define your data model, tenant isolation strategy, and system architecture to ensure the foundation supports your long-term roadmap." },
+        { step: "02", title: "Tenant & Auth System", desc: "Multi-tenant data isolation, SSO integration, role-based access control, and secure session management built from the ground up." },
+        { step: "03", title: "Core Feature Development", desc: "Iterative sprints delivering your core product features with working demos, feedback loops, and production-quality code." },
+        { step: "04", title: "Billing & Subscription Setup", desc: "Stripe integration with subscription plans, trial periods, usage-based billing, and a self-serve upgrade/downgrade flow." },
+        { step: "05", title: "Launch & Growth Infrastructure", desc: "Zero-downtime deployments, monitoring, alerting, and the analytics dashboards you need to understand and grow your user base." }
+      ],
+      cta: "Let's build your SaaS product the right way."
+    },
+    "ai-powered-apps": {
+      title: "AI Powered Applications",
+      tagline: "Intelligent software that learns, adapts, and automates your business.",
+      description: "We build custom AI-powered applications that go beyond simple automation. From LLM-integrated tools and RAG pipelines to computer vision and predictive analytics, we engineer intelligent systems that give your business a real competitive edge.",
+      features: ["LLM & GPT-4 integration", "RAG pipeline development", "AI chatbots & virtual agents", "Computer vision systems", "Predictive analytics & ML models", "Workflow automation with AI", "Natural language processing", "AI-powered search & recommendations", "Custom model fine-tuning"],
+      benefits: [
+        { title: "Real Competitive Advantage", desc: "AI capabilities that are custom-built for your workflows give you an edge competitors can't easily replicate with off-the-shelf tools." },
+        { title: "Massive Automation Savings", desc: "Automate repetitive, time-consuming tasks and redeploy your team's energy toward high-value work that actually moves the needle." },
+        { title: "24/7 Intelligent Operation", desc: "AI systems don't sleep. Your business processes, customer interactions, and data pipelines run continuously without manual intervention." },
+        { title: "Data-Driven Decisions", desc: "Turn raw data into actionable intelligence with predictive models and analytics that surface insights humans would miss." }
+      ],
+      process: [
+        { step: "01", title: "AI Strategy & Use Case Definition", desc: "We identify the highest-impact AI opportunities in your business and define clear, measurable goals before any development begins." },
+        { step: "02", title: "Data Audit & Preparation", desc: "We assess your existing data assets, identify gaps, and build the pipelines needed to feed your AI systems clean, structured data." },
+        { step: "03", title: "Model Selection & Architecture", desc: "We choose the right models and frameworks — whether fine-tuned LLMs, custom ML models, or third-party APIs — for your specific use case." },
+        { step: "04", title: "Development & Integration", desc: "We build and integrate the AI system into your existing stack, with robust APIs, fallback handling, and full observability." },
+        { step: "05", title: "Monitoring & Continuous Learning", desc: "Post-launch, we monitor model performance, track drift, and iterate to keep your AI system accurate and improving over time." }
+      ],
+      cta: "Ready to make your business AI-powered?"
+    },
+    "seo": {
+      title: "SEO & Growth",
+      tagline: "Technical SEO and content strategy that drives compounding organic growth.",
+      description: "We combine deep technical SEO expertise with data-driven content strategy to build sustainable organic traffic. From Core Web Vitals optimization and structured data to keyword architecture and link building — we engineer search visibility that compounds over time.",
+      features: ["Technical SEO audit & fixes", "Core Web Vitals optimization", "Keyword research & architecture", "On-page SEO optimization", "Structured data & schema markup", "Link building strategy", "Content strategy & planning", "Local SEO optimization", "SEO performance reporting"],
+      benefits: [
+        { title: "Compounding Organic Traffic", desc: "Unlike paid ads that stop the moment you pause spend, SEO builds an asset that grows month over month and pays dividends long-term." },
+        { title: "Lower CAC Than Paid Ads", desc: "Organic traffic has no per-click cost. As rankings improve, your customer acquisition cost drops while volume increases." },
+        { title: "Authority & Trust Building", desc: "High rankings signal credibility to both search engines and users. We build the topical authority that makes your brand the go-to source." },
+        { title: "Measurable ROI", desc: "Every action we take is tracked. You see exactly which keywords are ranking, how traffic is converting, and what the revenue impact is." }
+      ],
+      process: [
+        { step: "01", title: "SEO Audit & Baseline", desc: "A full technical and content audit to identify what's holding your site back — crawl issues, indexation problems, and missed opportunities." },
+        { step: "02", title: "Keyword & Competitor Research", desc: "We map the keyword landscape, identify high-value targets, and analyze what your top competitors are doing to outrank them." },
+        { step: "03", title: "Technical Fixes & On-Page", desc: "We fix the technical foundation — site speed, Core Web Vitals, structured data, internal linking — and optimize every key page." },
+        { step: "04", title: "Content & Link Strategy", desc: "A content calendar targeting your priority keywords, paired with a link building strategy to build domain authority over time." },
+        { step: "05", title: "Monthly Reporting & Iteration", desc: "Clear monthly reports showing ranking movements, traffic growth, and conversion impact — with strategy adjustments based on real data." }
+      ],
+      cta: "Start ranking where your customers are searching."
+    },
     "web-engineering": {
       title: "Web Engineering",
       tagline: "Architecting high-performance digital ecosystems with cutting-edge tech stacks.",
@@ -230,6 +310,86 @@ export const servicesTranslations: Partial<Record<Language, Record<string, Trans
     }
   },
   ur: {
+    "ai-content-writing": {
+      title: "AI مواد کی تحریر",
+      tagline: "AI کی درستگی کے ساتھ اعلی معیار کا، SEO کے لیے موزوں مواد۔",
+      description: "ہم AI کی کارکردگی کو ماہر انسانی ایڈیٹنگ کے ساتھ ملاتے ہیں تاکہ ایسا مواد تیار کیا جا سکے جو رینک کرے، کنورٹ کرے اور مستند طور پر انسانی لگے۔ بلاگ پوسٹس اور لینڈنگ پیج کاپی سے لے کر پروڈکٹ کی تفصیلات اور ای میل کی ترتیب تک — ہم معیار کی قربانی کے بغیر بڑے پیمانے پر مواد فراہم کرتے ہیں۔",
+      features: ["SEO بلاگ پوسٹس اور مضامین", "لینڈنگ پیج کاپی رائٹنگ", "بڑے پیمانے پر پروڈکٹ کی تفصیلات", "ای میل مارکیٹنگ کی ترتیب", "سوشل میڈیا مواد", "AI کی مدد سے تحقیق اور خاکہ", "برانڈ کی آواز میں مستقل مزاجی", "کثیر لسانی مواد", "مواد کیلنڈر کی منصوبہ بندی"],
+      benefits: [
+        { title: "10x مواد کی پیداوار", desc: "AI کی مدد سے کام کرنے کے عمل ہمیں دنوں میں وہ کام کرنے دیتے ہیں جو روایتی ایجنسیوں کو ہفتوں میں لگتا ہے — بھاری فیس کے بغیر۔" },
+        { title: "پہلے دن سے SEO کے لیے موزوں", desc: "ہر ٹکڑا ٹارگٹ کلیدی الفاظ، مناسب ہیڈنگ کی ساخت، اور تلاش کے ارادے کے ارد گرد بنایا گیا ہے — تاکہ مواد رینک کرے، نہ کہ صرف اچھی طرح سے پڑھا جائے۔" },
+        { title: "مستقل برانڈ کی آواز", desc: "ہم شروع میں ہی ایک برانڈ وائس گائیڈ بناتے ہیں اور اسے ہر ٹکڑے پر لاگو کرتے ہیں، تاکہ آپ کا مواد آپ کی طرح لگے — کسی بھی حجم پر۔" },
+        { title: "ایجنسی کی لاگت کا ایک حصہ", desc: "لاگت کے ایک حصے پر ایک مکمل مواد کی ٹیم کی پیداوار حاصل کریں۔ AI بھاری کام سنبھالتا ہے؛ ہمارے ایڈیٹرز معیار کو یقینی بناتے ہیں۔" }
+      ],
+      process: [
+        { step: "01", title: "برانڈ کی آواز اور لہجہ سیٹ اپ", desc: "ہم آپ کے برانڈ کی آواز، لہجے کے رہنما خطوط، اور طرز کی ترجیحات کو دستاویز کرتے ہیں تاکہ ہر مواد غیر واضح طور پر آپ کا ہو۔" },
+        { step: "02", title: "کلیدی لفظ اور موضوع کی تحقیق", desc: "ہم ان موضوعات اور کلیدی الفاظ کی نشاندہی کرتے ہیں جن کی آپ کے سامعین تلاش کر رہے ہیں اور حقیقی تلاش کی مانگ کے ارد گرد مواد کی حکمت عملی بناتے ہیں۔" },
+        { step: "03", title: "AI کی مدد سے مسودہ کی تخلیق", desc: "ہمارا AI ورک فلو تیز رفتاری سے ساختی، تحقیق پر مبنی مسودے تیار کرتا ہے — رکاوٹوں کے بغیر آپ کے مواد کے کیلنڈر کا احاطہ کرتا ہے۔" },
+        { step: "04", title: "ماہر انسانی ایڈیٹنگ اور QA", desc: "تجربہ کار ایڈیٹرز کے ذریعے ہر مسودے کا جائزہ لیا جاتا ہے اور اسے بہتر بنایا جاتا ہے جو درستگی، لہجے، SEO کی صف بندی، اور پڑھنے کی اہلیت کی جانچ کرتے ہیں۔" },
+        { step: "05", title: "اشاعت اور کارکردگی سے باخبر رہنا", desc: "ہم اشاعت کو سنبھالتے ہیں، درجہ بندی اور مشغولیت کو ٹریک کرتے ہیں، اور مواد کی حکمت عملی کو مسلسل بہتر بنانے کے لیے کارکردگی کے ڈیٹا کا استعمال کرتے ہیں۔" }
+      ],
+      cta: "اپنی ٹیم کو بڑھائے بغیر اپنے مواد کو بڑھائیں۔"
+    },
+    "saas-development": {
+      title: "SaaS ڈیولپمنٹ",
+      tagline: "اسکیل اور بار بار چلنے والی آمدنی کے لیے تیار کردہ ملٹی ٹیننٹ کلاؤڈ پلیٹ فارمز۔",
+      description: "ہم گراؤنڈ اپ سے پروڈکشن کے لیے تیار SaaS پلیٹ فارمز کو تیار اور تعمیر کرتے ہیں۔ ملٹی ٹیننٹ آرکیٹیکچر، سبسکرپشن بلنگ، رول پر مبنی رسائی، اور ہزاروں ہم وقت ساز صارفین کی حمایت کرنے کے لیے انفراسٹرکچر — سب وشوسنییتا اور تیز رفتار خصوصیت کی تکرار کے لیے تیار کیے گئے ہیں۔",
+      features: ["ملٹی ٹیننٹ آرکیٹیکچر", "Stripe سبسکرپشن بلنگ", "رول پر مبنی رسائی کنٹرول", "ایڈمن ڈیش بورڈ اور تجزیات", "API-پہلا ڈیزائن", "وائٹ لیبل کی صلاحیتیں", "استعمال کی پیمائش اور حدود", "آن بورڈنگ اور صارف کا انتظام", "99.9% اپ ٹائم SLA آرکیٹیکچر"],
+      benefits: [
+        { title: "بار بار چلنے والا ریونیو ماڈل", desc: "ہم بلنگ انفراسٹرکچر بناتے ہیں — سبسکرپشن کے درجات، ٹرائلز، اپ گریڈز، اور انوائسنگ — تاکہ آپ پہلے دن سے MRR کو بڑھانے پر توجہ مرکوز کر سکیں۔" },
+        { title: "آپ کی ترقی کے ساتھ ترازو", desc: "ملٹی ٹیننٹ آرکیٹیکچر اور کلاؤڈ نیٹیو انفراسٹرکچر کا مطلب ہے کہ آپ کا پلیٹ فارم 10 صارفین یا 10,000 کو دوبارہ لکھے بغیر سنبھالتا ہے۔" },
+        { title: "تیز خصوصیت کی تکرار", desc: "صاف، ماڈیولر کوڈ بیس اور CI/CD پائپ لائنز آپ کو ہفتہ وار نئی خصوصیات بھیجنے کی اجازت دیتی ہیں جو پہلے سے کام کر رہا ہے اسے توڑے بغیر۔" },
+        { title: "انٹرپرائز تیار", desc: "SSO، آڈٹ لاگز، رول پر مبنی اجازتیں، اور وائٹ لیبل کے اختیارات شروع سے ہی آپ کے SaaS کو انٹرپرائز خریداروں کے لیے پرکشش بناتے ہیں۔" }
+      ],
+      process: [
+        { step: "01", title: "پروڈکٹ آرکیٹیکچر", desc: "ہم آپ کے ڈیٹا ماڈل، کرایہ دار کی تنہائی کی حکمت عملی، اور سسٹم کے فن تعمیر کی وضاحت کرتے ہیں تاکہ اس بات کو یقینی بنایا جا سکے کہ فاؤنڈیشن آپ کے طویل مدتی روڈ میپ کی حمایت کرتا ہے۔" },
+        { step: "02", title: "کرایہ دار اور تصدیقی نظام", desc: "ملٹی ٹیننٹ ڈیٹا آئسولیشن، SSO انضمام، رول پر مبنی رسائی کنٹرول، اور گراؤنڈ اپ سے بنایا گیا محفوظ سیشن مینجمنٹ۔" },
+        { step: "03", title: "بنیادی خصوصیت کی ترقی", desc: "ورکنگ ڈیمو، فیڈ بیک لوپس، اور پروڈکشن کوالٹی کوڈ کے ساتھ آپ کی بنیادی مصنوعات کی خصوصیات فراہم کرنے والے تکراری اسپرنٹ۔" },
+        { step: "04", title: "بلنگ اور سبسکرپشن سیٹ اپ", desc: "سبسکرپشن پلانز، آزمائشی ادوار، استعمال پر مبنی بلنگ، اور سیلف سرو اپ گریڈ/ڈاؤن گریڈ فلو کے ساتھ پٹی کا انضمام۔" },
+        { step: "05", title: "لانچ اور گروتھ انفراسٹرکچر", desc: "زیرو ڈاون ٹائم ڈیپلوئمنٹ، مانیٹرنگ، الرٹ، اور تجزیاتی ڈیش بورڈز جن کی آپ کو سمجھنے اور اپنے یوزر بیس کو بڑھانے کی ضرورت ہے۔" }
+      ],
+      cta: "آئیے آپ کا SaaS پروڈکٹ صحیح طریقے سے بنائیں۔"
+    },
+    "ai-powered-apps": {
+      title: "AI سے چلنے والی ایپلی کیشنز",
+      tagline: "ذہین سافٹ ویئر جو سیکھتا ہے، اپناتا ہے اور آپ کے کاروبار کو خودکار بناتا ہے۔",
+      description: "ہم اپنی مرضی کے مطابق AI سے چلنے والی ایپلی کیشنز بناتے ہیں جو سادہ آٹومیشن سے آگے بڑھ جاتی ہیں۔ LLM-مربوط ٹولز اور RAG پائپ لائنز سے لے کر کمپیوٹر وژن اور پیشن گوئی کے تجزیات تک، ہم ایسے ذہین نظاموں کو انجینئر کرتے ہیں جو آپ کے کاروبار کو حقیقی مسابقتی برتری دیتے ہیں۔",
+      features: ["LLM اور GPT-4 کا انضمام", "RAG پائپ لائن کی ترقی", "AI چیٹ بوٹس اور ورچوئل ایجنٹس", "کمپیوٹر وژن سسٹمز", "پیشن گوئی کے تجزیات اور ML ماڈلز", "AI کے ساتھ ورک فلو آٹومیشن", "نیچرل لینگویج پروسیسنگ", "AI سے چلنے والی تلاش اور سفارشات", "کسٹم ماڈل کی فائن ٹیوننگ"],
+      benefits: [
+        { title: "حقیقی مسابقتی فائدہ", desc: "آپ کے ورک فلو کے لیے حسب ضرورت بنائی گئی AI صلاحیتیں آپ کو ایک ایسا کنارہ دیتی ہیں جسے حریف آف دی شیلف ٹولز کے ساتھ آسانی سے نقل نہیں کر سکتے۔" },
+        { title: "بڑے پیمانے پر آٹومیشن کی بچت", desc: "بار بار ہونے والے، وقت طلب کاموں کو خودکار بنائیں اور اپنی ٹیم کی توانائی کو اعلی قیمت والے کام کی طرف دوبارہ تعینات کریں جو حقیقت میں سوئی کو منتقل کرتا ہے۔" },
+        { title: "24/7 ذہین آپریشن", desc: "AI سسٹم نہیں سوتے ہیں۔ آپ کے کاروباری عمل، گاہک کی بات چیت، اور ڈیٹا پائپ لائنز دستی مداخلت کے بغیر مسلسل چلتی رہتی ہیں۔" },
+        { title: "ڈیٹا سے چلنے والے فیصلے", desc: "خام ڈیٹا کو قابل عمل انٹیلی جنس میں تبدیل کریں جس میں پیشن گوئی کرنے والے ماڈلز اور تجزیات ہیں جو بصیرت کو ظاہر کرتے ہیں جو انسانوں سے چھوٹ جائیں گے۔" }
+      ],
+      process: [
+        { step: "01", title: "AI حکمت عملی اور کیس کی تعریف کا استعمال کریں", desc: "ہم آپ کے کاروبار میں سب سے زیادہ اثر انداز ہونے والے AI مواقع کی نشاندہی کرتے ہیں اور کسی بھی ترقی کے شروع ہونے سے پہلے واضح، قابل پیمائش اہداف کی وضاحت کرتے ہیں۔" },
+        { step: "02", title: "ڈیٹا آڈٹ اور تیاری", desc: "ہم آپ کے موجودہ ڈیٹا اثاثوں کا جائزہ لیتے ہیں، خلا کی نشاندہی کرتے ہیں، اور آپ کے AI سسٹمز کو صاف، ساختی ڈیٹا فراہم کرنے کے لیے درکار پائپ لائنز بناتے ہیں۔" },
+        { step: "03", title: "ماڈل کا انتخاب اور فن تعمیر", desc: "ہم آپ کے مخصوص استعمال کے معاملے کے لیے صحیح ماڈلز اور فریم ورک کا انتخاب کرتے ہیں — خواہ وہ ٹھیک ٹون شدہ LLMs ہوں، کسٹم ML ماڈلز ہوں، یا تھرڈ پارٹی APIs ہوں۔" },
+        { step: "04", title: "ترقی اور انضمام", desc: "ہم مضبوط APIs، فال بیک ہینڈلنگ، اور مکمل مشاہدے کے ساتھ، آپ کے موجودہ اسٹیک میں AI سسٹم کی تعمیر اور انضمام کرتے ہیں۔" },
+        { step: "05", title: "نگرانی اور مسلسل سیکھنا", desc: "پوسٹ لانچ، ہم ماڈل کی کارکردگی کی نگرانی کرتے ہیں، ڈرفٹ کو ٹریک کرتے ہیں، اور آپ کے AI سسٹم کو درست رکھنے اور وقت کے ساتھ ساتھ بہتر بنانے کے لیے اعادہ کرتے ہیں۔" }
+      ],
+      cta: "اپنے کاروبار کو AI سے چلنے والا بنانے کے لیے تیار ہیں؟"
+    },
+    "seo": {
+      title: "SEO اور ترقی",
+      tagline: "تکنیکی SEO اور مواد کی حکمت عملی جو نامیاتی ترقی کو بڑھاتی ہے۔",
+      description: "ہم پائیدار نامیاتی ٹریفک کی تعمیر کے لیے گہری تکنیکی SEO مہارت کو ڈیٹا پر مبنی مواد کی حکمت عملی کے ساتھ جوڑتے ہیں۔ بنیادی ویب وائٹلز کی اصلاح اور سٹرکچرڈ ڈیٹا سے لے کر کلیدی الفاظ کے فن تعمیر اور لنک بلڈنگ تک — ہم تلاش کی مرئیت کو انجینئر کرتے ہیں جو وقت کے ساتھ بڑھتی ہے۔",
+      features: ["تکنیکی SEO آڈٹ اور اصلاحات", "بنیادی ویب وائٹلز کی اصلاح", "مطلوبہ الفاظ کی تحقیق اور فن تعمیر", "آن پیج SEO کی اصلاح", "سٹرکچرڈ ڈیٹا اور سکیما مارک اپ", "لنک بنانے کی حکمت عملی", "مواد کی حکمت عملی اور منصوبہ بندی", "مقامی SEO کی اصلاح", "SEO کی کارکردگی کی رپورٹنگ"],
+      benefits: [
+        { title: "کمپاؤنڈنگ آرگینک ٹریفک", desc: "بامعاوضہ اشتہارات کے برعکس جو آپ کے اخراجات کو روکتے ہی رک جاتے ہیں، SEO ایک ایسا اثاثہ بناتا ہے جو مہینہ در مہینہ بڑھتا ہے اور طویل مدتی منافع ادا کرتا ہے۔" },
+        { title: "بامعاوضہ اشتہارات سے کم CAC", desc: "نامیاتی ٹریفک کی کوئی فی کلک قیمت نہیں ہے۔ جیسے جیسے درجہ بندی بہتر ہوتی ہے، حجم میں اضافے کے ساتھ آپ کے گاہک کے حصول کی لاگت گرتی ہے۔" },
+        { title: "اتھارٹی اور اعتماد سازی", desc: "اعلی درجہ بندی سرچ انجنوں اور صارفین دونوں کو اعتبار کا اشارہ دیتی ہے۔ ہم موضوعی اختیار بناتے ہیں جو آپ کے برانڈ کو جانے کا ذریعہ بناتا ہے۔" },
+        { title: "قابل پیمائش ROI", desc: "ہماری ہر کارروائی کو ٹریک کیا جاتا ہے۔ آپ بالکل دیکھتے ہیں کہ کون سے مطلوبہ الفاظ کی درجہ بندی کی جا رہی ہے، ٹریفک کیسے تبدیل ہو رہی ہے، اور آمدنی پر کیا اثرات مرتب ہو رہے ہیں۔" }
+      ],
+      process: [
+        { step: "01", title: "SEO آڈٹ اور بیس لائن", desc: "یہ شناخت کرنے کے لیے ایک مکمل تکنیکی اور مواد کا آڈٹ کہ آپ کی سائٹ کو کیا چیز روک رہی ہے — رینگنے کے مسائل، اشاریہ سازی کے مسائل، اور کھوئے ہوئے مواقع۔" },
+        { step: "02", title: "مطلوبہ الفاظ اور حریف کی تحقیق", desc: "ہم مطلوبہ الفاظ کی زمین کی تزئین کا نقشہ بناتے ہیں، اعلی قیمت والے اہداف کی نشاندہی کرتے ہیں، اور تجزیہ کرتے ہیں کہ آپ کے سرکردہ حریف ان کو پیچھے چھوڑنے کے لیے کیا کر رہے ہیں۔" },
+        { step: "03", title: "تکنیکی اصلاحات اور آن پیج", desc: "ہم تکنیکی فاؤنڈیشن کو ٹھیک کرتے ہیں — سائٹ کی رفتار، بنیادی ویب وائٹلز، سٹرکچرڈ ڈیٹا، اندرونی لنکنگ — اور ہر کلیدی صفحہ کو بہتر بناتے ہیں۔" },
+        { step: "04", title: "مواد اور لنک کی حکمت عملی", desc: "وقت کے ساتھ ڈومین اتھارٹی بنانے کے لیے لنک بنانے کی حکمت عملی کے ساتھ آپ کے ترجیحی مطلوبہ الفاظ کو نشانہ بنانے والا مواد کیلنڈر۔" },
+        { step: "05", title: "ماہانہ رپورٹنگ اور تکرار", desc: "درجہ بندی کی نقل و حرکت، ٹریفک کی ترقی، اور تبادلوں کے اثرات کو ظاہر کرنے والی واضح ماہانہ رپورٹیں — حقیقی ڈیٹا کی بنیاد پر حکمت عملی ایڈجسٹمنٹ کے ساتھ۔" }
+      ],
+      cta: "وہاں درجہ بندی شروع کریں جہاں آپ کے گاہک تلاش کر رہے ہیں۔"
+    },
     "web-engineering": {
       title: "ویب انجینئرنگ",
       tagline: "جدید ترین ٹیک اسٹیکس کے ساتھ اعلیٰ کارکردگی کے ڈیجیٹل ایکو سسٹم کی تعمیر۔",
@@ -448,6 +608,86 @@ export const servicesTranslations: Partial<Record<Language, Record<string, Trans
     }
   },
   ar: {
+    "ai-content-writing": {
+      title: "كتابة المحتوى بالذكاء الاصطناعي",
+      tagline: "محتوى عالي الجودة ومحسن لمحركات البحث يتم إنتاجه على نطاق واسع بدقة الذكاء الاصطناعي.",
+      description: "نحن نجمع بين كفاءة الذكاء الاصطناعي والتحرير البشري الخبير لإنتاج محتوى يحتل مرتبة ويتحول ويبدو إنسانيًا أصليًا. من منشورات المدونة ونسخ الصفحة المقصودة إلى أوصاف المنتج وتسلسلات البريد الإلكتروني - نقدم محتوى على نطاق واسع دون التضحية بالجودة.",
+      features: ["منشورات ومقالات مدونة SEO", "كتابة نصوص الصفحة المقصودة", "أوصاف المنتج على نطاق واسع", "تسلسلات التسويق عبر البريد الإلكتروني", "محتوى وسائل التواصل الاجتماعي", "البحث والخطوط العريضة بمساعدة الذكاء الاصطناعي", "اتساق صوت العلامة التجارية", "محتوى متعدد اللغات", "تخطيط تقويم المحتوى"],
+      benefits: [
+        { title: "إنتاج محتوى بمقدار 10 أضعاف", desc: "تتيح لنا مهام سير العمل بمساعدة الذكاء الاصطناعي إنتاج ما تستغرقه الوكالة التقليدية أسابيع في أيام - دون رسوم التجنيب المتضخمة." },
+        { title: "محسّن لمحركات البحث من اليوم الأول", desc: "تم بناء كل قطعة حول الكلمات الرئيسية المستهدفة، وهيكل العنوان المناسب، وهدف البحث - بحيث يحتل المحتوى مرتبة، ولا يقرأ جيدًا فقط." },
+        { title: "صوت العلامة التجارية المتسق", desc: "نقوم بإنشاء دليل صوتي للعلامة التجارية مقدمًا ونطبقه عبر كل قطعة، لذلك يبدو المحتوى الخاص بك مثلك - في أي حجم." },
+        { title: "جزء بسيط من تكلفة الوكالة", desc: "احصل على مخرجات فريق محتوى كامل بجزء بسيط من التكلفة. يتعامل الذكاء الاصطناعي مع الرفع الثقيل؛ يضمن محررونا الجودة." }
+      ],
+      process: [
+        { step: "01", title: "إعداد صوت ونبرة العلامة التجارية", desc: "نوثق صوت علامتك التجارية وإرشادات النغمة وتفضيلات الأسلوب بحيث تكون كل قطعة محتوى خاصة بك بشكل لا لبس فيه." },
+        { step: "02", title: "بحث الكلمات الرئيسية والموضوعات", desc: "نحدد الموضوعات والكلمات الرئيسية التي يبحث عنها جمهورك ونبني استراتيجية محتوى حول طلب البحث الحقيقي." },
+        { step: "03", title: "إنشاء مسودة بمساعدة الذكاء الاصطناعي", desc: "تُنشئ مهام سير عمل الذكاء الاصطناعي لدينا مسودات منظمة ومدعومة بالأبحاث بسرعة - تغطي تقويم المحتوى الخاص بك دون اختناقات." },
+        { step: "04", title: "تحرير بشري خبير وضمان جودة", desc: "تتم مراجعة كل مسودة وتحسينها من قبل محررين ذوي خبرة يتحققون من الدقة والنغمة ومحاذاة تحسين محركات البحث وقابلية القراءة." },
+        { step: "05", title: "النشر وتتبع الأداء", desc: "نتعامل مع النشر، ونتتبع التصنيفات والمشاركة، ونستخدم بيانات الأداء لتحسين استراتيجية المحتوى بشكل مستمر." }
+      ],
+      cta: "توسيع نطاق المحتوى الخاص بك دون توسيع نطاق فريقك."
+    },
+    "saas-development": {
+      title: "تطوير SaaS",
+      tagline: "منصات سحابية متعددة المستأجرين مصممة من أجل الحجم والإيرادات المتكررة.",
+      description: "نقوم بتصميم وبناء منصات SaaS الجاهزة للإنتاج من الألف إلى الياء. البنية متعددة المستأجرين، وفواتير الاشتراك، والوصول القائم على الأدوار، والبنية التحتية لدعم الآلاف من المستخدمين المتزامنين - تم تصميمها جميعًا من أجل الموثوقية والتكرار السريع للميزات.",
+      features: ["العمارة متعددة المستأجرين", "فواتير الاشتراك عبر Stripe", "التحكم في الوصول على أساس الدور", "لوحة تحكم المشرف والتحليلات", "تصميم يعتمد على واجهة برمجة التطبيقات (API) أولاً", "قدرات التسمية البيضاء", "قياس الاستخدام والحدود", "تأهيل المستخدمين وإدارتهم", "هيكل بنسبة 99.9% من اتفاقية مستوى الخدمة (SLA)"],
+      benefits: [
+        { title: "نموذج الإيرادات المتكررة", desc: "نقوم ببناء البنية التحتية للفوترة - مستويات الاشتراك والتجارب والترقيات وإعداد الفواتير - حتى تتمكن من التركيز على تنمية الإيرادات الشهرية المتكررة من اليوم الأول." },
+        { title: "تتوسع مع نموك", desc: "تعني البنية متعددة المستأجرين والبنية التحتية السحابية الأصلية أن نظامك الأساسي يتعامل مع 10 مستخدمين أو 10000 بدون إعادة كتابة." },
+        { title: "تكرار سريع للميزات", desc: "تتيح لك قواعد الأوامر البرمجية وخطوط أنابيب CI / CD النظيفة والمعيارية شحن ميزات جديدة أسبوعيًا دون كسر ما يعمل بالفعل." },
+        { title: "جاهز للمؤسسات", desc: "إن الدخول الموحد، وسجلات التدقيق، والأذونات القائمة على الأدوار، وخيارات التسمية البيضاء تجعل SaaS الخاصة بك جذابة لمشتري المؤسسات منذ البداية." }
+      ],
+      process: [
+        { step: "01", title: "هندسة المنتج", desc: "نحدد نموذج البيانات واستراتيجية عزل المستأجر وهيكل النظام لضمان دعم الأساس لخارطة الطريق طويلة المدى." },
+        { step: "02", title: "نظام المستأجر والمصادقة", desc: "عزل بيانات متعددة المستأجرين، وتكامل الدخول الموحد، والتحكم في الوصول القائم على الأدوار، وإدارة الجلسة الآمنة المبنية من الألف إلى الياء." },
+        { step: "03", title: "تطوير الميزات الأساسية", desc: "سباقات تكرارية تقدم ميزات منتجك الأساسية مع عروض تجريبية وحلقات ملاحظات وكود جودة الإنتاج." },
+        { step: "04", title: "إعداد الفواتير والاشتراك", desc: "تكامل Stripe مع خطط الاشتراك، والفترات التجريبية، والفوترة القائمة على الاستخدام، وتدفق الترقية / الرجوع الذاتي الخدمة." },
+        { step: "05", title: "البنية التحتية للإطلاق والنمو", desc: "عمليات النشر، والمراقبة، والتنبيه، ولوحات معلومات التحليلات التي لا تستدعي وقت توقف عن العمل، والتي تحتاجها لفهم وتنمية قاعدة المستخدمين." }
+      ],
+      cta: "دعنا نبني منتج SaaS الخاص بك بالطريقة الصحيحة."
+    },
+    "ai-powered-apps": {
+      title: "تطبيقات مدعومة بالذكاء الاصطناعي",
+      tagline: "برنامج ذكي يتعلم ويتكيف ويؤتمت عملك.",
+      description: "نحن نبني تطبيقات مخصصة تعمل بالذكاء الاصطناعي تتجاوز مجرد الأتمتة البسيطة. من الأدوات المدمجة في LLM وخطوط أنابيب RAG إلى الرؤية الحاسوبية والتحليلات التنبؤية، نقوم بهندسة أنظمة ذكية تمنح عملك ميزة تنافسية حقيقية.",
+      features: ["تكامل LLM و GPT-4", "تطوير خط أنابيب RAG", "روبوتات محادثة ووكلاء افتراضيون بالذكاء الاصطناعي", "أنظمة الرؤية الحاسوبية", "التحليلات التنبؤية ونماذج التعلم الآلي", "أتمتة سير العمل باستخدام الذكاء الاصطناعي", "معالجة اللغة الطبيعية", "البحث والتوصيات المدعومة بالذكاء الاصطناعي", "الضبط الدقيق للنموذج المخصص"],
+      benefits: [
+        { title: "ميزة تنافسية حقيقية", desc: "تمنحك إمكانات الذكاء الاصطناعي المصممة خصيصًا لسير عملك ميزة لا يمكن للمنافسين تكرارها بسهولة باستخدام أدوات جاهزة." },
+        { title: "وفورات هائلة في الأتمتة", desc: "أتمتة المهام المتكررة والمستهلكة للوقت وإعادة توظيف طاقة فريقك نحو عمل عالي القيمة يحرك الإبرة بالفعل." },
+        { title: "تشغيل ذكي على مدار الساعة طوال أيام الأسبوع", desc: "أنظمة الذكاء الاصطناعي لا تنام. تعمل العمليات التجارية وتفاعلات العملاء وخطوط أنابيب البيانات باستمرار دون تدخل يدوي." },
+        { title: "قرارات مبنية على البيانات", desc: "حول البيانات الأولية إلى ذكاء قابل للتنفيذ باستخدام النماذج والتحليلات التنبؤية التي تكشف عن الرؤى التي قد يفتقدها البشر." }
+      ],
+      process: [
+        { step: "01", title: "استراتيجية الذكاء الاصطناعي وتعريف حالة الاستخدام", desc: "نحدد فرص الذكاء الاصطناعي الأكثر تأثيرًا في عملك ونحدد أهدافًا واضحة وقابلة للقياس قبل بدء أي تطوير." },
+        { step: "02", title: "تدقيق البيانات وإعدادها", desc: "نقوم بتقييم أصول البيانات الحالية الخاصة بك، وتحديد الفجوات، وبناء خطوط الأنابيب اللازمة لتغذية أنظمة الذكاء الاصطناعي ببيانات نظيفة ومنظمة." },
+        { step: "03", title: "اختيار النموذج والهندسة المعمارية", desc: "نختار النماذج والأطر المناسبة - سواء أكانت نماذج ماجستير دقيقة الضبط أو نماذج تعلم آلي مخصصة أو واجهات برمجة تطبيقات لجهات خارجية - لحالة الاستخدام الخاصة بك." },
+        { step: "04", title: "التطوير والتكامل", desc: "نقوم ببناء ودمج نظام الذكاء الاصطناعي في مجموعتك الحالية، مع واجهات برمجة تطبيقات قوية ومعالجة احتياطية وقابلية للملاحظة الكاملة." },
+        { step: "05", title: "المراقبة والتعلم المستمر", desc: "بعد الإطلاق، نقوم بمراقبة أداء النموذج، وتتبع الانجراف، والتكرار للحفاظ على دقة نظام الذكاء الاصطناعي الخاص بك وتحسينه بمرور الوقت." }
+      ],
+      cta: "هل أنت مستعد لجعل عملك مدعومًا بالذكاء الاصطناعي؟"
+    },
+    "seo": {
+      title: "تحسين محركات البحث والنمو",
+      tagline: "تحسين محركات البحث التقني واستراتيجية المحتوى التي تقود النمو العضوي المضاعف.",
+      description: "نحن نجمع بين الخبرة التقنية العميقة لتحسين محركات البحث مع استراتيجية المحتوى القائمة على البيانات لبناء حركة مرور عضوية مستدامة. من تحسين Core Web Vitals والبيانات المهيكلة إلى بنية الكلمات الرئيسية وبناء الروابط - نقوم بهندسة رؤية البحث التي تتضاعف بمرور الوقت.",
+      features: ["تدقيق وإصلاحات تحسين محركات البحث الفنية", "تحسين مؤشرات الويب الأساسية", "البحث في الكلمات الرئيسية وهندستها", "تحسين محركات البحث على الصفحة", "البيانات المهيكلة وعلامات المخطط", "استراتيجية بناء الروابط", "استراتيجية المحتوى والتخطيط", "تحسين محركات البحث المحلية", "الإبلاغ عن أداء تحسين محركات البحث"],
+      benefits: [
+        { title: "مضاعفة حركة المرور العضوية", desc: "على عكس الإعلانات المدفوعة التي تتوقف في اللحظة التي توقف فيها الإنفاق، يبني تحسين محركات البحث أصلاً ينمو شهرًا بعد شهر ويدفع أرباحًا طويلة الأجل." },
+        { title: "تكلفة اكتساب عملاء أقل من الإعلانات المدفوعة", desc: "لا توجد تكلفة لكل نقرة لحركة المرور العضوية. مع تحسن التصنيفات، تنخفض تكلفة اكتساب العملاء بينما يزداد الحجم." },
+        { title: "بناء السلطة والثقة", desc: "تشير التصنيفات العالية إلى المصداقية لكل من محركات البحث والمستخدمين. نحن نبني السلطة الموضعية التي تجعل علامتك التجارية هي المصدر المفضل." },
+        { title: "عائد استثمار قابل للقياس", desc: "يتم تتبع كل إجراء نتخذه. ترى بالضبط الكلمات الرئيسية التي يتم تصنيفها، وكيف يتم تحويل حركة المرور، وما هو تأثير الإيرادات." }
+      ],
+      process: [
+        { step: "01", title: "تدقيق تحسين محركات البحث والأساس", desc: "تدقيق فني ومحتوى كامل لتحديد ما يعيق موقعك - مشكلات الزحف ومشاكل الفهرسة والفرص الضائعة." },
+        { step: "02", title: "بحث الكلمات الرئيسية والمنافسين", desc: "نحدد مشهد الكلمات الرئيسية، ونحدد الأهداف عالية القيمة، ونحلل ما يفعله كبار منافسيك للتفوق عليهم." },
+        { step: "03", title: "الإصلاحات الفنية وعلى الصفحة", desc: "نقوم بإصلاح الأساس التقني - سرعة الموقع، ومؤشرات الويب الأساسية، والبيانات المهيكلة، والربط الداخلي - ونحسن كل صفحة رئيسية." },
+        { step: "04", title: "استراتيجية المحتوى والروابط", desc: "تقويم محتوى يستهدف كلماتك الرئيسية ذات الأولوية، مقترنًا باستراتيجية بناء روابط لبناء سلطة المجال بمرور الوقت." },
+        { step: "05", title: "الإبلاغ الشهري والتكرار", desc: "تقارير شهرية واضحة توضح تحركات التصنيف ونمو حركة المرور وتأثير التحويل - مع تعديلات الإستراتيجية بناءً على بيانات حقيقية." }
+      ],
+      cta: "ابدأ الترتيب حيث يبحث عملاؤك."
+    },
     "web-engineering": {
       title: "هندسة الويب",
       tagline: "بناء أنظمة بيئية رقمية عالية الأداء باستخدام أحدث التقنيات.",

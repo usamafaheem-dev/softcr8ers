@@ -6,33 +6,23 @@ import { useTranslation } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 import { Award, RefreshCw, Rocket, ShieldCheck, Database, Zap, Headset, LineChart, Lock, Globe2 } from "lucide-react";
 
-const sectionTranslations: Record<string, { title: React.ReactNode; subtitle: string }> = {
-  en: { 
-    title: <>Why <span className="text-[#a906c9]">Choose</span> Us</>,
-    subtitle: "We blend innovation with expertise to deliver solutions that propel your business forward. Here is what sets us apart from the rest."
-  },
-  ur: { 
-    title: <>ہمیں <span className="text-[#a906c9]">منتخب</span> کریں؟</>,
-    subtitle: "ہم آپ کے کاروبار کو آگے بڑھانے کے لیے جدت اور مہارت کو ملاتے ہیں۔ جانیے کہ کیا چیز ہمیں دوسروں سے مختلف بناتی ہے۔"
-  },
-};
-
-const CARDS = [
-  { id: 1, title: "Top 1% Global Talent", description: "We rigorously vet our engineers, designers, and strategists to ensure you work with absolute industry experts.", icon: Award },
-  { id: 2, title: "Agile Methodology", description: "Full visibility and rapid iterations. We work in sprints to adapt quickly to changes and deliver faster.", icon: RefreshCw },
-  { id: 3, title: "End-to-End Delivery", description: "From initial concept and UI/UX design to development and cloud deployment, we handle it all seamlessly.", icon: Rocket },
-  { id: 4, title: "Enterprise Security", description: "Your digital assets are protected with state-of-the-art encryption and enterprise-grade security protocols.", icon: ShieldCheck },
-  { id: 5, title: "Scalable Architecture", description: "We build robust backend systems capable of handling millions of users effortlessly as your business grows.", icon: Database },
-  { id: 6, title: "Lightning Fast Speed", description: "Optimized code and powerful CI/CD pipelines ensure we launch your product faster than the industry average.", icon: Zap },
-  { id: 7, title: "24/7 Dedicated Support", description: "Our team is always on standby, offering seamless communication, monitoring, and post-launch maintenance.", icon: Headset },
-  { id: 8, title: "SEO & Performance", description: "We ensure your web applications rank higher and load instantly for maximum user retention and growth.", icon: LineChart },
-  { id: 9, title: "Secure Data Privacy", description: "We adhere to the strictest global data privacy laws to keep your users' sensitive information completely safe.", icon: Lock },
-  { id: 10, title: "Global Reach", description: "We have empowered businesses across the globe, delivering digital products that resonate with international audiences.", icon: Globe2 },
+const CARDS_KEYS = [
+  { id: 1, titleKey: "wcu.card1.title", descKey: "wcu.card1.desc", icon: Award },
+  { id: 2, titleKey: "wcu.card2.title", descKey: "wcu.card2.desc", icon: RefreshCw },
+  { id: 3, titleKey: "wcu.card3.title", descKey: "wcu.card3.desc", icon: Rocket },
+  { id: 4, titleKey: "wcu.card4.title", descKey: "wcu.card4.desc", icon: ShieldCheck },
+  { id: 5, titleKey: "wcu.card5.title", descKey: "wcu.card5.desc", icon: Database },
+  { id: 6, titleKey: "wcu.card6.title", descKey: "wcu.card6.desc", icon: Zap },
+  { id: 7, titleKey: "wcu.card7.title", descKey: "wcu.card7.desc", icon: Headset },
+  { id: 8, titleKey: "wcu.card8.title", descKey: "wcu.card8.desc", icon: LineChart },
+  { id: 9, titleKey: "wcu.card9.title", descKey: "wcu.card9.desc", icon: Lock },
+  { id: 10, titleKey: "wcu.card10.title", descKey: "wcu.card10.desc", icon: Globe2 },
 ];
 
+
+
 export function WhyChooseUs() {
-  const { language } = useTranslation();
-  const content = sectionTranslations[language] ?? sectionTranslations.en;
+  const { t } = useTranslation();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true, 
@@ -102,21 +92,21 @@ export function WhyChooseUs() {
         <div className="text-center max-w-3xl mx-auto px-4 mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-6">
             <span className="text-[#2f89f7] animate-spin font-bold">✱</span>
-            <span className="text-[10px] md:text-xs font-black tracking-[0.4em] uppercase text-slate-500 ml-1">THE SOFTCR8ORS EDGE</span>
+            <span className="text-[10px] md:text-xs font-black tracking-[0.4em] uppercase text-slate-500 ml-1">{t("wcu.badge")}</span>
             <span className="text-[#f016da] animate-spin font-bold ml-1">✱</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-slate-900 tracking-tight leading-[1.1] mb-6">
-            {content.title}
+            {t("wcu.title.p1")} <span className="text-[#a906c9]">{t("wcu.title.p2")}</span> {t("wcu.title.p3")}
           </h2>
           <p className="text-slate-500 text-base md:text-lg font-normal leading-relaxed max-w-2xl mx-auto">
-            {content.subtitle}
+            {t("wcu.subtitle")}
           </p>
         </div>
 
         {/* Breathtaking 3D Coverflow-Style Carousel */}
         <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" ref={emblaRef}>
           <div className="flex touch-pan-y py-10 px-4" style={{ alignItems: 'center' }}>
-            {CARDS.map((card, index) => {
+            {CARDS_KEYS.map((card, index) => {
               const isCenter = index === selectedIndex;
               const IconComponent = card.icon;
               
@@ -169,7 +159,7 @@ export function WhyChooseUs() {
                       "text-xl lg:text-2xl font-semibold mb-4 tracking-tight leading-snug transition-colors duration-500",
                       isCenter ? "text-white" : "text-slate-900"
                     )}>
-                      {card.title}
+                      {t(card.titleKey)}
                     </h3>
 
                     {/* Highly Legible Description */}
@@ -177,7 +167,7 @@ export function WhyChooseUs() {
                       "text-sm lg:text-base font-normal leading-relaxed transition-colors duration-500",
                       isCenter ? "text-white/80" : "text-slate-500 group-hover:text-slate-600"
                     )}>
-                      {card.description}
+                      {t(card.descKey)}
                     </p>
                   </div>
                 </div>

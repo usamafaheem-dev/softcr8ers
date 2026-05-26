@@ -63,13 +63,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useTranslation() {
+export function useTranslation(): LanguageContextType {
   const context = useContext(LanguageContext);
   if (!context) {
     // Provide fallback if used outside of provider
     return {
       language: "en" as Language,
-      setLanguage: () => {},
+      setLanguage: (lang: Language) => {},
       t: (key: string, defaultValue?: string) => defaultValue ?? "",
     };
   }

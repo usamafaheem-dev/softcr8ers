@@ -90,8 +90,8 @@ function RollingTextButton({
       className={cn(
         "group relative inline-flex items-center justify-center rounded-xl px-9 py-3 font-semibold font-sans overflow-hidden transition-all duration-500 cursor-pointer",
         variant === "gradient"
-          ? "bg-[#050101] text-white shadow-xl hover:shadow-blue-500/10"
-          : "bg-white/50 backdrop-blur-xl border border-slate-200 text-slate-900 shadow-sm shadow-slate-100/50 hover:bg-white/75 hover:border-slate-300",
+          ? "bg-[#050101] text-white"
+          : "bg-white/50 backdrop-blur-xl border border-slate-200 text-slate-900 hover:bg-white/75 hover:border-slate-300",
         className
       )}
       whileHover={{ scale: 1.02 }}
@@ -247,7 +247,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* Content Layer - flex-1 stretches it to fill parent, flex-col allows mt-auto */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto pt-16 md:pt-44 px-4 md:px-12 flex-1 flex flex-col items-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto pt-28 md:pt-44 px-4 md:px-12 flex-1 flex flex-col items-center">
 
           {/* Text Content - Center on Mobile, Left on Desktop */}
           <div className="w-full flex flex-col items-center text-center mb-8 md:mb-10">
@@ -298,14 +298,12 @@ export function HeroSection() {
                 showTitle={false}
                 customTrigger={
                   <div className="relative group cursor-pointer w-full md:w-auto flex flex-1 md:flex-none justify-center">
-                    {/* Electricity Effect Wrapper */}
-                    <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] opacity-0 group-hover:opacity-100 blur-[8px] transition-all duration-300 animate-pulse" />
                     <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] opacity-0 group-hover:opacity-100 transition-all duration-300">
                        <div className="absolute inset-0 rounded-xl bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xNSIvPjwvc3ZnPg==')] mix-blend-overlay animate-[ping_1.5s_infinite]" />
                     </div>
                     
                     <div className="relative z-10 w-full pointer-events-none">
-                      <RollingTextButton label={t("hero.btn.start")} variant="gradient" className="w-full md:w-auto px-6 md:px-10 text-[13px] md:text-base h-12 md:h-14 border-none shadow-[0_0_20px_rgba(22,32,240,0.3)] pointer-events-auto" />
+                      <RollingTextButton label={t("hero.btn.start")} variant="gradient" className="w-full md:w-auto px-6 md:px-10 text-[13px] md:text-base h-12 md:h-14 border-none pointer-events-auto" />
                     </div>
                   </div>
                 }

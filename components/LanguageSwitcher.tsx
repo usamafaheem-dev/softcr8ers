@@ -69,25 +69,26 @@ export function LanguageSwitcher({
       <button
         onClick={toggleDropdown}
         className={cn(
-          "flex items-center justify-center rounded-full transition-all duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1620f0]/30 shrink-0 cursor-pointer",
+          "flex items-center justify-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1620f0]/30 shrink-0 cursor-pointer relative overflow-hidden group/lang",
           onlyIcon
-            ? "w-9 h-9 border border-slate-200 bg-slate-50/50 text-slate-700 hover:text-slate-900 hover:bg-slate-100"
-            : "gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-100",
+            ? "w-[38px] h-[38px] bg-gradient-to-br from-[#1620f0] via-[#a906c9] to-[#f016da] shadow-md shadow-[#a906c9]/20 hover:shadow-lg hover:shadow-[#a906c9]/40 text-white"
+            : "gap-2 px-3 py-1.5 bg-gradient-to-br from-[#1620f0] via-[#a906c9] to-[#f016da] shadow-md shadow-[#a906c9]/20 hover:shadow-lg hover:shadow-[#a906c9]/40 text-white text-sm font-bold",
           className
         )}
       >
+        <div className="absolute inset-0 bg-white/20 opacity-0 group-hover/lang:opacity-100 transition-opacity"></div>
         <IoLanguage
-          size={onlyIcon ? 18 : 16}
-          className={isRtl ? "text-[#a906c9]" : "text-[#1620f0]"}
+          size={onlyIcon ? 20 : 16}
+          className="text-white relative z-10 transition-transform duration-300 group-hover/lang:scale-115"
         />
         {!onlyIcon && (
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 relative z-10">
             <ReactCountryFlag
               countryCode={LANGUAGES.find(l => l.code === language)?.flag || "US"}
               svg
-              style={{ width: "1.1em", height: "1.1em", borderRadius: "1px" }}
+              style={{ width: "1.2em", height: "1.2em", borderRadius: "2px" }}
             />
-            <span>{getLangName(language as Language)}</span>
+            <span className="text-white">{getLangName(language as Language)}</span>
           </div>
         )}
       </button>

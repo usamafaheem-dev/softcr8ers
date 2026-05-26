@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/context/LanguageContext";
 
 // ─── Domain Data ────────────────────────────────────────────────────────────
 const domains = [
@@ -75,6 +76,11 @@ function DomainCard({
   domain: (typeof domains)[0];
   index: number;
 }) {
+  const { t } = useTranslation();
+  const category = t(`portfolio.cap.domain.${domain.id}.cat`, domain.category);
+  const title = t(`portfolio.cap.domain.${domain.id}.title`, domain.title);
+  const description = t(`portfolio.cap.domain.${domain.id}.desc`, domain.description);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 28 }}
@@ -92,10 +98,10 @@ function DomainCard({
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-col gap-1">
           <span className="text-[10px] font-black tracking-[0.4em] uppercase text-slate-400">
-            {domain.category}
+            {category}
           </span>
           <h3 className="text-base md:text-lg font-semibold text-slate-900 leading-snug">
-            {domain.title}
+            {title}
           </h3>
         </div>
         {/* Icon bubble */}
@@ -107,7 +113,7 @@ function DomainCard({
       </div>
 
       {/* Description */}
-      <p className="text-slate-500 text-sm leading-relaxed">{domain.description}</p>
+      <p className="text-slate-500 text-sm leading-relaxed">{description}</p>
 
       {/* Tags */}
       <div className="flex flex-wrap gap-2 mt-auto pt-1">
@@ -131,6 +137,8 @@ function DomainCard({
 
 // ─── Section ─────────────────────────────────────────────────────────────────
 export function PortfolioCapabilities() {
+  const { t } = useTranslation();
+
   return (
     <section
       id="capabilities"
@@ -163,7 +171,7 @@ export function PortfolioCapabilities() {
                 ✱
               </span>
               <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">
-                PORTFOLIO &amp; CAPABILITIES
+                {t("portfolio.cap.badge", "PORTFOLIO & CAPABILITIES")}
               </span>
               <span
                 className="text-[#f016da] animate-spin font-bold ml-1"
@@ -181,11 +189,11 @@ export function PortfolioCapabilities() {
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-950 tracking-tight leading-[1.1]"
           >
-            Key{" "}
+            {t("portfolio.cap.title.p1", "Key")}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da]">
-              Specialty
+              {t("portfolio.cap.title.p2", "Specialty")}
             </span>{" "}
-            Domains
+            {t("portfolio.cap.title.p3", "Domains")}
           </motion.h2>
 
           <motion.p
@@ -195,8 +203,7 @@ export function PortfolioCapabilities() {
             transition={{ delay: 0.2 }}
             className="text-slate-500 mt-4 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed"
           >
-            Six core disciplines — each a deep well of expertise — working together to
-            deliver complete digital solutions for ambitious brands.
+            {t("portfolio.cap.desc", "Six core disciplines — each a deep well of expertise — working together to deliver complete digital solutions for ambitious brands.")}
           </motion.p>
         </div>
 
@@ -223,10 +230,10 @@ export function PortfolioCapabilities() {
             <div className="relative h-5 overflow-hidden">
               <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-5">
                 <span className="flex h-5 items-center justify-center uppercase tracking-widest text-[10px] md:text-xs text-white">
-                  Start a Project
+                  {t("portfolio.cap.btn.start", "Start a Project")}
                 </span>
                 <span className="flex h-5 items-center justify-center uppercase tracking-widest text-[10px] md:text-xs text-white">
-                  Start a Project
+                  {t("portfolio.cap.btn.start", "Start a Project")}
                 </span>
               </div>
             </div>
@@ -238,10 +245,10 @@ export function PortfolioCapabilities() {
             <div className="relative h-5 overflow-hidden">
               <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-5">
                 <span className="flex h-5 items-center justify-center uppercase tracking-widest text-[10px] md:text-xs text-slate-800">
-                  View All Services
+                  {t("portfolio.cap.btn.view", "View All Services")}
                 </span>
                 <span className="flex h-5 items-center justify-center uppercase tracking-widest text-[10px] md:text-xs text-slate-800">
-                  View All Services
+                  {t("portfolio.cap.btn.view", "View All Services")}
                 </span>
               </div>
             </div>

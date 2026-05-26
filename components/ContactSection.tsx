@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, X, ChevronDown, CheckCircle2, Search, Sparkles } from "lucide-react";
+import { Send, X, ChevronDown, CheckCircle2, Search, Sparkles, MapPin, Phone, Clock, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "@/context/LanguageContext";
@@ -183,7 +183,33 @@ function CountryPicker({ selected, onChange, className }: {
 }
 
 // ── Main Section ─────────────────────────────────────────────
-export function ContactSection({ iconColor, isModal = false }: { iconColor?: string; isModal?: boolean }) {
+export function ContactSection({ 
+  iconColor, 
+  isModal = false,
+  badgeText,
+  titlePart1,
+  titleHighlight1,
+  titlePart2,
+  titleHighlight2,
+  subtitleText,
+  formTitlePart1,
+  formTitleHighlight,
+  formTitlePart2,
+  variant = "home"
+}: { 
+  iconColor?: string; 
+  isModal?: boolean;
+  badgeText?: string;
+  titlePart1?: string;
+  titleHighlight1?: string;
+  titlePart2?: string;
+  titleHighlight2?: string;
+  subtitleText?: string;
+  formTitlePart1?: string;
+  formTitleHighlight?: string;
+  formTitlePart2?: string;
+  variant?: "home" | "contactPage";
+}) {
   const { t, language } = useTranslation();
   const isArabicOrUrdu = language === "ur" || language === "ar";
   const serviceOptions = getServiceOptions(t);
@@ -278,11 +304,11 @@ export function ContactSection({ iconColor, isModal = false }: { iconColor?: str
   return (
     <section id="contact" className={cn(
       "font-['General_Sans',sans-serif]",
-      isModal ? "relative w-full max-w-xl mx-auto" : "relative w-full overflow-hidden py-12 md:py-16 bg-white border-t border-slate-100"
+      isModal ? "relative w-full max-w-xl mx-auto" : cn("relative w-full overflow-hidden bg-white", variant === "home" ? "py-12 md:py-16 border-t border-slate-100" : "pt-0 pb-8")
     )}>
 
       {/* Floating 3D Blocks */}
-      {!isModal && (
+      {!isModal && variant === "home" && (
         <>
           <motion.div
             className="absolute top-[10%] left-[2%] w-32 h-32 md:w-56 md:h-56 pointer-events-none opacity-20 md:opacity-40 z-0"
@@ -302,13 +328,13 @@ export function ContactSection({ iconColor, isModal = false }: { iconColor?: str
       )}
 
       {/* ── Header Section ── */}
-      {!isModal && (
+      {!isModal && variant === "home" && (
         <>
           <div className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-6 text-center mb-16 md:mb-20">
         <div className="flex justify-center w-full mb-6">
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-100 shadow-sm">
             <span className="text-[#2f89f7] animate-spin font-bold" style={{ willChange: "transform" }}>✱</span>
-            <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">{t("contact.badge")}</span>
+            <span className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-slate-500 ml-1">{badgeText || t("contact.badge")}</span>
             <span className="text-[#f016da] animate-spin font-bold ml-1" style={{ willChange: "transform" }}>✱</span>
           </div>
         </div>
@@ -317,9 +343,9 @@ export function ContactSection({ iconColor, isModal = false }: { iconColor?: str
           "font-medium text-slate-950 tracking-tight leading-[1.1] mb-6 md:mb-8",
           isArabicOrUrdu ? "text-2xl md:text-3xl lg:text-4xl" : "text-3xl md:text-4xl lg:text-5xl"
         )}>
-          {t("contact.title.p1")}
+          {titlePart1 || t("contact.title.p1")}
           <span className="relative inline-block">
-            <span className="relative z-10">{t("contact.title.highlight1")}</span>
+            <span className="relative z-10">{titleHighlight1 || t("contact.title.highlight1")}</span>
             <motion.span
               initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
@@ -327,14 +353,14 @@ export function ContactSection({ iconColor, isModal = false }: { iconColor?: str
               style={{ backgroundColor: iconColor ? `${iconColor}22` : "rgba(22, 32, 240, 0.15)" }}
             />
           </span>
-          <br />{t("contact.title.p2")}
+          <br />{titlePart2 || t("contact.title.p2")}
           <span style={{ color: iconColor || "#1620f0" }}>
-            {t("contact.title.highlight2")}
+            {titleHighlight2 || t("contact.title.highlight2")}
           </span>
         </h2>
 
         <p className="text-slate-500 text-sm md:text-base font-normal max-w-2xl mx-auto mb-10 leading-relaxed">
-          {t("contact.subtitle")}
+          {subtitleText || t("contact.subtitle")}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
@@ -394,27 +420,22 @@ export function ContactSection({ iconColor, isModal = false }: { iconColor?: str
           content: "";
           position: absolute;
           inset: -150%;
-          background: conic-gradient(from 0deg, ${iconColor || "#1620f0"}, #a906c9, ${iconColor || "#f016da"}, ${iconColor || "#1620f0"});
+          background: conic-gradient(from 0deg, #1620f0, #a906c9, #1620f0, #a906c9, #1620f0);
           animation: rotate-border 6s linear infinite;
-          opacity: 0;
-          transition: opacity 0.4s ease;
-          z-index: 0;
-        }
-        .form-border-container:hover::before {
           opacity: 1;
+          z-index: 0;
         }
         .form-border-inner {
           position: relative;
           z-index: 1;
           height: 100%;
           width: 100%;
-          background: rgba(255, 255, 255, 0.98);
         }
       `}</style>
 
       {/* ── Main Form Section ── */}
-      <div className={cn("relative z-10 w-full mx-auto", isModal ? "max-w-xl px-0" : "max-w-6xl px-4 md:px-6")}>
-        <div className={cn("grid", isModal ? "grid-cols-1 gap-0" : "grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20")}>
+      <div className={cn("relative z-10 w-full mx-auto", isModal ? "max-w-xl px-0" : "max-w-5xl px-4 md:px-6")}>
+        <div className={cn("grid items-center", isModal ? "grid-cols-1 gap-0" : "grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12")}>
 
           {/* Left: Form */}
           <motion.div
@@ -423,9 +444,9 @@ export function ContactSection({ iconColor, isModal = false }: { iconColor?: str
             viewport={{ once: true }}
             className={cn("form-border-container rounded-[1.5rem]", !isModal && "shadow-[0_20px_50px_rgba(0,0,0,0.03)]")}
           >
-            <div className={cn("form-border-inner rounded-[1.5rem]", isModal ? "p-5 md:p-6 bg-white" : "p-6 md:p-8 bg-[rgba(255,255,255,0.98)]")}>
-              <h3 className={cn("font-medium text-slate-950 text-center lg:text-left", isModal ? "text-xl mb-6" : "text-2xl mb-8")}>
-                {t("contact.form.title.p1")} <span style={{ color: iconColor || "#1620f0" }}>{t("contact.form.title.highlight")}</span> {t("contact.form.title.p2") ?? ""}
+            <div className={cn("form-border-inner rounded-[1.5rem]", isModal ? "p-3 md:p-4 bg-[#161245]" : "p-4 lg:p-5 bg-gradient-to-br from-[#1620f0]/95 to-[#a906c9]/95 backdrop-blur-xl border border-white/20 shadow-2xl")}>
+              <h3 className={cn("font-medium text-white text-center lg:text-left", isModal ? "text-xl mb-4" : "text-xl mb-5")}>
+                {formTitlePart1 || t("contact.form.title.p1")} <span className="text-[#38bdf8]">{formTitleHighlight || t("contact.form.title.highlight")}</span> {formTitlePart2 || (t("contact.form.title.p2") ?? "")}
               </h3>
 
               {submitted ? (
@@ -439,56 +460,56 @@ export function ContactSection({ iconColor, isModal = false }: { iconColor?: str
                   <button onClick={() => setSubmitted(false)} className="text-[#6366f1] font-medium hover:underline">{t("contact.form.success.btn")}</button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className={cn("space-y-6", isModal && "space-y-4")}>
-                  <div className={cn("grid grid-cols-1 gap-6", isModal ? "md:grid-cols-2 gap-4" : "md:grid-cols-2")}>
+                <form onSubmit={handleSubmit} className={cn("space-y-2", isModal && "space-y-2")}>
+                  <div className={cn("grid grid-cols-1 gap-2", isModal ? "md:grid-cols-2 gap-2" : "md:grid-cols-2")}>
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.name")}</label>
-                      <input type="text" name="fullName" required value={formData.fullName} onChange={handleChange} placeholder={t("contact.form.placeholder.name")} className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-950 placeholder:text-slate-300 focus:outline-none focus:border-purple-500 transition-all font-normal text-sm" />
+                      <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/70 ml-1">{t("contact.form.name")}</label>
+                      <input type="text" name="fullName" required value={formData.fullName} onChange={handleChange} placeholder={t("contact.form.placeholder.name")} className="w-full px-0 py-2 bg-transparent border-b border-white/30 text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all font-normal text-sm" />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.email")}</label>
-                      <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder={t("contact.form.placeholder.email")} className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-950 placeholder:text-slate-300 focus:outline-none focus:border-purple-500 transition-all font-normal text-sm" />
+                      <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/70 ml-1">{t("contact.form.email")}</label>
+                      <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder={t("contact.form.placeholder.email")} className="w-full px-0 py-2 bg-transparent border-b border-white/30 text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all font-normal text-sm" />
                     </div>
                   </div>
 
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.phone")}</label>
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/70 ml-1">{t("contact.form.phone")}</label>
                     {/* Desktop: One line | Mobile: Stacked */}
                     <div className="flex flex-col md:flex-row md:items-stretch gap-3">
                       <CountryPicker selected={selectedCountry} onChange={setSelectedCountry} className="md:w-[160px]" />
-                      <div className="flex-1 flex items-center gap-2.5 px-3.5 py-2 bg-white border border-slate-200 rounded-xl focus-within:border-purple-500 transition-all shadow-sm">
+                      <div className="flex-1 flex items-center gap-2.5 px-3.5 py-2 bg-white/10 border border-white/20 rounded-xl focus-within:border-white transition-all shadow-sm">
                         <ReactCountryFlag countryCode={selectedCountry.code} svg style={{ width: "1.1em", height: "1.1em" }} />
-                        <span className="text-sm text-slate-400 font-medium shrink-0">{selectedCountry.dial}</span>
-                        <div className="w-px h-3.5 bg-slate-200 mx-0.5" />
-                        <input type="tel" name="phoneNumber" required value={formData.phoneNumber} onChange={handleChange} placeholder={t("contact.form.placeholder.phone")} className="flex-1 bg-transparent text-slate-950 placeholder:text-slate-300 focus:outline-none text-sm font-normal" />
+                        <span className="text-sm text-white/60 font-medium shrink-0">{selectedCountry.dial}</span>
+                        <div className="w-px h-3.5 bg-white/20 mx-0.5" />
+                        <input type="tel" name="phoneNumber" required value={formData.phoneNumber} onChange={handleChange} placeholder={t("contact.form.placeholder.phone")} className="flex-1 bg-transparent text-white placeholder:text-white/40 focus:outline-none text-sm font-normal" />
                       </div>
                     </div>
                   </div>
 
-                  <div className={cn("space-y-4", isModal && "space-y-2")}>
-                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.services")}</label>
-                    <div className={cn("grid grid-cols-1 sm:grid-cols-2", isModal ? "gap-2" : "gap-3")}>
+                  <div className={cn("space-y-2", isModal && "space-y-2")}>
+                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/70 ml-1">{t("contact.form.services")}</label>
+                    <div className={cn("grid grid-cols-1 sm:grid-cols-2", isModal ? "gap-1.5" : "gap-2")}>
                       {serviceOptions.map(service => (
                         <label key={service} className="flex items-center gap-2.5 group cursor-pointer">
                           <div className="relative w-4 h-4 flex items-center justify-center">
                             <input type="checkbox" className="peer absolute inset-0 opacity-0 cursor-pointer" />
-                            <div className="w-full h-full border border-slate-300 rounded group-hover:border-[#a906c9] peer-checked:bg-[#050101] peer-checked:border-[#050101] transition-all" />
-                            <CheckCircle2 size={10} className="absolute text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
+                            <div className="w-full h-full border border-white/40 rounded group-hover:border-white peer-checked:bg-white peer-checked:border-white transition-all" />
+                            <CheckCircle2 size={10} className="absolute text-[#a906c9] opacity-0 peer-checked:opacity-100 transition-opacity" />
                           </div>
-                          <span className="text-sm text-slate-600 font-normal group-hover:text-slate-950 transition-colors">{service}</span>
+                          <span className="text-sm text-white/80 font-normal group-hover:text-white transition-colors">{service}</span>
                         </label>
                       ))}
                     </div>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 ml-1">{t("contact.form.project")}</label>
-                    <textarea name="projectDetails" required rows={3} value={formData.projectDetails} onChange={handleChange} placeholder={t("contact.form.placeholder.project")} className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-slate-950 placeholder:text-slate-300 focus:outline-none focus:border-purple-500 transition-all resize-none font-normal text-sm" />
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/70 ml-1">{t("contact.form.project")}</label>
+                    <textarea name="projectDetails" required rows={3} value={formData.projectDetails} onChange={handleChange} placeholder={t("contact.form.placeholder.project")} className="w-full px-0 py-2 bg-transparent border-b border-white/30 text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all resize-none font-normal text-sm" />
                   </div>
 
-                  <div className="pt-4 flex justify-center">
-                    <div className="w-[300px] h-28 flex items-center justify-center relative overflow-visible">
+                  <div className="pt-2 flex justify-center">
+                    <div className="w-[300px] h-16 flex items-center justify-center relative overflow-visible mt-2">
                       <PulseBeams beams={submitBeams} viewBox="0 0 300 112" className="absolute inset-0 w-full h-full">
                         <ContactButton label={isSubmitting ? t("contact.form.btn.loading") : t("contact.form.btn.submit")} type="submit" variant="gradient" className="min-w-[260px] h-[52px] relative z-10" />
                       </PulseBeams>
@@ -501,25 +522,77 @@ export function ContactSection({ iconColor, isModal = false }: { iconColor?: str
 
           {/* Right: Contact Info (Centered on Mobile) */}
           {!isModal && (
-          <div className="flex flex-col justify-center space-y-12 lg:pl-10 text-center lg:text-left">
-            <div className="space-y-3">
-              <h4 className="text-xl font-medium text-slate-950">{t("contact.info.sales.title")}</h4>
-              <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.sales.desc")}</p>
-              <a href="mailto:sales@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>sales@Softcr8ors.com</a>
-            </div>
+            variant === "contactPage" ? (
+              <div className="flex flex-col justify-center lg:pl-10 text-center lg:text-left mt-10 lg:mt-0">
+                <h4 className="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-tight">CONTACT US</h4>
+                <p className="text-slate-500 text-sm font-normal mb-10 leading-relaxed max-w-sm mx-auto lg:mx-0">
+                  We look forward to hearing from you. Our team is eager to assist you with any inquiries or feedback you have.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-6 text-left max-w-md mx-auto lg:mx-0">
+                  {/* Address */}
+                  <div className="space-y-3">
+                    <div className="w-10 h-10 rounded-md bg-transparent flex items-center justify-start text-[#a906c9]">
+                      <MapPin size={28} strokeWidth={1.5} />
+                    </div>
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      22 KyaKhao St.,<br/>
+                      Karachi, Pakistan,<br/>
+                      12345
+                    </p>
+                  </div>
+                  {/* Phone */}
+                  <div className="space-y-3">
+                    <div className="w-10 h-10 rounded-md bg-transparent flex items-center justify-start text-[#a906c9]">
+                      <Phone size={28} strokeWidth={1.5} />
+                    </div>
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      +92-21-1234-5678<br/>
+                      +92-30-9876-5432
+                    </p>
+                  </div>
+                  {/* Clock / Email 1 */}
+                  <div className="space-y-3">
+                    <div className="w-10 h-10 rounded-md bg-transparent flex items-center justify-start text-[#a906c9]">
+                      <Clock size={28} strokeWidth={1.5} />
+                    </div>
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      info@kyakhao.com<br/>
+                      support@kyakhao.com
+                    </p>
+                  </div>
+                  {/* Mail / Email 2 */}
+                  <div className="space-y-3">
+                    <div className="w-10 h-10 rounded-md bg-transparent flex items-center justify-start text-[#a906c9]">
+                      <Mail size={28} strokeWidth={1.5} />
+                    </div>
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      info@kyakhao.com<br/>
+                      support@kyakhao.com
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-col justify-center space-y-12 lg:pl-10 text-center lg:text-left">
+                <div className="space-y-3">
+                  <h4 className="text-xl font-medium text-slate-950">{t("contact.info.sales.title")}</h4>
+                  <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.sales.desc")}</p>
+                  <a href="mailto:sales@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>sales@Softcr8ors.com</a>
+                </div>
 
-            <div className="space-y-3">
-              <h4 className="text-xl font-medium text-slate-950">{t("contact.info.support.title")}</h4>
-              <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.support.desc")}</p>
-              <a href="mailto:support@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>support@Softcr8ors.com</a>
-            </div>
+                <div className="space-y-3">
+                  <h4 className="text-xl font-medium text-slate-950">{t("contact.info.support.title")}</h4>
+                  <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.support.desc")}</p>
+                  <a href="mailto:support@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>support@Softcr8ors.com</a>
+                </div>
 
-            <div className="space-y-3">
-              <h4 className="text-xl font-medium text-slate-950">{t("contact.info.chat.title")}</h4>
-              <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.chat.desc")}</p>
-              <button className="font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>{t("contact.info.chat.btn")}</button>
-            </div>
-          </div>
+                <div className="space-y-3">
+                  <h4 className="text-xl font-medium text-slate-950">{t("contact.info.chat.title")}</h4>
+                  <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.chat.desc")}</p>
+                  <button className="font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>{t("contact.info.chat.btn")}</button>
+                </div>
+              </div>
+            )
           )}
         </div>
       </div>
