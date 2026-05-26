@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/context/LanguageContext";
 
 export const PhotoGallery = ({
@@ -141,9 +140,9 @@ export const PhotoGallery = ({
       </div>
 
       <div className="flex w-full justify-center mt-6">
-        <Button className="rounded-full bg-[#a906c9] hover:bg-[#a906c9]/95 text-white font-medium px-8 py-6 text-sm shadow-[0_10px_25px_rgba(169,6,201,0.15)]">
+        <a href="/work" className="rounded-full bg-[#a906c9] hover:bg-[#a906c9]/95 text-white font-medium px-8 py-3 text-sm shadow-[0_10px_25px_rgba(169,6,201,0.15)] inline-flex items-center justify-center transition-all duration-200 hover:scale-105">
           {t("portfolio.explore.btn")}
-        </Button>
+        </a>
       </div>
     </div>
   );

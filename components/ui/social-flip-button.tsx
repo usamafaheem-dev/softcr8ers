@@ -32,7 +32,7 @@ const defaultItems: SocialItem[] = [
   { letter: "N", icon: <FaLinkedin />,  label: "LinkedIn",   href: "#" },
   { letter: "T", icon: <FaInstagram />, label: "Instagram",  href: "#" },
   { letter: "A", icon: <FaFacebook />,  label: "Facebook",   href: "#" },
-  { letter: "C", icon: <FaEnvelope />,  label: "Email",      href: "mailto:hello@Softcr8ors.com" },
+  { letter: "C", icon: <FaEnvelope />,  label: "Email",      href: "mailto:info@softcr8ors.com" },
   { letter: "T", icon: <FaDiscord />,   label: "Discord",    href: "#" },
 ];
 

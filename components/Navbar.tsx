@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Menu, X, Globe, Smartphone, Cpu, Palette, Video, Sparkles, Briefcase, Zap, ArrowRight, ChevronDown } from "lucide-react";
@@ -60,7 +60,7 @@ function ContactButton({ className, isDocked }: { className?: string; isDocked?:
       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#1620f0] to-[#f016da] opacity-30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]" />
       <RollingTextButton 
         label={t("nav.startproject")} 
-        href="#contact" 
+        href="/contact" 
         variant="gradient" 
         className={cn(
           "relative z-10 shrink-0",
@@ -136,12 +136,12 @@ const servicesData = [
 
 
 const ourWorkData = [
-  { title: "Fintech Dashboard", desc: "Real-time financial analytics platform.", href: "/work/fintech", icon: <Briefcase className="w-5 h-5 text-blue-600" />, bg: "bg-blue-50" },
-  { title: "HealthCare App", desc: "Patient management & telemedicine.", href: "/work/healthcare", icon: <Smartphone className="w-5 h-5 text-pink-600" />, bg: "bg-pink-50" },
-  { title: "E-Commerce Platform", desc: "High-conversion online retail store.", href: "/work/ecommerce", icon: <Globe className="w-5 h-5 text-purple-600" />, bg: "bg-purple-50" },
-  { title: "AI SaaS Product", desc: "Machine learning powered generator.", href: "/work/ai-saas", icon: <Cpu className="w-5 h-5 text-emerald-600" />, bg: "bg-emerald-50" },
-  { title: "Real Estate Portal", desc: "Property listing and management.", href: "/work/real-estate", icon: <Palette className="w-5 h-5 text-orange-600" />, bg: "bg-orange-50" },
-  { title: "Logistics System", desc: "Supply chain tracking optimization.", href: "/work/logistics", icon: <Zap className="w-5 h-5 text-indigo-600" />, bg: "bg-indigo-50" },
+  { title: "Fintech Dashboard", desc: "Real-time financial analytics platform.", href: "/work", icon: <Briefcase className="w-5 h-5 text-blue-600" />, bg: "bg-blue-50" },
+  { title: "HealthCare App", desc: "Patient management & telemedicine.", href: "/work", icon: <Smartphone className="w-5 h-5 text-pink-600" />, bg: "bg-pink-50" },
+  { title: "E-Commerce Platform", desc: "High-conversion online retail store.", href: "/work", icon: <Globe className="w-5 h-5 text-purple-600" />, bg: "bg-purple-50" },
+  { title: "AI SaaS Product", desc: "Machine learning powered generator.", href: "/work", icon: <Cpu className="w-5 h-5 text-emerald-600" />, bg: "bg-emerald-50" },
+  { title: "Real Estate Portal", desc: "Property listing and management.", href: "/work", icon: <Palette className="w-5 h-5 text-orange-600" />, bg: "bg-orange-50" },
+  { title: "Logistics System", desc: "Supply chain tracking optimization.", href: "/work", icon: <Zap className="w-5 h-5 text-indigo-600" />, bg: "bg-indigo-50" },
 ];
 
 function OurWorkDropdown({ isDocked }: { isDocked: boolean }) {
@@ -178,11 +178,6 @@ function OurWorkDropdown({ isDocked }: { isDocked: boolean }) {
               Explore our portfolio of cutting-edge digital transformations.
             </p>
           </div>
-          
-          <a href="/work" className="relative z-10 mt-8 flex items-center gap-2 text-[13px] font-bold hover:text-white transition-colors group/btn text-slate-300 uppercase tracking-wider">
-            View Portfolio
-            <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-          </a>
         </div>
 
         {/* Right Side: Grid of Projects */}
@@ -249,11 +244,6 @@ function ServicesDropdown({ isDocked }: { isDocked: boolean }) {
               We architect, design, and engineer world-class digital products that scale.
             </p>
           </div>
-          
-          <a href="/#services" className="relative z-10 mt-8 flex items-center gap-2 text-[13px] font-bold hover:text-white transition-colors group/btn text-slate-300 uppercase tracking-wider">
-            EXPLORE SERVICES
-            <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-          </a>
         </div>
 
         {/* Right Side: Grid of Services */}
@@ -292,7 +282,8 @@ export function Navbar() {
   const [isAtChat, setIsAtChat] = useState(false);
   const [mobileExpandedMenu, setMobileExpandedMenu] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const navRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -317,8 +308,20 @@ export function Navbar() {
     };
   }, []);
 
+  // Close dropdown when clicking outside navbar
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <motion.div
+      ref={navRef}
       className={cn(
         "fixed left-1/2 z-50 -translate-x-1/2 transition-all duration-500 px-4",
         isDocked
@@ -385,22 +388,31 @@ export function Navbar() {
               : "justify-self-center lg:ml-4 xl:ml-8 gap-0.5 xl:gap-1"
           )}
         >
-          {navLinksData.map((link) => {
+        {navLinksData.map((link) => {
             const isServices = link.key === "nav.services";
             const isWork = link.key === "nav.work";
             const isActive = pathname === link.href;
+            const dropdownKey = isServices ? "services" : isWork ? "work" : null;
+            const isOpen = dropdownKey && openDropdown === dropdownKey;
             
             return (
               <div
                 key={link.key}
                 className="relative py-2.5 shrink-0"
-                onMouseEnter={() => { if(isServices) setHoveredLink("services"); if(isWork) setHoveredLink("work"); }}
-                onMouseLeave={() => { if(isServices) setHoveredLink(null); if(isWork) setHoveredLink(null); }}
               >
                 <motion.a
-                  href={link.href}
+                  href={isServices || isWork ? undefined : link.href}
+                  onClick={(e) => {
+                    if (isServices) {
+                      e.preventDefault();
+                      setOpenDropdown(openDropdown === "services" ? null : "services");
+                    } else if (isWork) {
+                      e.preventDefault();
+                      setOpenDropdown(openDropdown === "work" ? null : "work");
+                    }
+                  }}
                   className={cn(
-                    "font-medium tracking-normal transition-all duration-300 font-sans whitespace-nowrap",
+                    "cursor-pointer font-medium tracking-normal transition-all duration-300 font-sans whitespace-nowrap flex items-center gap-1",
                     isActive
                       ? "text-transparent bg-clip-text bg-gradient-to-r from-[#1620f0] to-[#a906c9] font-bold"
                       : "text-slate-600 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]",
@@ -413,16 +425,19 @@ export function Navbar() {
                   whileTap={{ scale: 0.95 }}
                 >
                   {t(link.key)}
+                  {(isServices || isWork) && (
+                    <ChevronDown className={cn("w-3.5 h-3.5 text-slate-400 transition-transform duration-200", isOpen && "rotate-180")} />
+                  )}
                 </motion.a>
 
                 {isServices && (
                   <AnimatePresence>
-                    {hoveredLink === "services" && <ServicesDropdown isDocked={isDocked} />}
+                    {openDropdown === "services" && <ServicesDropdown isDocked={isDocked} />}
                   </AnimatePresence>
                 )}
                 {isWork && (
                   <AnimatePresence>
-                    {hoveredLink === "work" && <OurWorkDropdown isDocked={isDocked} />}
+                    {openDropdown === "work" && <OurWorkDropdown isDocked={isDocked} />}
                   </AnimatePresence>
                 )}
               </div>

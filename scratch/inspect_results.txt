@@ -1,0 +1,34 @@
+Line 27: import { FeatureCarouselSection } from "./FeatureCarouselSection";
+Line 578: statusText: "Consulting on enterprise systems",
+Line 660: location: "Enterprise Portals",
+Line 796: location: "Sleek Enterprise Systems",
+Line 963: // ── HoverBentoGrid ──────────────────────────────────────────
+Line 964: type BentoCellProps = { image: string; title: string; desc?: string; badges?: string[]; col: string; row: string; height: number; };
+Line 966: function HoverBentoCell({ image, title, desc, badges = [], col, row, iconColor }: BentoCellProps & { iconColor: string; delay: number }) {
+Line 1092: function HoverBentoGrid({ cells, cols, rows, iconColor }: { cells: (BentoCellProps & { height: number })[]; cols: number; rows: string; iconColor: string }) {
+Line 1099: <HoverBentoCell key={i} {...cell} iconColor={iconColor} delay={i * 0.08} />
+Line 1186: description: "Enterprise level Role-Based Access Control (RBAC) with detailed immutable audit logs and security.",
+Line 1407: "ENTERPRISE GRADE",
+Line 1666: { title: "Enterprise Software", desc: "Developing robust internal tools and platforms tailored to your business logic." },
+Line 1905: { title: "Enterprise Security Framework", desc: "Zero-trust architecture, compliance audits, and vulnerability patching — fully protected." },
+Line 2034: {/* ── Dynamic Animated Feature Carousel ── */}
+Line 2036: const carouselTitleMapping: Record<string, string> = {
+Line 2037: "web-engineering": "Enterprise Web Services",
+Line 2038: "mobile-innovation": "Enterprise Mobile Development",
+Line 2039: "custom-software": "Enterprise Software Development",
+Line 2040: "ai-powered-apps": "Enterprise AI Solutions",
+Line 2041: "ui-ux-design": "Enterprise UI/UX Design",
+Line 2042: "digital-marketing": "Enterprise Digital Marketing"
+Line 2044: const dynamicTitle = carouselTitleMapping[slug] || "Enterprise Digital Solutions";
+Line 2047: <FeatureCarouselSection
+Line 2057: {/* ── What's Included — Edge-to-Edge Bento Grid ── */}
+Line 2059: type BentoCard = { type: "image" | "text" | "stat"; span?: "wide" | "tall" | "normal"; image?: string; title: string; desc?: string; stat?: string; statLabel?: string; };
+Line 2060: const bentoMap: Record<string, BentoCard[]> = {
+Line 2134: const cards = bentoMap[slug] || bentoMap["web-engineering"];
+Line 2174: {/* Responsive Bento Grid */}
+Line 2193: <HoverBentoCell image={imagePicks[0]?.image!} title={imagePicks[0]?.title!} desc={imagePicks[0]?.desc} badges={getBadges(0)} col="auto" row="auto" height={380} iconColor={data.iconColor} delay={0} />
+Line 2197: <HoverBentoCell image={imagePicks[1]?.image!} title={imagePicks[1]?.title!} desc={imagePicks[1]?.desc} badges={getBadges(1)} col="auto" row="auto" height={0} iconColor={data.iconColor} delay={0.08} />
+Line 2201: <HoverBentoCell image={imagePicks[2]?.image!} title={imagePicks[2]?.title!} desc={imagePicks[2]?.desc} badges={getBadges(2)} col="auto" row="auto" height={280} iconColor={data.iconColor} delay={0.12} />
+Line 2205: <HoverBentoCell image={imagePicks[3]?.image!} title={imagePicks[3]?.title!} desc={imagePicks[3]?.desc} badges={getBadges(3)} col="auto" row="auto" height={280} iconColor={data.iconColor} delay={0.16} />
+Line 2215: <HoverBentoCell key={i} image={imagePicks[i % imagePicks.length]?.image!} title={imagePicks[i % imagePicks.length]?.title!} desc={imagePicks[i % imagePicks.length]?.desc} badges={getBadges(i + 4)} col="auto" row="auto" height={260} iconColor={data.iconColor} delay={i * 0.07} />
+Line 2225: <HoverBentoCell key={i} image={card.image!} title={card.title} desc={card.desc} badges={getBadges(i)} col="auto" row="auto" height={260} iconColor={data.iconColor} delay={i * 0.06} />

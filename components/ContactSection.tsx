@@ -226,12 +226,46 @@ export function ContactSection({
     setFormData(p => ({ ...p, [name]: value }));
   };
 
+  const handleServiceChange = (service: string) => {
+    setFormData(p => {
+      const next = p.services.includes(service)
+        ? p.services.filter(s => s !== service)
+        : [...p.services, service];
+      return { ...p, services: next };
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(r => setTimeout(r, 2000));
-    setIsSubmitting(false);
-    setSubmitted(true);
+    try {
+      const fullPhone = `${selectedCountry.dial} ${formData.phoneNumber}`;
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: fullPhone,
+          services: formData.services,
+          details: formData.projectDetails,
+        }),
+      });
+      const res = await response.json();
+      if (res.success) {
+        setSubmitted(true);
+        setFormData({
+          fullName: "", email: "", phoneNumber: "", services: [], projectDetails: "",
+        });
+      } else {
+        alert(res.error || "Failed to send email. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to submit. Please check your internet connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const beamColor = iconColor || "#1620f0";
@@ -364,10 +398,10 @@ export function ContactSection({
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-          <ContactButton label={t("contact.btn.call")} href="tel:#" variant="transparent" className="min-w-[180px] md:min-w-[200px] h-[52px]" />
+          <ContactButton label={t("contact.btn.call")} href="tel:+923220264662" variant="transparent" className="min-w-[180px] md:min-w-[200px] h-[52px]" />
           <div className="w-[240px] h-28 flex items-center justify-center relative overflow-visible">
             <PulseBeams beams={headerBeams} viewBox="0 0 240 112" className="absolute inset-0 w-full h-full">
-              <ContactButton label={t("contact.btn.demo")} href="#" variant="gradient" className="min-w-[180px] md:min-w-[200px] h-[52px] relative z-10" />
+              <ContactButton label={t("contact.btn.demo")} href="/contact" variant="gradient" className="min-w-[180px] md:min-w-[200px] h-[52px] relative z-10" />
             </PulseBeams>
           </div>
         </div>
@@ -453,11 +487,11 @@ export function ContactSection({
                 <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-20 text-center gap-6"
                 >
-                  <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-500">
+                  <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-emerald-400">
                     <CheckCircle2 size={32} />
                   </div>
-                  <h3 className="text-xl font-medium text-slate-950">{t("contact.form.success.title")}</h3>
-                  <button onClick={() => setSubmitted(false)} className="text-[#6366f1] font-medium hover:underline">{t("contact.form.success.btn")}</button>
+                  <h3 className="text-xl font-semibold text-white">{t("contact.form.success.title")}</h3>
+                  <button onClick={() => setSubmitted(false)} className="text-white font-semibold hover:underline transition-colors">{t("contact.form.success.btn")}</button>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className={cn("space-y-2", isModal && "space-y-2")}>
@@ -493,7 +527,12 @@ export function ContactSection({
                       {serviceOptions.map(service => (
                         <label key={service} className="flex items-center gap-2.5 group cursor-pointer">
                           <div className="relative w-4 h-4 flex items-center justify-center">
-                            <input type="checkbox" className="peer absolute inset-0 opacity-0 cursor-pointer" />
+                            <input
+                              type="checkbox"
+                              checked={formData.services.includes(service)}
+                              onChange={() => handleServiceChange(service)}
+                              className="peer absolute inset-0 opacity-0 cursor-pointer"
+                            />
                             <div className="w-full h-full border border-white/40 rounded group-hover:border-white peer-checked:bg-white peer-checked:border-white transition-all" />
                             <CheckCircle2 size={10} className="absolute text-[#a906c9] opacity-0 peer-checked:opacity-100 transition-opacity" />
                           </div>
@@ -535,9 +574,9 @@ export function ContactSection({
                       <MapPin size={28} strokeWidth={1.5} />
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      22 KyaKhao St.,<br/>
-                      Karachi, Pakistan,<br/>
-                      12345
+                      Al Hafeez Heights,<br/>
+                      Block D1 Gulberg III,<br/>
+                      Lahore, 54000
                     </p>
                   </div>
                   {/* Phone */}
@@ -546,8 +585,7 @@ export function ContactSection({
                       <Phone size={28} strokeWidth={1.5} />
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      +92-21-1234-5678<br/>
-                      +92-30-9876-5432
+                      <a href="tel:+923220264662" className="hover:underline">+92 322 0264662</a>
                     </p>
                   </div>
                   {/* Clock / Email 1 */}
@@ -556,8 +594,8 @@ export function ContactSection({
                       <Clock size={28} strokeWidth={1.5} />
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      info@kyakhao.com<br/>
-                      support@kyakhao.com
+                      <a href="mailto:info@softcr8ors.com" className="hover:underline">info@softcr8ors.com</a><br/>
+                      <a href="mailto:services@softcr8ors.com" className="hover:underline">services@softcr8ors.com</a>
                     </p>
                   </div>
                   {/* Mail / Email 2 */}
@@ -566,8 +604,8 @@ export function ContactSection({
                       <Mail size={28} strokeWidth={1.5} />
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      info@kyakhao.com<br/>
-                      support@kyakhao.com
+                      <a href="mailto:info@softcr8ors.com" className="hover:underline">info@softcr8ors.com</a><br/>
+                      <a href="mailto:services@softcr8ors.com" className="hover:underline">services@softcr8ors.com</a>
                     </p>
                   </div>
                 </div>
@@ -577,13 +615,13 @@ export function ContactSection({
                 <div className="space-y-3">
                   <h4 className="text-xl font-medium text-slate-950">{t("contact.info.sales.title")}</h4>
                   <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.sales.desc")}</p>
-                  <a href="mailto:sales@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>sales@Softcr8ors.com</a>
+                  <a href="mailto:info@softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>info@softcr8ors.com</a>
                 </div>
 
                 <div className="space-y-3">
                   <h4 className="text-xl font-medium text-slate-950">{t("contact.info.support.title")}</h4>
                   <p className="text-slate-500 font-normal text-base leading-relaxed">{t("contact.info.support.desc")}</p>
-                  <a href="mailto:support@Softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>support@Softcr8ors.com</a>
+                  <a href="mailto:services@softcr8ors.com" className="inline-block font-medium text-lg hover:underline transition-all" style={{ color: iconColor || "#1620f0" }}>services@softcr8ors.com</a>
                 </div>
 
                 <div className="space-y-3">

@@ -110,9 +110,11 @@ export default function ContactPage() {
                   <Phone className="w-6 h-6" strokeWidth={2} />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-xl font-medium text-[#111827]">Phone</h4>
+                  <h4 className="text-xl font-medium text-[#111827]">{t("contact.page.info.phone")}</h4>
                   <p className="text-slate-500 font-normal leading-relaxed text-sm md:text-base">
-                    +923344447957
+                    <a href={`tel:${t("contact.page.info.phone.val").replace(/\s+/g, "")}`} className="hover:underline">
+                      {t("contact.page.info.phone.val")}
+                    </a>
                   </p>
                 </div>
               </div>

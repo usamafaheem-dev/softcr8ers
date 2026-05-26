@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useTranslation } from "@/context/LanguageContext";
 import SocialFlipButton from "@/components/ui/social-flip-button";
 
@@ -19,16 +20,17 @@ export function CinematicFooter() {
   ];
 
   const NAV_LINKS = [
-    { labelKey: "ftr.nav.1", href: "#about" },
-    { labelKey: "ftr.nav.2", href: "#services" },
-    { labelKey: "ftr.nav.3", href: "#testimonials" },
-    { labelKey: "ftr.nav.4", href: "#contact" },
+    { labelKey: "ftr.nav.1", href: "/about" },
+    { labelKey: "ftr.nav.2", href: "/#services" },
+    { labelKey: "ftr.nav.3", href: "/#testimonials" },
+    { labelKey: "ftr.nav.4", href: "/contact" },
   ];
 
   const CONTACT = [
-    { labelKey: "ftr.cnt.1", href: "#contact" },
-    { labelKey: "ftr.cnt.2", href: "#contact" },
-    { label: "hello@Softcr8ors.com", href: "mailto:hello@Softcr8ors.com" },
+    { labelKey: "ftr.cnt.1", href: "/contact" },
+    { label: "+92 322 0264662", href: "tel:+923220264662" },
+    { label: "info@softcr8ors.com", href: "mailto:info@softcr8ors.com" },
+    { label: "services@softcr8ors.com", href: "mailto:services@softcr8ors.com" },
   ];
 
   return (
@@ -36,7 +38,7 @@ export function CinematicFooter() {
       className="w-full bg-white py-8 px-3 sm:py-12 sm:px-6 md:px-8 lg:px-12 flex flex-col gap-6 relative overflow-hidden"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
-      {/* ══ CARD 2: THE DARK GLASS-STYLE FOOTER WITH VIDEO BG ══ */}
+      {/* ══ CARD: THE DARK GLASS-STYLE FOOTER WITH VIDEO BG ══ */}
       <div className="relative w-full rounded-[1.5rem] sm:rounded-[2.5rem] bg-[#020205]/45 border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.5)] px-5 py-10 sm:px-12 lg:px-16 pt-12 md:pt-16 pb-10 md:pb-12 overflow-hidden backdrop-blur-xl">
 
         {/* Animated Background Video */}
@@ -96,9 +98,9 @@ export function CinematicFooter() {
             <ul className="space-y-3">
               {SERVICES.slice(0, 5).map(l => (
                 <li key={l.labelKey}>
-                  <a href={l.href} className="text-zinc-400 transition-all duration-300 font-sans font-medium text-sm leading-relaxed inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]">
+                  <Link href={l.href} className="text-zinc-400 transition-all duration-300 font-sans font-medium text-sm leading-relaxed inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]">
                     {t(l.labelKey)}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -107,14 +109,14 @@ export function CinematicFooter() {
           {/* Navigation */}
           <div className="col-span-1 md:col-span-1">
             <p className="text-white text-[11px] font-extrabold uppercase tracking-[0.2em] mb-5 pb-3 border-b border-white/10">
-              {t("ftr.nav.2")}
+              {t("ftr.nav.1")}
             </p>
             <ul className="space-y-3">
               {NAV_LINKS.map(l => (
                 <li key={l.labelKey}>
-                  <a href={l.href} className="text-zinc-400 transition-all duration-300 font-sans font-medium text-sm leading-relaxed inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]">
+                  <Link href={l.href} className="text-zinc-400 transition-all duration-300 font-sans font-medium text-sm leading-relaxed inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]">
                     {t(l.labelKey)}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -128,9 +130,9 @@ export function CinematicFooter() {
             <ul className="space-y-3 flex flex-col items-center md:items-start justify-center md:justify-start text-center md:text-left w-full">
               {CONTACT.map((l, i) => (
                 <li key={i}>
-                  <a href={l.href} className="text-zinc-400 transition-all duration-300 font-sans font-medium text-sm leading-relaxed inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]">
+                  <Link href={l.href} className="text-zinc-400 transition-all duration-300 font-sans font-medium text-sm leading-relaxed inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#1620f0] hover:to-[#a906c9]">
                     {l.labelKey ? t(l.labelKey) : l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -150,12 +152,12 @@ export function CinematicFooter() {
               {t("ftr.copy")}
             </span>
             <div className="flex items-center gap-2 text-[11px] text-zinc-400 font-semibold">
-              <a href="#privacy" className="px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300 whitespace-nowrap">
+              <Link href="/privacy-policy" className="px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300 whitespace-nowrap">
                 {t("ftr.pol.1")}
-              </a>
-              <a href="#terms" className="px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300 whitespace-nowrap">
+              </Link>
+              <Link href="/terms-of-service" className="px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-white/10 hover:text-white transition-all duration-300 whitespace-nowrap">
                 {t("ftr.pol.2")}
-              </a>
+              </Link>
             </div>
           </div>
 

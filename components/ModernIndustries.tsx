@@ -24,7 +24,7 @@ const INDUSTRIES: Industry[] = [
   { id: '3', nameKey: 'ind.3.name', descKey: 'ind.3.desc', image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1974&auto=format&fit=crop', icon: <GraduationCap size={18} />, color: '#ec4899' },
   { id: '4', nameKey: 'ind.4.name', descKey: 'ind.4.desc', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop', icon: <Building2 size={18} />, color: '#6366f1' },
   { id: '5', nameKey: 'ind.5.name', descKey: 'ind.5.desc', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop', icon: <LineChart size={18} />, color: '#10b981' },
-  { id: '6', nameKey: 'ind.6.name', descKey: 'ind.6.desc', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop', icon: <Truck size={18} />, color: '#f97316' },
+  { id: '6', nameKey: 'ind.6.name', descKey: 'ind.6.desc', image: 'https://images.unsplash.com/photo-1530521954074-e64f6810b32d?q=80&w=2070&auto=format&fit=crop', icon: <Truck size={18} />, color: '#f97316' },
 ];
 
 const col1 = INDUSTRIES.filter((_, i) => i % 3 === 0);
@@ -180,7 +180,7 @@ function IndustryPhotoCard({ industry, className, hoveredId, onHover }: {
         isDimmed ? 'opacity-30 grayscale' : 'opacity-100 grayscale-0',
       )}
       onMouseEnter={() => onHover(industry.id)}
-      onMouseLeave={() => onHover(industry.id)}
+      onMouseLeave={() => onHover(null)}
     >
       <img src={industry.image} alt={t(industry.nameKey)}
         className="w-full h-full object-cover transition-transform duration-700"

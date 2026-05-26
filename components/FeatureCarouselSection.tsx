@@ -75,6 +75,7 @@ export function FeatureCarouselSection({ title, description, features, iconColor
 
         <motion.div 
           className="flex gap-10 md:gap-16 px-4 w-max"
+          dir="ltr"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ 
             ease: "linear", 
@@ -170,6 +171,7 @@ export function FeatureCarouselSection({ title, description, features, iconColor
                          <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
                          <motion.div 
                             className="flex gap-6 whitespace-nowrap px-2 items-center w-max"
+                            dir="ltr"
                             animate={{ x: ["0%", "-50%"] }}
                             transition={{ ease: "linear", duration: 15, repeat: Infinity }}
                          >

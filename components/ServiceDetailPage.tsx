@@ -80,10 +80,36 @@ function PopoverContactForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // Simulate high-fidelity network request
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setSubmitting(false);
-    onSuccess();
+    try {
+      const fullPhone = `${selectedCountry.dial} ${phone}`;
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: fullPhone,
+          services: selectedServices,
+          details,
+        }),
+      });
+      const res = await response.json();
+      if (res.success) {
+        onSuccess();
+        setName("");
+        setEmail("");
+        setPhone("");
+        setSelectedServices([]);
+        setDetails("");
+      } else {
+        alert(res.error || "Failed to send email. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to submit. Please check your internet connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
