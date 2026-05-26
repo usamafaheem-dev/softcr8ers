@@ -401,7 +401,7 @@ export function ContactSection({
           <ContactButton label={t("contact.btn.call")} href="tel:+923220264662" variant="transparent" className="min-w-[180px] md:min-w-[200px] h-[52px]" />
           <div className="w-[240px] h-28 flex items-center justify-center relative overflow-visible">
             <PulseBeams beams={headerBeams} viewBox="0 0 240 112" className="absolute inset-0 w-full h-full">
-              <ContactButton label={t("contact.btn.demo")} href="/contact" variant="gradient" className="min-w-[180px] md:min-w-[200px] h-[52px] relative z-10" />
+              <ContactButton label={t("contact.btn.demo")} href="/#contact" variant="gradient" className="min-w-[180px] md:min-w-[200px] h-[52px] relative z-10" />
             </PulseBeams>
           </div>
         </div>

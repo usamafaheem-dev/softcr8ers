@@ -305,7 +305,7 @@ export default function IndustriesPage() {
 
                     <div className="mt-6 w-full">
                       <a
-                        href="/contact"
+                        href="/#contact"
                         className="flex items-center justify-center gap-1.5 w-full py-3 rounded-xl bg-gradient-to-r from-[#8c2b7a] to-[#a906c9] hover:from-[#a906c9] hover:to-[#f016da] text-white hover:shadow-md transition-all duration-300 font-bold text-xs uppercase tracking-widest"
                       >
                         Build for {ind.title.split(" ")[0]} <ChevronRight className="w-3.5 h-3.5" />
@@ -385,7 +385,7 @@ export default function IndustriesPage() {
             
             <div className="relative group cursor-pointer inline-block">
               <motion.a
-                href="/contact"
+                href="/#contact"
                 className="relative z-10 inline-flex items-center justify-center rounded-xl px-8 py-3 md:px-10 md:py-4 font-bold font-sans overflow-hidden transition-all duration-500 bg-[#050101] text-white shadow-xl text-sm md:text-base border border-white/10"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

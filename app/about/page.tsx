@@ -429,7 +429,7 @@ export default function AboutPage() {
             
             <div className="relative group cursor-pointer inline-block">
               <motion.a
-                href="/contact"
+                href="/#contact"
                 className="relative z-10 inline-flex items-center justify-center rounded-xl px-8 py-3 md:px-10 md:py-4 font-bold font-sans overflow-hidden transition-all duration-500 bg-[#050101] text-white shadow-xl text-sm md:text-base border border-white/10"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

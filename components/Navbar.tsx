@@ -60,7 +60,7 @@ function ContactButton({ className, isDocked }: { className?: string; isDocked?:
       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#1620f0] to-[#f016da] opacity-30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]" />
       <RollingTextButton 
         label={t("nav.startproject")} 
-        href="/contact" 
+        href="/#contact" 
         variant="gradient" 
         className={cn(
           "relative z-10 shrink-0",
@@ -76,7 +76,7 @@ const navLinksData = [
   { key: "nav.whoweare", href: "/about" },
   { key: "nav.industries", href: "/industries" },
   { key: "nav.work", href: "/work" },
-  { key: "nav.contact", href: "/contact" },
+  { key: "nav.contact", href: "/#contact" },
   { key: "nav.join", href: "/careers" },
 ];
 
@@ -136,12 +136,12 @@ const servicesData = [
 
 
 const ourWorkData = [
-  { title: "Fintech Dashboard", desc: "Real-time financial analytics platform.", href: "/work", icon: <Briefcase className="w-5 h-5 text-blue-600" />, bg: "bg-blue-50" },
-  { title: "HealthCare App", desc: "Patient management & telemedicine.", href: "/work", icon: <Smartphone className="w-5 h-5 text-pink-600" />, bg: "bg-pink-50" },
-  { title: "E-Commerce Platform", desc: "High-conversion online retail store.", href: "/work", icon: <Globe className="w-5 h-5 text-purple-600" />, bg: "bg-purple-50" },
-  { title: "AI SaaS Product", desc: "Machine learning powered generator.", href: "/work", icon: <Cpu className="w-5 h-5 text-emerald-600" />, bg: "bg-emerald-50" },
-  { title: "Real Estate Portal", desc: "Property listing and management.", href: "/work", icon: <Palette className="w-5 h-5 text-orange-600" />, bg: "bg-orange-50" },
-  { title: "Logistics System", desc: "Supply chain tracking optimization.", href: "/work", icon: <Zap className="w-5 h-5 text-indigo-600" />, bg: "bg-indigo-50" },
+  { title: "Fintech Dashboard", desc: "Real-time financial analytics platform.", href: "/work?project=apexpay", icon: <Briefcase className="w-5 h-5 text-blue-600" />, bg: "bg-blue-50" },
+  { title: "HealthCare App", desc: "Patient management & telemedicine.", href: "/work?project=neurocare", icon: <Smartphone className="w-5 h-5 text-pink-600" />, bg: "bg-pink-50" },
+  { title: "E-Commerce Platform", desc: "High-conversion online retail store.", href: "/work?project=shopvibe", icon: <Globe className="w-5 h-5 text-purple-600" />, bg: "bg-purple-50" },
+  { title: "AI SaaS Product", desc: "Machine learning powered generator.", href: "/work?project=cognitive-ai", icon: <Cpu className="w-5 h-5 text-emerald-600" />, bg: "bg-emerald-50" },
+  { title: "Real Estate Portal", desc: "Property listing and management.", href: "/work?project=aetheria", icon: <Palette className="w-5 h-5 text-orange-600" />, bg: "bg-orange-50" },
+  { title: "Logistics System", desc: "Supply chain tracking optimization.", href: "/work?project=quantflow", icon: <Zap className="w-5 h-5 text-indigo-600" />, bg: "bg-indigo-50" },
 ];
 
 function OurWorkDropdown({ isDocked }: { isDocked: boolean }) {
@@ -399,18 +399,16 @@ export function Navbar() {
               <div
                 key={link.key}
                 className="relative py-2.5 shrink-0"
+                onMouseEnter={() => {
+                  if (isServices) setOpenDropdown("services");
+                  if (isWork) setOpenDropdown("work");
+                }}
+                onMouseLeave={() => {
+                  if (isServices || isWork) setOpenDropdown(null);
+                }}
               >
                 <motion.a
-                  href={isServices || isWork ? undefined : link.href}
-                  onClick={(e) => {
-                    if (isServices) {
-                      e.preventDefault();
-                      setOpenDropdown(openDropdown === "services" ? null : "services");
-                    } else if (isWork) {
-                      e.preventDefault();
-                      setOpenDropdown(openDropdown === "work" ? null : "work");
-                    }
-                  }}
+                  href={link.href}
                   className={cn(
                     "cursor-pointer font-medium tracking-normal transition-all duration-300 font-sans whitespace-nowrap flex items-center gap-1",
                     isActive
@@ -425,9 +423,6 @@ export function Navbar() {
                   whileTap={{ scale: 0.95 }}
                 >
                   {t(link.key)}
-                  {(isServices || isWork) && (
-                    <ChevronDown className={cn("w-3.5 h-3.5 text-slate-400 transition-transform duration-200", isOpen && "rotate-180")} />
-                  )}
                 </motion.a>
 
                 {isServices && (
@@ -603,7 +598,7 @@ export function Navbar() {
 
             {/* Contact Button */}
             <a
-              href="#contact"
+              href="/#contact"
               className="mt-4 w-full py-3 rounded-xl bg-black text-white font-medium text-base text-center font-sans shadow-lg shadow-black/10 active:scale-95 transition-transform"
               onClick={() => setMenuOpen(false)}
             >

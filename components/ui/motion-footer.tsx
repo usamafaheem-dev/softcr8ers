@@ -23,11 +23,11 @@ export function CinematicFooter() {
     { labelKey: "ftr.nav.1", href: "/about" },
     { labelKey: "ftr.nav.2", href: "/#services" },
     { labelKey: "ftr.nav.3", href: "/#testimonials" },
-    { labelKey: "ftr.nav.4", href: "/contact" },
+    { labelKey: "ftr.nav.4", href: "/#contact" },
   ];
 
   const CONTACT = [
-    { labelKey: "ftr.cnt.1", href: "/contact" },
+    { labelKey: "ftr.cnt.1", href: "/#contact" },
     { label: "+92 322 0264662", href: "tel:+923220264662" },
     { label: "info@softcr8ors.com", href: "mailto:info@softcr8ors.com" },
     { label: "services@softcr8ors.com", href: "mailto:services@softcr8ors.com" },

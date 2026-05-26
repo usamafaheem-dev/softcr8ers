@@ -142,7 +142,7 @@ export function TestimonialsSection() {
 
             {/* CTAs */}
             <div className="flex flex-row flex-wrap gap-4 mt-8 justify-center lg:justify-start">
-              <a href="#contact" className="group relative inline-flex items-center justify-center rounded-xl px-8 py-3 font-bold overflow-hidden transition-all duration-500 cursor-pointer shadow-xl hover:shadow-blue-500/20 bg-[#050101] min-w-[180px]">
+              <a href="/#contact" className="group relative inline-flex items-center justify-center rounded-xl px-8 py-3 font-bold overflow-hidden transition-all duration-500 cursor-pointer shadow-xl hover:shadow-blue-500/20 bg-[#050101] min-w-[180px]">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="relative h-5 overflow-hidden">
                   <div className="flex flex-col transition-transform duration-500 ease-in-out group-hover:-translate-y-5">

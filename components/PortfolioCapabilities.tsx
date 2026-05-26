@@ -223,7 +223,7 @@ export function PortfolioCapabilities() {
           className="mt-14 md:mt-20 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="#contact"
+            href="/#contact"
             className="group relative inline-flex items-center justify-center rounded-xl px-8 py-3 font-bold overflow-hidden transition-all duration-500 cursor-pointer shadow-xl hover:shadow-blue-500/20 bg-[#050101] min-w-[200px]"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] bg-[length:200%_auto] animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

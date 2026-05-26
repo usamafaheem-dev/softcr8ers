@@ -109,6 +109,21 @@ export default function WorkPage() {
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0.5]);
   const heroY = useTransform(scrollY, [0, 600], [0, -100]);
 
+  // Auto-open project if query param is present
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const projectId = params.get("project");
+      if (projectId) {
+        // Find the case study
+        const study = caseStudies.find(s => s.id === projectId);
+        if (study) {
+          setSelectedStudy(study);
+        }
+      }
+    }
+  }, []);
+
   // Dynamic helper for dot colors inside ImageKit-style tech stack pills (Brand purple, pink, blue matching guidelines)
   const getTechAccentColor = (tech: string) => {
     const colors: Record<string, string> = {
@@ -604,17 +619,17 @@ export default function WorkPage() {
   // Helper to return beautiful, custom dark gradient overlays for the details hero section to match the brand identity perfectly with maximum contrast
   const getDetailsHeroBg = (id: string) => {
     const overlays: Record<string, string> = {
-      apexpay: "from-[#0b0c2e]/95 via-[#1620f0]/75 to-[#a906c9]/65",
-      aetheria: "from-[#080B4E]/95 via-[#250230]/80 to-[#d946ef]/70",
-      "cognitive-ai": "from-[#10032b]/95 via-[#a906c9]/80 to-[#1620f0]/65",
-      shopvibe: "from-[#0a0520]/95 via-[#220430]/80 to-[#7a1cac]/70",
-      helix: "from-[#021020]/95 via-[#1620f0]/80 to-[#f016da]/65",
-      quantflow: "from-[#020d1a]/95 via-[#1620f0]/80 to-[#a906c9]/65",
-      neurocare: "from-[#090217]/95 via-[#140526]/80 to-[#a855f7]/70",
-      aerofly: "from-[#0a0f1d]/95 via-[#581c87]/80 to-[#f016da]/65"
+      apexpay: "from-[#0b0c2e] via-[#1620f0] to-[#a906c9]",
+      aetheria: "from-[#080B4E] via-[#250230] to-[#d946ef]",
+      "cognitive-ai": "from-[#10032b] via-[#a906c9] to-[#1620f0]",
+      shopvibe: "from-[#0a0520] via-[#220430] to-[#7a1cac]",
+      helix: "from-[#021020] via-[#1620f0] to-[#f016da]",
+      quantflow: "from-[#020d1a] via-[#1620f0] to-[#a906c9]",
+      neurocare: "from-[#090217] via-[#140526] to-[#a855f7]",
+      aerofly: "from-[#0a0f1d] via-[#581c87] to-[#f016da]"
     };
 
-    return overlays[id] || "from-[#080B4E]/95 via-[#250230]/80 to-[#750A61]/70";
+    return overlays[id] || "from-[#080B4E] via-[#250230] to-[#750A61]";
   };
 
   // Helper to split title and dynamically render the last word in the project's brand color, matching the styled landing headers
@@ -651,16 +666,16 @@ export default function WorkPage() {
   // Helper to return beautiful, custom card overlay gradients that fade from solid color on the left to transparent on the right
   const getCardOverlayBg = (id: string) => {
     const overlays: Record<string, string> = {
-      apexpay: "from-[#0b0c2e] via-[#0b0c2e]/85 to-transparent",
-      aetheria: "from-[#1e022b] via-[#1e022b]/85 to-transparent",
-      "cognitive-ai": "from-[#0a0520] via-[#0a0520]/85 to-transparent",
-      shopvibe: "from-[#10032b] via-[#10032b]/85 to-transparent",
-      helix: "from-[#021020] via-[#021020]/85 to-transparent",
-      quantflow: "from-[#020d1a] via-[#020d1a]/85 to-transparent",
-      neurocare: "from-[#0c041c] via-[#0c041c]/85 to-transparent",
-      aerofly: "from-[#0a0f1d] via-[#0a0f1d]/85 to-transparent"
+      apexpay: "from-[#0b0c2e]/80 via-[#0b0c2e]/50 to-transparent",
+      aetheria: "from-[#1e022b]/80 via-[#1e022b]/50 to-transparent",
+      "cognitive-ai": "from-[#0a0520]/80 via-[#0a0520]/50 to-transparent",
+      shopvibe: "from-[#10032b]/80 via-[#10032b]/50 to-transparent",
+      helix: "from-[#021020]/80 via-[#021020]/50 to-transparent",
+      quantflow: "from-[#020d1a]/80 via-[#020d1a]/50 to-transparent",
+      neurocare: "from-[#0c041c]/80 via-[#0c041c]/50 to-transparent",
+      aerofly: "from-[#0a0f1d]/80 via-[#0a0f1d]/50 to-transparent"
     };
-    return overlays[id] || "from-[#1e022b] via-[#1e022b]/85 to-transparent";
+    return overlays[id] || "from-[#1e022b]/80 via-[#1e022b]/50 to-transparent";
   };
 
   // Helper function to render the provided mockup image directly with a sleek hover effect
@@ -1135,7 +1150,7 @@ export default function WorkPage() {
                   
                   <div className="relative group cursor-pointer inline-block">
                     <motion.a
-                      href="/contact"
+                      href="/#contact"
                       className="relative z-10 inline-flex items-center justify-center rounded-xl px-8 py-3 md:px-10 md:py-4 font-bold font-sans overflow-hidden transition-all duration-500 bg-[#050101] text-white shadow-xl text-sm md:text-base border border-white/10"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -1203,13 +1218,14 @@ export default function WorkPage() {
               >
                 
                 {/* Background image & dynamic project brand overlay */}
-                <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 z-0 bg-slate-900">
                   <img 
                     src={selectedStudy.imageUrl} 
                     alt={selectedStudy.title} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover opacity-60"
                   />
-                  <div className={cn("absolute inset-0 bg-gradient-to-tr backdrop-blur-[0.5px]", getDetailsHeroBg(selectedStudy.id))} />
+                  <div className={cn("absolute inset-0 bg-gradient-to-tr opacity-70 mix-blend-multiply", getDetailsHeroBg(selectedStudy.id))} />
+                  <div className={cn("absolute inset-0 bg-gradient-to-tr opacity-50", getDetailsHeroBg(selectedStudy.id))} />
                 </div>
 
                 {/* Back to Projects navigation button removed per user request for clean centering */}

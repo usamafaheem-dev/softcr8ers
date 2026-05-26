@@ -287,35 +287,18 @@ export function HeroSection() {
               transition={{ delay: 0.4 }}
               className="flex flex-row flex-wrap justify-center gap-4 md:gap-6 w-full md:w-auto"
             >
-              <PopoverForm
-                open={isFormOpen}
-                setOpen={setIsFormOpen}
-                showSuccess={false}
-                title="Start a Project"
-                width="95vw"
-                height="85vh"
-                showCloseButton={true}
-                showTitle={false}
-                customTrigger={
-                  <div className="relative group cursor-pointer w-full md:w-auto flex flex-1 md:flex-none justify-center">
-                    <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                       <div className="absolute inset-0 rounded-xl bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xNSIvPjwvc3ZnPg==')] mix-blend-overlay animate-[ping_1.5s_infinite]" />
-                    </div>
-                    
-                    <div className="relative z-10 w-full pointer-events-none">
-                      <RollingTextButton label={t("hero.btn.start")} variant="gradient" className="w-full md:w-auto px-6 md:px-10 text-[13px] md:text-base h-12 md:h-14 border-none pointer-events-auto" />
-                    </div>
-                  </div>
-                }
-                openChild={
-                  <div className="w-full h-full flex items-center justify-center p-4 md:p-8 bg-transparent">
-                    <ContactSection isModal={true} />
-                  </div>
-                }
-              />
+              <div className="relative group w-full md:w-auto flex flex-1 md:flex-none justify-center">
+                <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-[#1620f0] via-[#a906c9] to-[#f016da] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                   <div className="absolute inset-0 rounded-xl bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xNSIvPjwvc3ZnPg==')] mix-blend-overlay animate-[ping_1.5s_infinite]" />
+                </div>
+                
+                <div className="relative z-10 w-full">
+                  <RollingTextButton label={t("hero.btn.start")} href="/#contact" variant="gradient" className="w-full md:w-auto px-6 md:px-10 text-[13px] md:text-base h-12 md:h-14 border-none" />
+                </div>
+              </div>
 
               <div className="flex-1 md:flex-none flex justify-center">
-                <RollingTextButton label={t("hero.btn.demo")} variant="transparent" className="w-full md:w-auto px-6 md:px-10 text-[13px] md:text-base h-12 md:h-14" />
+                <RollingTextButton label={t("hero.btn.demo")} href="/#contact" variant="transparent" className="w-full md:w-auto px-6 md:px-10 text-[13px] md:text-base h-12 md:h-14" />
               </div>
             </motion.div>
           </div>

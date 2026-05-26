@@ -647,35 +647,35 @@ const serviceShowcaseMap: Record<string, ShowcaseItem[]> = {
       stats: "Next.js • Shopify Sync • 99% Lighthouse",
       imageUrl: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&auto=format&fit=crop&q=60",
       themeColor: "210 70% 30%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Real-time SaaS",
       stats: "WebSocket • Dashboard Core • Analytics",
       imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60",
       themeColor: "260 65% 25%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Enterprise Portals",
       stats: "Secure Cloud • SSO Access • RBAC Logs",
       imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=60",
       themeColor: "145 60% 22%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Stateless APIs",
       stats: "Serverless CDN • Redis • Microservices",
       imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=60",
       themeColor: "185 60% 25%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Bespoke Portfolios",
       stats: "Framer Motion • Fluid Canvas • Art Direct",
       imageUrl: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=60",
       themeColor: "330 65% 30%",
-      href: "/contact"
+      href: "/#contact"
     }
   ],
   "custom-software": [
@@ -684,35 +684,35 @@ const serviceShowcaseMap: Record<string, ShowcaseItem[]> = {
       stats: "Workflow Sync • Stock Engines • Zero Friction",
       imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60",
       themeColor: "210 75% 28%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "CRM Suite Core",
       stats: "Client Pipeline • Granular RBAC • SOC-2",
       imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=60",
       themeColor: "140 55% 24%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Fintech Engines",
       stats: "Stripe API • Ledger Logs • Auto Invoicing",
       imageUrl: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&auto=format&fit=crop&q=60",
       themeColor: "280 60% 26%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Logistic Trackers",
       stats: "GPS Mapping • Route Optima • Fleet Metrics",
       imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=60",
       themeColor: "30 75% 25%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "API Hub Gateway",
       stats: "Developer SDKs • OAuth Secure • Rate Limits",
       imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=60",
       themeColor: "190 65% 24%",
-      href: "/contact"
+      href: "/#contact"
     }
   ],
   "ui-ux-design": [
@@ -721,35 +721,35 @@ const serviceShowcaseMap: Record<string, ShowcaseItem[]> = {
       stats: "Figma Core System • Dynamic Variables",
       imageUrl: "https://images.unsplash.com/photo-1561070791-26c113006238?w=800&auto=format&fit=crop&q=60",
       themeColor: "320 65% 28%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "E-Commerce Journeys",
       stats: "High-conversion UX • Fluid Checkout Flows",
       imageUrl: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=60",
       themeColor: "220 70% 30%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "SaaS Dashboards",
       stats: "Clean Layouts • Dynamic Micro-Interactions",
       imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60",
       themeColor: "260 65% 25%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Design Auditing",
       stats: "Accessibility WCAG • Strict Visual Guidelines",
       imageUrl: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=60",
       themeColor: "150 50% 25%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Interactive Wireframes",
       stats: "High-fidelity prototypes • UX sandbox tests",
       imageUrl: "https://images.unsplash.com/photo-1581291518655-9523c932dedf?w=800&auto=format&fit=crop&q=60",
       themeColor: "195 60% 25%",
-      href: "/contact"
+      href: "/#contact"
     }
   ],
   "video-production": [
@@ -758,35 +758,35 @@ const serviceShowcaseMap: Record<string, ShowcaseItem[]> = {
       stats: "Cinematic Grade • Dynamic Visual Framing",
       imageUrl: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&auto=format&fit=crop&q=60",
       themeColor: "340 70% 28%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Corporate Shoots",
       stats: "Polished Lighting • Pro Audio Capture",
       imageUrl: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&auto=format&fit=crop&q=60",
       themeColor: "215 65% 28%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Social Reels Core",
       stats: "High-retention edits • Color Grade 8K",
       imageUrl: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&auto=format&fit=crop&q=60",
       themeColor: "270 60% 26%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Dynamic Scripts",
       stats: "Storyboards • Compelling Audio Narratives",
       imageUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&auto=format&fit=crop&q=60",
       themeColor: "40 75% 25%",
-      href: "/contact"
+      href: "/#contact"
     },
     {
       location: "Audio Mastering",
       stats: "Pro Foley SFX • Perfect Sound Balance",
       imageUrl: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&auto=format&fit=crop&q=60",
       themeColor: "160 55% 24%",
-      href: "/contact"
+      href: "/#contact"
     }
   ]
 };
@@ -1605,7 +1605,7 @@ export function ServiceDetailPage({ data }: { data: ServiceData }) {
                 </div>
                 
                 <div className="relative z-10 w-full pointer-events-none">
-                  <RollingTextButton label={t("services.start") || "Start Project"} href="/contact" variant="gradient" className="w-full md:w-auto px-6 md:px-10 text-[13px] md:text-base h-12 md:h-14 border-none shadow-[0_0_20px_rgba(22,32,240,0.3)] pointer-events-auto" />
+                  <RollingTextButton label={t("services.start") || "Start Project"} href="/#contact" variant="gradient" className="w-full md:w-auto px-6 md:px-10 text-[13px] md:text-base h-12 md:h-14 border-none shadow-[0_0_20px_rgba(22,32,240,0.3)] pointer-events-auto" />
                 </div>
               </div>
             </motion.div>

@@ -129,7 +129,7 @@ export default function Component({
               className="h-11 justify-center gap-2 rounded-xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100 transition-all font-bold text-xs text-slate-800"
               asChild
             >
-              <a href="/contact">
+              <a href="/#contact">
                 <Plus className="h-3.5 w-3.5 shrink-0" style={{ color: themeColor }} /> Hire Expert
               </a>
             </Button>
